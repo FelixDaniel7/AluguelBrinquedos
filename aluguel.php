@@ -1,5 +1,5 @@
 <?php
-include_once("controller/cliente.controller.php");
+include_once("controller/aluguel.controller.php");
 
   // if(isset($_GET['erro'])) {
   //   echo "<script>alert('Dados de login incorretos')</script>";
@@ -195,21 +195,21 @@ include_once("controller/cliente.controller.php");
             <div class="col-md-12" >
             <div class="aa-myaccount-login">
             <h4 align="center">Formulario</h4>
-      <form method="POST" class="aa-login-form" >
+      <form method="POST" action="?acao=cadastrar_alu" class="aa-login-form">
         <label>Data de uso<span>*</span></label>
-          <input type="date"  class="form-control" required>
+          <input type="date" name="Data_de_uso" class="form-control" required>
         <label>Horas de uso<span>*</span></label>
-          <input type="number"  class="form-control" required>
+          <input type="number" name="HorasAlugado" class="form-control" required>
         <label>Endereço<span>*</span></label>
-          <input type="text" class="form-control" placeholder="Insira seu Endereço" required>  
+          <input type="text" name="EnderecoMontagem" class="form-control" placeholder="Insira seu Endereço" required>  
         <label >Hora de montagem <span>*</span></label>
-          <input type="time" class="form-control"  required>
+          <input type="time" name="Data_Hora_Montagem" class="form-control"  required>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
-                <label >Forma de pagamento<span>*</span></label>
+                <label>Forma de pagamento<span>*</span></label>
             </div>
 
-              <select class="form-control" ">
+              <select class="form-control" name="FormaPagamento">
                 <option selected>Escolha...</option>
                 <option value="1">Dinheiro</option>
                 <option value="2">Cartão</option>
