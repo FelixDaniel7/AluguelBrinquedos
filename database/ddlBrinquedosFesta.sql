@@ -2,18 +2,19 @@ USE mysql;
 
 DROP DATABASE BrinquedosFesta;
 
-CREATE DATABASE BrinquedosFesta CHARACTER SET UTF8; -- criação do BD
+CREATE DATABASE BrinquedosFesta CHARACTER SET UTF8 COLLATE=utf8_unicode_ci; /* criação do BD */
 
 USE BrinquedosFesta; -- usar o bd BRINQUEDOSFESTA
 
-/*Tabelas de usuari separadas por ter diferente  dados armazenados */
+/*Tabelas de usuarios são separadas por terem diferentes dados armazenados*/
 /* Criação da tabela CLIENTE / Cadastro do cliente */
 CREATE TABLE Cliente(
 	CodCliente INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    CPF CHAR(14) NOT NULL,
+    CPF CHAR(14),/*opcinal para o cliente */
     Nome VARCHAR(50),
     Telefone VARCHAR(11),
-    Email VARCHAR(100) UNIQUE,
+    Email VARCHAR(100),
+    Login VARCHAR(25),
     Senha VARCHAR(40),/* 40 por causa da criptografia MD5 e sha1*/
     Endereco VARCHAR(200),
     NivelAcesso INT(1) 
@@ -24,7 +25,8 @@ CREATE TABLE Cliente(
 CREATE TABLE Administrador(
 	CodAdministrador INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(50),
-    Email VARCHAR(100) UNIQUE,
+    Email VARCHAR(100) unique,
+    Login VARCHAR(25) unique,
 	Senha VARCHAR(40),
     NivelAcesso INT(1) 
 );
@@ -36,6 +38,8 @@ CREATE TABLE Supervisor(
     RG CHAR(9),
     CPF CHAR(11),
 	Email VARCHAR(100) UNIQUE,
+    Login VARCHAR(25),
+    Senha VARCHAR(40),
     DataNascimento DATE,
     Endereco VARCHAR(200)
 );
