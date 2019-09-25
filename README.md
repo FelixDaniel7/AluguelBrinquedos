@@ -1,2 +1,2 @@
 # AluguelBrinquedos
-TCC - Aluguel de Brinquedos|Etec Francisco Morato
+TCC - Aluguel de Brinquedos | Etec Francisco Morato
