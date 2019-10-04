@@ -15,7 +15,7 @@ include_once("controller/aluguel.controller.php");
     <meta name="viewport" content="width=device-width, initial-scale=1">
     
 
-    <title>alu Aluguel de Brinquedos | Homes</title>
+    <title>Aluguel de Brinquedos | Home</title>
     
     <!-- Font awesome -->
     <link href="css/font-awesome.css" rel="stylesheet">
