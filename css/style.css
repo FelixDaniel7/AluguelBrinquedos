@@ -145,8 +145,8 @@ img {
 
 
 .aa-add-to-cart-btn {
-  border: 1px solid #ccc;
-  color: #555;
+  border: 1px solid #3398ed;
+  color: #3398ed;
   display: inline-block;
   font-size: 14px;
   font-weight: bold;
@@ -2149,7 +2149,7 @@ img {
 }
 #aa-product-details .aa-product-details-area .aa-product-details-content .aa-product-view-content .aa-prod-quantity .aa-prod-category {
   display: inline-block;
-  margin-left: 15px;
+  margin-left: 0px;
 }
 #aa-product-details .aa-product-details-area .aa-product-details-content .aa-product-view-content .aa-prod-quantity .aa-prod-category a {
   font-size: 14px;
