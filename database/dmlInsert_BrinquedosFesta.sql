@@ -7,11 +7,11 @@ INSERT INTO Cliente (CPF,Nome,Telefone,Email,Senha,Endereco)
 	VALUES ('98745621365','Robersval Silveira Pinheiro','11963236521',
 			'robersval1985_silveira@hotmail','jhf1234567','Rua 10, 265-Jd.Represa');
             
-           INSERT INTO  Administrador(Nome,Email,Senha,Nivel_acesso)
-           Values ('blabla', 'daniel@gmail.com','123','123456');
+           INSERT INTO  Administrador(Nome,Email,Login,Senha,NivelAcesso)
+           Values ('blabla', 'daniel@gmail.com','blaba213','123',1);
            
-           INSERT INTO  Administrador(Nome,Email,Senha,Nivel_acesso)
-           Values ('blabla2', 'daniel@gmail.com','15456423','7');
+           INSERT INTO  Administrador(Nome,Email,Login,Senha,NivelAcesso)
+           Values ('blabla2', 'daniel@gmail.com','blaba3658','123456',1);
            
            select * from administrador;
 	

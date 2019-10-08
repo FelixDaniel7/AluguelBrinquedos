@@ -41,9 +41,11 @@ CREATE TABLE Supervisor(
     Login VARCHAR(25),
     Senha VARCHAR(40),
     DataNascimento DATE,
-    Endereco VARCHAR(200)
+    Endereco VARCHAR(200),
+    NivelAcesso INT(1) 
 );
-    
+
+ 
 -- Normalização, criação da tabela DATAS
 CREATE TABLE Datas(
 	DataDisponivel DATE NOT NULL,
@@ -58,6 +60,10 @@ CREATE TABLE Equipamento(
     Nome VARCHAR(20),
     Descricao VARCHAR(100),
     DataDisponivel DATE,
+    Peso DECIMAL(4,2),
+    Altura DECIMAL(4,2),
+    Comprimento DECIMAL(4,2),
+    Largura DECIMAL(4,2),
     Preco DECIMAL(8,2),
     CONSTRAINT FK__Datas_Equipamento FOREIGN KEY (DataDisponivel)/*Chave estrangeira de DATADISPONIVEL*/
 		REFERENCES Datas(DataDisponivel)
@@ -66,6 +72,21 @@ CREATE TABLE Equipamento(
 ALTER TABLE Datas ADD 
 	CONSTRAINT FK_Equipamento_Datas FOREIGN KEY (CodEquipamento)
     REFERENCES Equipamento(CodEquipamento);
+    
+    
+/* Visivel para o cliente*/
+CREATE TABLE Frete(
+    CodFrete INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    CodEquipamento INT NOT NULL,
+    CepDestino CHAR(8),
+    Peso DECIMAL(4,2),
+    Altura DECIMAL(4,2),
+    Comprimento DECIMAL(4,2),
+    Largura DECIMAL(4,2),
+     CONSTRAINT FK_Equipamentos_Frete FOREIGN KEY (CodEquipamento)
+		REFERENCES Equipamento (CodEquipamento)
+);
+   
 
 
 /* Visivel para o CLIENTE e para o ADMINISTRADOR */
