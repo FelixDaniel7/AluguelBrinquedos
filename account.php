@@ -44,120 +44,15 @@ include_once("controller/cliente.controller.php");
 
   </head>
   <body onload="mCPF(), mTEL()">
-   <!-- wpf loader Two -->
-    <div id="wpf-loader-two">          
-      <div class="wpf-loader-two-inner">
-        <span>Carregando</span>
-      </div>
-    </div> 
-    <!-- / wpf loader Two -->       
-  <!-- SCROLL TOP BUTTON -->
-    <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
-  <!-- END SCROLL TOP BUTTON -->
 
-  <!-- Start header section -->
+
   <header id="aa-header">
-    <!-- start header top  -->
-    <div class="aa-header-top">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="aa-header-top-area">
-              <!-- start header top left -->
-              <div class="aa-header-top-left">
-                <!-- start language -->
-                
-                <!-- / currency -->
-                <!-- start cellphone -->
-                <div class="cellphone hidden-xs">
-                  <p><span class="fa fa-phone"></span> Contatos:95425-4521</p>
-                </div>
-                <div class="cellphone hidden-xs">
-                  <p><span class="fa fa-phone"></span> Contatos:95425-4521</p>
-                </div>
-                <!-- / cellphone -->
-              </div>
-              <!-- / header top left -->
-              <div class="aa-header-top-right">
-                <ul class="aa-head-top-nav-right">
-                  <li><a href="account.php">Cadastrar-se</a></li>
-                  <li><a href="" data-toggle="modal" data-target="#login-modal">Entrar</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- / header top  -->
-    <!-- start header bottom  -->
-    <div class="aa-header-bottom">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div class="aa-header-bottom-area">
-              <!-- logo  -->
-              <div class="aa-logo">
-                <!-- Text based logo -->
-                <a href="index.php">
-                  <span class="fa fa-shopping-cart"></span>
-                  <!--<p>daily<strong>Shop</strong> <span>Your Shopping Partner</span></p>
-                </a>-->
-                <!--  img based logo -->
-                <a href="index.php"><img src="img/logo1.jpg" alt="logo img"></a> 
-              </div>
-              <!-- / logo  -->
-               <!-- cart box -->
-              
-              <!-- / cart box -->
-              <!-- search box -->
-              <div class="aa-search-box">
-                <form action="">
-                  <input type="text" name="" id="" placeholder="Pesquise">
-                  <button type="submit"><span class="fa fa-search"></span></button>
-                </form>
-              </div>
-              <!-- / search box -->             
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- / header bottom  -->
-  </header>
-  <!-- / header section -->
-  <!-- menu -->
-  <section id="menu">
-    <div class="container">
-      <div class="menu-area">
-        <!-- Navbar -->
-        <div class="navbar navbar-default" role="navigation">
-          <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>          
-          </div>
-          <div class="navbar-collapse collapse">
-            <!-- Left nav -->
-            <ul class="nav navbar-nav">
-              <li><a href="index.php">Home</a></li>
-              <li><a href="#">Brinquedos</a></li>
-              <li><a href="#">Galeria</a></li> 
-              <li><a href="#">Sobre</a></li>           
-              </li>
-            </ul>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>       
-    </div>
-  </section>
-  <!-- / menu -->
-  <!-- / catg header banner section -->
 
- <!-- Cart view section -->
+    <!-- Inicio do menu superior -->
+    <?php
+      include "menu-superior.php"
+    ?> 
+    <!-- Fim do menu superior -->
 
  <div>
 &nbsp  
@@ -215,69 +110,19 @@ include_once("controller/cliente.controller.php");
   &nbsp  
   </div>
 </section>
- <!-- / Cart view section -->
-  <!-- footer -->  
-  <footer id="aa-footer">
-    <!-- footer bottom -->
-    <div class="aa-footer-top">
-     <div class="container">
-        <div class="row">
-        <div class="col-md-12">
-          <div class="aa-footer-top-area">
-            <div class="row">
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <h3>Menu</h3>
-                  <ul class="aa-footer-nav">
-                    <li><a href="index.php">Home</a></li>
-                    <li><a href="#">Brinquedos</a></li>
-                    <li><a href="#">Galeria</a></li>
-                    <li><a href="#">Sobre</a></li>
-                  </ul>
-                </div>
-              </div>
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Contate-nos</h3>
-                    <address>
-                      <p>Endereço</p>
-                      <p><span class="fa fa-phone"></span>4002-8922</p>
-                      <p><span class="fa fa-envelope"></span>Email@gmail.com</p>
-                    </address>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-     </div>
-    </div>
-  <!-- / footer -->
-    <!-- Login Modal -->  
-    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">                      
-        <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4>Login</h4>
-          <form class="aa-login-form" action="?acao=login_cli" method="POST">
-            <label for="">Endereço de Email<span>*</span></label>
-            <input type="text" name="txtlogin" placeholder="nome@gmail.com">
-            <label for="">Senha<span>*</span></label>
-            <input type="password" name="txtsenhalogin" placeholder="Senha">
-            <button class="aa-browse-btn" type="submit">Entrar</button>
-            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Lembre-se </label>
-            <p class="aa-lost-password"><a href="#"> Perdeu sua senha?</a></p>
-            <div class="aa-register-now">
-              Não tem uma conta?<a href="account.php">Registre-se agora!</a>
-            </div>
-          </form>
-        </div>                        
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div> 
+ 
+
+      <!-- Começo do menu inferior -->
+      <?php
+        include "menu-inferior.php";
+      
+      // Fim do menu inferior 
+
+      // Começo da tela de login
+      
+        include "login.php";
+      ?> 
+      <!-- Fim da tela de cadastro --> 
 
 
     

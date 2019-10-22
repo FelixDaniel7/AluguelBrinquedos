@@ -22,62 +22,13 @@
   </head>
   <body>  
     <body> 
-       <div id="wpf-loader-two">          
-         <div class="wpf-loader-two-inner">
-           <span>Carregando</span>
-         </div>
-       </div> 
-       <a class="scrollToTop" href="#"><i class="fa fa-chevron-up"></i></a>
+       
      <header id="aa-header">
-       <div class="aa-header-top">
-         <div class="container">
-           <div class="row">
-             <div class="col-md-12">
-               <div class="aa-header-top-area">
-                 <div class="aa-header-top-left">
-                   <div class="cellphone hidden-xs">
-                     <p><span class="fa fa-phone"></span> Contatos: (11)95555-5555</p>
-                   </div>
-                   <div class="cellphone hidden-xs">
-                     <p><span class="fa fa-phone"></span> Contatos: (11)4444-4444</p>
-                   </div>
-                   <div class="cellphone hidden-xs">
-                     <p><span class="fa fa-envelope"></span> E-mail: nome@gmail.com</p>
-                   </div>
-                 </div>
-                 <div class="aa-header-top-right">
-                   <ul class="aa-head-top-nav-right">
-                     <li><a href="account.php">Cadastrar-se</a></li>
-                     <li><a href="" data-toggle="modal" data-target="#login-modal">Entrar</a></li>
-                   </ul>
-                 </div>
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
-       <div class="aa-header-bottom">
-         <div class="container">
-           <div class="row">
-             <div class="col-md-12">
-               <div class="aa-header-bottom-area">
-                 <div class="aa-logo">
-                   <a href="index.php">
-                     <span class="fa fa-shopping-cart"></span>
-                   <a href="index.php"><img src="img/logo1.jpg" alt="logo img"></a> 
-                 </div>
-                 <div class="aa-search-box">
-                   <form action="">
-                     <input type="text" name="" id="" placeholder="Pesquise">
-                     <button type="submit"><span class="fa fa-search"></span></button>
-                   </form>
-                 </div>
-                 <!-- / search box -->             
-               </div>
-             </div>
-           </div>
-         </div>
-       </div>
+       <!-- Inicio do menu superior -->
+       <?php
+          include "menu-superior.php"
+        ?> 
+        <!-- Fim do menu superior --> 
        <!-- / header bottom  -->
      </header>
      <!-- / header section -->
@@ -169,16 +120,17 @@
                       </p>
                     </div>
                     <div class="aa-prod-view-bottom">
-                      <a class="aa-add-to-cart-btn" href="#">Alugar</a>
+                    <input type="submit" name="Enviar" class="aa-browse-btn">
                     </div>
                   </div>
                 </div>
               </div>
             </div>
             <div class="aa-product-details-bottom">
-              <ul class="nav nav-tabs" id="myTab2">
+              <ul class="nav nav-tabs" id="myTab2" >
                 <li><a>Descrição</a></li>              
               </ul>
+              
               <div class="tab-content">
                 <div class="tab-pane fade in active" id="description">
                   <center>
@@ -269,48 +221,7 @@
                           </div>
                         </div>
                         <!-- Modal view content -->
-                        <div class="col-md-6 col-sm-6 col-xs-12">
-                          <div class="aa-product-view-content">
-                            <h3>T-Shirt</h3>
-                            <div class="aa-price-block">
-                              <span class="aa-product-view-price">$34.99</span>
-                              <p class="aa-product-avilability">Avilability: <span>In stock</span></p>
-                            </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officiis animi, veritatis quae repudiandae quod nulla porro quidem, itaque quis quaerat!</p>
-                            <h4>Size</h4>
-                            <div class="aa-prod-view-size">
-                              <a href="#">S</a>
-                              <a href="#">M</a>
-                              <a href="#">L</a>
-                              <a href="#">XL</a>
-                            </div>
-                            <div class="aa-prod-quantity">
-                              <form action="">
-                                <select name="" id="">
-                                  <option value="0" selected="1">1</option>
-                                  <option value="1">2</option>
-                                  <option value="2">3</option>
-                                  <option value="3">4</option>
-                                  <option value="4">5</option>
-                                  <option value="5">6</option>
-                                </select>
-                              </form>
-                              <p class="aa-prod-category">
-                                Category: <a href="#">Polo T-Shirt</a>
-                              </p>
-                            </div>
-                            <div class="aa-prod-view-bottom">
-                              <a href="#" class="aa-add-to-cart-btn"><span class="fa fa-shopping-cart"></span>Add To Cart</a>
-                              <a href="#" class="aa-add-to-cart-btn">View Details</a>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>                        
-                  </div><!-- /.modal-content -->
-                </div><!-- /.modal-dialog -->
-              </div>
-              <!-- / quick view modal -->   
+                        
             </div> 
           </center>
           </div>
@@ -320,73 +231,17 @@
   </section>
   <!-- / product category -->
 
-  <!-- footer -->  
-  <footer id="aa-footer">
-    <!-- footer bottom -->
-    <div class="aa-footer-top">
-     <div class="container">
-        <div class="row">
-        <div class="col-md-12">
-          <div class="aa-footer-top-area">
-            <div class="row">
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <h3>Menu</h3>
-                  <ul class="aa-footer-nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Brinquedos</a></li>
-                    <li><a href="#">Galeria</a></li>
-                    <li><a href="#">Sobre</a></li>
-                  </ul>
-                </div>
-              </div>
-              
- 
-              <div class="col-md-3 col-sm-6">
-                <div class="aa-footer-widget">
-                  <div class="aa-footer-widget">
-                    <h3>Contate-nos</h3>
-                    <address>
-                      <p>Endereço:</p>
-                      <p><span class="fa fa-phone"></span>(11)4002-8922</p>
-                      <p><span class="fa fa-phone"></span>(11)95555-5555</p>
-                      <p><span class="fa fa-envelope"></span>Email@gmail.com</p>
-                    </address>
+  <!-- Começo do menu inferior -->
+  <?php
+        include "menu-inferior.php";
+      
+      // Fim do menu inferior 
 
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-     </div>
-    </div>
-
-
-  <!-- Login Modal -->  
-  <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">                      
-        <div class="modal-body">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-          <h4>Login</h4>
-          <form class="aa-login-form" action="?acao=login_cli" method="POST">
-            <label for="">Endereço de Email<span>*</span></label>
-            <input type="text" name="txtlogin" placeholder="nome@gmail.com">
-            <label for="">Senha<span>*</span></label>
-            <input type="password" name="txtsenhalogin" placeholder="Senha">
-            <button class="aa-browse-btn" type="submit">Entrar</button>
-            <label for="rememberme" class="rememberme"><input type="checkbox" id="rememberme"> Lembre-se </label>
-            <p class="aa-lost-password"><a href="#"> Perdeu sua senha?</a></p>
-            <div class="aa-register-now">
-              Não tem uma conta?<a href="account.php">Registre-se agora!</a>
-            </div>
-          </form>
-        </div>                        
-      </div><!-- /.modal-content -->
-    </div><!-- /.modal-dialog -->
-  </div>    
+      // Começo da tela de login
+      
+        include "login.php";
+      ?> 
+      <!-- Fim da tela de cadastro -->    
 
 
     

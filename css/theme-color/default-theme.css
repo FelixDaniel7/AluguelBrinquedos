@@ -15,6 +15,10 @@ h2 {
 .aa-secondary-btn {  
   color: #3398ed;  
 }
+
+.aa-secondary-btn-blue {  
+  color: #e8f3fd;  
+}
 .aa-secondary-btn:hover, .aa-secondary-btn:focus {
   background-color: #3398ed;  
 }
