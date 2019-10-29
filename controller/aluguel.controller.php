@@ -10,6 +10,7 @@ if(isset($_REQUEST["acao"])){
             $alu->HorasAlugado = $_POST["HorasAlugado"];
             $alu->EnderecoMontagem = $_POST["EnderecoMontagem"];
             $alu->Data_Hora_Montagem = $_POST["Data_Hora_Montagem"];
+            $alu->Data_Hora_Desmontagem = $_POST["Data_Hora_Desmontagem"];
             $alu->FormaPagamento = $_POST["FormaPagamento"];
             
             $alu->CadastrarAluguel();
