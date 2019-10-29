@@ -1,7 +1,7 @@
 <?php
 include_once("controller/aluguel.controller.php");
 
-session_start();
+//session_start();
 
   // if(isset($_GET['erro'])) {
   //   echo "<script>alert('Dados de login incorretos')</script>";
@@ -201,13 +201,11 @@ session_start();
         <label>Data de uso<span>*</span></label>
           <input type="date" name="Data_de_uso" class="form-control" required>
         <label>Horas de uso<span>*</span></label>
-          <input type="time" name="HorasAlugado" class="form-control" required>
+          <input type="number" name="HorasAlugado" class="form-control" required>
         <label>Endereço<span>*</span></label>
           <input type="text" name="EnderecoMontagem" class="form-control" placeholder="Insira seu Endereço" required>  
         <label >Hora de montagem <span>*</span></label>
           <input type="time" name="Data_Hora_Montagem" class="form-control"  required>
-        <label >Hora de desmontagem <span>*</span></label>
-          <input type="time" name="Data_Hora_Desmontagem" class="form-control"  required>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
                 <label>Forma de pagamento<span>*</span></label>
