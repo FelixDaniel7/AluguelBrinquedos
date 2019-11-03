@@ -20,9 +20,6 @@ CREATE TABLE Cliente(
     Senha VARCHAR(40),/* 40 por causa da criptografia MD5 e sha1*/
     NivelAcesso INT(1) 
 );
-/* Deixar o campo Email UNICO */
--- CREATE UNIQUE INDEX IDX_Email ON Cliente(Email);
-
 CREATE TABLE Administrador(
 	CodAdministrador INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(50),
@@ -32,7 +29,6 @@ CREATE TABLE Administrador(
 	Senha VARCHAR(40),
     NivelAcesso INT(1) 
 );
-
 /* Visivel apenas para o ADMINISTRADOR */
 CREATE TABLE Supervisor(
 	CodSupervisor INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -47,10 +43,6 @@ CREATE TABLE Supervisor(
     Senha VARCHAR(40),
     NivelAcesso INT(1) 
 );
-
- 
-
-
 /* Criação da tabela EQUIPAMENTO Tudo relacionado com o EQUIPAMENTO */
 CREATE TABLE Equipamento(
 	CodEquipamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -72,15 +64,13 @@ CREATE TABLE DatasDisponivel(
     
     CONSTRAINT FK_Equipamento_Datas FOREIGN KEY (CodEquipamento)
     REFERENCES Equipamento(CodEquipamento)
-);
--- Criação de um índice no campo DataDisponivel para chave estrangeira
--- CREATE INDEX IDX_DataDisponivel ON Datas(DataDisponivel);
-    
+);   
     
 /* Visivel para o cliente*/
 CREATE TABLE Frete(
     CodFrete INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     CodEquipamento INT NOT NULL,
+    Gasolina DECIMAL(8,2), -- preço da gasolina 
     CepDestino CHAR(8),
     EnderecoMontagem VARCHAR(200),
     
@@ -93,41 +83,52 @@ CREATE TABLE Frete(
 /* Visivel para o CLIENTE e para o ADMINISTRADOR */
 CREATE TABLE Supervisao(
 	CodSupervisao INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-    TipoSupervisao BIT, -- 0 sem supervisao , 1 com supervisao  
 	ValorSupervisao DECIMAL(8,2),
     CodSupervisor INT NOT NULL,
     
     CONSTRAINT FK_Supervisor_Supervisao FOREIGN KEY (CodSupervisor)
 		REFERENCES Supervisor (CodSupervisor),
         
+	-- em qual brinquedos foi feita a supervisao
 	CodEquipamento INT NOT NULL, 
-    
     CONSTRAINT FK_Equipamentos_Supervisao FOREIGN KEY (CodEquipamento)
 		REFERENCES Equipamento (CodEquipamento)
 );
 
+
+
 /* Visivel para o CLIENTE e para o ADMINISTRADOR */
 CREATE TABLE Pedido(
 	CodPedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    CodFrete INT NOT NULL, -- endereço vem da tabela frete
     CodCliente INT NOT NULL,
-	CodItem INT NOT NULL,
-    CodSupervisao INT NULL,
+    
     DataPedido DATETIME, -- hora do envio do pedido 
     Data_de_uso DATE, -- 1970-12-31
     HorasAlugado DOUBLE,  -- Quantidade de horas de aluguel,aluguel cobrado por hora
     Data_Hora_Montagem DATETIME, -- 1970-01-01 00:00:00
-    Data_Hora_Desmontagem TIME,-- fazer o calculo horamontagem mais horas usadas
-    
-    PrecoFinal DECIMAL(8,2),
+    -- Data_Hora_Desmontagem TIME,-- fazer o calculo hora montagem mais horas usadas 
+    --  não precisa pq é calculavel
+    PrecoFinal DECIMAL(8,2),-- preço com o frete
     FormaPagamento VARCHAR(20),
     
-    CONSTRAINT FK_Cliente_Aluguel FOREIGN KEY (CodCliente)
+    CONSTRAINT FK_Cliente_Pedido FOREIGN KEY (CodCliente)
 		REFERENCES Cliente(CodCliente),
-    
-    CONSTRAINT FK_Equipamento_Aluguel FOREIGN KEY (CodEquipamento)
-		REFERENCES Equipamento(CodEquipamento),
-    
-    CONSTRAINT FK_Supervisao_Aluguel FOREIGN KEY (CodSupervisao)
-		REFERENCES Supervisao(CodSupervisao)
+        
+         CONSTRAINT FK_Frete_Pedido FOREIGN KEY (CodCliente)
+		REFERENCES Cliente(CodCliente)
 ); 
 
+CREATE TABLE Itens(
+	CodItem INT NOT NULL PRIMARY KEY auto_increment,
+    CodPedido INT NOT NULL,
+    CodEquipamento INT NOT NULL,
+    Preco DECIMAL(8,2), -- preço do equipamento novamente, campo a ser preenchido depois / não vai pegar esse preço do banco de dados
+    
+    
+ CONSTRAINT FK_Pedido_Itens FOREIGN KEY (CodPedido) 
+ REFERENCES Pedido(CodPedido),
+ 
+ CONSTRAINT FK_Equipamento_Itens FOREIGN KEY (CodEquipamento) 
+ REFERENCES Equipamento(CodEquipamento)
+);
