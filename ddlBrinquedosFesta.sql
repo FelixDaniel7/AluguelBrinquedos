@@ -10,7 +10,7 @@ USE BrinquedosFesta; -- usar o bd BRINQUEDOSFESTA
 /* Criação da tabela CLIENTE / Cadastro do cliente */
 CREATE TABLE Cliente(
 	CodCliente INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    CPF CHAR(14),/*opcinal para o cliente */
+    CPF CHAR(14) NOT NULL,/*opcinal para o cliente */
     Nome VARCHAR(50),
     Telefone VARCHAR(11),
     Endereco VARCHAR(200),
@@ -64,21 +64,7 @@ CREATE TABLE DatasDisponivel(
     
     CONSTRAINT FK_Equipamento_Datas FOREIGN KEY (CodEquipamento)
     REFERENCES Equipamento(CodEquipamento)
-);   
-    
-/* Visivel para o cliente*/
-CREATE TABLE Frete(
-    CodFrete INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    CodEquipamento INT NOT NULL,
-    Gasolina DECIMAL(8,2), -- preço da gasolina 
-    CepDestino CHAR(8),
-    EnderecoMontagem VARCHAR(200),
-    
-     CONSTRAINT FK_Equipamentos_Frete FOREIGN KEY (CodEquipamento)
-		REFERENCES Equipamento (CodEquipamento)
 );
-   
-
 
 /* Visivel para o CLIENTE e para o ADMINISTRADOR */
 CREATE TABLE Supervisao(
@@ -100,9 +86,8 @@ CREATE TABLE Supervisao(
 /* Visivel para o CLIENTE e para o ADMINISTRADOR */
 CREATE TABLE Pedido(
 	CodPedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    CodFrete INT NOT NULL, -- endereço vem da tabela frete
     CodCliente INT NOT NULL,
-    
+    EnderecoMontagem VARCHAR(200),
     DataPedido DATETIME, -- hora do envio do pedido 
     Data_de_uso DATE, -- 1970-12-31
     HorasAlugado DOUBLE,  -- Quantidade de horas de aluguel,aluguel cobrado por hora
@@ -115,7 +100,7 @@ CREATE TABLE Pedido(
     CONSTRAINT FK_Cliente_Pedido FOREIGN KEY (CodCliente)
 		REFERENCES Cliente(CodCliente),
         
-         CONSTRAINT FK_Frete_Pedido FOREIGN KEY (CodCliente)
+	CONSTRAINT FK_Frete_Pedido FOREIGN KEY (CodCliente)
 		REFERENCES Cliente(CodCliente)
 ); 
 
@@ -126,9 +111,9 @@ CREATE TABLE Itens(
     Preco DECIMAL(8,2), -- preço do equipamento novamente, campo a ser preenchido depois / não vai pegar esse preço do banco de dados
     
     
- CONSTRAINT FK_Pedido_Itens FOREIGN KEY (CodPedido) 
- REFERENCES Pedido(CodPedido),
+	CONSTRAINT FK_Pedido_Itens FOREIGN KEY (CodPedido) 
+		REFERENCES Pedido(CodPedido),
  
- CONSTRAINT FK_Equipamento_Itens FOREIGN KEY (CodEquipamento) 
- REFERENCES Equipamento(CodEquipamento)
+	CONSTRAINT FK_Equipamento_Itens FOREIGN KEY (CodEquipamento) 
+		REFERENCES Equipamento(CodEquipamento)
 );
