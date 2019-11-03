@@ -10,8 +10,17 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   </head>
   <body>
+  Pula Pula
+    <input type="radio" name="brinquedo" id="">
+    <br>
+  Cama elastica
+    <input type="radio" name="brinquedo" id="">
+    <br>
+  Castelo
+    <input type="radio" name="brinquedo" id="">
+<br>
 
-  
+<input type="checkbox" name="" id="">
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
