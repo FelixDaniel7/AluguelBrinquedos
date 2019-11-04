@@ -20,7 +20,14 @@
     <input type="radio" name="brinquedo" id="">
 <br>
 
-<input type="checkbox" name="" id="">
+<form action="" method="get">
+1
+<input type="checkbox" name="brinquedo" id="" value="1">
+<br>
+2
+<input type="checkbox" name="brinquedo" id="" value="2">
+<input type="submit" value="">
+</form>
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
