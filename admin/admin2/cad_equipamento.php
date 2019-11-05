@@ -41,7 +41,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Equipamento</div>
 				<div class="panel-body">					
-					<form role="form" action="proc_cad_evento.php" method="POST">
+					<form role="form" action="proc_cad_equipamento.php" method="POST">
 						<div class="form-group">
 							<label>Nome</label>
 							<input class="form-control" placeholder="Nome" name="nome">
