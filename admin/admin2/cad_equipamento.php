@@ -41,24 +41,19 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">Equipamento</div>
 				<div class="panel-body">					
-					<form role="form" action="proc_cad_admin.php" method="POST">
+					<form role="form" action="proc_cad_evento.php" method="POST">
 						<div class="form-group">
 							<label>Nome</label>
 							<input class="form-control" placeholder="Nome" name="nome">
 						</div>
 						<div class="form-group">
-							<label>E-mail</label>
-							<input class="form-control" type="email" placeholder="E-mail" name="email">
+							<label>Descrição</label>
+							<input class="form-control" placeholder="Descrição" name="desc">
 						</div>
 						<div class="form-group">
-							<label>Login</label>
-							<input class="form-control" type="text" placeholder="Login" name="login">
+							<label>Preço</label>
+							<input class="form-control" placeholder="Preço" name="preco">
 						</div>
-						<div class="form-group">
-							<label>Senha</label>
-							<input type="password" class="form-control" placeholder="Senha" name="senha">
-						</div>
-						<input type="hidden" class="form-control" value="1" name="nivel">
 						<div class="form-group">
 							<center>
 								<button type="submit" class="btn btn-md btn-primary">Cadastrar</button>
