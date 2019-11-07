@@ -48,10 +48,10 @@ CREATE TABLE Equipamento(
 	CodEquipamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(20),
     Descricao VARCHAR(100),
-    Peso DECIMAL(4,2),
-    Altura DECIMAL(4,2),
-    Comprimento DECIMAL(4,2),
-    Largura DECIMAL(4,2),
+    Peso DECIMAL(7,2),/*em KG*/
+    Altura DECIMAL(7,2),/*em Metros*/
+    Comprimento DECIMAL(7,2),/*em Metros*/
+    Largura DECIMAL(7,2),/*em Metros*/
     Preco DECIMAL(8,2)
 );	
     
@@ -69,7 +69,7 @@ CREATE TABLE DatasDisponivel(
 /* Visivel para o CLIENTE e para o ADMINISTRADOR */
 CREATE TABLE Supervisao(
 	CodSupervisao INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
-	ValorSupervisao DECIMAL(8,2),
+	PrecoSupervisao DECIMAL(8,2),
     CodSupervisor INT NOT NULL,
     
     CONSTRAINT FK_Supervisor_Supervisao FOREIGN KEY (CodSupervisor)
