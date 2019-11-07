@@ -23,7 +23,7 @@ $(document).ready(function(){
                 swal({
                     position: 'top-end',
                     icon: 'success',
-                    title: 'Your work has been saved',
+                    title: 'Equipamento cadastrado',
                     showConfirmButton: true,
                     timer: 2000
                   }) 
