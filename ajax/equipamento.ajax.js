@@ -24,7 +24,7 @@ $(document).ready(function(){
                     position: 'top-end',
                     icon: 'success',
                     title: 'Equipamento cadastrado',
-                    showConfirmButton: true,
+                    button: true,
                     timer: 2000
                   }) 
                   botao.attr('disabled', false)     
