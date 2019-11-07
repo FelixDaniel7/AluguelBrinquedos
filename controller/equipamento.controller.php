@@ -26,7 +26,6 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
             $equi->CadastrarEquipamento();
             break;
-        
     }
 //ob_end_flush();
 ?>
