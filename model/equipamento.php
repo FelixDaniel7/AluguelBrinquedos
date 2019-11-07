@@ -63,27 +63,10 @@ class Equipamento
         }else{
             return false;
         }
-
-/*
-        $cadastro = $pdo->prepare("INSERT INTO administrador (nome,email,login,senha,nivel)
-                        VALUES (?,?,?,?,?)");
-
-        $cadastro ->bindValue(1,$nome, PDO::PARAM_STR);
-        $cadastro ->bindValue(2,$email, PDO::PARAM_STR);
-        $cadastro ->bindValue(3,$login, PDO::PARAM_STR);
-        $cadastro ->bindValue(4,md5(strrev($senha)), PDO::PARAM_STR);
-        $cadastro ->bindValue(5,$nivel, PDO::PARAM_STR);
-        $cadastro ->execute();
-
-        if ($cadastro->rowCount() > 0) {
-            return true;
-        } else {
-            return false;
-        }*/
     }
 
     function ConsultarEqui(){
-        $comandoSQL = " SELECT * FROM Equipamento ";
+        $comandoSQL = " SELECT * FROM Equipamento";
 
         $exec = $this->con->prepare($comandoSQL);
         $exec->execute();
@@ -98,8 +81,6 @@ class Equipamento
             $equi->Nome             = $value['Nome'];
             $equi->Descricao        = $value['Descricao'];
             $equi->Preco            = $value['Preco'];
-            //$equi->DataDisponivel   = $value['DataDisponivel'];
-
 
             $dados[] = $equi;
         }
