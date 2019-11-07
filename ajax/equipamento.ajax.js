@@ -1,5 +1,7 @@
 
 $(document).ready(function(){
+    
+    /*Cadastrar Equipamento*/
     /*Pegar o form*/
     $('form[name="form_cad_equipamento"]').submit(function(){
 
@@ -33,5 +35,31 @@ $(document).ready(function(){
         /*TESTE exibi os dados enviados por post*/
         console.log($(this).serialize());
         return false;/*Para parar*/
-    });
-});
+    })
+
+
+    /*Listar Equipamento*/
+    function ConsultarEquipamento(url,acao,atualiza) {/*Atualiza serve para recarregar a tabela no caso de uma alteração*/
+        $.post(
+            url,
+            {acao: acao},
+            function(retorno){
+                /*Instanciar os locais para exibir*/
+                var tbody = $('.table').find('tbody')//find serve para pegar um elemento filho de outro elemento
+                var imagem = tbody.find('.load')
+                
+                if (atualiza == true) {
+                    tbody.html(retorno)    
+                }else{
+                    imagem.fadeOut('fast', function(){
+                        tbody.html(retorno)
+                    })
+                }
+            })
+        
+    }
+    ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi')/*Usar o metodo para exibir na tabela ao iniciar*/
+
+
+
+})

@@ -26,6 +26,22 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
             $equi->CadastrarEquipamento();
             break;
+
+        case 'consultar_equi':
+        
+            foreach($equi->ConsultarEquipamento() as $value):
+
+            ?>
+                <tr>
+                    <th><?php echo $value->CodEquipamento;?></th>
+                    <th><?php echo $value->Nome;?></th>
+                    <th><?php echo $value->Descricao;?></th>
+                    <th width="200">Ação</th>
+                </tr>
+            <?php
+            
+            endforeach;
+            break;
     }
 //ob_end_flush();
 ?>

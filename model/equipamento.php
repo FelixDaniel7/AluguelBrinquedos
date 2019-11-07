@@ -65,7 +65,7 @@ class Equipamento
         }
     }
 
-    function ConsultarEqui(){
+    function ConsultarEquipamento(){
         $comandoSQL = " SELECT * FROM Equipamento";
 
         $exec = $this->con->prepare($comandoSQL);
@@ -80,7 +80,10 @@ class Equipamento
             $equi->CodEquipamento   = $value['CodEquipamento'];
             $equi->Nome             = $value['Nome'];
             $equi->Descricao        = $value['Descricao'];
-            $equi->Preco            = $value['Preco'];
+            $equi->Peso             = $value['Peso'];
+            $equi->Altura           = $value['Altura'];
+            $equi->Comprimento      = $value['Comprimento'];
+            $equi->Largura          = $value['Preco'];
 
             $dados[] = $equi;
         }

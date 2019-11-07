@@ -51,6 +51,50 @@
             Cadastrar Equipamento
         </button>
     </form>
+
+    <br>
+    <br>
+
+    <?php 
+    
+    foreach ($equi->ConsultarEquipamento() as $value) {
+        echo $value->CodEquipamento. '-' .$value->Nome. "<br>";
+
+    }
+    
+    ?>
+
+
+            <div class="row">
+                <div class="col-lg-9">
+                    <h2 class="linha">HOME</h2>
+                    <div class="box">
+                        <div class="box-title">Administradores</div>
+                        <div class="box-content nopadding">
+                            <table id="tabela" class="table table-striped">
+                                <thead>
+                                    <tr>
+                                        <th>Cod</th>
+                                        <th>Nome</th>
+                                        <th>Descrição</th>
+                                        <th width="200">Ação</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td colspan="5">
+                                        <img src="../img/load.gif" class="load" alt="Carregando..."/>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+              
+
+            </div>
       
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
