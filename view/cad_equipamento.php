@@ -6,18 +6,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <!-- Jquery -->
     <script src="../js/jquery-3.4.1.min.js"></script>
-
-    <script type="text/javascript" src="../ajax/custom.js"></script>
-
-
+    <!-- Ajax -->
+    <script type="text/javascript" src="../ajax/equipamento.ajax.js"></script>
+    <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
-
-
   </head>
   <body>
   <button id="teste">testess</button>
@@ -37,19 +33,19 @@
 
     <form action="" method="post" class="form" name="form_cad_equipamento">
         Nome
-        <input type="text" name="txtnomeEquipamento" id=""><br>
+        <input type="text" name="txtnomeEquipamento"><br>
         Descricao
-        <input type="text" name="txtdescricao" id=""><br>
+        <input type="text" name="txtdescricao"><br>
         Peso
-        <input type="number" name="txtpeso" id=""><br>
+        <input type="number" step="0.01" name="txtpeso"><br>
         Altura
-        <input type="number" name="txtaltura" id=""><br>
+        <input type="number" name="txtaltura"><br>
         Comprimento
-        <input type="number" name="txtcomprimento" id=""><br>
+        <input type="number" name="txtcomprimento"><br>
         Largura
-        <input type="number" name="txtlargura" id=""><br>
+        <input type="number" name="txtlargura"><br>
         Preço
-        <input type="number" name="txtpreco" id=""><br>
+        <input type="number" step="0.01" name="txtpreco"><br>
 
         <button type="submit">
             Cadastrar Equipamento
