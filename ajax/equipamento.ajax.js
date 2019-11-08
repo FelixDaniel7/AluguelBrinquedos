@@ -1,5 +1,6 @@
-
 $(document).ready(function(){
+
+    var conteudo_modal = $('.modal-body')//para injetar conteudo na modal 
     
     /*Cadastrar Equipamento*/
     /*Pegar o form*/
@@ -29,7 +30,8 @@ $(document).ready(function(){
                     button: true,
                     timer: 2000
                   }) 
-                  botao.attr('disabled', false)     
+                  botao.attr('disabled', false) 
+                  ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)//para atualizar a tabela ao cadastrar 
             }
         })
         /*TESTE exibi os dados enviados por post*/
@@ -45,7 +47,7 @@ $(document).ready(function(){
             {acao: acao},
             function(retorno){
                 /*Instanciar os locais para exibir*/
-                var tbody = $('.table').find('tbody')//find serve para pegar um elemento filho de outro elemento
+                var tbody = $('#tabela_equipamento').find('tbody')//find serve para pegar um elemento filho de outro elemento
                 var imagem = tbody.find('.load')
                 
                 if (atualiza == true) {
@@ -59,7 +61,87 @@ $(document).ready(function(){
         
     }
     ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi')/*Usar o metodo para exibir na tabela ao iniciar*/
+    
+    /*ACAO DOS BOTOES*/
+    //pegando o codequipamento da linha da tabela
+    
 
+    /*BOTAO EDITAR*/
+    //encapsular a tabela, pegar os dados dela 
+    $('#tabela_equipamento').on('click', '#btn_editar', function(){
+        //Pegar o botao da tabela
+        var CodEquipamento = $(this).attr('value')
 
+        //pessar o form preenchido para modal
+        $.post(
+            '../controller/equipamento.controller.php',
+            {acao: 'form_editar_equi',
+            CodEquipamento: CodEquipamento}, 
+             function(retornarform){
+                $('#myModal').modal({backdrop: 'static'})//para modal nao fechar
+                
+                //colocando o form dentro da modal
+                conteudo_modal.html(retornarform)
+                var myModal = $('#myModal')
+                myModal.find('.modal-title').text('Editar Equipamento')
+             })
+        console.log(CodEquipamento);  
+    })
+    
+    /*BOTAO EXCLUIR*/
+    $('#tabela_equipamento').on('click', '#btn_excluir', function(){
+        var CodEquipamento = $(this).attr('value')
+        
+        if(/*Confirmação*/
+            swal({
+                title: "Você tem certeza ?",
+                text: "Está ação ira deletar todos os dados desse equipamento",
+                icon: "warning",
+                buttons: ['Cancelar','Continuar'],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    /*Passar o codequipamento para o metodo deletar*/
+                    $.post("../controller/equipamento.controller.php",
+                        {acao: 'excluir_equi', 
+                        CodEquipamento: CodEquipamento}, 
+                        function(retorno){//retorna se deu certo ou nao
+
+                            if (retorno == 'deletou') {//se deu certo 
+                                
+                                swal({
+                                    title: "Deletado com sucesso !", 
+                                    icon: "success",
+                                })
+                                //atualiza a tabela
+                                ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)
+
+                            } else {
+                                //se deu algo errado ao deletar
+                                swal({
+                                    title: "Erro ao deletar equipamento !", 
+                                    icon: "error",
+                                })
+                            }
+
+                        })
+                } 
+                else {
+                    //cancelar a ação
+                    swal({
+                        title: "Essa ação foi cancelada !",
+                        icon: "info"
+                    })
+                }
+            })
+            ){
+
+        }else{
+            return false; //se deu muitaaaa merda e tudo deu errado
+            console.log('Deu muito ruim ao deletar');
+        }
+
+    })
 
 })
