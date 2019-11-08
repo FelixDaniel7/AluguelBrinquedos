@@ -83,11 +83,45 @@ class Equipamento
             $equi->Peso             = $value['Peso'];
             $equi->Altura           = $value['Altura'];
             $equi->Comprimento      = $value['Comprimento'];
-            $equi->Largura          = $value['Preco'];
+            $equi->Preco          = $value['Preco'];
 
             $dados[] = $equi;
         }
         return $dados;
+    }
+
+    function RetornarDados($CodEquipamento){
+        $comandoSQL = "SELECT * FROM Equipamento WHERE CodEquipamento = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodEquipamento,PDO::PARAM_INT);
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+
+        return $exec->fetch(PDO::FETCH_OBJ);
+        }
+        else{
+            return false;
+        }
+
+    }
+
+    /*DELETE*/
+
+    function ExcluirEquipamento(){
+        $comandoSQL = "DELETE FROM Equipamento WHERE CodEquipamento = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$this->CodEquipamento,PDO::PARAM_INT);
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 }
 ?>
