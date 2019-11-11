@@ -60,8 +60,11 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $CodEquipamento = filter_input(INPUT_POST, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);
 
             $dados = $equi->RetornarDados($CodEquipamento);//pegando o retorno do metodo e colocando na variavel $equi
+            
+            /*FORM Q VAI DENTRO DA MODAL*/
             ?>
-                <form method="post" class="form" name="form_editar_equipamento">
+
+                            <form method="post" class="form" name="form_editar_equipamento">
                     Nome
                     <input type="text" name="txtnomeEquipamento" value="<?php echo $dados->Nome;?>"><br>
                     Descricao
@@ -77,12 +80,16 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                     Preço
                     <input type="number" step="0.01" name="txtpreco" value="<?php echo $dados->Preco;?>"><br>
 
-                    <button type="submit">
+                    <button type="submit" id="btn_atualiza" >
                         Atualizar Equipamento 
                     </button>
                 </form>
 
             <?php
+            break;
+
+        case 'editar_equi':
+            echo 'aeeeeee';
             break;
 
         case 'excluir_equi':

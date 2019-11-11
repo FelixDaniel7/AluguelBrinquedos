@@ -87,6 +87,27 @@ $(document).ready(function(){
              })
         console.log(CodEquipamento);  
     })
+
+    /*BTN ATUALIZA 
+    PEGAR OS DADOS DO FORM NA MODAL E MANDAR PARA O METODO COM O UPDATE*/
+    $('#myModal').on('submit', 'form[name="form_editar_equipamento"]', function(){
+        var dados = $(this)
+        var btn_atualiza = dados.find('#btn_atualiza')
+
+        $.ajax({
+            url: '../controller/equipamento.controller.php',
+            type: 'POST',
+            data: 'acao=editar_equi&' + dados.serialize(),
+            beforeSend: function(){
+                btn_atualiza.attr('disabled',true)
+            },
+            success: function(retorno){
+                console.log(retorno)
+            }
+        })
+
+
+    })
     
     /*BOTAO EXCLUIR*/
     $('#tabela_equipamento').on('click', '#btn_excluir', function(){

@@ -107,6 +107,12 @@ class Equipamento
 
     }
 
+
+    /*UPDATE ATUALIZA*/
+    function AtualizarEquipamento(){
+        
+    }
+
     /*DELETE*/
 
     function ExcluirEquipamento(){
