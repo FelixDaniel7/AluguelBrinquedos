@@ -132,7 +132,7 @@ class Equipamento
             $exec->bindValue(8,$this->CodEquipamento,PDO::PARAM_INT);
             $exec->execute();
 
-            if ($exec->rowCount() == 0) {
+            if ($exec->rowCount() > 0) {
                 return true;
             }else{
                 return false;

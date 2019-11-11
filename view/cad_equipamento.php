@@ -23,6 +23,8 @@
     $('#teste').click(function(){
 
         swal({
+            //position: 'top',
+            //className: "bg-light",
             title: "Você tem certeza ?",
             text: "Está ação ira deletar todos os dados desse equipamento",
             icon: "warning",

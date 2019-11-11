@@ -91,34 +91,52 @@ $(document).ready(function(){
     /*BTN ATUALIZA 
     PEGAR OS DADOS DO FORM NA MODAL E MANDAR PARA O METODO COM O UPDATE*/
     $('#myModal').on('submit', 'form[name="form_editar_equipamento"]', function(){
-        var dados = $(this)
-        var btn_atualiza = dados.find('#btn_atualiza')
+        var form_dados = $(this)//formulario
+        var btn_atualiza = form_dados.find('#btn_atualiza')
 
         $.ajax({
             url: '../controller/equipamento.controller.php',
             type: 'POST',
-            data: 'acao=editar_equi&' + dados.serialize(),
+            data: 'acao=editar_equi&' + form_dados.serialize(),
             beforeSend: function(){
                 btn_atualiza.attr('disabled',true)
             },
             success: function(retorno){
                 
                 if (retorno == 'atualizou') {
-                    dados.fadeOut('slow')
+                    //form_dados.fadeOut('slow', function(){
+                            
+                        swal({
+                            title: 'Atualizado com sucesso !',
+                            icon: 'success'})
+                    //})
 
-                    swal({title: 'Atualizado com sucesso !',
-                        icon: 'success'})
+                    console.log('Atualizou');
+                    
 
-                    //depois de um tempinho a modal fecha
-                    setTimeout(function(){
-                        $('#myModal').modal('hide')
-                    },10)
+
+
+                    ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)
+                    
+                    // //depois de um tempinho a modal fecha
+                    // setTimeout(function(){
+                    //     $('#myModal').modal('hide')
+                    // },10)
 
                     
                 }
+                else{
+                    swal({
+                        title: 'Você não alterou nenhum dado !',
+                        icon: 'info'})
+
+                        btn_atualiza.attr('disabled',false)
+
+                    console.log('nao alterou nenhum dado');
+                }
             }
         })
-            return false;
+            return false //para nao atualizar a pagina
 
     })
     
