@@ -18,12 +18,12 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             //$CodEquipamento = filter_input(INPUT_POST, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);
     
             $equi->Nome = filter_input(INPUT_POST, 'txtnomeEquipamento', FILTER_SANITIZE_STRING);
-            $equi->Descricao = $_POST['txtdescricao'];
+            $equi->Descricao = filter_input(INPUT_POST, 'txtdescricao', FILTER_SANITIZE_STRING); 
             $equi->Preco = filter_input(INPUT_POST, 'txtpreco', FILTER_SANITIZE_STRING);//DOUBLE
-            $equi->Peso = $_POST['txtpeso'];
-            $equi->Altura = $_POST['txtaltura'];
-            $equi->Comprimento = $_POST['txtcomprimento'];
-            $equi->Largura = $_POST['txtlargura'];
+            $equi->Peso = filter_input(INPUT_POST, 'txtpeso', FILTER_SANITIZE_STRING);
+            $equi->Altura = filter_input(INPUT_POST, 'txtaltura', FILTER_SANITIZE_STRING);
+            $equi->Comprimento = filter_input(INPUT_POST, 'txtcomprimento', FILTER_SANITIZE_STRING);
+            $equi->Largura = filter_input(INPUT_POST, 'txtlargura', FILTER_SANITIZE_STRING);
 
             $equi->CadastrarEquipamento();
             break;
@@ -65,6 +65,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             ?>
 
                             <form method="post" class="form" name="form_editar_equipamento">
+                    <input type="hidden" name="CodEquipamento" value="<?php echo $dados->CodEquipamento; ?>">
                     Nome
                     <input type="text" name="txtnomeEquipamento" value="<?php echo $dados->Nome;?>"><br>
                     Descricao
@@ -89,7 +90,19 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             break;
 
         case 'editar_equi':
-            echo 'aeeeeee';
+
+            $equi->CodEquipamento = filter_input(INPUT_POST, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);
+            $equi->Nome = filter_input(INPUT_POST, 'txtnomeEquipamento', FILTER_SANITIZE_STRING);
+            $equi->Descricao = filter_input(INPUT_POST, 'txtdescricao', FILTER_SANITIZE_STRING); 
+            $equi->Preco = filter_input(INPUT_POST, 'txtpreco', FILTER_SANITIZE_STRING);//DOUBLE
+            $equi->Peso = filter_input(INPUT_POST, 'txtpeso', FILTER_SANITIZE_STRING);
+            $equi->Altura = filter_input(INPUT_POST, 'txtaltura', FILTER_SANITIZE_STRING);
+            $equi->Comprimento = filter_input(INPUT_POST, 'txtcomprimento', FILTER_SANITIZE_STRING);
+            $equi->Largura = filter_input(INPUT_POST, 'txtlargura', FILTER_SANITIZE_STRING);
+
+            if ($equi->AtualizarEquipamento()) {
+                echo 'atualizou';
+            }
             break;
 
         case 'excluir_equi':

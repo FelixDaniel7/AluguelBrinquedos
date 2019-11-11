@@ -102,10 +102,23 @@ $(document).ready(function(){
                 btn_atualiza.attr('disabled',true)
             },
             success: function(retorno){
-                console.log(retorno)
+                
+                if (retorno == 'atualizou') {
+                    dados.fadeOut('slow')
+
+                    swal({title: 'Atualizado com sucesso !',
+                        icon: 'success'})
+
+                    //depois de um tempinho a modal fecha
+                    setTimeout(function(){
+                        $('#myModal').modal('hide')
+                    },10)
+
+                    
+                }
             }
         })
-
+            return false;
 
     })
     

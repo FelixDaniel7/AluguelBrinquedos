@@ -110,7 +110,37 @@ class Equipamento
 
     /*UPDATE ATUALIZA*/
     function AtualizarEquipamento(){
-        
+        //try {
+            $comandoSQL = "UPDATE Equipamento 
+                            SET Nome =?, 
+                            Descricao = ?, 
+                            Peso = ?, 
+                            Altura = ?,
+                            Comprimento = ?,
+                            Largura = ?,
+                            Preco = ?
+                            WHERE CodEquipamento = ?";
+
+            $exec = $this->con->prepare($comandoSQL);
+            $exec->bindValue(1,$this->Nome,PDO::PARAM_STR);
+            $exec->bindValue(2,$this->Descricao,PDO::PARAM_STR);
+            $exec->bindValue(3,$this->Peso,PDO::PARAM_STR);
+            $exec->bindValue(4,$this->Altura,PDO::PARAM_STR);
+            $exec->bindValue(5,$this->Comprimento,PDO::PARAM_STR);
+            $exec->bindValue(6,$this->Largura,PDO::PARAM_STR);
+            $exec->bindValue(7,$this->Preco,PDO::PARAM_STR);
+            $exec->bindValue(8,$this->CodEquipamento,PDO::PARAM_INT);
+            $exec->execute();
+
+            if ($exec->rowCount() == 0) {
+                return true;
+            }else{
+                return false;
+            }
+
+        // } catch (PDOException $e) {
+        //     echo $e->getMessage();
+        // }
     }
 
     /*DELETE*/
