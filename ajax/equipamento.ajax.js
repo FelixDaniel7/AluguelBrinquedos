@@ -88,7 +88,7 @@ $(document).ready(function(){
         console.log(CodEquipamento);  
     })
 
-    /*BTN ATUALIZA 
+    /*BOTAO ATUALIZAR
     PEGAR OS DADOS DO FORM NA MODAL E MANDAR PARA O METODO COM O UPDATE*/
     $('#myModal').on('submit', 'form[name="form_editar_equipamento"]', function(){
         var form_dados = $(this)//formulario
@@ -104,40 +104,26 @@ $(document).ready(function(){
             success: function(retorno){
                 
                 if (retorno == 'atualizou') {
-                    //form_dados.fadeOut('slow', function(){
+                    form_dados.fadeOut('fast')
+
+                    $('#myModal').modal('hide')
                             
-                        swal({
-                            title: 'Atualizado com sucesso !',
-                            icon: 'success'})
-                    //})
-
-                    console.log('Atualizou');
-                    
-
-
-
-                    ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)
-                    
-                    // //depois de um tempinho a modal fecha
-                    // setTimeout(function(){
-                    //     $('#myModal').modal('hide')
-                    // },10)
-
-                    
+                    swal({
+                        title: 'Atualizado com sucesso !',
+                        icon: 'success'
+                    })
+                    ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)                    
                 }
                 else{
                     swal({
                         title: 'Você não alterou nenhum dado !',
-                        icon: 'info'})
-
-                        btn_atualiza.attr('disabled',false)
-
-                    console.log('nao alterou nenhum dado');
+                        icon: 'info'
+                    })
+                    btn_atualiza.attr('disabled',false)
                 }
             }
         })
-            return false //para nao atualizar a pagina
-
+        return false //para nao atualizar a pagina
     })
     
     /*BOTAO EXCLUIR*/
