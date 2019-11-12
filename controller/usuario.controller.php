@@ -4,7 +4,7 @@
 
 include_once('../model/usuario.php');
 
-$usu = new Usuario();/*Instancia do objeto da classe para poder usar as funçoes da classe*/
+//$usu = new Usuario();/*Instancia do objeto da classe para poder usar as funçoes da classe*/
 
 $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
