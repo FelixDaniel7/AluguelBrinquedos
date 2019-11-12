@@ -10,14 +10,14 @@ USE BrinquedosFesta; -- usar o bd BRINQUEDOSFESTA
 /* Criação da tabela CLIENTE / Cadastro do cliente */
 CREATE TABLE Cliente(
 	CodCliente SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- TINYINT menos q Smallint e int
-    CPF CHAR(14) NOT NULL,/*opcinal para o cliente */
+    CPF CHAR(11) NOT NULL,/*opcinal para o cliente */
     Nome VARCHAR(50),
     Telefone VARCHAR(10),
     Celular CHAR(11),
     
-    CEP CHAR(11),
+    CEP CHAR(8),
     Endereco VARCHAR(200),
-    Numero INT(5),
+    Numero VARCHAR(5),
     Bairro VARCHAR(50),
     Complemento VARCHAR(50)
 );
@@ -27,36 +27,9 @@ CREATE TABLE Usuario(
 	CodUsuario SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(50),
     Login VARCHAR(25),
-    Senha VARCHAR(40),
+    Senha VARCHAR(40),/*para criptografia*/
     Tipo ENUM('administrador','supervisor')
 );
-
-/*
-CREATE TABLE Administrador(
-	CodAdministrador INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    Nome VARCHAR(50),
-    /*Dados de login
-    Email VARCHAR(100) unique,
-    Login VARCHAR(25) unique,
-	Senha VARCHAR(40),
-    NivelAcesso INT(1) 
-);
-/* Visivel apenas para o ADMINISTRADOR 
-CREATE TABLE Supervisor(
-	CodSupervisor INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Nome VARCHAR(100),
-    RG CHAR(9),
-    CPF CHAR(11),
-    DataNascimento DATE,
-    Endereco VARCHAR(200),
-    /*Dados de login
-	Email VARCHAR(100) UNIQUE,
-    Login VARCHAR(25),
-    Senha VARCHAR(40),
-    NivelAcesso INT(1) 
-);
-
-*/
 
 /* Criação da tabela EQUIPAMENTO Tudo relacionado com o EQUIPAMENTO */
 CREATE TABLE Equipamento(
@@ -102,6 +75,7 @@ CREATE TABLE Supervisao(
 CREATE TABLE Pedido(
 	CodPedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     CodCliente SMALLINT NOT NULL,
+    CodUsuario SMALLINT NOT NULL,
     EnderecoMontagem VARCHAR(200),
     DataPedido DATETIME, -- hora do envio do pedido 
     Data_de_uso DATE, -- 1970-12-31
