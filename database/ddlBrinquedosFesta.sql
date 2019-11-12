@@ -9,27 +9,39 @@ USE BrinquedosFesta; -- usar o bd BRINQUEDOSFESTA
 /*Tabelas de usuarios são separadas por terem diferentes dados armazenados*/
 /* Criação da tabela CLIENTE / Cadastro do cliente */
 CREATE TABLE Cliente(
-	CodCliente INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	CodCliente SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- TINYINT menos q Smallint e int
     CPF CHAR(14) NOT NULL,/*opcinal para o cliente */
     Nome VARCHAR(50),
-    Telefone VARCHAR(11),
+    Telefone VARCHAR(10),
+    Celular CHAR(11),
+    
+    CEP CHAR(11),
     Endereco VARCHAR(200),
-    /*Dados de login*/
-    Email VARCHAR(100),
-    Login VARCHAR(25),
-    Senha VARCHAR(40),/* 40 por causa da criptografia MD5 e sha1*/
-    NivelAcesso INT(1) 
+    Numero INT(5),
+    Bairro VARCHAR(50),
+    Complemento VARCHAR(50)
 );
+
+-- para admin, supervisor e cliente
+CREATE TABLE Usuario(
+	CodUsuario SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    Nome VARCHAR(50),
+    Login VARCHAR(25),
+    Senha VARCHAR(40),
+    Tipo ENUM('administrador','supervisor')
+);
+
+/*
 CREATE TABLE Administrador(
 	CodAdministrador INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(50),
-    /*Dados de login*/
+    /*Dados de login
     Email VARCHAR(100) unique,
     Login VARCHAR(25) unique,
 	Senha VARCHAR(40),
     NivelAcesso INT(1) 
 );
-/* Visivel apenas para o ADMINISTRADOR */
+/* Visivel apenas para o ADMINISTRADOR 
 CREATE TABLE Supervisor(
 	CodSupervisor INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
 	Nome VARCHAR(100),
@@ -37,15 +49,18 @@ CREATE TABLE Supervisor(
     CPF CHAR(11),
     DataNascimento DATE,
     Endereco VARCHAR(200),
-    /*Dados de login*/
+    /*Dados de login
 	Email VARCHAR(100) UNIQUE,
     Login VARCHAR(25),
     Senha VARCHAR(40),
     NivelAcesso INT(1) 
 );
+
+*/
+
 /* Criação da tabela EQUIPAMENTO Tudo relacionado com o EQUIPAMENTO */
 CREATE TABLE Equipamento(
-	CodEquipamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	CodEquipamento SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(20),
     Descricao VARCHAR(100),
     Peso DECIMAL(7,2),/*em KG*/
@@ -60,7 +75,7 @@ CREATE TABLE DatasDisponivel(
 	DataInicial DATETIME NOT NULL,
     DataFinal DATETIME NOT NULL,
 	
-    CodEquipamento INT NOT NULL, -- pesquisar normalização
+    CodEquipamento SMALLINT NOT NULL, -- pesquisar normalização
     
     CONSTRAINT FK_Equipamento_Datas FOREIGN KEY (CodEquipamento)
     REFERENCES Equipamento(CodEquipamento)
@@ -70,13 +85,13 @@ CREATE TABLE DatasDisponivel(
 CREATE TABLE Supervisao(
 	CodSupervisao INT NOT NULL AUTO_INCREMENT PRIMARY KEY, 
 	PrecoSupervisao DECIMAL(8,2),
-    CodSupervisor INT NOT NULL,
+    CodUsuario SMALLINT NOT NULL,
     
-    CONSTRAINT FK_Supervisor_Supervisao FOREIGN KEY (CodSupervisor)
-		REFERENCES Supervisor (CodSupervisor),
+    CONSTRAINT FK_Usuario_Supervisao FOREIGN KEY (CodUsuario)
+		REFERENCES Usuario (CodUsuario),
         
 	-- em qual brinquedos foi feita a supervisao
-	CodEquipamento INT NOT NULL, 
+	CodEquipamento SMALLINT NOT NULL, 
     CONSTRAINT FK_Equipamentos_Supervisao FOREIGN KEY (CodEquipamento)
 		REFERENCES Equipamento (CodEquipamento)
 );
@@ -86,7 +101,7 @@ CREATE TABLE Supervisao(
 /* Visivel para o CLIENTE e para o ADMINISTRADOR */
 CREATE TABLE Pedido(
 	CodPedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    CodCliente INT NOT NULL,
+    CodCliente SMALLINT NOT NULL,
     EnderecoMontagem VARCHAR(200),
     DataPedido DATETIME, -- hora do envio do pedido 
     Data_de_uso DATE, -- 1970-12-31
@@ -98,16 +113,13 @@ CREATE TABLE Pedido(
     FormaPagamento VARCHAR(20),
     
     CONSTRAINT FK_Cliente_Pedido FOREIGN KEY (CodCliente)
-		REFERENCES Cliente(CodCliente),
-        
-	CONSTRAINT FK_Frete_Pedido FOREIGN KEY (CodCliente)
 		REFERENCES Cliente(CodCliente)
 ); 
 
 CREATE TABLE Itens(
-	CodItem INT NOT NULL PRIMARY KEY auto_increment,
+	CodItem SMALLINT NOT NULL PRIMARY KEY auto_increment,
     CodPedido INT NOT NULL,
-    CodEquipamento INT NOT NULL,
+    CodEquipamento SMALLINT NOT NULL,
     Preco DECIMAL(8,2), -- preço do equipamento novamente, campo a ser preenchido depois / não vai pegar esse preço do banco de dados
     
     

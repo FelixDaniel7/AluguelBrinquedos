@@ -13,7 +13,10 @@ INSERT INTO Cliente (CPF,Nome,Telefone,Email,Senha,Endereco)
            INSERT INTO  Administrador(Nome,Email,Login,Senha,NivelAcesso)
            Values ('blabla2', 'daniel@gmail.com','blaba3658','123456',1);
            
-           select * from administrador;
+           select * from usuario;
+           
+insert into usuario (Tipo)
+values ('cliente');
 	
 INSERT INTO Equipamento (Nome,Descricao,Preco) 
 	VALUES ('Piscina de Bolinhas','100m X 200m',80.00);
