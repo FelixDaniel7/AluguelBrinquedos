@@ -12,6 +12,33 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
 
     switch ($acao) {
+
+        case 'form_cadastrar_equi':
+
+            ?>
+            
+            <form action="" method="post" class="form" name="form_cad_equipamento">
+                Nome
+                <input type="text" name="txtnomeEquipamento"><br>
+                Descricao
+                <input type="text" name="txtdescricao"><br>
+                Peso
+                <input type="number" step="0.01" name="txtpeso"><br>
+                Altura
+                <input type="number" name="txtaltura"><br>
+                Comprimento
+                <input type="number" name="txtcomprimento"><br>
+                Largura
+                <input type="number" name="txtlargura"><br>
+                Preço
+                <input type="number" step="0.01" name="txtpreco"><br>
+
+                <button type="submit">
+                    Cadastrar Equipamento
+                </button>
+            </form>
+            <?php
+            break;
         
         case 'cadastrar_equi':
 
@@ -25,7 +52,9 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $equi->Comprimento = filter_input(INPUT_POST, 'txtcomprimento', FILTER_SANITIZE_STRING);
             $equi->Largura = filter_input(INPUT_POST, 'txtlargura', FILTER_SANITIZE_STRING);
 
-            $equi->CadastrarEquipamento();
+            if($equi->CadastrarEquipamento()){
+                echo 'cadastrou';
+            }
             break;
 
         case 'consultar_equi':/*DADOS para preencher a tabela com os equipamentos*/

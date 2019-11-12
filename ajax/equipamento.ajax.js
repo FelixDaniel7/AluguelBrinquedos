@@ -2,9 +2,25 @@ $(document).ready(function(){
 
     var conteudo_modal = $('.modal-body')//para injetar conteudo na modal 
     
+    var btn_cad = $('#btn_cadastra')
+
+
     /*Cadastrar Equipamento*/
-    /*Pegar o form*/
-    $('form[name="form_cad_equipamento"]').submit(function(){
+
+    /*COLOCAR O FORM DE CADASTRO NA MODAL*/
+    btn_cad.click(function(){
+
+        $.post('../controller/equipamento.controller.php',
+            {acao: 'form_cadastrar_equi'},
+            
+            function (formRetorno) {
+                $('#modal_equipamento').modal({backdrop: true}) //chama a modal
+
+                conteudo_modal.html(formRetorno)
+            })
+    })
+    /*Pegar o form de cadastro na modal*/
+    $('#modal_equipamento').on('submit','form[name="form_cad_equipamento"]',function(){
 
         /*Colocar os dados do form em uma variavel*/
         var formEqui = $(this)
@@ -23,15 +39,27 @@ $(document).ready(function(){
 
                 console.log(retorno);
 
-                swal({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Equipamento cadastrado',
-                    button: true,
-                    timer: 2000
-                  }) 
-                  botao.attr('disabled', false) 
-                  ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)//para atualizar a tabela ao cadastrar 
+                if (retorno == 'cadastrou') {
+
+                    swal({
+                        position: 'top-end',
+                        icon: 'success',
+                        title: 'Equipamento cadastrado',
+                        button: true,
+                        timer: 900
+                      }) 
+                      botao.attr('disabled', false) //habilitar o botao
+                      //somente se estiver na mesma pagina precisa atualizar a tabela
+                      //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)//para atualizar a tabela ao cadastrar     
+                }
+                else{
+
+                    swal({
+                        title: "Erro ao cadastrar equipamento !", 
+                        icon: "error",
+                    })
+
+                } 
             }
         })
         /*TESTE exibi os dados enviados por post*/
@@ -50,10 +78,15 @@ $(document).ready(function(){
                 var tbody = $('#tabela_equipamento').find('tbody')//find serve para pegar um elemento filho de outro elemento
                 var imagem = tbody.find('.load')
                 
-                if (atualiza == true) {
+                
+                if (retorno == '') {
+                    tbody.html('Nenhum dados registrado')
+                }
+                else if (atualiza == true) {
                     tbody.html(retorno)    
-                }else{
-                    imagem.fadeOut('fast', function(){
+                }
+                else if (retorno != ''){
+                    imagem.fadeOut('fast', function(){//mostra o gif e exibe o conteudo
                         tbody.html(retorno)
                     })
                 }
@@ -78,19 +111,19 @@ $(document).ready(function(){
             {acao: 'form_editar_equi',
             CodEquipamento: CodEquipamento}, 
              function(retornarform){
-                $('#myModal').modal({backdrop: 'static'})//para modal nao fechar
+                $('#modal_equipamento').modal({backdrop: 'static'})//para modal nao fechar
                 
                 //colocando o form dentro da modal
                 conteudo_modal.html(retornarform)
-                var myModal = $('#myModal')
-                myModal.find('.modal-title').text('Editar Equipamento')
+                var modal_equipamento = $('#modal_equipamento')
+                modal_equipamento.find('.modal-title').text('Editar Equipamento')
              })
         console.log(CodEquipamento);  
     })
 
     /*BOTAO ATUALIZAR
     PEGAR OS DADOS DO FORM NA MODAL E MANDAR PARA O METODO COM O UPDATE*/
-    $('#myModal').on('submit', 'form[name="form_editar_equipamento"]', function(){
+    $('#modal_equipamento').on('submit', 'form[name="form_editar_equipamento"]', function(){
         var form_dados = $(this)//formulario
         var btn_atualiza = form_dados.find('#btn_atualiza')
 
@@ -106,7 +139,7 @@ $(document).ready(function(){
                 if (retorno == 'atualizou') {
                     form_dados.fadeOut('fast')
 
-                    $('#myModal').modal('hide')
+                    $('#modal_equipamento').modal('hide')
                             
                     swal({
                         title: 'Atualizado com sucesso !',
@@ -151,6 +184,7 @@ $(document).ready(function(){
                                 swal({
                                     title: "Deletado com sucesso !", 
                                     icon: "success",
+                                    timer: 700
                                 })
                                 //atualiza a tabela
                                 ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)
