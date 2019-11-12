@@ -11,7 +11,7 @@
     <!-- Jquery -->
     <script src="../js/jquery-3.4.1.min.js"></script>
     <!-- Ajax -->
-    <script type="text/javascript" src="../ajax/equipamento.ajax.js"></script>
+    <script src="../ajax/equipamento.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
   </head>
