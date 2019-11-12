@@ -1,3 +1,4 @@
+<!-- vai estar na pagina de admin -->
 <?php include_once('../controller/equipamento.controller.php'); ?>
 <!doctype html>
 <html lang="en">
