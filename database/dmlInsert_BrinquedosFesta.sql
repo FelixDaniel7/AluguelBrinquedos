@@ -16,7 +16,7 @@ INSERT INTO Cliente (CPF,Nome,Telefone,Email,Senha,Endereco)
            select * from usuario;
            
 insert into usuario (Tipo)
-values ('cliente');
+values ('administradorghff');
 	
 INSERT INTO Equipamento (Nome,Descricao,Preco) 
 	VALUES ('Piscina de Bolinhas','100m X 200m',80.00);

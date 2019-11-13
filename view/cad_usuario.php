@@ -12,15 +12,38 @@
     <!-- Jquery -->
     <script src="../js/jquery-3.4.1.min.js"></script>
     <!-- Ajax -->
-    <script src="../ajax/equipamento.ajax.js"></script>
+    <script src="../ajax/usuario.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
   </head>
   <body>
 
-  <?php include_once("modal_usuario.php"); ?>
+
   
-    <button type="button" id="btn_cadastra">Cadastrar Usuario</button> 
+    <button type="button" id="btn_cadastra_usu">Cadastrar Usuario</button> 
+
+<?php
+
+?>
+
+
+    <!-- Modal -->
+<div class="modal fade" id="modal_usuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+                <!--o conteudo q esta na pagina painel.controller.php passa pelo metodo post para o jquery exibindo aq-->
+                </div>
+        </div>
+    </div>
+</div>   
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

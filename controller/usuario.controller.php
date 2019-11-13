@@ -1,16 +1,14 @@
 <?php
 /*Tudo relacionado a login e ao usuario*/
-
-
 include_once('../model/usuario.php');
 
-//$usu = new Usuario();/*Instancia do objeto da classe para poder usar as funçoes da classe*/
+$usu = new Usuario();/*Instancia do objeto da classe para poder usar as funçoes da classe*/
 
 $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
 switch ($acao) {
     
-    case 'form_cadastrar_cliente':
+    case 'form_cadastrar_usu':
         ?>
                 
         <!-- se for usar alguma mascara tem q abrir o script e colar o codigo aq-->
