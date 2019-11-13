@@ -28,7 +28,7 @@
         <div class="box">
             <div class="box-title">Usuarios</div>
             <div class="box-content nopadding">
-                <table id="tabela_equipamento" class="table table-striped">
+                <table id="tabela_usuario" class="table table-striped">
                     <thead>
                         <tr>
                             <th>Cod</th>

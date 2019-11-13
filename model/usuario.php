@@ -78,9 +78,21 @@ class Usuario
             echo $e->getMessage();
         }
     }
+
+    function RetornarDadosUsu($CodUsuario){
+        $comandoSQL = "SELECT * FROM Usuario WHERE CodUsuario = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodUsuario,PDO::PARAM_INT);
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+
+        return $exec->fetch(PDO::FETCH_OBJ);
+        }
+        else{
+            return false;
+        }
+    }
 }
-
-
-
-
 ?>

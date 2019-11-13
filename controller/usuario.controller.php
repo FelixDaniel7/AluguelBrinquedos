@@ -74,6 +74,88 @@ switch ($acao) {
             echo true;
         }
         break;
+
+    case 'consultar_usu':
+
+        
+        if($certo = $usu->ConsultarUsuario()){
+            foreach($certo as $value):
+
+                ?>
+                    <tr>
+                        <td><?php echo $value->CodUsuario;?></td>
+                        <td><?php echo $value->Nome;?></td>
+                        <td><?php echo $value->Login;?></td>
+                        <td><?php echo $value->Email;?></td>
+                        <td>
+                            
+                            <button type="button" id="btn_editar" value="<?php echo $value->CodUsuario; ?>"class="btn btn-outline-primary">
+                                Editar
+                            </button>
+    
+                            <button type="button" id="btn_excluir" value="<?php echo $value->CodUsuario; ?>" class="btn btn-outline-danger">
+                                Excluir
+                            </button>
+                    
+                        </td>
+                    </tr>
+                <?php
+                
+                endforeach;
+        }
+        else{
+            return false;
+        }
+        break;
+
+        case 'form_editar_usu':
+            $CodUsuario = filter_input(INPUT_POST, 'CodUsuario', FILTER_SANITIZE_NUMBER_INT);
+
+            $dados = $usu->RetornarDadosUsu($CodUsuario);
+
+            ?>
+            
+
+            <form action="" name="form_editar_usuario" method="POST">
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
+            <div class="col-sm-10">
+            <input type="text" name="nome" value="<?php echo $dados->Nome; ?>" class="form-control" placeholder="Nome">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Login</label>
+            <div class="col-sm-10">
+            <input type="text" name="login" value="<?php echo $dados->Login; ?>"  class="form-control" placeholder="Login">
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+            <div class="col-sm-10">
+            <input type="email" name="email" value="<?php echo $dados->Email; ?>"  class="form-control" placeholder="Email">
+            </div>
+        </div>
+
+        <input type="hidden" name="id" value="<?php echo $dados->CodUsuario; ?>"/>
+        
+        <div class="form-group row">
+            <div class="col-sm-10">
+            <button id="btn_atualiza" class="btn btn-primary">
+            Atualizar
+        </button>
+            <img src="../img/load.gif" class="load" alt="Carregando..." style="display: none" />
+            </div>
+        </div>
+        </form>
+        <div class="retorno"></div>
+
+    <?php
+
+            break;
+
+        case 'editar_usu':
+            //echo true;
+            break;
     
     default:
         # code...

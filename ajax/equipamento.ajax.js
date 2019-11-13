@@ -81,7 +81,7 @@ $(document).ready(function(){
                 
                 
                 if (retorno == '') {
-                    tbody.html('Nenhum dados registrado')
+                    tbody.html('Nenhum dado registrado')
                 }
                 else if (atualiza == true) {
                     tbody.html(retorno)    
