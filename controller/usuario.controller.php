@@ -17,40 +17,40 @@ switch ($acao) {
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
             <div class="col-sm-10">
-            <input type="text" name="nome" class="form-control" placeholder="Nome">
+            <input type="text" name="txtnome" class="form-control" placeholder="Nome">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Nome de Login</label>
             <div class="col-sm-10">
-            <input type="text" name="login" class="form-control" placeholder="Login">
+            <input type="text" name="txtlogin" class="form-control" placeholder="Login">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-            <input type="email" name="email" class="form-control" placeholder="Email">
+            <input type="email" name="txtemail" class="form-control" placeholder="Email">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
             <div class="col-sm-10">
-            <input type="password" name="senha" class="form-control" placeholder="Senha">
+            <input type="password" name="txtsenha" class="form-control" placeholder="Senha">
             </div>
         </div>
         <div class="form-group row">
             <label class="col-sm-2 col-form-label">Nivel de acesso</label>
             <div class="col-sm-10">
-            <select class="form-control" name="nivel">
+            <select class="form-control" name="tipo">
                 <option value="">Escolha uma opção</option>
-                <option value="1">Administrador</option>
-                <option value="2">Moderador</option>
+                <option value="administrador">Administrador</option>
+                <option value="moderador">Moderador</option>
             </select>
             </div>
         </div>
         <div class="form-group row">
             <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Entrar</button>
+            <button type="submit" class="btn btn-primary">Cadastrar Usuário</button>
             <img src="../img/load.gif" class="load" alt="Carregando..." style="display: none" />
             </div>
             
@@ -59,6 +59,20 @@ switch ($acao) {
         <div class="retorno"></div>
 
         <?php
+        break;
+
+    case 'cadastrar_usu':
+
+        
+        $usu->Nome = filter_input(INPUT_POST, 'txtnome', FILTER_SANITIZE_STRING);
+        $usu->Login = filter_input(INPUT_POST, 'txtlogin', FILTER_SANITIZE_STRING);
+        $usu->Email = filter_input(INPUT_POST, 'txtemail', FILTER_SANITIZE_EMAIL);
+        $usu->Senha = filter_input(INPUT_POST, 'txtsenha', FILTER_SANITIZE_STRING);
+        $usu->Tipo = filter_input(INPUT_POST, 'tipo', FILTER_SANITIZE_STRING);
+
+        if ($usu->CadastrarUsuario()) {
+            echo true;
+        }
         break;
     
     default:
@@ -80,24 +94,6 @@ switch ($acao) {
 //     return str_replace($isso, $aquilo, $valor);
 // }*/
 
-// if (isset($_REQUEST["acao"])) 
-// {
-//     switch ($_REQUEST["acao"]) {
-//         case 'cadastrar_cli':
-//         $cli->cpf = $_POST["txtcpf"];
-//         $cli->nome = $_POST["txtnome"];
-//         $cli->telefone = $_POST["txttelefone"];
-//         $cli->email = $_POST["txtemail"];
-//         $cli->senha = sha1(md5($_POST["txtsenha"]));
-//         $cli->endereco = $_POST["txtendereco"];
-        
-//         $cli->Cadastrar();
-
-//         echo "<script>
-//              alert('Cadastro efetuado com SUCESSO!');
-//             window.location='account.php'
-//             </script>";
-//         break;
 
 //         case 'login_cli':
 //         $nome = $_POST['txtnome'];
@@ -116,6 +112,5 @@ switch ($acao) {
 //         }
         
 //         break;
-//     }
-// }
+
 ?>

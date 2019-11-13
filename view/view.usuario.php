@@ -22,9 +22,34 @@
   
     <button type="button" id="btn_cadastra_usu">Cadastrar Usuario</button> 
 
-<?php
-
-?>
+    <div class="row">
+    <div class="col-lg-9">
+        <h2 class="linha">Usuários</h2>
+        <div class="box">
+            <div class="box-title">Usuarios</div>
+            <div class="box-content nopadding">
+                <table id="tabela_equipamento" class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Cod</th>
+                            <th>Nome</th>
+                            <th>Login</th>
+                            <th>Email</th>
+                            <th width="200">Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5">
+                            <img src="../img/load.gif" class="load" alt="Carregando..."/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
 
 
     <!-- Modal -->

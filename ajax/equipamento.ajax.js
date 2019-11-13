@@ -44,13 +44,13 @@ $(document).ready(function(){
                     swal({
                         position: 'top-end',
                         icon: 'success',
-                        title: 'Equipamento cadastrado',
+                        title: 'Equipamento cadastrado !',
                         button: true,
                         timer: 900
                       }) 
                       botao.attr('disabled', false) //habilitar o botao
                       //somente se estiver na mesma pagina precisa atualizar a tabela
-                      //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)//para atualizar a tabela ao cadastrar     
+                      ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)//para atualizar a tabela ao cadastrar     
                 }
                 else{
 
@@ -58,6 +58,7 @@ $(document).ready(function(){
                         title: "Erro ao cadastrar equipamento !", 
                         icon: "error",
                     })
+                    botao.attr('disabled', false)
 
                 } 
             }
@@ -111,7 +112,7 @@ $(document).ready(function(){
             {acao: 'form_editar_equi',
             CodEquipamento: CodEquipamento}, 
              function(retornarform){
-                $('#modal_equipamento').modal({backdrop: 'static'})//para modal nao fechar
+                $('#modal_equipamento').modal({backdrop: true})//para modal nao fechar
                 
                 //colocando o form dentro da modal
                 conteudo_modal.html(retornarform)

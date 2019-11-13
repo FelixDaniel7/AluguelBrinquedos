@@ -1,8 +1,9 @@
+<!-- vai estar na pagina de admin -->
 <?php include_once('../controller/equipamento.controller.php'); ?>
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Consultar Brinquedo</title>
+    <title>Cadastrar Brinquedo</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,15 +12,17 @@
     <!-- Jquery -->
     <script src="../js/jquery-3.4.1.min.js"></script>
     <!-- Ajax -->
-    <script type="text/javascript" src="../ajax/equipamento.ajax.js"></script>
+    <script src="../ajax/equipamento.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
   </head>
   <body>
 
-  <?php include_once("modal_equipamento.php"); ?>
-  
-<div class="row">
+ 
+    <button type="button" id="btn_cadastra">Cadastrar Equipamento</button> 
+
+
+    <div class="row">
     <div class="col-lg-9">
         <h2 class="linha">HOME</h2>
         <div class="box">
@@ -50,7 +53,7 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="modal_equipamento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -65,6 +68,7 @@
         </div>
     </div>
 </div>   
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
