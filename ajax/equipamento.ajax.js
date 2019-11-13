@@ -77,7 +77,7 @@ $(document).ready(function(){
             '../controller/equipamento.controller.php',
             {acao: 'form_editar_equi',
             CodEquipamento: CodEquipamento}, 
-             function(retornarform){
+            function(retornarform){
                 $('#myModal').modal({backdrop: 'static'})//para modal nao fechar
                 
                 //colocando o form dentro da modal

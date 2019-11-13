@@ -64,7 +64,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             /*FORM Q VAI DENTRO DA MODAL*/
             ?>
 
-                            <form method="post" class="form" name="form_editar_equipamento">
+                <form method="post" class="form" name="form_editar_equipamento">
                     <input type="hidden" name="CodEquipamento" value="<?php echo $dados->CodEquipamento; ?>">
                     Nome
                     <input type="text" name="txtnomeEquipamento" value="<?php echo $dados->Nome;?>"><br>
