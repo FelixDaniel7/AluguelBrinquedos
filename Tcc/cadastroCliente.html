@@ -7,7 +7,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
   <meta name="author" content="">
-  <meta name="viewport" content="width=device-width, initial-scale=3.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
 
   <title>Cadastro Usuario - Aluguel Briquedos</title>
 
@@ -21,10 +22,11 @@
 
   <!-- Custom styles for this template -->
   <link href="css/landing-page.min.css" rel="stylesheet">
+  <link href="css/css.css" rel="stylesheet">
 
 </head>
 
-<body style="background-color: #6495ed;  zoom: 90%;">
+<body style="background-color: cornflowerblue; ">
 
   <!-- Navigation -->
   <nav class="nav justify-content-center bg-light">
@@ -43,40 +45,25 @@
   </nav>
   
   <nav class="navbar navbar-light bg-light static-top" >
-    <div class="container" style="
-    margin-left: 100px;
-">
-        <a href="index.php"><img src="img/Logo/logo1.png" alt="logo img"  width="400" height="51">
+    
+        <a href="index.php"><img src="img/Logo/logo1.png" alt="logo img"  width="300" height="51">
       
       <div class="col-lg-6 h-100 text-center text-lg-right my-auto"> 
           <ul class="list-inline mb-0">
-            <li class="list-inline-item mr-3">
-              
-              
-               
+            <li class="list-inline-item mr-3"> 
               </a>
             </li>
-
-            
           </ul>
-        </div>
-        <button type="button" class="btn btn-light"  data-toggle="modal" data-target="#ExemploModalCentralizado">
-          <a class="fas fa-user-circle fa-2x fa-fw">  </a>
-            <span class="align-text-bottom">
-              <p style="margin-bottom: 0px;">
-                Usuario
-              </p>
-            </span> 
-          </a>  
-        </button>
       </div>
-
+      
+     
     <!-- Botão para acionar modal -->
     
  
   
   
   </nav>
+  
 
   <div class="container" >
   <nav class="navbar navbar-expand-lg navbar-dark">
@@ -105,79 +92,82 @@
           <li class="nav-item">
               <a class="navbar-brand" href="#">Sobre</a>
           </li>
-          
-        </ul>
-      </div>
+
+        </div>
+      <li class="nav-item">
+          <a class="navbar-brand fas fa-shopping-cart fa-2x fa-fw carrinho"  data-toggle="modal" data-target="#modalCarrinho"></a>
+      </li>
+    
+      
+    </ul>
+      </a>
     </nav>
   </div>
 
   
+
+  
+
     
 
-    <section class="features-icons bg-light text-center" >
+  <section class="features-icons bg-light text-center" >
 
-        <div class="container">
-            <h3>Criar conta</h3>
-            <hr>
-            <form>
+      <div class="container">
+          <h3>Criar conta</h3>
+          <hr>
+          <form>
 
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="Text">Nome <span>*</span></label>
-                      <input type="email" class="form-control" id="Nome" placeholder="Email">
-                    </div>
-                    <div class="form-group col-md-6">
-                      <label for="Text">SobreNome <span>*</span></label>
-                      <input type="password" class="form-control" id="SobreNome" placeholder="Senha">
-                    </div>
-                  </div>
-                  <div class="form-row">
-                      <div class="form-group col-md-6">
-                        <label for="Text">Celular <span>*</span></label>
-                        <input type="number" class="form-control" id="Telefone" placeholder="(11)9999-9999">
-                      </div>
-                      <div class="form-group col-md-6">
-                        <label for="Text">Telefone <span>*</span></label>
-                        <input type="number" class="form-control" id="Celular" placeholder="4444-4444">
-                      </div>
-                    </div>
-
-                <div class="form-row">
+              <div class="form-row">
                   <div class="form-group col-md-6">
-                    <label for="inputEmail4">Email <span>*</span></label>
-                    <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                    <label for="Text">Nome <span>*</span></label>
+                    <input type="email" class="form-control" id="Nome" placeholder="Email">
                   </div>
                   <div class="form-group col-md-6">
-                    <label for="inputPassword4">Senha <span>*</span></label>
-                    <input type="password" class="form-control" id="inputPassword4" placeholder="Senha">
+                    <label for="Text">SobreNome <span>*</span></label>
+                    <input type="password" class="form-control" id="SobreNome" placeholder="Senha">
                   </div>
                 </div>
-  
                 <div class="form-row">
-                    <div class="form-group col-md-6"">
-                        <label for="inputCPF">CPF <span>*</span></label>
-                        <input type="text" class="form-control" id="inputCEP">
-                      </div>
+                    <div class="form-group col-md-6">
+                      <label for="Text">Celular <span>*</span></label>
+                      <input type="number" class="form-control" id="Telefone" placeholder="(11)9999-9999">
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="Text">Telefone <span>*</span></label>
+                      <input type="number" class="form-control" id="Celular" placeholder="4444-4444">
+                    </div>
+                  </div>
+
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label for="inputEmail4">Email <span>*</span></label>
+                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                </div>
+                <div class="form-group col-md-6">
+                  <label for="inputPassword4">Senha <span>*</span></label>
+                  <input type="password" class="form-control" id="inputPassword4" placeholder="Senha">
+                </div>
+              </div>
+
+              <div class="form-row">
+                  <div class="form-group col-md-6"">
+                      <label for="inputCPF">CPF <span>*</span></label>
+                      <input type="text" class="form-control" id="inputCEP">
+                    </div>
 </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" id="gridCheck">
-      <label class="form-check-label" for="gridCheck">
-        Concocordo com os termos
-      </label>
-    </div>
+<div class="form-group">
+  <div class="form-check">
+    <input class="form-check-input" type="checkbox" id="gridCheck">
+    <label class="form-check-label" for="gridCheck">
+      Concocordo com os termos
+    </label>
   </div>
-  <button type="submit" class="btn btn-primary">Entrar</button>
+</div>
+<button type="submit" class="btn btn-primary">Entrar</button>
 </form>
-        </div>
       </div>
-    </section>
-
-
-  
-
-
-
+    </div>
+  </section>
   
 
 
@@ -233,7 +223,7 @@
   <div class="modal-dialog modal-dialog-centered " role="document">
     <div class="modal-content ">
       <div class="modal-header justify-content-center">
-        <h5 class="modal-title " id="TituloModalCentralizado">Cadastro usuario</h5>
+        <h5 class="modal-title " id="TituloModalCentralizado">Logue-se</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -261,8 +251,54 @@
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
         <button type="submit" class="btn btn-primary">Enviar</button>
       
-      </div>
+      </div> 
     </div>
   </div>
 </div>
 </form>
+
+
+<div class="modal" id="modalCarrinho" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Carrinho rápido</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table table-bordered">
+          <thead class="text-center">
+            <th>Imagem</th>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Valor</th>
+            <th>Acão</th>
+          </thead>
+          <tbody>
+
+            <tr>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td> </td>
+              <td class="text-center"><a href="" class="fas fa-ban"></a></td>
+            </tr>
+          </tbody>
+        </table>
+        <table class="table table-bordered">
+        <thead>
+            <th class="text-right">Total: R$ 00,00</th>  
+          </thead>
+          </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="button" class="btn btn-primary">Finalizar pedido</button>
+      </div>
+    </div>
+  </div>
+</div>
+
