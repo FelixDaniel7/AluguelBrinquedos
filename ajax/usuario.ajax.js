@@ -1,5 +1,7 @@
 $(document).ready(function(){
 
+    
+
     var btn_cad = $('#btn_cadastra_usu')
 
     var conteudo_modal = $('#modal_usuario').find('.modal-body')
@@ -34,12 +36,17 @@ $(document).ready(function(){
             success: function (retorno) {
                 console.log(retorno)
                 if (retorno == true) {
+
+                    form.fadeOut('fast')
+
+                    $('#modal_usuario').modal('hide')
+
                     swal({
                         position: 'top-end',
                         icon: 'success',
                         title: 'Usuário cadastrado !',
                         button: true,
-                        timer: 900
+                        timer: 600
                       }) 
                       botao.attr('disabled', false)
 
@@ -58,6 +65,12 @@ $(document).ready(function(){
     })
 
     function ConsultarUsuario(url,acao,atualiza){
+            // $('#tabela_usuario').DataTable({
+            // "ajax": {
+            // "url": "../view/testtable.php",
+            // "type": "POST"}
+            // })
+        
         $.post(
             url,
             {acao: acao},
@@ -126,25 +139,80 @@ $(document).ready(function(){
                             
                     swal({
                         title: 'Atualizado com sucesso !',
-                        icon: 'success'
+                        icon: 'success',
+                        timer: 600
                     })
                     ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)                    
                 }
                 else{
                     swal({
                         title: 'Você não alterou nenhum dado !',
-                        icon: 'info'
+                        icon: 'info',
+                        timer: 600
                     })
                     btn_atualiza.attr('disabled',false)
                 }
-               
-                
-                
-                
-
             }
         })
         return false
+    })
+
+
+    /**EXCLUIR */
+    $('#tabela_usuario').on('click', '#btn_excluir', function(){
+        var CodUsuario = $(this).attr('value')
+
+        if (
+            swal({
+                title: "Você tem certeza ?",
+                text: "Está ação ira deletar todos os dados desse usuário",
+                icon: "warning",
+                buttons: ['Cancelar','Continuar'],
+                dangerMode: true,
+            })
+            .then((willDelete) => {
+                if (willDelete) {
+                    /*Passar o cod para o metodo deletar*/
+                    $.post("../controller/usuario.controller.php",
+                        {acao: 'excluir_usu', 
+                        CodUsuario: CodUsuario}, 
+                        function(retorno){//retorna se deu certo ou nao
+                            console.log(retorno);
+                            
+                            if (retorno == true) {//1=TRUE
+                                
+                                swal({
+                                    title: "Deletado com sucesso !", 
+                                    icon: "success",
+                                    timer: 600
+                                })
+                                //atualiza a tabela
+                                ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)
+
+                            } else {
+                                //se deu algo errado ao deletar
+                                swal({
+                                    title: "Erro ao deletar usuário !", 
+                                    icon: "error",
+                                })
+                            }
+
+                        })
+                } 
+                else {
+                    //cancelar a ação
+                    swal({
+                        title: "Essa ação foi cancelada !",
+                        icon: "info"
+                    })
+                }
+            })
+            ){
+
+        }else{
+            return false; //se deu muitaaaa merda e tudo deu errado
+            console.log('Deu muito ruim ao deletar');
+        }
     })
 
 })

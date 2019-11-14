@@ -63,7 +63,7 @@ class Usuario
 
     function ConsultarUsuario(){
         try {
-            $comandoSQL = "SELECT * FROM Usuario";
+            $comandoSQL = "SELECT * FROM Usuario order by Nome";
 
             $exec = $this->con->prepare($comandoSQL);
             $exec->execute();
@@ -89,6 +89,48 @@ class Usuario
         if ($exec->rowCount() > 0) {
 
         return $exec->fetch(PDO::FETCH_OBJ);
+        }
+        else{
+            return false;
+        }
+    }
+
+    function AtualizarUsuario(){//nao altera os privilegios
+
+        $comandoSQL = "UPDATE Usuario 
+                        SET Nome = ?,
+                        Email = ?,
+                        Login = ?,
+                        Senha = ? 
+                        WHERE CodUsuario = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$this->Nome,PDO::PARAM_STR);
+        $exec->bindValue(2,$this->Email,PDO::PARAM_STR);
+        $exec->bindValue(3,$this->Login,PDO::PARAM_STR);
+        $exec->bindValue(4,sha1(md5(strrev($this->Senha))),PDO::PARAM_STR); 
+        $exec->bindValue(5,$this->CodUsuario,PDO::PARAM_INT);
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+
+    /*DELETE*/
+
+    function ExcluirUsuario(){
+        $comandoSQL = "DELETE FROM Usuario WHERE CodUsuario = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$this->CodUsuario,PDO::PARAM_INT);
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+            return true;
         }
         else{
             return false;

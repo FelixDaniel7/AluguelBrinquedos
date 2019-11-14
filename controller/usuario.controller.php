@@ -43,8 +43,8 @@ switch ($acao) {
             <div class="col-sm-10">
             <select class="form-control" name="tipo">
                 <option value="">Escolha uma opção</option>
-                <option value="administrador">Administrador</option>
-                <option value="moderador">Moderador</option>
+                <option value="Administrador">Administrador</option>
+                <option value="Moderador">Moderador</option>
             </select>
             </div>
         </div>
@@ -87,6 +87,7 @@ switch ($acao) {
                         <td><?php echo $value->Nome;?></td>
                         <td><?php echo $value->Login;?></td>
                         <td><?php echo $value->Email;?></td>
+                        <td><?php echo $value->Tipo;?></td>
                         <td>
                             
                             <button type="button" id="btn_editar" value="<?php echo $value->CodUsuario; ?>"class="btn btn-outline-primary">
@@ -120,23 +121,30 @@ switch ($acao) {
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
             <div class="col-sm-10">
-            <input type="text" name="nome" value="<?php echo $dados->Nome; ?>" class="form-control" placeholder="Nome">
+            <input type="text" name="txtnome" value="<?php echo $dados->Nome; ?>" class="form-control" placeholder="Nome">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Login</label>
             <div class="col-sm-10">
-            <input type="text" name="login" value="<?php echo $dados->Login; ?>"  class="form-control" placeholder="Login">
+            <input type="text" name="txtlogin" value="<?php echo $dados->Login; ?>"  class="form-control" placeholder="Login">
             </div>
         </div>
         <div class="form-group row">
             <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
             <div class="col-sm-10">
-            <input type="email" name="email" value="<?php echo $dados->Email; ?>"  class="form-control" placeholder="Email">
+            <input type="email" name="txtemail" value="<?php echo $dados->Email; ?>"  class="form-control" placeholder="Email">
             </div>
         </div>
 
-        <input type="hidden" name="id" value="<?php echo $dados->CodUsuario; ?>"/>
+        <div class="form-group row">
+            <label for="inputEmail3" class="col-sm-2 col-form-label">Senha</label>
+            <div class="col-sm-10">
+            <input type="password" name="txtsenha" value="AluguelBrinquedos"  class="form-control" placeholder="Email">
+            </div>
+        </div>
+
+        <input type="hidden" name="CodUsuario" value="<?php echo $dados->CodUsuario; ?>"/>
         
         <div class="form-group row">
             <div class="col-sm-10">
@@ -154,14 +162,28 @@ switch ($acao) {
             break;
 
         case 'editar_usu':
-            //echo true;
-            break;
-    
-    default:
-        # code...
-        break;
-}
 
+            $usu->CodUsuario = filter_input(INPUT_POST, 'CodUsuario', FILTER_SANITIZE_NUMBER_INT);
+            $usu->Nome = filter_input(INPUT_POST, 'txtnome', FILTER_SANITIZE_STRING);
+            $usu->Login = filter_input(INPUT_POST, 'txtlogin', FILTER_SANITIZE_STRING);
+            $usu->Email = filter_input(INPUT_POST, 'txtemail', FILTER_SANITIZE_EMAIL);
+            $usu->Senha = filter_input(INPUT_POST, 'txtsenha', FILTER_SANITIZE_STRING);
+
+            if($usu->AtualizarUsuario()){
+                echo true;
+            }
+            break;
+
+        case 'excluir_usu':
+
+            $usu->CodUsuario = filter_input(INPUT_POST, 'CodUsuario', FILTER_SANITIZE_NUMBER_INT);
+
+            if($usu->ExcluirUsuario())
+            {
+                echo true;
+            }
+            break;
+}
 ?>
 
 <?php
