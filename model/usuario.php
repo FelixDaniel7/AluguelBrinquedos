@@ -136,5 +136,11 @@ class Usuario
             return false;
         }
     }
+
+    /**LOGIN */
+
+    function Login(){
+        
+    }
 }
 ?>
