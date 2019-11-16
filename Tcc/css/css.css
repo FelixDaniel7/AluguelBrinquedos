@@ -10,5 +10,22 @@
 	background-color: cornflowerblue;
 }
 
+.tab {
+  background-color: cornflowerblue !important;
+}
+
+
+.espaco {
+  padding-top: 0px !important;
+}
+
+.espaco-topo {
+  padding-top: 50px !important;
+}
+
+.tudo {
+  width: 1000px !important;
+  height: 500px !important;
+}
 
  
