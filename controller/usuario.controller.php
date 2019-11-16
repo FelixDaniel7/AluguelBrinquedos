@@ -183,6 +183,10 @@ switch ($acao) {
                 echo true;
             }
             break;
+
+        case 'login':
+            
+            break;
 }
 ?>
 

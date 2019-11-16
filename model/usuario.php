@@ -36,7 +36,7 @@ class Usuario
 
     /**CADASTRA*/
     function CadastrarUsuario(){
-        //try{
+        try{
             $comandoSQL = "INSERT INTO Usuario(Nome,Email,Login,Senha,Tipo) 
                             VALUES(?,?,?,?,?)";
 
@@ -56,9 +56,9 @@ class Usuario
                 return false;
             }
 
-        // }catch(PDOException $e){
-        //     echo $e->getMessage();
-        // }
+        }catch(PDOException $e){
+            echo $e->getMessage();
+        }
     }
 
     function ConsultarUsuario(){

@@ -32,17 +32,6 @@ CREATE TABLE Usuario(
     Tipo ENUM('super','Administrador','Moderador') -- moderador pode fazer os pedidos
 );
 
-/* Visivel apenas para o ADMINISTRADOR */
-CREATE TABLE Supervisor(
-	CodSupervisor SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	Nome VARCHAR(100),
-    RG CHAR(9),
-    CPF CHAR(11),
-    DataNascimento DATE,
-    Endereco VARCHAR(200),
-    Email VARCHAR(50)
-);
-
 /* Criação da tabela EQUIPAMENTO Tudo relacionado com o EQUIPAMENTO */
 CREATE TABLE Equipamento(
 	CodEquipamento SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -81,10 +70,7 @@ CREATE TABLE Pedido(
     PrecoFinal DECIMAL(8,2),-- preço com o frete
     FormaPagamento VARCHAR(20),
     
-    CodSupervisor SMALLINT,-- se tem supervisor adiciona tanto no preço
-    
-    CONSTRAINT FK_Supervisor_Pedido FOREIGN KEY (CodSupervisor)
-		REFERENCES Supervisor(CodSupervisor),
+    Supervisao BIT,-- se tem supervisor adiciona tanto no preço
     
     CONSTRAINT FK_Cliente_Pedido FOREIGN KEY (CodCliente)
 		REFERENCES Cliente(CodCliente)
