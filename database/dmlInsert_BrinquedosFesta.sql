@@ -15,6 +15,9 @@ INSERT INTO Cliente (CPF,Nome,Telefone,Email,Senha,Endereco)
            
            select * from usuario;
            
+           SELECT * FROM Usuario 
+                    WHERE Login = 'Daniel' AND Senha = 'a3dd91d922fcff42f64ac37e9140b02a00e4ce01' AND Tipo = 'Administrador' 
+           
 insert into usuario (Tipo)
 values ('administradorghff');
 	
