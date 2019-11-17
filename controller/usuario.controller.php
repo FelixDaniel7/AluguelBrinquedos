@@ -220,46 +220,9 @@ switch ($acao) {
                 else if ($dados->Tipo != 'Administrador') {
                     echo "nivel de acesso";
                 }
-
-                
-
-                
-
-            }
-           
-           
-
-      
-                
-                
-                
-                
-                
-                
-                
-                
-            //}
-            
-            
-            
-            
-            
-            
-            
-                
-            
-            
-            
-            
-            
+            } 
             break;
 }
-?>
-
-<?php
-// include_once("model/cliente.php");
-
-// $cli = new Cliente();
 
 // /*function limpaCPF($valor){
 //     $valor = trim($valor);
@@ -267,24 +230,4 @@ switch ($acao) {
 //     $aquilo = array('');
 //     return str_replace($isso, $aquilo, $valor);
 // }*/
-
-
-//         case 'login_cli':
-//         $nome = $_POST['txtnome'];
-//         $login = $_POST['txtlogin'];
-//         $senhalogin = sha1(md5($_POST['txtsenhalogin']));
-
-//         $user = $cli->Login($login,$senhalogin,$nome);//select no BD
-
-//         if ($user == true) {
-//             session_start();
-// 				$_SESSION["nome_logado"] = $nome;
-//             header('location:aluguel.php');
-//         }
-//         else {
-//             echo "<script>alert('Dados de login incorretos')</script>";
-//         }
-        
-//         break;
-
 ?>
