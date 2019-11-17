@@ -139,8 +139,41 @@ class Usuario
 
     /**LOGIN */
 
-    function Login(){
-        
+    function Login($Login,$Senha){
+        $comandoSQL = "SELECT * FROM Usuario 
+                    WHERE Login = ? AND 
+                    Senha = ? AND 
+                    Tipo = 'Administrador'";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$Login,PDO::PARAM_STR);
+        $exec->bindValue(2,sha1(md5(strrev($Senha))),PDO::PARAM_STR);
+        $exec->execute();
+
+        if ($exec->rowCount() == 1) {
+            return true;
+
+        }
+        else{
+            return false;
+        }
+    }
+    function RetornoLogin($Login){
+
+        $comandoSQL = "SELECT * FROM Usuario 
+                    WHERE Login = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$Login,PDO::PARAM_STR);
+        $exec->execute();
+
+        if ($exec->rowCount() == 1) {
+            return $exec->fetch(PDO::FETCH_OBJ);
+        }
+        else{
+            return false;
+        }
+
     }
 }
 ?>

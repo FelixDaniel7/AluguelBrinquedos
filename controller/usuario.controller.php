@@ -185,6 +185,72 @@ switch ($acao) {
             break;
 
         case 'login':
+
+            
+            $Login = filter_input(INPUT_POST, 'txtlogin', FILTER_SANITIZE_STRING);    
+            $Senha = filter_input(INPUT_POST, 'txtsenha', FILTER_SANITIZE_STRING);
+
+
+            if($usu->Login($Login,$Senha)){
+                echo 'login';
+            }
+            else{
+                $dados = $usu->RetornoLogin($Login);
+                
+                session_start();
+                if (!isset($_SESSION['tentativas'])) {                    
+                    $_SESSION['tentativas'] = 1;
+                }else{
+                    $_SESSION['tentativas'] ++;
+                }
+                if($_SESSION['tentativas'] >= 3){
+                    echo "Muitas tentativas";
+                }
+                //echo 'Tentativas: '.$_SESSION['tentativas'] ."  ";
+
+                if (empty($Login) || empty($Senha)) {//campos vazios
+                    echo 'campo vazio';
+                }
+                else if (!$dados) {
+                    echo "nao localizado";
+                }
+                else if ($dados->Senha != sha1(md5(strrev($Senha)))) {
+                    echo 'senha'; 
+                }
+                else if ($dados->Tipo != 'Administrador') {
+                    echo "nivel de acesso";
+                }
+
+                
+
+                
+
+            }
+           
+           
+
+      
+                
+                
+                
+                
+                
+                
+                
+                
+            //}
+            
+            
+            
+            
+            
+            
+            
+                
+            
+            
+            
+            
             
             break;
 }

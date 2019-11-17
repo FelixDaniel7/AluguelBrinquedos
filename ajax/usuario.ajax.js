@@ -217,5 +217,31 @@ $(document).ready(function(){
 
 
     /**LOGIN */
+    $('form[name="form_login"]').submit(function(){
+
+        var form = $(this)
+        var botao = $(this).find('#btn_login')
+
+        $.ajax({
+            url: "../controller/usuario.controller.php",
+            type: "POST",
+            data: "acao=login&" + form.serialize(),
+            beforeSend: function(){
+
+            },
+            success: function(retorno) {
+                console.log(retorno);
+
+                // if (retorno == true) {
+                //     swal({
+                //         title: "Essa ação foi cancelada !",
+                //         icon: "success"
+                //     })
+                // }
+                
+            }
+        })
+        return false
+    })
 
 })
