@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=3.0">
+
+  <title>Cadastro Usuario - Aluguel Briquedos</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="css/landing-page.min.css" rel="stylesheet">
+
+</head>
+
+<body style="background-color: #6495ed;  zoom: 90%;">
+
+  <!-- Navigation -->
+  <nav class="nav justify-content-center bg-light">
+    <ul class="nav justify-content-center">
+        
+        <li class="nav-item">
+            <a class="nav-link disabled" href="#">Contatos: (11)95555-5555</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Contatos: (11)4444-4444</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">E-mail: nome@gmail.com</a>
+    </li>
+    </ul>
+  </nav>
+  
+  <nav class="navbar navbar-light bg-light static-top" >
+    <div class="container" style="
+    margin-left: 100px;
+">
+        <a href="index.php"><img src="img/Logo/logo1.png" alt="logo img"  width="400" height="51">
+      
+      <div class="col-lg-6 h-100 text-center text-lg-right my-auto"> 
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mr-3">
+              
+              
+               
+              </a>
+            </li>
+
+            
+          </ul>
+        </div>
+        <button type="button" class="btn btn-light"  data-toggle="modal" data-target="#ExemploModalCentralizado">
+          <a class="fas fa-user-circle fa-2x fa-fw">  </a>
+            <span class="align-text-bottom">
+              <p style="margin-bottom: 0px;">
+                Usuario
+              </p>
+            </span> 
+          </a>  
+        </button>
+      </div>
+
+    <!-- Botão para acionar modal -->
+    
+ 
+  
+  
+  </nav>
+
+  <div class="container" >
+  <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="#">Home</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    
+      <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              
+                <a class="navbar-brand  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Brinquedos
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="#">Ação</a>
+                  <a class="dropdown-item" href="#">Outra ação</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Algo mais aqui</a>
+                </div>
+              </li>
+          <li class="nav-item active">
+              <a class="navbar-brand" href="#">Galeria</a>
+          </li>
+          <li class="nav-item">
+              <a class="navbar-brand" href="#">Sobre</a>
+          </li>
+          
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  
+    
+
+    <section class="features-icons bg-light text-center" >
+
+        <div class="container">
+            <h3>Preencha os Dados para Alugar</h3>
+            <hr>
+            <form>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                      <label for="number"> Data de uso<span>*</span></label>
+                      <input type="date" class="form-control" id="Nome" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2019-11-07" max="2022-12-31" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                      <label for="Text">Horas  de utilização</label> <span>*</span></label>
+                      <input type="number" class="form-control" id="SobreNome" placeholder="Horas" maxlength="2" required>
+                    </div>
+                  </div>
+                  <div class="form-row">
+                      <div class="form-group col-md-6">
+                        <label for="Text">Endereço de Montagem <span>*</span></label>
+                        <input type="text" class="form-control" id="Telefone" required>
+                      </div>
+                      <div class="form-group col-md-6">
+                        <label for="Text">Horário da Montagem <span>*</span></label>
+                        <input type="time" class="form-control" id="Celular" required>
+                      </div>
+                    </div>
+
+                    <div class="form-row">
+                            <div class="form-group col-md-6">
+                              <label for="Text">Forma de pagamento<span>*</span></label>
+                              <select class="custom-select" id="inputGroupSelect01" required>
+                                    <option selected>Escolha...</option>
+                                    <option value="1">Boleto</option>
+                                    <option value="2">Cartão</option>
+                                    </select>
+                            </div>
+                          </div>
+      
+  
+  <button type="submit" class="btn btn-primary">Alugar</button>
+</form>
+        </div>
+      </div>
+    </section>
+
+
+  
+
+
+
+  
+
+
+  <!-- Footer -->
+  <footer class="footer bg-light">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
+          <ul class="list-inline mb-2">
+            <li class="list-inline-item">
+              <a href="#">Sobre</a>
+            </li>
+            <li class="list-inline-item">&sdot;</li>
+            <li class="list-inline-item">
+              <a href="#">Contatos</a>
+            </li>
+           
+          </ul>
+          <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
+        </div>
+        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
+          <ul class="list-inline mb-0">
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fab fa-facebook fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item mr-3">
+              <a href="#">
+                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
+              </a>
+            </li>
+            <li class="list-inline-item">
+              <a href="#">
+                <i class="fab fa-instagram fa-2x fa-fw"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>
+<!-- Modal -->
+<div class="modal fade" id="ExemploModalCentralizado" tabindex="-1" role="dialog" aria-labelledby="TituloModalCentralizado" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered " role="document">
+    <div class="modal-content ">
+      <div class="modal-header justify-content-center">
+        <h5 class="modal-title " id="TituloModalCentralizado">Cadastro usuario</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Endereço de email</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Seu email">
+           
+          </div>
+          <div class="form-group">
+            <label for="exampleInputPassword1">Senha</label>
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Senha">
+          </div>
+          <div class="form-group form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Lembrar senha</label>
+          </div>
+        
+      </div>
+
+      <div class="modal-footer justify-content-center">
+        
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+        <button type="submit" class="btn btn-primary">Enviar</button>
+      
+      </div>
+    </div>
+  </div>
+</div>
+</form>
