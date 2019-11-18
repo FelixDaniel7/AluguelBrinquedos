@@ -43,8 +43,8 @@ class Usuario
             $exec = $this->con->prepare($comandoSQL);
             $exec->bindValue(1,$this->Nome,PDO::PARAM_STR);
             $exec->bindValue(2,$this->Email,PDO::PARAM_STR);
-            $exec->bindValue(3,$this->Login,PDO::PARAM_STR_CHAR);
-            $exec->bindValue(4,sha1(md5(strrev($this->Senha))),PDO::PARAM_STR_CHAR);//inverte a senha e criptografa duas vezes
+            $exec->bindValue(3,$this->Login,PDO::PARAM_STR);
+            $exec->bindValue(4,sha1(md5(strrev($this->Senha))),PDO::PARAM_STR);//inverte a senha e criptografa duas vezes
             $exec->bindValue(5,$this->Tipo,PDO::PARAM_STR);
             $exec->execute();
 

@@ -2,7 +2,7 @@
 /*Tudo relacionado a login e ao usuario*/
 include_once('../model/usuario.php');
 
-$usu = new Usuario();/*Instancia do objeto da classe para poder usar as funçoes da classe*/
+
 /*PHPMailer*/
 // use PHPMailer\PHPMailer\PHPMailer;
 // use PHPMailer\PHPMailer\SMTP;
@@ -14,7 +14,7 @@ $usu = new Usuario();/*Instancia do objeto da classe para poder usar as funçoes
 // $mail = new PHPMailer(true);
 /*///////////////////////*/
 
-
+$usu = new Usuario();/*Instancia do objeto da classe para poder usar as funçoes da classe*/
 
 $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
