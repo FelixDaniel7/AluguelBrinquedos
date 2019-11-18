@@ -320,7 +320,7 @@ $(document).ready(function(){
 
                     setTimeout(function(){
                         $(location).attr('href','login.php')
-                    }, 1000)
+                    }, 500)
                 }
                 
             }
