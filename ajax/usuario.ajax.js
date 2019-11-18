@@ -256,7 +256,11 @@ $(document).ready(function(){
                         title: "Muitas tentativas !",
                         icon: "error"
                     })
-                    $(location).attr('href','login.php')//só para atualizar a pagina, aparecer o form de verificação
+
+                    setTimeout(function(){
+                        $(location).attr('href','login.php')
+                    }, 1000)
+                    //só para atualizar a pagina, aparecer o form de verificação
                 }
                 else if (retorno == 'vazio') {
                     swal({
@@ -288,7 +292,41 @@ $(document).ready(function(){
     })
 
     $('form[name="form_verificar"]').submit(function(){
+        var form = $(this)
         
+        $.ajax({
+            url: "../controller/usuario.controller.php",
+            type: "POST",
+            data: "acao=verificar&" + form.serialize(),
+            beforeSend: function(){
+
+            },
+            success: function(retorno){
+                console.log(retorno);
+
+                if (retorno == 'errado') {
+                    swal({
+                        title: "Resposta errada tente novamente !",
+                        icon: "error"
+                    })
+                    setTimeout(function(){
+                        $(location).attr('href','login.php')
+                    }, 500)
+                }else{
+                    swal({
+                        title: "Resposta Certa !",
+                        icon: "success"
+                    })
+
+                    setTimeout(function(){
+                        $(location).attr('href','login.php')
+                    }, 1000)
+                }
+                
+            }
+        })
+
+        return false;
     })
 
 })
