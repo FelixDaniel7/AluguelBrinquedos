@@ -37,9 +37,14 @@ $usu->Logou('administrador');//se ja esta logado
   <body>
 
   <div class="container">
-      <div>
+  <?php if(@$_SESSION['tentativas'] < 3){ ?>    
+  <div>
           <h2>Area Restrita</h2>
-          <div class="retorno"></div>
+         
+
+
+          
+
           <form action="" name="form_login" class="form" method="post">
             <div class="form-group">
                 <label for="login">Login</label>
@@ -57,10 +62,36 @@ $usu->Logou('administrador');//se ja esta logado
           </form>
           <br>
           <img src="../img/load-login.gif" id="load" style="display: none" />
+
+
+          <?php
+               }
+               else {
+              $n1 = rand(1,10);
+              $n2 = rand(1,10);
+
+              $total = $n1 + $n2;
+            ?>
+          <!-- <div id="form_verificar" style="display: none"> -->
+            
+          
+            <h5 class="card-title text-center">Verificação</h5>
+            <form  action="?acao=verificar" method="POST" class="form-signin">
+              <div class="form-label-group">
+              <label for="inputEmail"><?php echo "Responda Qunato é $n1 + $n2 ? "; ?></label>
+                <input type="number" name="txtresposta" class="form-control" required autofocus>
+              </div>
+                <input type="hidden"  name="txtcerta" value="<?php echo $total;?>" class="form-control">
+              <div class="custom-control custom-checkbox mb-3"></div>
+              <input type="submit" value="Verificar" class="btn btn-lg btn-primary btn-block text-uppercase">
+            </form>
+
+
+            <!-- </div> -->
+              <?php } ?>
+
+
       </div>
   </div>
   </body>
 </html>
-
-
-     

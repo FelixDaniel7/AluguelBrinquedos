@@ -216,11 +216,17 @@ $(document).ready(function(){
     })
 
 
+ 
     /**LOGIN */
     $('form[name="form_login"]').submit(function(){
 
         var form = $(this)
         var botao = $(this).find('#btn_login')
+
+
+        
+
+        
 
         $.ajax({
             url: "../controller/usuario.controller.php",
@@ -255,6 +261,7 @@ $(document).ready(function(){
                         title: "Muitas tentativas !",
                         icon: "error"
                     })
+                    $(location).attr('href','login.php')//só para atualizar a pagina, aparecer o form de verificação
                 }
                 else if (retorno == 'vazio') {
                     swal({
@@ -280,12 +287,12 @@ $(document).ready(function(){
                         icon: "info"
                     })
                 }
-                    
-                
-
             }
         })
+        
         return false
+        
+        
     })
 
 })

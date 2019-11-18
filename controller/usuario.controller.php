@@ -220,9 +220,9 @@ switch ($acao) {
                 if($_SESSION['tentativas'] >= 3){
                     echo "tentativas";
                 }
-                echo 'Tentativas: '.$_SESSION['tentativas'] ."  ";
+                //echo 'Tentativas: '.$_SESSION['tentativas'] ."  ";
 
-                if (empty($Login) || empty($Senha)) {//campos vazios
+                else if (empty($Login) || empty($Senha)) {//campos vazios
                     echo 'vazio';
                 }
                 else if (!$dados) {
@@ -239,34 +239,31 @@ switch ($acao) {
             } 
             break;
 
-        // case 'sair':
-        //     session_start();
-        //     session_destroy();
-        //     //unset($_SESSION['administrador']);
-        //     echo "logoff";
-        //     header("location: login.php");
-        //     break;
-
-        /*case 'verificar':
-            
-            
-            $resposta = $_POST['txtresposta'];
-        $certa = $_POST['txtcerta'];
-
-          if ($resposta == $certa) {
-            echo "certo";
-    
+        case 'sair':
             session_start();
-            $_SESSION['tentativas'] = 0 ;
-    
-          }else{
-              echo "errado";
+            session_destroy();
+            unset($_SESSION['administrador']);
+            echo "logoff";
+            //header("location: login.php");
+            break;
 
-          }
+        case 'verificar':
+
+
+            $resposta = $_POST['txtresposta'];
+            $certa = $_POST['txtcerta'];
+
+            if ($resposta == $certa) {
+                echo "certo";
+                session_start();
+                $_SESSION['tentativas'] = 0 ;
+            }else{
+                echo "errado";
+            }
             break;
 
 
-        case 'recuperar_senha':
+        /*case 'recuperar_senha':
 
                 /*Endereço de email q ser enviado
                 @$email = $_POST['txtemail'];

@@ -4,7 +4,7 @@ include_once('../controller/usuario.controller.php');
 
 session_start();
 
-echo $usu->Logado('administrador');
+$usu->Logado('administrador');
 
 //botao sair
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
