@@ -55,12 +55,18 @@ $usu->Logou('administrador');//se ja esta logado
                 <input type="password" name="txtsenha" class="form-control" placeholder="Senha">
             </div>
 
+            <div class="form-group col-md-6">
+                <a href="recuperar_senha.php">Esqueceu sua senha ?</a>
+              </div>
+
             <button type="submit" id="btn_login" class="btn btn-primary btn-lg">
                 Logar
             </button>
             <img src="../img/load.gif" class="load" alt="Carregando..." style="display: none" />
           </form>
+          
           <br>
+
           <img src="../img/load-login.gif" id="load" style="display: none" />
 
 

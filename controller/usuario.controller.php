@@ -4,14 +4,14 @@ include_once('../model/usuario.php');
 
 
 /*PHPMailer*/
-// use PHPMailer\PHPMailer\PHPMailer;
-// use PHPMailer\PHPMailer\SMTP;
-// use PHPMailer\PHPMailer\Exception;
-// require 'mailer/src/Exception.php';
-// require 'mailer/src/PHPMailer.php';
-// require 'mailer/src/SMTP.php';
-// // Instantiation and passing `true` enables exceptions
-// $mail = new PHPMailer(true);
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;
+require '../mailer/src/Exception.php';
+require '../mailer/src/PHPMailer.php';
+require '../mailer/src/SMTP.php';
+// Instantiation and passing `true` enables exceptions
+$mail = new PHPMailer(true);
 /*///////////////////////*/
 
 $usu = new Usuario();/*Instancia do objeto da classe para poder usar as funçoes da classe*/
@@ -263,32 +263,35 @@ switch ($acao) {
             break;
 
 
-        /*case 'recuperar_senha':
+        case 'recuperar_senha':
 
-                /*Endereço de email q ser enviado
-                @$email = $_POST['txtemail'];
+                //Endereço de email q ser enviado
+                $email = filter_input(INPUT_POST, 'txtemail', FILTER_SANITIZE_EMAIL);
 
-                /*Cod de Verificação
+                //Cod de Verificação
                 $cod_recuperacao = rand(22222,99999);
-
+                
+             
+            
                 session_start();
 
-                /*Se a sessao nao existir eu crio ela
+                //Se a sessao nao existir eu crio ela
                 if (!isset($_SESSION['cod_verificaco'])) {
-                    $_SESSION['cod_verificacao'] = $cod_recuperacao;
+                    echo $_SESSION['cod_verificacao'] = $cod_recuperacao."   ";
+                
                 }else{
-                    /*Se ela já existir eu destruo ela
+                    //Se ela já existir eu destruo ela
                     unset($_SESSION['cod_verificacao']);    
                 }
                 
-                echo $_SESSION['cod_verificacao'];
-
+                print_r($_SESSION['cod_verificacao']);
+                /*
                 echo "<script>
                     alert('Codigo enviado com sucesso! Olhe seu email $cod_recuperacao');
                     window.location='cod_verificacao.php';        
                     </script>";
                     
-                /*try {
+                try {
                     //Server settings
                     $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
                     $mail->isSMTP();                                            // Send using SMTP
@@ -328,7 +331,7 @@ switch ($acao) {
                     alert('Deu Ruim');
                     window.location='senha.php';        
                     </script>";
-                }
+                }*/
         break;
 
         case 'confrimar_cod':
@@ -342,6 +345,12 @@ switch ($acao) {
             }else{
                 msg("Código de verificação incompatível", "erro");
             }
-        break;*/
+        break;
 }
+
+
+
+
+
+//}
 ?>

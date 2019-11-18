@@ -329,4 +329,27 @@ $(document).ready(function(){
         return false;
     })
 
+    /**RECUPERAR SENHA */
+    $('form[name="form_recuperar_senha"]').submit(function(){
+        var botao = $(this).find('#btn_enviar')
+        var form = $(this)
+        
+        $.ajax({
+            url: "../controller/usuario.controller.php",
+            type: "POST",
+            data: "acao=recuperar_senha&" + form.serialize(),
+            beforeSend: function(){
+
+            },
+            success: function(retorno){
+                console.log(retorno);
+            }
+        
+
+        })
+
+
+        return false
+    })
+
 })
