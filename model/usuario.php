@@ -175,5 +175,23 @@ class Usuario
         }
 
     }
+
+    function Logado($sessao){
+
+        if (!isset($_SESSION[$sessao]) || empty($_SESSION[$sessao])) {
+            header("location: login.php");
+        } else {
+            return true;//existe a sessao
+        }
+        //verificar se o id da sessao é igual o do BD 
+    }
+
+    function Logou($sessao){
+        if (isset($_SESSION[$sessao]) || !empty($_SESSION[$sessao])) {
+            header("location: admin.php");
+        } else {
+            return false;//nao existe a sessao
+        }
+    }
 }
 ?>

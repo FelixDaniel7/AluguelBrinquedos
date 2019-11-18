@@ -1,19 +1,25 @@
 <!-- vai estar na pagina de admin -->
 <?php 
 include_once('../controller/usuario.controller.php');
+
 session_start();
 
-$usu->Logou('administrador');//se ja esta logado
+echo $usu->Logado('administrador');
 
-// echo "<pre>";
-// print_r($_SESSION['administrador']);
-// echo "</pre>";
-// echo "<br> <br>";
+//botao sair
+if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+    session_start();
+    //session_destroy();
+    unset($_SESSION['administrador']);
+    header("location: login.php");
+}
+
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
-    <title>Area Restrita</title>
+    <title>Pagina do admin</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -38,25 +44,12 @@ $usu->Logou('administrador');//se ja esta logado
 
   <div class="container">
       <div>
-          <h2>Area Restrita</h2>
-          <div class="retorno"></div>
-          <form action="" name="form_login" class="form" method="post">
-            <div class="form-group">
-                <label for="login">Login</label>
-                <input type="text" name="txtlogin" class="form-control input-lg" placeholder="Login">   
-            </div>
-            <div class="form-group">
-                <label for="exampleInputPassword1">Senha</label>
-                <input type="password" name="txtsenha" class="form-control" placeholder="Senha">
-            </div>
+          <h2>Pagina admin</h2>
+        
 
-            <button type="submit" id="btn_login" class="btn btn-primary btn-lg">
-                Logar
-            </button>
-            <img src="../img/load.gif" class="load" alt="Carregando..." style="display: none" />
-          </form>
-          <br>
-          <img src="../img/load-login.gif" id="load" style="display: none" />
+          <a href="?logout=true" class="btn btn-danger">Sair</a>
+
+         
       </div>
   </div>
   </body>

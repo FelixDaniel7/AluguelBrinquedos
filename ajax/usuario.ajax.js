@@ -232,13 +232,57 @@ $(document).ready(function(){
             success: function(retorno) {
                 console.log(retorno);
 
-                // if (retorno == true) {
-                //     swal({
-                //         title: "Essa ação foi cancelada !",
-                //         icon: "success"
-                //     })
-                // }
+                if (retorno == 'login') {
+                    
+
+                    form.fadeOut('fast',function(){
+                        swal({
+                            title: "Login realizado com sucesso !",
+                            icon: "success",
+                            timer: 1000
+                        })
+
+                        $('#load').fadeIn('slow') //mostrar                     
+                        
+                    })//ocultar
+
+                    setTimeout(function(){
+                        $(location).attr('href','admin.php')
+                    }, 3000) 
+                }
+                else if(retorno == 'tentativas'){
+                    swal({
+                        title: "Muitas tentativas !",
+                        icon: "error"
+                    })
+                }
+                else if (retorno == 'vazio') {
+                    swal({
+                        title: "Verifique se todos campos estão preenchido corretamente!",
+                        icon: "info"
+                    })
+                }
+                else if (retorno == 'naolocalizado') {
+                    swal({
+                        title: "Usuário não localizado !",
+                        icon: "info"
+                    })
+                }
+                else if (retorno == 'senha') {
+                    swal({
+                        title: "Está senha não corresponde a esse usuário !",
+                        icon: "info"
+                    })
+                }
+                else if (retorno == 'nivel') {
+                    swal({
+                        title: "Você não tem permissão para continuar !",
+                        icon: "info"
+                    })
+                }
+                    
                 
+
             }
         })
         return false

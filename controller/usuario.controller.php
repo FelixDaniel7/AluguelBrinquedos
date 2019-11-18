@@ -3,6 +3,18 @@
 include_once('../model/usuario.php');
 
 $usu = new Usuario();/*Instancia do objeto da classe para poder usar as funçoes da classe*/
+/*PHPMailer*/
+// use PHPMailer\PHPMailer\PHPMailer;
+// use PHPMailer\PHPMailer\SMTP;
+// use PHPMailer\PHPMailer\Exception;
+// require 'mailer/src/Exception.php';
+// require 'mailer/src/PHPMailer.php';
+// require 'mailer/src/SMTP.php';
+// // Instantiation and passing `true` enables exceptions
+// $mail = new PHPMailer(true);
+/*///////////////////////*/
+
+
 
 $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
@@ -192,6 +204,8 @@ switch ($acao) {
 
 
             if($usu->Login($Login,$Senha)){
+                session_start();
+                $_SESSION['administrador'][] = $usu->RetornoLogin($Login); 
                 echo 'login';
             }
             else{
@@ -204,30 +218,133 @@ switch ($acao) {
                     $_SESSION['tentativas'] ++;
                 }
                 if($_SESSION['tentativas'] >= 3){
-                    echo "Muitas tentativas";
+                    echo "tentativas";
                 }
-                //echo 'Tentativas: '.$_SESSION['tentativas'] ."  ";
+                echo 'Tentativas: '.$_SESSION['tentativas'] ."  ";
 
                 if (empty($Login) || empty($Senha)) {//campos vazios
-                    echo 'campo vazio';
+                    echo 'vazio';
                 }
                 else if (!$dados) {
-                    echo "nao localizado";
+                    echo "naolocalizado";
                 }
                 else if ($dados->Senha != sha1(md5(strrev($Senha)))) {
                     echo 'senha'; 
                 }
                 else if ($dados->Tipo != 'Administrador') {
-                    echo "nivel de acesso";
+                    echo "nivel";
                 }
+
+
             } 
             break;
-}
 
-// /*function limpaCPF($valor){
-//     $valor = trim($valor);
-//     $isso = array('.','-');
-//     $aquilo = array('');
-//     return str_replace($isso, $aquilo, $valor);
-// }*/
+        // case 'sair':
+        //     session_start();
+        //     session_destroy();
+        //     //unset($_SESSION['administrador']);
+        //     echo "logoff";
+        //     header("location: login.php");
+        //     break;
+
+        /*case 'verificar':
+            
+            
+            $resposta = $_POST['txtresposta'];
+        $certa = $_POST['txtcerta'];
+
+          if ($resposta == $certa) {
+            echo "certo";
+    
+            session_start();
+            $_SESSION['tentativas'] = 0 ;
+    
+          }else{
+              echo "errado";
+
+          }
+            break;
+
+
+        case 'recuperar_senha':
+
+                /*Endereço de email q ser enviado
+                @$email = $_POST['txtemail'];
+
+                /*Cod de Verificação
+                $cod_recuperacao = rand(22222,99999);
+
+                session_start();
+
+                /*Se a sessao nao existir eu crio ela
+                if (!isset($_SESSION['cod_verificaco'])) {
+                    $_SESSION['cod_verificacao'] = $cod_recuperacao;
+                }else{
+                    /*Se ela já existir eu destruo ela
+                    unset($_SESSION['cod_verificacao']);    
+                }
+                
+                echo $_SESSION['cod_verificacao'];
+
+                echo "<script>
+                    alert('Codigo enviado com sucesso! Olhe seu email $cod_recuperacao');
+                    window.location='cod_verificacao.php';        
+                    </script>";
+                    
+                /*try {
+                    //Server settings
+                    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+                    $mail->isSMTP();                                            // Send using SMTP
+                    $mail->Host       = 'SMTP.office365.com';                    // Set the SMTP server to send through
+                    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                    $mail->Username   = 'danielfernandesdk17@outlook.com';                     // SMTP username
+                    $mail->Password   = base64_decode('RGFuaWVsT3V0');                               // SMTP password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+                    $mail->Port       = 587;                                    // TCP port to connect to
+
+                    //Recipients
+                    $mail->setFrom('danielfernandesdk17@outlook.com', 'Site Notícias');
+                    $mail->addAddress($email, 'Senhor Usuario');     // Add a recipient
+                    //$mail->addAddress('ellen@example.com');               // Name is optional
+                    //$mail->addReplyTo('info@example.com', 'Information');
+                    //$mail->addCC('cc@example.com');
+                    //$mail->addBCC('bcc@example.com');
+
+                    // Attachments
+                    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+                    // Content
+                    $mail->isHTML(true);                                  // Set email format to HTML
+                    $mail->Subject = "Recuperacao de senha Site Noticias";
+                    $mail->Body    = "<h3>Seu codigo de Verificacao: $cod_recuperacao</h3>";
+                    $mail->AltBody = 'Texto alternativo';
+
+                    $mail->send();
+                    echo "<script>
+                    alert('Codigo enviado com sucesso! Olhe seu email');
+                    window.location='cod_verificacao.php';        
+                    </script>";
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    echo "<script>
+                    alert('Deu Ruim');
+                    window.location='senha.php';        
+                    </script>";
+                }
+        break;
+
+        case 'confrimar_cod':
+
+            $codigo = $_POST['txtcod'];
+
+            session_start();
+            
+            if ($_SESSION['cod_verificacao'] == $codigo) {
+                msg("Código de verificação comfirmado", "sucesso");
+            }else{
+                msg("Código de verificação incompatível", "erro");
+            }
+        break;*/
+}
 ?>
