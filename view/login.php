@@ -76,7 +76,7 @@ $usu->Logou('administrador');//se ja esta logado
             
           
             <h5 class="card-title text-center">Verificação</h5>
-            <form  action="?acao=verificar" method="POST" class="form-signin">
+            <form name="form_verificar" action="?acao=verificar" method="POST" class="form-signin">
               <div class="form-label-group">
               <label for="inputEmail"><?php echo "Responda Qunato é $n1 + $n2 ? "; ?></label>
                 <input type="number" name="txtresposta" class="form-control" required autofocus>

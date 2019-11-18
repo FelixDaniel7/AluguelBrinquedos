@@ -223,11 +223,6 @@ $(document).ready(function(){
         var form = $(this)
         var botao = $(this).find('#btn_login')
 
-
-        
-
-        
-
         $.ajax({
             url: "../controller/usuario.controller.php",
             type: "POST",
@@ -289,9 +284,10 @@ $(document).ready(function(){
                 }
             }
         })
-        
         return false
-        
+    })
+
+    $('form[name="form_verificar"]').submit(function(){
         
     })
 
