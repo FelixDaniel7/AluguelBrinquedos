@@ -50,7 +50,10 @@ $(document).ready(function(){
                       }) 
                       botao.attr('disabled', false)
 
-                      ConsultarUsuario("../controller/usuario.controller.php", "consultar_usu", true);
+                      //ConsultarUsuario("../controller/usuario.controller.php", "consultar_usu", true);
+                      setTimeout(function(){
+                        $(location).attr('href','view.usuario.php')
+                    }, 1000)
                 }
                 else{
                     swal({
@@ -64,7 +67,7 @@ $(document).ready(function(){
         return false
     })
 
-    function ConsultarUsuario(url,acao,atualiza){
+    /*function ConsultarUsuario(url,acao,atualiza){
             // $('#tabela_usuario').DataTable({
             // "ajax": {
             // "url": "../view/testtable.php",
@@ -94,7 +97,7 @@ $(document).ready(function(){
 
         )    
     }
-    ConsultarUsuario("../controller/usuario.controller.php", "consultar_usu");
+    ConsultarUsuario("../controller/usuario.controller.php", "consultar_usu");*/
 
     /**BOTAO EDITAR */
     $('#tabela_usuario').on('click', '#btn_editar', function(){
@@ -142,7 +145,10 @@ $(document).ready(function(){
                         icon: 'success',
                         timer: 600
                     })
-                    ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)                    
+                    //ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)
+                    setTimeout(function(){
+                        $(location).attr('href','view.usuario.php')
+                    }, 1000)                    
                 }
                 else{
                     swal({
@@ -187,7 +193,10 @@ $(document).ready(function(){
                                     timer: 600
                                 })
                                 //atualiza a tabela
-                                ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)
+                                //ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)
+                                setTimeout(function(){
+                                    $(location).attr('href','view.usuario.php')
+                                }, 1000)
 
                             } else {
                                 //se deu algo errado ao deletar
@@ -328,7 +337,7 @@ $(document).ready(function(){
 
         return false;
     })
-
+    var form_conf = $('#form_confrimar_cod')
     /**RECUPERAR SENHA */
     $('form[name="form_recuperar_senha"]').submit(function(){
         var botao = $(this).find('#btn_enviar')
@@ -343,6 +352,11 @@ $(document).ready(function(){
             },
             success: function(retorno){
                 console.log(retorno);
+
+                botao.text('Reenviar')
+
+                form_conf.fadeIn('fast')
+                
             }
         
 

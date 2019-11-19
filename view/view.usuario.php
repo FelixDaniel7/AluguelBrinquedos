@@ -16,7 +16,7 @@
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
     <!-- datatable -->
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   </head>
   <body>
 
@@ -42,15 +42,38 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php
+                    if($certo = $usu->ConsultarUsuario()){
+                        foreach($certo as $value):
+
+                    ?>
                         <tr>
-                            <td colspan="5">
-                                <img src="../img/load.gif" class="load" alt="Carregando..."/>
+                            <td><?php echo $value->CodUsuario;?></td>
+                            <td><?php echo $value->Nome;?></td>
+                            <td><?php echo $value->Login;?></td>
+                            <td><?php echo $value->Email;?></td>
+                            <td><?php echo $value->Tipo;?></td>
+                            
+                            <td>
+                            <button type="button" id="btn_editar" value="<?php echo $value->CodUsuario; ?>"class="btn btn-outline-primary">
+                            Editar
+                            </button>
+                            <button type="button" id="btn_excluir" value="<?php echo $value->CodUsuario; ?>" class="btn btn-outline-danger">
+                            Excluir
+                            </button>
                             </td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+
+                        
+                    <?php
+
+                        endforeach;
+                    }
+                    else{
+                    ?>
+                       <td><?php echo "Nenhum registro"; ?></td>
+                    <?php
+                    }
+                    ?>
                         </tr>
                     </tbody>
                 </table>
@@ -84,6 +107,11 @@
 
     <!-- datatable -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-    <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+
+    
+    <script>
+    $('#tabela_usuario').DataTable()
+    </script>
   </body>
 </html>
