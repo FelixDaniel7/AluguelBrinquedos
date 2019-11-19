@@ -26,7 +26,7 @@ CREATE TABLE Cliente(
 CREATE TABLE Usuario(
 	CodUsuario SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     Nome VARCHAR(50),
-    Email VARCHAR(50),-- para recuperar senha
+    Email VARCHAR(50) unique,-- para recuperar senha
     Login VARCHAR(25),
     Senha VARCHAR(40),/*para criptografia*/
     Tipo ENUM('super','Administrador','Moderador') -- moderador pode fazer os pedidos
