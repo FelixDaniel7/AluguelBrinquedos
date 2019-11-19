@@ -37,7 +37,9 @@ include_once('../controller/usuario.controller.php');
   <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
       <div class="card card-signin my-5">
         <div class="card-body">
-          <h5 class="card-title text-center">Recuperação de senha</h5>
+          
+
+        <h5 class="card-title text-center">Recuperação de senha</h5>
           <form name="form_recuperar_senha" method="POST" class="form-signin">
             <div class="form-label-group">
               <label for="inputEmail">Digite seu email</label>
@@ -45,11 +47,21 @@ include_once('../controller/usuario.controller.php');
             </div>
             <br>
             <div class="form-label-group text-center">
-              <input type="submit"  id="btn_enviar" class="btn btn-primary">
+              <button type="submit"  id="btn_enviar" class="btn btn-primary">Enviar</button>
             </div>
 
             <a href="login.php">Voltar</a>
           </form>
+
+          <form id="form_confrimar_cod" method="POST" style="display: none">
+            <input type="number" name="txtcod">
+
+            <button type="submit">Comfirmar</button>
+          </form>
+
+
+
+
         </div>
       </div>
     </div>

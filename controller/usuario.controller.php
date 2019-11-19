@@ -87,7 +87,7 @@ switch ($acao) {
         }
         break;
 
-    case 'consultar_usu':
+    /*case 'consultar_usu':
 
         
         if($certo = $usu->ConsultarUsuario()){
@@ -119,7 +119,7 @@ switch ($acao) {
         else{
             return false;
         }
-        break;
+        break;*/
 
         case 'form_editar_usu':
             $CodUsuario = filter_input(INPUT_POST, 'CodUsuario', FILTER_SANITIZE_NUMBER_INT);
@@ -277,7 +277,7 @@ switch ($acao) {
 
                 //Se a sessao nao existir eu crio ela
                 if (!isset($_SESSION['cod_verificaco'])) {
-                    echo $_SESSION['cod_verificacao'] = $cod_recuperacao."   ";
+                    $_SESSION['cod_verificacao'] = $cod_recuperacao."   ";
                 
                 }else{
                     //Se ela já existir eu destruo ela
@@ -341,9 +341,9 @@ switch ($acao) {
             session_start();
             
             if ($_SESSION['cod_verificacao'] == $codigo) {
-                msg("Código de verificação comfirmado", "sucesso");
+                echo "Código de verificação comfirmado";
             }else{
-                msg("Código de verificação incompatível", "erro");
+                echo "Código de verificação incompatível";
             }
         break;
 }
