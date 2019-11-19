@@ -277,7 +277,7 @@ switch ($acao) {
 
                 //Se a sessao nao existir eu crio ela
                 if (!isset($_SESSION['cod_verificaco'])) {
-                    $_SESSION['cod_verificacao'] = $cod_recuperacao."   ";
+                    $_SESSION['cod_verificacao'] = $cod_recuperacao;
                 
                 }else{
                     //Se ela já existir eu destruo ela
@@ -341,9 +341,10 @@ switch ($acao) {
             session_start();
             
             if ($_SESSION['cod_verificacao'] == $codigo) {
-                echo "Código de verificação comfirmado";
+                echo "comfirmado";
+                $_SESSION['cod_verificacao'] = 12;
             }else{
-                echo "Código de verificação incompatível";
+                echo "incompatível";
             }
         break;
 }

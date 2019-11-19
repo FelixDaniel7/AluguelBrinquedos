@@ -366,4 +366,45 @@ $(document).ready(function(){
         return false
     })
 
+    $('form[id="form_confrimar_cod"]').submit(function(){
+        var form = $(this)
+
+        $.ajax({
+            url: "../controller/usuario.controller.php",
+            type: "POST",
+            data: "acao=confrimar_cod&" + form.serialize(),
+            beforeSend: function(){
+
+            },
+            success: function(retorno){
+                console.log(retorno);
+
+                if (retorno == 'comfirmado') {
+                    swal({
+                        title: "Codigo de verificação comfirmado !",
+                        icon: "success"
+                    })
+
+                    //redireciona para alterar a senha
+                    setTimeout(function(){
+                        $(location).attr('href','alt_senha.php')
+                    }, 500)
+                } else {
+                    swal({
+                        title: "Codigo de verificação incompatível !",
+                        icon: "error"
+                    })
+                }
+
+                
+                
+            }
+        
+
+        })
+
+        return false
+
+    })
+
 })
