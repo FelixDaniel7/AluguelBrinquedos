@@ -70,7 +70,7 @@
                     }
                     else{
                     ?>
-                       <td><?php echo "Nenhum registro"; ?></td>
+                       <td colspan="6" align="center"><?php echo "Nenhum registro"; ?></td>
                     <?php
                     }
                     ?>
