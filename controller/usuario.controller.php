@@ -347,6 +347,10 @@ switch ($acao) {
                 echo "incompatível";
             }
         break;
+
+        case 'alterar_senha':
+            
+            break;
 }
 
 

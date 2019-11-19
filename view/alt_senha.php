@@ -35,6 +35,8 @@ if ($_SESSION['cod_verificacao'] != 12 || empty($_SESSION['cod_verificacao'])) {
 
   <div class="container">
     Alterar senha
+
+    <form name="form_alterar_senha" method="post"></form>
   </div>
   </body>
 </html>

@@ -193,5 +193,23 @@ class Usuario
             return false;//nao existe a sessao
         }
     }
+
+    function AlterarSenha(){
+        $comandoSQL = "UPDATE Usuasrio 
+                        SET Senha = ?
+                         WHERE Email = ?";
+
+            $exec = $this->con->prepare($comandoSQL);
+            $exec->bindValue(1,sha1(md5(strrev($this->Senha))),PDO::PARAM_STR);
+            $exec->bindValue(2,$this->Email,PDO::PARAM_STR);
+            $exec->execute();
+
+            if ($exec->rowCount() == 1) {
+                return $exec->fetch(PDO::FETCH_OBJ);
+            }
+            else{
+                return false;
+            }
+    }
 }
 ?>
