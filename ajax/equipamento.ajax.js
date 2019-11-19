@@ -50,7 +50,10 @@ $(document).ready(function(){
                       }) 
                       botao.attr('disabled', false) //habilitar o botao
                       //somente se estiver na mesma pagina precisa atualizar a tabela
-                      ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)//para atualizar a tabela ao cadastrar     
+                      //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)//para atualizar a tabela ao cadastrar     
+                      setTimeout(function(){
+                        $(location).attr('href','view.equipamento.php')
+                    }, 1000)
                 }
                 else{
 
@@ -70,12 +73,12 @@ $(document).ready(function(){
 
 
     /*Listar Equipamento*/
-    function ConsultarEquipamento(url,acao,atualiza) {/*Atualiza serve para recarregar a tabela no caso de uma alteração*/
+    /*function ConsultarEquipamento(url,acao,atualiza) {/*Atualiza serve para recarregar a tabela no caso de uma alteração
         $.post(
             url,
             {acao: acao},
             function(retorno){
-                /*Instanciar os locais para exibir*/
+                //Instanciar os locais para exibir
                 var tbody = $('#tabela_equipamento').find('tbody')//find serve para pegar um elemento filho de outro elemento
                 var imagem = tbody.find('.load')
                 
@@ -93,8 +96,8 @@ $(document).ready(function(){
                 }
             })
         
-    }
-    ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi')/*Usar o metodo para exibir na tabela ao iniciar*/
+    }*/
+    //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi')/*Usar o metodo para exibir na tabela ao iniciar*/
     
     /*ACAO DOS BOTOES*/
     //pegando o codequipamento da linha da tabela
@@ -146,7 +149,10 @@ $(document).ready(function(){
                         title: 'Atualizado com sucesso !',
                         icon: 'success'
                     })
-                    ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)                    
+                    //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)                    
+                    setTimeout(function(){
+                        $(location).attr('href','view.equipamento.php')
+                    }, 1000)
                 }
                 else{
                     swal({
@@ -188,7 +194,10 @@ $(document).ready(function(){
                                     timer: 700
                                 })
                                 //atualiza a tabela
-                                ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)
+                                //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)
+                                setTimeout(function(){
+                                    $(location).attr('href','view.equipamento.php')
+                                }, 1000)
 
                             } else {
                                 //se deu algo errado ao deletar

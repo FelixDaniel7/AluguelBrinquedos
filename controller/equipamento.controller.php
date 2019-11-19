@@ -57,7 +57,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             }
             break;
 
-        case 'consultar_equi':/*DADOS para preencher a tabela com os equipamentos*/
+        /*case 'consultar_equi':/*DADOS para preencher a tabela com os equipamentos
         
             foreach($equi->ConsultarEquipamento() as $value):
 
@@ -82,7 +82,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             <?php
             
             endforeach;
-            break;
+            break;*/
 
         case 'form_editar_equi':/*Formulario Preenchido com os dados para EDIÇÂO*/
 
