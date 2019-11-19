@@ -14,7 +14,6 @@ if (isset($_REQUEST["acao"]))
 {
     switch ($_REQUEST["acao"]) {
         case 'cadastrar_cli':
-        
         $cli->cpf = $_POST["txtcpf"];
         $cli->nome = $_POST["txtnome"];
         $cli->telefone = $_POST["txttelefone"];
@@ -31,13 +30,15 @@ if (isset($_REQUEST["acao"]))
         break;
 
         case 'login_cli':
-            
+        $nome = $_POST['txtnome'];
         $login = $_POST['txtlogin'];
         $senhalogin = sha1(md5($_POST['txtsenhalogin']));
 
-        $user = $cli->Login($login,$senhalogin);//select no BD
+        $user = $cli->Login($login,$senhalogin,$nome);//select no BD
 
         if ($user == true) {
+            session_start();
+				$_SESSION["nome_logado"] = $nome;
             header('location:aluguel.php');
         }
         else {

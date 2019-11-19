@@ -1,2 +1,2 @@
 # AluguelBrinquedos
-TCC - Truco, cerveja e churrasco 
+TCC - Aluguel de Brinquedos | Etec Francisco Morato

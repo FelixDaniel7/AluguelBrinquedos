@@ -3,7 +3,7 @@
 class Cliente{
 
     //atributos da classe
-    //private $codcliente;
+    private $codcliente;
     private $cpf;
     private $nome;
     private $telefone;
@@ -36,9 +36,10 @@ class Cliente{
     //metodo cadastrar 
     function Cadastrar()
     {
-        $comandoSQL = "INSERT INTO cliente(CPF,Nome,Telefone,Email,Senha,Endereco)
-                            VALUES(?,?,?,?,?,?)";
-        $valores = array($this->cpf,
+        $comandoSQL = "INSERT INTO cliente(CodCliente,CPF,Nome,Telefone,Email,Senha,Endereco)
+                            VALUES(?,?,?,?,?,?,?)";
+        $valores = array($this->codcliente,
+                        $this->cpf,
                         $this->nome,
                         $this->telefone,
                         $this->email,
@@ -49,9 +50,9 @@ class Cliente{
     }
 
     //login
-    function Login($login,$senhalogin){
+    function Login($login,$senhalogin,$nome){
         $comandoSQL = "SELECT * FROM Cliente 
-                        WHERE Email = '$login' AND Senha = '$senhalogin'"; 
+                        WHERE Nome = '$nome' AND Email = '$login' AND Senha = '$senhalogin'"; 
 
         $exec = $this->con->prepare($comandoSQL);
         $exec->execute();
