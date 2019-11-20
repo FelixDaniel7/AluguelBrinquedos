@@ -12,7 +12,7 @@ CREATE TABLE Cliente(
 	CodCliente SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- TINYINT menos q Smallint e int
     CPF CHAR(11) NOT NULL,/*opcinal para o cliente */
     Nome VARCHAR(50),
-    Celular CHAR(11),
+    Celular VARCHAR(11),
     Email VARCHAR(50),
     
     CEP CHAR(8),
