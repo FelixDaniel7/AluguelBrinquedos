@@ -12,8 +12,8 @@ CREATE TABLE Cliente(
 	CodCliente SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- TINYINT menos q Smallint e int
     CPF CHAR(11) NOT NULL,/*opcinal para o cliente */
     Nome VARCHAR(50),
-    Telefone VARCHAR(10),
     Celular CHAR(11),
+    Email VARCHAR(50),
     
     CEP CHAR(8),
     Endereco VARCHAR(200),
@@ -60,7 +60,6 @@ CREATE TABLE Pedido(
 	CodPedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     CodCliente SMALLINT NOT NULL,
     CodUsuario SMALLINT NOT NULL,-- para caso alguem faça um pedido
-    EnderecoMontagem VARCHAR(200),
     DataPedido DATETIME, -- hora do envio do pedido 
     Data_de_uso DATE, -- 1970-12-31
     HorasAlugado DOUBLE,  -- Quantidade de horas de aluguel,aluguel cobrado por hora
