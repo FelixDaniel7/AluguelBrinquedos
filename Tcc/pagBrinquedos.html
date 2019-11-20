@@ -127,20 +127,56 @@
               <div class="card">
                   <h5 class="card-header">Cama Elástica</h5>
                   <div class="card-body">
-                    <h5 class="card-title">R$ 50,00</h5>
+                    <h5 class="card-title">R$ 50,00
+                      <br>
+                        <a id="retorno">
+
+                        </a>
+                    </h5>
                     <p class="card-text">A cama elástica é sempre o brinquedo mais querido e procurado nas festas e não há criança que não goste de passar horas pulando e brincando sem parar, por isso, é um brinquedo ideal para buffets, condomínios, clubes, casas e hotéis. Aqui na Magia Brinquedos você encontra os mais variados e seguros modelos de cama elástica do mercado! Confira os nossos produtos!</p>
                     <a href="#" class="btn btn-primary">Alugar</a>
                     <div>
                       <br>
                     </div>
-                    <a href="#" class="btn btn-primary">Calcular frete</a>
                   </div>
-                </div>
-              
+                  <hr>
+                  <h5 class="card-header">
+                    
+                    <center>
+                      <div class="col-md-8 col-sm-8 ">
+                          <div class="form-group">
+                <label for="exampleInputEmail1">Calcular Frete</label>
+                <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP baianor">
+                <small class="form-text text-muted"><a href="http://www.consultaenderecos.com.br/busca-endereco" target="_blank">Não sei meu CEP</a></small>
+              </div>
+                            </div>
+                            <button onclick="calculo();" class="btn btn-primary">Calcular</button>
+                      </div>   
+                  </h5>
+                </center>   
+                        
+                     
                 
             </div>
       </div>
     </div>
+                   
+                    <div style="height:100px;"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label for="exampleInputEmail1">Calcular Frete</label>
+                <input type="text" class="form-control" id="cep" name="cep" placeholder="Digite seu CEP baianor">
+                <small class="form-text text-muted"><a href="http://www.consultaenderecos.com.br/busca-endereco" target="_blank">Não sei meu CEP</a></small>
+              </div>
+              <button onclick="calculo();" class="btn btn-info">Calcular</button>
+        </div>
+        <div class="col-md-4" id="retorno">
+
+        </div>
+      </div>
+    </div> 
   </section>
 
   <section class="features-icons bg-light text-center espaco " >
@@ -228,9 +264,17 @@
   </footer>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+ 
+  <script>
+    function calculo(){
+      var cep = $("#cep").val();
+      $.post('calcula.php',{cep:cep},function(data){
+        $("#retorno").html(data);
+      });
+    }
+  </script>
 </body>
 
 </html>
