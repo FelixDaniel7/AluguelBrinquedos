@@ -15,6 +15,12 @@
   <body>
 
     <form action="" method="post" class="form" name="form_cad_pedido">
+        Cliente
+        <input type="number" name="CodCliente"><br>
+        Usuario
+        <input type="number" name="CodUsuario"><br>
+        Supervisor
+        <input type="number" name="CodSupervisor"><br>
         Endereço
         <input type="text" name="EnderecoMontagem"><br>
         Data do pedido
