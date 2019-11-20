@@ -10,10 +10,10 @@ INSERT INTO Cliente (CPF,Nome,Telefone,Email,Senha,Endereco)
            INSERT INTO  Administrador(Nome,Email,Login,Senha,NivelAcesso)
            Values ('blabla', 'daniel@gmail.com','blaba213','123',1);
            
-           INSERT INTO  Administrador(Nome,Email,Login,Senha,NivelAcesso)
-           Values ('blabla2', 'daniel@gmail.com','blaba3658','123456',1);
+           INSERT INTO  Cliente(Celular)
+           Values ('1234567897');
            
-           select * from usuario;
+           select * from cliente;
            
            UPDATE Usuario 
                         SET Senha = '123'
