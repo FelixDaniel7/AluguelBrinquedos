@@ -15,7 +15,7 @@
   <nav class="navbar navbar-light bg-light static-top"> &nbsp;
     <p>&nbsp;
       <a href="index.php">
-        <img src="img/Logo/logo1.png" alt="logo img"  width="300" height="51">
+        <img src="view/img/Logo/logo1.png" alt="logo img"  width="300" height="51">
     </p>
     <div class="col-lg-6 h-100 text-center text-lg-right my-auto"> 
         <ul class="list-inline mb-0">

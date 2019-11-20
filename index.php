@@ -10,16 +10,20 @@
   <title>Home - Aluguel Briquedos</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="view/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="view/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
-  <link href="css/landing-page.min.css" rel="stylesheet">
-  <link href="css/css.css" rel="stylesheet">
+  <link href="view/css/landing-page.min.css" rel="stylesheet">
+  <link href="view/css/css.css" rel="stylesheet">
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="view/vendor/jquery/jquery.min.js"></script>
+  <script src="view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body style="background-color: cornflowerblue; ">
@@ -27,7 +31,7 @@
   <!-- Navigation -->
   <?php
 
-  include_once ("view/menu/menu-superior.php");
+  include_once "view/menu/menu-superior.php";
 
   ?>
 
@@ -39,7 +43,7 @@
     </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="img/Menu/castelo.jpg" alt="Primeiro Slide">
+      <img class="d-block w-100" src="view/img/Menu/castelo.jpg" alt="Primeiro Slide">
         <div class="carousel-caption d-none d-md-block">
           <h5>Brinquedoooooooooooooo</h5>
             <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
@@ -49,7 +53,7 @@
         </div>
     </div>
   <div class="carousel-item">
-    <img class="d-block w-100" src="img/Menu/caminha.jpg" alt="Segundo Slide">
+    <img class="d-block w-100" src="view/img/Menu/caminha.jpg" alt="Segundo Slide">
       <div class="carousel-caption d-none d-md-block">
         <h5>Brinquedoooooooooooooo</h5>
           <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
@@ -59,7 +63,7 @@
       </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="img/Menu/bolinha.jpg" alt="Terceiro Slide">
+        <img class="d-block w-100" src="view/img/Menu/bolinha.jpg" alt="Terceiro Slide">
         <div class="carousel-caption d-none d-md-block">
           <h5>Brinquedoooooooooooooo</h5>
           <p>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</p>
@@ -84,7 +88,7 @@
         <div class="row">
             <div class="card-deck">
                 <div class="card">
-                  <img class="card-img-top" src="img/brinquedos/3.jpg" alt="Imagem de capa do card">
+                  <img class="card-img-top" src="view/img/brinquedos/3.jpg" alt="Imagem de capa do card">
                   <div class="card-body">
                     <h5 class="card-title">Título do card</h5>
                     <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este conteúdo é um pouco maior, para demonstração.</p>
@@ -94,7 +98,7 @@
                   </div>
                 </div>
                 <div class="card">
-                  <img class="card-img-top" src="img/brinquedos/2.jpg" alt="Imagem de capa do card">
+                  <img class="card-img-top" src="view/img/brinquedos/2.jpg" alt="Imagem de capa do card">
                   <div class="card-body">
                     <h5 class="card-title">Título do card</h5>
                     <p class="card-text">Este é um card com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional.</p>
@@ -104,7 +108,7 @@
                   </div>
                 </div>
                 <div class="card">
-                  <img class="card-img-top" src="img/brinquedos/1.jpg" alt="Imagem de capa do card">
+                  <img class="card-img-top" src="view/img/brinquedos/1.jpg" alt="Imagem de capa do card">
                   <div class="card-body">
                     <h5 class="card-title">Título do card</h5>
                     <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este card tem o conteúdo ainda maior que o primeiro, para mostrar a altura igual, em ação.</p>
@@ -120,7 +124,7 @@
 
 
   <!-- Icons Grid -->
-  <section class="features-icons bg-light text-center" style="background:url('img/Menu/bolinha.jpg')"">
+  <section class="features-icons bg-light text-center" style="background:url('view/img/Menu/bolinha.jpg')"">
     <div class="container">
       <div class="row">
         <div class="col-lg-4">
@@ -155,12 +159,9 @@
   </section>
   <!-- Footer -->
   <?php 
-  include "menu/menu-inferior.php";
+  include "view/menu/menu-inferior.php";
   ?>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <div class="modal" id="modalCarrinho" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
