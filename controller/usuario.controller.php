@@ -87,40 +87,6 @@ switch ($acao) {
         }
         break;
 
-    /*case 'consultar_usu':
-
-        
-        if($certo = $usu->ConsultarUsuario()){
-            foreach($certo as $value):
-
-                ?>
-                    <tr>
-                        <td><?php echo $value->CodUsuario;?></td>
-                        <td><?php echo $value->Nome;?></td>
-                        <td><?php echo $value->Login;?></td>
-                        <td><?php echo $value->Email;?></td>
-                        <td><?php echo $value->Tipo;?></td>
-                        <td>
-                            
-                            <button type="button" id="btn_editar" value="<?php echo $value->CodUsuario; ?>"class="btn btn-outline-primary">
-                                Editar
-                            </button>
-    
-                            <button type="button" id="btn_excluir" value="<?php echo $value->CodUsuario; ?>" class="btn btn-outline-danger">
-                                Excluir
-                            </button>
-                    
-                        </td>
-                    </tr>
-                <?php
-                
-                endforeach;
-        }
-        else{
-            return false;
-        }
-        break;*/
-
         case 'form_editar_usu':
             $CodUsuario = filter_input(INPUT_POST, 'CodUsuario', FILTER_SANITIZE_NUMBER_INT);
 
