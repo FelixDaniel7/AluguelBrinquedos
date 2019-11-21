@@ -1,5 +1,5 @@
 .carrinho {
-    color:white !important;
+    color:#6495ed !important;
   }
 
 .perfil {
@@ -27,5 +27,20 @@
   width: 1000px !important;
   height: 500px !important;
 }
+
+.letras {
+  color: #6495ed !important;
+}
+
+.brinquedos{
+  height: 411.992188px !important;
+}
+
+#brinquedos{
+  height: 411.992188px !important;
+}
+
+
+
 
  

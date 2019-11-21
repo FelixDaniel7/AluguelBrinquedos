@@ -15,13 +15,16 @@
   <nav class="navbar navbar-light bg-light static-top"> &nbsp;
     <p>&nbsp;
       <a href="index.php">
-        <img src="view/img/Logo/logo1.png" alt="logo img"  width="300" height="51">
+        <img src="img/Logo/logo1.png" alt="logo img"  width="300" height="51">
     </p>
     <div class="col-lg-6 h-100 text-center text-lg-right my-auto"> 
         <ul class="list-inline mb-0">
           <li class="list-inline-item mr-3"> 
             </a>
           </li>
+          <li class="nav-item">
+                  <a class="navbar-brand fas fa-shopping-cart fa-2x fa-fw perfil"  data-toggle="modal" data-target="#modalCarrinho"></a>
+              </li>
         </ul>
     </div>
   </nav>
@@ -29,7 +32,7 @@
 
 <div class="container" >
   <nav class="navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="#">Home</a>
+      <a class="navbar-brand" href="index.php">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -40,11 +43,13 @@
                   Brinquedos
               </a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Ação</a>
-                  <a class="dropdown-item" href="#">Outra ação</a>
+                  <a class="dropdown-item " href="Cama_Elastica.php">Cama Elástica</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Algo mais aqui</a>
-                </div>
+                  <a class="dropdown-item" href="Piscina_Bolinhas.php">Piscina De Bolinhas</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="Castelo_Inflavel.php">Castelo Inflável</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="Maquina_Algodao.php">Máquina De Algodão Doce‎</a>
               </li>
               <li class="nav-item active">
                 <a class="navbar-brand" href="#">Galeria</a>
@@ -53,9 +58,7 @@
                   <a class="navbar-brand" href="#">Sobre</a>
               </li>
     </div>
-              <li class="nav-item">
-                  <a class="navbar-brand fas fa-shopping-cart fa-2x fa-fw carrinho"  data-toggle="modal" data-target="#modalCarrinho"></a>
-              </li>
+             
           </ul>
             </a>
    </nav>

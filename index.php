@@ -26,14 +26,74 @@
   <script src="view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 
-<body style="background-color: cornflowerblue; ">
+<body class="fundo">
 
   <!-- Navigation -->
-  <?php
+  <nav class="nav justify-content-center bg-light">
+    <ul class="nav justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Contatos: (11)95555-5555</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Contatos: (11)4444-4444</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">E-mail: nome@gmail.com</a>
+        </li>
+    </ul>
+  </nav>
+  
+  <nav class="navbar navbar-light bg-light static-top"> &nbsp;
+    <p>&nbsp;
+      <a href="index.php">
+        <img src="view/img/Logo/logo1.png" alt="logo img"  width="300" height="51">
+    </p>
+    <div class="col-lg-6 h-100 text-center text-lg-right my-auto"> 
+        <ul class="list-inline mb-0">
+          <li class="list-inline-item mr-3"> 
+            </a>
+          </li>
+          <li class="nav-item">
+                  <a class="navbar-brand fas fa-shopping-cart fa-2x fa-fw perfil"  data-toggle="modal" data-target="#modalCarrinho"></a>
+              </li>
+        </ul>
+    </div>
+  </nav>
+  
 
-  include_once "view/menu/menu-superior.php";
-
-  ?>
+<div class="container" >
+  <nav class="navbar navbar-expand-lg navbar-dark">
+      <a class="navbar-brand" href="index.php">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+              <a class="navbar-brand  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Brinquedos
+              </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item " href="view/Cama_Elastica.php">Cama Elástica</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="view/Piscina_Bolinhas.php">Piscina De Bolinhas</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="view/Castelo_Inflavel.php">Castelo Inflável</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="view/Maquina_Algodao.php">Máquina De Algodão Doce‎</a>
+              </li>
+              <li class="nav-item active">
+                <a class="navbar-brand" href="#">Galeria</a>
+              </li>
+              <li class="nav-item">
+                  <a class="navbar-brand" href="#">Sobre</a>
+              </li>
+    </div>
+             
+          </ul>
+            </a>
+   </nav>
+</div>
 
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -87,36 +147,46 @@
       <div class="container">
         <div class="row">
             <div class="card-deck">
-                <div class="card">
-                  <img class="card-img-top" src="view/img/brinquedos/3.jpg" alt="Imagem de capa do card">
-                  <div class="card-body">
-                    <h5 class="card-title">Título do card</h5>
-                    <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este conteúdo é um pouco maior, para demonstração.</p>
-                  </div>
-                  <div class="card-footer">
-                      <small class="text-muted">Imagens meramente ilustrativas</small>
-                  </div>
+            <div class="card">
+                <img class="card-img-top" src="view/img/produtos/CamaElastica/1.jpg" alt="Imagem de capa do card">
+                <div class="card-body">
+                  <h5 class="card-title">Cama elástica</h5>
+                  <p class="card-text">A cama elástica é sempre o brinquedo mais querido e procurado nas festas e não há criança que não goste de passar horas pulando e brincando sem parar, por isso, é um brinquedo ideal para buffets, condomínios, clubes, casas e hotéis. </p>
                 </div>
-                <div class="card">
-                  <img class="card-img-top" src="view/img/brinquedos/2.jpg" alt="Imagem de capa do card">
-                  <div class="card-body">
-                    <h5 class="card-title">Título do card</h5>
-                    <p class="card-text">Este é um card com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional.</p>
-                  </div>
-                  <div class="card-footer">
-                      <small class="text-muted">Imagens meramente ilustrativas</small>
-                  </div>
+                <div class="card-footer">
+                <a href="Cama_Elastica.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
                 </div>
-                <div class="card">
-                  <img class="card-img-top" src="view/img/brinquedos/1.jpg" alt="Imagem de capa do card">
-                  <div class="card-body">
-                    <h5 class="card-title">Título do card</h5>
-                    <p class="card-text">Este é um card maior com suporte a texto embaixo, que funciona como uma introdução a um conteúdo adicional. Este card tem o conteúdo ainda maior que o primeiro, para mostrar a altura igual, em ação.</p>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted">Imagens meramente ilustrativas</small>
-                  </div>
+              </div>
+              <div class="card">
+                <img class="card-img-top" src="view/img/produtos/PiscinaBolinhas/1.jpg" alt="Imagem de capa do card">
+                <div class="card-body">
+                  <h5 class="card-title">Piscina de bolinhas</h5>
+                  <p class="card-text">Uma festa infantil não é uma festa sem uma piscina de bolinhas, ela é um item indispensável que vai encantar as crianças e deixar a festa muito mais divertida!</p>
                 </div>
+                <div class="card-footer">
+                <a href="Piscina_Bolinhas.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+                </div>
+              </div>
+              <div class="card">
+                <img class="card-img-top" src="view/img/produtos/MaquinaAlgodão/1.jpg" alt="Imagem de capa do card">
+                <div class="card-body">
+                  <h5 class="card-title">Máquina de Algodão Doce</h5>
+                  <p class="card-text">Uma Máquina de Algodão Doce é um acessório indispensável para deixar uma festinha infantil ainda mais divertida para as crianças, até mesmo para os adultos. Aqui na Magia Brinquedos nós temos modelos de alta qualidade, fácil manejo e transporte e com preços incríveis. Confira os nosso produtos!</p>
+                </div>
+                <div class="card-footer">
+                <a href="Castelo_Inflavel.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+                </div>
+              </div>
+              <div class="card">
+                <img class="card-img-top" src="view/img/produtos/CasteloInflavel/1.jpg" alt="Imagem de capa do card">
+                <div class="card-body">
+                  <h5 class="card-title">Castelo Infável</h5>
+                  <p class="card-text">Brinquedos infláveis fazem a alegria da criançada em qualquer festa infantil, são brinquedos que chamam muito a atenção e proporcionam horas de muita diversão.</p>
+                </div>
+                <div class="card-footer">
+                <a href="Castelo_Inflavel.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+                </div>
+              </div>
               </div>
         </div>
       </div>

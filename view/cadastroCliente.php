@@ -23,24 +23,11 @@
 </head>
 
 <body style="background-color: cornflowerblue; ">
-  <!-- Navigation -->
-  <nav class="nav justify-content-center bg-light">
-    <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Contatos: (11)95555-5555</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Contatos: (11)4444-4444</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">E-mail: nome@gmail.com</a>
-        </li>
-    </ul>
-  </nav>
+
   
-  <?php
+<?php
   include"menu/menu-superior.php";
-  ?>
+?>
     
 
   <section class="features-icons bg-light text-center" >
