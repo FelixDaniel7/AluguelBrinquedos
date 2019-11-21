@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 20-Nov-2019 às 01:55
--- Versão do servidor: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: 21-Nov-2019 às 22:14
+-- Versão do servidor: 10.1.40-MariaDB
+-- versão do PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -32,7 +34,7 @@ CREATE TABLE `cliente` (
   `CodCliente` smallint(6) NOT NULL,
   `CPF` char(11) COLLATE utf8_unicode_ci NOT NULL,
   `Nome` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Celular` char(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Celular` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `CEP` char(8) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Endereco` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -40,6 +42,13 @@ CREATE TABLE `cliente` (
   `Bairro` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Complemento` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `cliente`
+--
+
+INSERT INTO `cliente` (`CodCliente`, `CPF`, `Nome`, `Celular`, `Email`, `CEP`, `Endereco`, `Numero`, `Bairro`, `Complemento`) VALUES
+(1, '12345678978', 'daada', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -92,15 +101,25 @@ CREATE TABLE `itens` (
 CREATE TABLE `pedido` (
   `CodPedido` int(11) NOT NULL,
   `CodCliente` smallint(6) NOT NULL,
-  `CodUsuario` smallint(6) NOT NULL,
   `DataPedido` datetime DEFAULT NULL,
   `Data_de_uso` date DEFAULT NULL,
   `HorasAlugado` double DEFAULT NULL,
   `Data_Hora_Montagem` datetime DEFAULT NULL,
   `PrecoFinal` decimal(8,2) DEFAULT NULL,
-  `FormaPagamento` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `FormaPagamento` enum('Dinheiro','Cartão','Mercado Pago') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Status` bit(1) DEFAULT NULL,
   `Supervisao` bit(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `pedido`
+--
+
+INSERT INTO `pedido` (`CodPedido`, `CodCliente`, `DataPedido`, `Data_de_uso`, `HorasAlugado`, `Data_Hora_Montagem`, `PrecoFinal`, `FormaPagamento`, `Status`, `Supervisao`) VALUES
+(1, 1, '2019-11-07 00:00:00', NULL, NULL, NULL, NULL, 'Dinheiro', NULL, NULL),
+(2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(4, 1, '2019-11-21 19:08:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -169,27 +188,32 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `CodCliente` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `CodCliente` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `equipamento`
 --
 ALTER TABLE `equipamento`
   MODIFY `CodEquipamento` smallint(6) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `itens`
 --
 ALTER TABLE `itens`
   MODIFY `CodItem` smallint(6) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `CodPedido` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `CodPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
   MODIFY `CodUsuario` smallint(6) NOT NULL AUTO_INCREMENT;
+
 --
 -- Constraints for dumped tables
 --
@@ -212,6 +236,7 @@ ALTER TABLE `itens`
 --
 ALTER TABLE `pedido`
   ADD CONSTRAINT `FK_Cliente_Pedido` FOREIGN KEY (`CodCliente`) REFERENCES `cliente` (`CodCliente`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
