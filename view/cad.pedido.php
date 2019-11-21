@@ -87,10 +87,11 @@ include_once('../controller/pedido.controller.php'); ?>
 
 
     <label for="Text">Horas de utilização <span>*</span></label>
-    <input type="number" class="form-control" placeholder="txthorasAlugado" maxlength="2" >
+    <input type="number" class="form-control" name="txthorasAlugado" maxlength="2" >
 
-    <label for="inputEmail4">Horário de Montagem <span>*</span></label>
-    <input type="time" class="form-control" name="txthoraMontagem" >
+    <label for="inputEmail4">Data e Hora de Montagem <span>*</span></label>
+    <input type="datetime-local" class="form-control" name="txthoraMontagem" >
+    <input type="datetime-local" name="" id="">
 
 
 

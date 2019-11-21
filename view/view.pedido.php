@@ -32,7 +32,7 @@ include_once('../controller/pedido.controller.php'); ?>
         <thead>
           <tr>
             <th>Cod.Pedido</th>
-            <th>CodCliente</th>
+            <th>Nome Cliente</th>
             <th>Data do Pedido</th>
             <th>Data de Utilização</th>
             <th>Horas Alugadas</th>
@@ -52,7 +52,7 @@ include_once('../controller/pedido.controller.php'); ?>
         ?>
         <tr>
         <td><?php echo $value->CodPedido;?></td>
-        <td><?php echo $value->CodCliente;?></td>
+        <td><?php echo $value->Nome;?></td>
         <td><?php echo $value->DataPedido;?></td>
         <td><?php echo $value->Data_de_uso;?></td>
         <td><?php echo $value->HorasAlugado;?></td>

@@ -8,21 +8,6 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
         case 'cadastrar_ped':
 
-            /*
-
-	
-    CodCliente SMALLINT NOT NULL,
-    DataPedido DATETIME, -- hora do envio do pedido 
-    
-    
-    
-    PrecoFinal DECIMAL(8,2),-- preço com o frete
-    
-    Status BIT, -- saber se o pedido ja foi realizado 
-    Supervisao BIT,-- se tem supervisor adiciona tanto no preço
-  */
-            
-
             $Nome = filter_input(INPUT_POST, 'txtnome', FILTER_SANITIZE_STRING);
             $Celular = filter_input(INPUT_POST, 'txtcelular' , FILTER_SANITIZE_STRING);
             $Email = filter_input(INPUT_POST, 'txtemail' , FILTER_SANITIZE_EMAIL);
@@ -50,18 +35,20 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->Email = $Email;
             $ped->CPF = $CPF;
 
-            // $ped->CEP = $CEP;
-            // $ped->Endereco = $Endereco;
-            // $ped->Numero = $Numero;
-            // $ped->Bairro = $Bairro;
-            // $ped->Complemento = $Complemento;
+            $ped->CEP = $CEP;
+            $ped->Endereco = $Endereco;
+            $ped->Numero = $Numero;
+            $ped->Bairro = $Bairro;
+            $ped->Complemento = $Complemento;
 
-            // $ped->DataPedido = $DataPedido;
-            // $ped->Data_de_uso = $Data_de_uso;
-            // $ped->HorasAlugado = $HorasAlugado;            
-            // $ped->Data_Hora_Montagem = $Data_Hora_Montagem;
-            // $ped->FormaPagamento = $FormaPagamento;
-            // $ped->Supervisao = $Supervisao;
+            $ped->DataPedido = $DataPedido;
+            $ped->Data_de_uso = $Data_de_uso;
+            $ped->HorasAlugado = $HorasAlugado;            
+            $ped->Data_Hora_Montagem = $Data_Hora_Montagem;
+            $ped->FormaPagamento = $FormaPagamento;
+            $ped->Supervisao = $Supervisao;
+
+            $ped->Status = 0;//pedido pendente 
 
 
 
