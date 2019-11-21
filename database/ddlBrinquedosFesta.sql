@@ -7,20 +7,6 @@ CREATE DATABASE BrinquedosFesta CHARACTER SET UTF8 COLLATE=utf8_unicode_ci; /* c
 USE BrinquedosFesta; -- usar o bd BRINQUEDOSFESTA
 
 /*Tabelas de usuarios são separadas por terem diferentes dados armazenados*/
-/* Criação da tabela CLIENTE / Cadastro do cliente */
-CREATE TABLE Cliente(
-	CodCliente SMALLINT NOT NULL PRIMARY KEY AUTO_INCREMENT, -- TINYINT menos q Smallint e int
-    CPF CHAR(11) NOT NULL,/*opcinal para o cliente */
-    Nome VARCHAR(50),
-    Celular VARCHAR(11),
-    Email VARCHAR(50),
-    
-    CEP CHAR(8),
-    Endereco VARCHAR(200),
-    Numero VARCHAR(5),
-    Bairro VARCHAR(50),
-    Complemento VARCHAR(50)
-);
 
 -- para admin, supervisor e cliente
 CREATE TABLE Usuario(
@@ -58,7 +44,19 @@ CREATE TABLE DatasDisponivel(
 /* Visivel para o CLIENTE e para o ADMINISTRADOR */
 CREATE TABLE Pedido(
 	CodPedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    CodCliente SMALLINT NOT NULL,
+
+    CPF CHAR(11) NOT NULL,/*opcinal para o cliente */
+    Nome VARCHAR(50),
+    Celular VARCHAR(11),
+    Email VARCHAR(50),
+    
+    CEP CHAR(8),
+    Endereco VARCHAR(200),
+    Numero VARCHAR(5),
+    Bairro VARCHAR(50),
+    Complemento VARCHAR(50),
+    
+    
     DataPedido DATETIME, -- hora do envio do pedido 
     Data_de_uso DATE, -- 1970-12-31
     HorasAlugado DOUBLE,  -- Quantidade de horas de aluguel,aluguel cobrado por hora
@@ -66,11 +64,7 @@ CREATE TABLE Pedido(
     PrecoFinal DECIMAL(8,2),-- preço com o frete
     FormaPagamento ENUM('Dinheiro','Cartão','Mercado Pago'),
     Status BIT, -- saber se o pedido ja foi realizado 
-    Supervisao BIT,-- se tem supervisor adiciona tanto no preço
-    
-    
-    CONSTRAINT FK_Cliente_Pedido FOREIGN KEY (CodCliente)
-		REFERENCES Cliente(CodCliente)
+    Supervisao BIT-- se tem supervisor adiciona tanto no preço
 ); 
 
 CREATE TABLE Itens(

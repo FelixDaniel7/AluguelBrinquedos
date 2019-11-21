@@ -3,7 +3,17 @@
 class Pedido
 {
     private $CodPedido;
-    private $CodCliente;
+
+    private $CPF;
+    private $Nome;
+    private $Email;
+    private $Celular;
+    private $CEP;
+    private $Endereco;
+    private $Numero;
+    private $Bairro;
+    private $Complemento;
+
     private $DataPedido;
     private $Data_de_uso;
     private $HorasAlugado;
@@ -48,20 +58,31 @@ class Pedido
     }
 
     function CadastrarPedido(){
-        $comandoSQL = "INSERT INTO Pedido(CodCliente,DataPedido,Data_de_uso
+        $comandoSQL = "INSERT INTO Pedido(CPF,Nome,Email,Celular,
+        CEP,Endereco,Numero,Bairro,Complemento,DataPedido,Data_de_uso
         ,HorasAlugado,Data_Hora_Montagem,PrecoFinal,FormaPagamento,Status,Supervisao)
-                            VALUES(?,?,?,?,?,?,?,?,?)";
+                            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $exec = $this->con->prepare($comandoSQL);
-        $exec->bindValue(1,$this->CodCliente,PDO::PARAM_INT);
-        $exec->bindValue(2,$this->DataPedido,PDO::PARAM_STR);
-        $exec->bindValue(3,$this->Data_de_uso,PDO::PARAM_STR);
-        $exec->bindValue(4,$this->HorasAlugado,PDO::PARAM_STR);
-        $exec->bindValue(5,$this->Data_Hora_Montagem,PDO::PARAM_STR);
-        $exec->bindValue(6,$this->PrecoFinal,PDO::PARAM_STR);
-        $exec->bindValue(7,$this->FormaPagamento,PDO::PARAM_STR);
-        $exec->bindValue(8,$this->Status,PDO::PARAM_INT);
-        $exec->bindValue(9,$this->Supervisao,PDO::PARAM_STR);
+        $exec->bindValue(1,$this->CPF,PDO::PARAM_STR);
+        $exec->bindValue(2,$this->Nome,PDO::PARAM_STR);
+        $exec->bindValue(3,$this->Email,PDO::PARAM_STR);
+        $exec->bindValue(4,$this->Celular,PDO::PARAM_STR);
+        $exec->bindValue(5,$this->CEP,PDO::PARAM_STR);
+        $exec->bindValue(6,$this->Endereco,PDO::PARAM_STR);
+        $exec->bindValue(7,$this->Numero,PDO::PARAM_STR);
+        $exec->bindValue(8,$this->Bairro,PDO::PARAM_STR);
+        $exec->bindValue(9,$this->Complemento,PDO::PARAM_STR);
+
+        
+        $exec->bindValue(10,$this->DataPedido,PDO::PARAM_STR);
+        $exec->bindValue(11,$this->Data_de_uso,PDO::PARAM_STR);
+        $exec->bindValue(12,$this->HorasAlugado,PDO::PARAM_STR);
+        $exec->bindValue(13,$this->Data_Hora_Montagem,PDO::PARAM_STR);
+        $exec->bindValue(14,$this->PrecoFinal,PDO::PARAM_STR);
+        $exec->bindValue(15,$this->FormaPagamento,PDO::PARAM_STR);
+        $exec->bindValue(16,$this->Status,PDO::PARAM_INT);
+        $exec->bindValue(17,$this->Supervisao,PDO::PARAM_STR);
         $exec->execute();
 
         if ($exec->rowCount() > 0) {

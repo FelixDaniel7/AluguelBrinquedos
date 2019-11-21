@@ -1,6 +1,5 @@
 <?php
 include_once("../model/pedido.php");
-
 $ped = new Pedido();
 
 $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
@@ -37,7 +36,6 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
             date_default_timezone_set('America/Sao_Paulo');
             $DataPedido = date('Y-m-d H:i:s');
-
             $Data_de_uso = filter_input(INPUT_POST, 'txtdataUso' , FILTER_SANITIZE_STRING);
             $HorasAlugado = filter_input(INPUT_POST, 'txthorasAlugado' , FILTER_SANITIZE_STRING);
             $Data_Hora_Montagem = filter_input(INPUT_POST, 'txthoraMontagem' , FILTER_SANITIZE_STRING);
@@ -45,18 +43,34 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $Supervisao = filter_input(INPUT_POST, 'txtsupervisao' , FILTER_SANITIZE_NUMBER_INT);
 
 
-            $ped->CodCliente = 1;
-            $ped->DataPedido = $DataPedido; // atribui valor a variavel privat eda class pedido
+            
+            // atribui valor a variavel privat eda class pedido
+            $ped->Nome = $Nome;
+            $ped->Celular = $Celular;
+            $ped->Email = $Email;
+            $ped->CPF = $CPF;
+
+            // $ped->CEP = $CEP;
+            // $ped->Endereco = $Endereco;
+            // $ped->Numero = $Numero;
+            // $ped->Bairro = $Bairro;
+            // $ped->Complemento = $Complemento;
+
+            // $ped->DataPedido = $DataPedido;
+            // $ped->Data_de_uso = $Data_de_uso;
+            // $ped->HorasAlugado = $HorasAlugado;            
+            // $ped->Data_Hora_Montagem = $Data_Hora_Montagem;
+            // $ped->FormaPagamento = $FormaPagamento;
+            // $ped->Supervisao = $Supervisao;
 
 
 
+        //consultar o cliente 
 
-
-
+        
             // if (empty($Nome) || empty($Celular) || empty($Email) || empty($CPF)) {
             //     echo "vazio_form_pessoais";
             // }
-            
             
             if($ped->CadastrarPedido()){
                 echo true;
