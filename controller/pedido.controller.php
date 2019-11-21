@@ -35,9 +35,8 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $Bairro = filter_input(INPUT_POST, 'txtbairro' , FILTER_SANITIZE_STRING);
             $Complemento = filter_input(INPUT_POST, 'txtcomplemento' , FILTER_SANITIZE_STRING);
 
-            //date_default_timezone_set('America/Sao_Paulo');
-            $DataPedido = date('Y-m-d h:i:s');
-            echo $DataPedido;
+            date_default_timezone_set('America/Sao_Paulo');
+            $DataPedido = date('Y-m-d H:i:s');
 
             $Data_de_uso = filter_input(INPUT_POST, 'txtdataUso' , FILTER_SANITIZE_STRING);
             $HorasAlugado = filter_input(INPUT_POST, 'txthorasAlugado' , FILTER_SANITIZE_STRING);
@@ -45,6 +44,8 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $FormaPagamento = filter_input(INPUT_POST, 'txtformaPagamento' , FILTER_SANITIZE_STRING);
             $Supervisao = filter_input(INPUT_POST, 'txtsupervisao' , FILTER_SANITIZE_NUMBER_INT);
 
+
+            $ped->CodCliente = 1;
 
 
 
