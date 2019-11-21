@@ -36,7 +36,9 @@ session_start();
 			<div class="col-lg-12">
 				<h1 class="page-header"></h1>
 			</div>
-		</div><!--/.row-->	
+		</div><!--/.row-->
+		<div class="col-md-3">
+		</div>	
 		<div class="col-md-6">
 			<?php
 				if(isset($_SESSION['msg'])){
