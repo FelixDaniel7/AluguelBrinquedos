@@ -57,30 +57,21 @@ class cliente
     }
 
     function ConsultarCliente(){
+        try{
         $comandoSQL = "SELECT * FROM cliente";
 
         $exec = $this->con->prepare($comandoSQL);
-        $exec->execute();
+            $exec->execute();
 
-        $dados = array();
+            if ($exec->rowCount() > 0) {
+                return $exec->fetchAll(PDO::FETCH_OBJ);//retorna todos como objeto
+            } else {
+                return false;
+            }
 
-        foreach ($exec->fetchAll() as $value) {
-            
-            $cli = new Cliente();
-
-            $cli->CPF = $value['CPF'];
-            $cli->Nome = $value['Nome'];
-            $cli->Email = $value['Email'];
-            $cli->Celular = $value['Celular'];
-            $cli->CEP = $value['CEP'];
-            $cli->Endereco = $value['Endereco'];
-            $cli->Numero = $value['Numero'];
-            $cli->Bairro = $value['Bairro'];
-            $cli->Complemento = $value['Complemento'];
-
-            $dados[] = $cli;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
-        return $dados;
     }
 
     function RetornarDados($CodCliente){

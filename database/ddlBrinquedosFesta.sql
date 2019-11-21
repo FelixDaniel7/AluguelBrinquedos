@@ -64,7 +64,7 @@ CREATE TABLE Pedido(
     HorasAlugado DOUBLE,  -- Quantidade de horas de aluguel,aluguel cobrado por hora
     Data_Hora_Montagem DATETIME, -- 1970-01-01 00:00:00
     PrecoFinal DECIMAL(8,2),-- preço com o frete
-    FormaPagamento VARCHAR(20),
+    FormaPagamento ENUM('Dinheiro','Cartão','Mercado Pago'),
     Status BIT, -- saber se o pedido ja foi realizado 
     Supervisao BIT,-- se tem supervisor adiciona tanto no preço
     

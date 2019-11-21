@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    var conteudo_modal = $('.modal-body')
+    var conteudo_modal = $('#modal_pedido').find('.modal-body')
 
     $('form[name="form_cad_pedido"]').submit(function(){
 
@@ -27,7 +27,10 @@ $(document).ready(function(){
                     timer: 2000
                 })
                 botao.attr('disabled', false)
-                ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
+                //ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
+                setTimeout(function(){
+                    $(location).attr('href','view.pedido.php')
+                }, 1000)
             }
         })
 
@@ -35,7 +38,7 @@ $(document).ready(function(){
         return false;
     })
 
-    function ConsultarPedido(url,acao,atualiza){
+    /*function ConsultarPedido(url,acao,atualiza){
         $.post(
             url,
             {acao: acao},
@@ -54,7 +57,7 @@ $(document).ready(function(){
             })
     }
 
-    ConsultarPedido('../controller/pedido.controller.php','contultar_ped')
+    ConsultarPedido('../controller/pedido.controller.php','contultar_ped')*/
 
     $('#tabela_pedido').on('click', '#btn_editar', function(){
 
@@ -65,16 +68,16 @@ $(document).ready(function(){
             {acao: 'form_editar_ped',
             CodPedido: CodPedido},
             function(retornarform){
-                $('#myModal').modal({backdrop: 'static'})
+                $('#modal_pedido').modal({backdrop: true})
 
                 conteudo_modal.html(retornarform)
-                var myModal = $('#myModal')
+                var myModal = $('#modal_pedido')
                 myModal.find('.modal-title').text('Editar Pedido')
             })
         console.log(CodPedido);
     })
 
-    $('#myModal').on('submit', 'form[name="form_editar_pedido"]', function(){
+    $('#modal_pedido').on('submit', 'form[name="form_editar_pedido"]', function(){
         var form_dados = $(this)
         var btn_atualiza = form_dados.find('#btn_atualiza')
 
@@ -94,7 +97,10 @@ $(document).ready(function(){
 
                 console.log('Atualizou');
 
-                ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
+                //ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
+                setTimeout(function(){
+                    $(location).attr('href','view.pedido.php')
+                }, 1000)
 
                 }
                 else{
@@ -135,7 +141,10 @@ $(document).ready(function(){
                                 icon:"success",
                             })
 
-                            ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
+                            //ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
+                            setTimeout(function(){
+                                $(location).attr('href','view.pedido.php')
+                            }, 1000)
 
                         }else{
 

@@ -20,7 +20,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->CadastrarPedido();
         break;
 
-        case 'consultar_ped':
+        /*case 'consultar_ped':
 
         foreach($ped->ConsultarPedido() as $value):
 
@@ -43,7 +43,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
         <?php
 
         endforeach;
-        break;
+        break;*/
 
         case 'form_editar_ped':
             $CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_NUMBER_INT);
@@ -79,7 +79,6 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
         case 'editar_ped':
 
             $ped->CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_NUMBER_INT);
-            $ped->EnderecoMontagem = filter_input(INPUT_POST, 'EnderecoMontagem', FILTER_SANITIZE_STRING);
             $ped->DataPedido = filter_input(INPUT_POST, 'DataPedido', FILTER_SANITIZE_STRING);
             $ped->Data_de_uso = filter_input(INPUT_POST, 'Data_de_uso', FILTER_SANITIZE_STRING);
             $ped->HorasAlugado = filter_input(INPUT_POST, 'HorasAlugado', FILTER_SANITIZE_STRING);
