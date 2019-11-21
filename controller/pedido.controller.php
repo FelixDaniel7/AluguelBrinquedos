@@ -8,16 +8,57 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
     switch($acao){
 
         case 'cadastrar_ped':
-            
-            $ped->EnderecoMontagem = filter_input(INPUT_POST, 'EnderecoMontagem', FILTER_SANITIZE_STRING);
-            $ped->DataPedido = filter_input(INPUT_POST, 'DataPedido', FILTER_SANITIZE_STRING);
-            $ped->Data_de_uso = filter_input(INPUT_POST, 'Data_de_uso', FILTER_SANITIZE_STRING);
-            $ped->HorasAlugado = filter_input(INPUT_POST, 'HorasAlugado', FILTER_SANITIZE_STRING);
-            $ped->Data_Hora_Montagem = filter_input(INPUT_POST, 'Data_Hora_Montagem', FILTER_SANITIZE_STRING);
-            $ped->PrecoFinal = filter_input(INPUT_POST, 'PrecoFinal', FILTER_SANITIZE_STRING);
-            $ped->FormaPagamento = filter_input(INPUT_POST, 'FormaPagamento', FILTER_SANITIZE_STRING);
 
-            $ped->CadastrarPedido();
+            /*
+
+	
+    CodCliente SMALLINT NOT NULL,
+    DataPedido DATETIME, -- hora do envio do pedido 
+    
+    
+    
+    PrecoFinal DECIMAL(8,2),-- preço com o frete
+    
+    Status BIT, -- saber se o pedido ja foi realizado 
+    Supervisao BIT,-- se tem supervisor adiciona tanto no preço
+  */
+            
+
+            $Nome = filter_input(INPUT_POST, 'txtnome', FILTER_SANITIZE_STRING);
+            $Celular = filter_input(INPUT_POST, 'txtcelular' , FILTER_SANITIZE_STRING);
+            $Email = filter_input(INPUT_POST, 'txtemail' , FILTER_SANITIZE_EMAIL);
+            $CPF = filter_input(INPUT_POST, 'txtcpf' , FILTER_SANITIZE_STRING);
+
+            $CEP = filter_input(INPUT_POST, 'txtcep' , FILTER_SANITIZE_STRING);
+            $Endereco = filter_input(INPUT_POST, 'txtendereco' , FILTER_SANITIZE_STRING);
+            $Numero = filter_input(INPUT_POST, 'txtnumero' , FILTER_SANITIZE_STRING);
+            $Bairro = filter_input(INPUT_POST, 'txtbairro' , FILTER_SANITIZE_STRING);
+            $Complemento = filter_input(INPUT_POST, 'txtcomplemento' , FILTER_SANITIZE_STRING);
+
+            //date_default_timezone_set('America/Sao_Paulo');
+            $DataPedido = date('Y-m-d h:i:s');
+            echo $DataPedido;
+
+            $Data_de_uso = filter_input(INPUT_POST, 'txtdataUso' , FILTER_SANITIZE_STRING);
+            $HorasAlugado = filter_input(INPUT_POST, 'txthorasAlugado' , FILTER_SANITIZE_STRING);
+            $Data_Hora_Montagem = filter_input(INPUT_POST, 'txthoraMontagem' , FILTER_SANITIZE_STRING);
+            $FormaPagamento = filter_input(INPUT_POST, 'txtformaPagamento' , FILTER_SANITIZE_STRING);
+            $Supervisao = filter_input(INPUT_POST, 'txtsupervisao' , FILTER_SANITIZE_NUMBER_INT);
+
+
+
+
+
+
+
+            if (empty($Nome) || empty($Celular) || empty($Email) || empty($CPF)) {
+                echo "vazio_form_pessoais";
+            }
+            
+            
+            // if($ped->CadastrarPedido()){
+            //     echo true;
+            // }
         break;
 
         /*case 'consultar_ped':
