@@ -63,31 +63,6 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             }
         break;
 
-        /*case 'consultar_ped':
-
-        foreach($ped->ConsultarPedido() as $value):
-
-        ?>
-        <tr>
-            <td><?php echo $value->CodPedido;?></td>
-            <td><?php echo $value->EnderecoMontagem;?></td>
-            <td><?php echo $value->PrecoFinal;?></td>
-            <td><?php echo $value->FormaPagamento;?></td>
-            <td>   
-                <button type="button" id="btn_editar" value="<?php echo $value->CodPedido; ?>"class="btn btn-outline-success">
-                     Editar
-                </button>
-
-                <button type="button" id="btn_excluir" value="<?php echo $value->CodPedido; ?>" class="btn btn-outline-danger">
-                     Excluir
-                </button>
-            </td>
-        </tr>
-        <?php
-
-        endforeach;
-        break;*/
-
         case 'form_editar_ped':
             $CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_NUMBER_INT);
             $dados = $ped->RetornarDados($CodPedido);
