@@ -2,35 +2,70 @@ $(document).ready(function(){
 
     var conteudo_modal = $('#modal_pedido').find('.modal-body')
 
-    $('form[name="form_cad_pedido"]').submit(function(){
+
+    var dados_pessoais = $('#pessoais')
+    var montagem = $('#montagem')
+    var pedido = $('#pedido')
+
+    dados_pessoais.find('#proximo').click(function(){
+        montagem.fadeIn('fast')
+        dados_pessoais.fadeOut('fast')
+    })
+
+    montagem.find('#anterior').click(function(){
+        montagem.fadeOut('fast')
+        dados_pessoais.fadeIn('fast')
+    })
+
+    montagem.find('#proximo').click(function(){
+        montagem.fadeOut('fast')
+        pedido.fadeIn('fast')
+    })
+
+    pedido.find('#anterior').click(function(){
+        pedido.fadeOut('fast')
+        montagem.fadeIn('fast')
+    })
+
+    
+
+
+    $('form[name="form_cad_cliente_pedido"]').submit(function(){
 
         var formPed = $(this)
 
-        var botao = $(this).find(':button')
+        //var botao = $(this).find(':button')
 
         $.ajax({
             url: "../controller/pedido.controller.php",
             type: "POST",
             data: "acao=cadastrar_ped&" + formPed.serialize(),
             beforeSend: function(){
-                botao.attr('disabled', true)
+                //botao.attr('disabled', true)
             },
             success: function(retorno){
 
                 console.log(retorno);
 
-                swal({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Pedido cadastrado',
-                    button: true,
-                    timer: 2000
-                })
-                botao.attr('disabled', false)
-                //ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
-                setTimeout(function(){
-                    $(location).attr('href','view.pedido.php')
-                }, 1000)
+                if (retorno == 'vazio_form_pessoais') {
+                    swal({
+                        position: 'top-end',
+                        icon: 'info',
+                        title: 'Todos os campos devem ser preenchidos !',
+                        button: true,
+                        timer: 2000
+                    })
+                }
+
+                // swal({
+                //     position: 'top-end',
+                //     icon: 'success',
+                //     title: 'Pedido enviado !',
+                //     button: true,
+                //     timer: 2000
+                // })
+                
+                
             }
         })
 
