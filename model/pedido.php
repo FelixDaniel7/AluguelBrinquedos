@@ -12,6 +12,25 @@ class Pedido
     private $PrecoFinal;
     private $FormaPagamento;
 
+/*
+
+	CodPedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    CodCliente SMALLINT NOT NULL,
+    CodUsuario SMALLINT NOT NULL,-- para caso alguem faça um pedido
+    DataPedido DATETIME, -- hora do envio do pedido 
+    Data_de_uso DATE, -- 1970-12-31
+    HorasAlugado DOUBLE,  -- Quantidade de horas de aluguel,aluguel cobrado por hora
+    Data_Hora_Montagem DATETIME, -- 1970-01-01 00:00:00
+    -- Data_Hora_Desmontagem TIME,-- fazer o calculo hora montagem mais horas usadas 
+    --  não precisa pq é calculavel
+    PrecoFinal DECIMAL(8,2),-- preço com o frete
+    FormaPagamento VARCHAR(20),
+    
+    Supervisao BIT,-- se tem supervisor adiciona tanto no preço
+    
+    CONSTRAINT FK_Cliente_Pedido FOREIGN KEY (CodCliente)
+		REFERENCES Cliente(CodCliente)*/
+
     function __get($atributo)
     {
         return $this->$atributo;
