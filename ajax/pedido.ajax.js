@@ -104,7 +104,16 @@ $(document).ready(function(){
                 },
                 success: function(retorno){
 
-                    console.log(retorno);
+                    console.log(retorno)
+
+                    if (retorno == 'cadastrou_pedido') {
+                        swal({
+                            title:"Pedido enviado !",
+                            icon:"success",
+                            timer: 600
+                        })
+                    }
+                    
 
                 }
             })

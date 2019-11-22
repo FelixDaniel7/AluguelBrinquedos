@@ -57,7 +57,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
             
             if($ped->CadastrarPedido()){
-                echo true;
+                echo 'cadastrou_pedido';
             }
         break;
 
