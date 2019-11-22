@@ -50,12 +50,15 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->FormaPagamento = $FormaPagamento;
             $ped->Supervisao = $Supervisao;
 
-            $ped->Status = 0;//pedido pendente 
+            $ped->Status = 'Pendente'; 
+
+
+            //cadastrar os brinquedos tambem
 
             
-            // if($ped->CadastrarPedido()){
-            //     echo true;
-            // }
+            if($ped->CadastrarPedido()){
+                echo true;
+            }
         break;
 
         case 'form_editar_ped':

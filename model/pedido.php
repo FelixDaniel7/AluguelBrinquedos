@@ -82,7 +82,7 @@ class Pedido
         $exec->bindValue(13,$this->Data_Hora_Montagem,PDO::PARAM_STR);
         $exec->bindValue(14,$this->PrecoFinal,PDO::PARAM_STR);
         $exec->bindValue(15,$this->FormaPagamento,PDO::PARAM_STR);
-        $exec->bindValue(16,$this->Status,PDO::PARAM_INT);
+        $exec->bindValue(16,$this->Status,PDO::PARAM_STR);
         $exec->bindValue(17,$this->Supervisao,PDO::PARAM_STR);
         $exec->bindValue(18,$this->Telefone,PDO::PARAM_STR);
         $exec->execute();

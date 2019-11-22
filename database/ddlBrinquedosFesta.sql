@@ -64,7 +64,7 @@ CREATE TABLE Pedido(
     Data_Hora_Montagem DATETIME, -- 1970-01-01 00:00:00
     PrecoFinal DECIMAL(8,2),-- preço com o frete
     FormaPagamento ENUM('Dinheiro','Cartão','Mercado Pago'),
-    Status BIT, -- saber se o pedido ja foi realizado 
+    Status ENUM('Pendente', 'Realizado'),
     Supervisao BIT-- se tem supervisor adiciona tanto no preço
 ); 
 
