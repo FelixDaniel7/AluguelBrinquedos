@@ -79,7 +79,7 @@ include_once('../controller/pedido.controller.php'); ?>
 
 </section>
 
-<!-- <section id="pedido" style="display: none"> -->
+<section id="pedido" style="display: none">
 
     <h3>Dados do Pedido</h3>
 
