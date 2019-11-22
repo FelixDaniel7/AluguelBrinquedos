@@ -44,30 +44,46 @@ include_once('../controller/pedido.controller.php');
 
 
 
-
-<section class="features-icons bg-light text-center" >
+<center>
+<section class="features-icons bg-light" >
 <div class="container">
-<form name="form_cad_cliente_pedido" calss="features-icons bg-light text-center"method="POST">    
+  
+  <div class="col-md-6 col-sm-6">
+<form name="form_cad_cliente_pedido" calss="features-icons bg-light text-center "method="POST">    
 <section id="pessoais">
   
+    
 
     <h3>Informações Pessoais</h3>
-    <label for="Text">Nome <span>*</span></label>
+      <div>
+        &nbsp;
+      </div>
+    <label for="Text" class="text-rigth">Nome <span>*</span></label>
     <input type="text" class="form-control" name="txtnome" id="txtnome" placeholder="Alfredo">
-
+    <div>
+    &nbsp;
+    </div>
     <label for="Text">Telefone <span>(Opcional)</span></label>
     <input type="number" class="form-control" name="txttelefone" id="txttelefone" placeholder="(11)3333-9999">
-
+    <div>
+    &nbsp;
+    </div>
     <label for="Text">Celular <span>(Opcional)</span></label>
     <input type="number" class="form-control" name="txtcelular" id="txtcelular" placeholder="(11)98888-9999">
-
+    <div>
+    &nbsp;
+    </div>
     <label for="inputEmail4">Email <span>*</span></label>
     <input type="email" class="form-control" name="txtemail" id="txtemail" placeholder="Email" >
-
+    <div>
+    &nbsp;
+    </div>
     <label for="inputCPF">CPF <span>*</span></label>
     <input type="text" class="form-control" name="txtcpf" id="txtcpf">
-
-    <button type="button" id="proximo">Proximo</button>
+    <div>
+    &nbsp;
+    </div>
+    <button type="button" id="proximo" class="btn btn-primary">Proximo</button>
 
 </section>
 
@@ -92,8 +108,8 @@ include_once('../controller/pedido.controller.php');
     <input type="text" class="form-control" name="txtcomplemento" placeholder="Do lado do barril">
 
     
-    <button type="button" id="anterior">Anterior</button>
-    <button type="button" id="proximo">Proximo</button>
+    <button type="button" class="btn btn-primary" id="anterior">Anterior</button>
+    <button type="button"  class="btn btn-primary" id="proximo">Proximo</button>
 
 </section>
 
@@ -132,7 +148,7 @@ include_once('../controller/pedido.controller.php');
     <input type="checkbox" name="txtcastelo" id="brinquedo">Castelo <br>
 
 
-    <button type="button" id="anterior">Anterior</button>
+    <button type="button" class="btn btn-primary"  id="anterior">Anterior</button>
 
     <button type="submit" class="btn btn-primary">Enviar</button>
     
@@ -142,6 +158,10 @@ include_once('../controller/pedido.controller.php');
 
     
 </form>
+<div>
+
+</div>
+</center>
 </div>
 </selection>  
 <!-- 
