@@ -87,7 +87,7 @@ include_once('../controller/pedido.controller.php');
 
 </section>
 
-<section id="montagem" style="display: none">
+  <section id="montagem" style="display: none">
 
     <h3>Local da Montagem</h3>
 
@@ -107,13 +107,17 @@ include_once('../controller/pedido.controller.php');
     <label for="inputEmail4">Complemento <span>(Opcional)</span></label>
     <input type="text" class="form-control" name="txtcomplemento" placeholder="Do lado do barril">
 
+    <div>
+    &nbsp;
+    </div>
+
     
     <button type="button" class="btn btn-primary" id="anterior">Anterior</button>
     <button type="button"  class="btn btn-primary" id="proximo">Proximo</button>
 
 </section>
 
-<section id="pedido" style="display: none">
+  <section id="pedido" style="display: none">
 
     <h3>Dados do Pedido</h3>
 
@@ -144,9 +148,43 @@ include_once('../controller/pedido.controller.php');
     </select>
 
     <h4>Brinquedos escolhidos</h4>
+
+    <div class="container">
+        <div class="row">
+            <div class="card-deck">
+            <div class="card">
+                <img class="card-img-top" src="img/produtos/CamaElastica/1.jpg" alt="Imagem de capa do card">
+                <div class="card-footer">
+                <a href="Cama_Elastica.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+                </div>
+              </div>
+              <div class="card">
+                <img class="card-img-top" src="img/produtos/PiscinaBolinhas/1.jpg" alt="Imagem de capa do card">
+                <div class="card-footer">
+                <a href="Cama_Elastica.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+                </div>
+              </div>
+              <div class="card">
+                <img class="card-img-top" src="img/produtos/MaquinaAlgodão/1.jpg" alt="Imagem de capa do card">
+                <div class="card-footer">
+                <a href="Cama_Elastica.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+                </div>
+              </div>
+              <div class="card">
+                <img class="card-img-top" src="img/produtos/CasteloInflavel/1.jpg" alt="Imagem de capa do card">
+                <div class="card-footer">
+                <a href="Cama_Elastica.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+                </div>
+              </div>
+              </div>
+        </div>
+      </div>
     <input type="checkbox" name="txtpulapula" id="brinquedo">Pula Pula <br>
     <input type="checkbox" name="txtcastelo" id="brinquedo">Castelo <br>
 
+    <div>
+    &nbsp;
+    </div>
 
     <button type="button" class="btn btn-primary"  id="anterior">Anterior</button>
 
