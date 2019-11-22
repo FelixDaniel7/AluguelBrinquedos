@@ -1,3 +1,7 @@
+<?php 
+//formulario de cadastro de pedido e dados do cliente 
+include_once('../controller/pedido.controller.php'); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,74 +24,127 @@
   <!-- Custom styles for this template -->
   <link href="css/landing-page.min.css" rel="stylesheet">
   <link href="css/css.css" rel="stylesheet">
+
+  <!-- Jquery -->
+  <script src="../js/jquery-3.4.1.min.js"></script>
+    <!-- Ajax -->
+    <script src="../ajax/pedido.ajax.js"></script>
+    <!-- Alertas Bonitinhos -->
+    <script src="../js/sweetalert.js"></script>
 </head>
 
 <body style="background-color: cornflowerblue; ">
-  <!-- Navigation -->
-  <nav class="nav justify-content-center bg-light">
-    <ul class="nav justify-content-center">
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Contatos: (11)95555-5555</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">Contatos: (11)4444-4444</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link disabled" href="#">E-mail: nome@gmail.com</a>
-        </li>
-    </ul>
-  </nav>
   
-  <nav class="navbar navbar-light bg-light static-top"> &nbsp;
-    <p>&nbsp;
-      <a href="index.php">
-        <img src="img/Logo/logo1.png" alt="logo img"  width="300" height="51">
-    </p>
-    <div class="col-lg-6 h-100 text-center text-lg-right my-auto"> 
-        <ul class="list-inline mb-0">
-          <li class="list-inline-item mr-3"> 
-            </a>
-          </li>
-        </ul>
-    </div>
-  </nav>
+ 
+<?php include_once("menu/menu-superior.php"); ?>
+
+
+
+
+
+
+
+
+<section class="features-icons bg-light text-center" >
+<div class="container">
+<form name="form_cad_cliente_pedido" calss="features-icons bg-light text-center"method="POST">    
+<section id="pessoais">
   
 
-<div class="container" >
-  <nav class="navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="#">Home</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-    <div class="collapse navbar-collapse" id="conteudoNavbarSuportado">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item dropdown">
-              <a class="navbar-brand  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Brinquedos
-              </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Ação</a>
-                  <a class="dropdown-item" href="#">Outra ação</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Algo mais aqui</a>
-                </div>
-              </li>
-              <li class="nav-item active">
-                <a class="navbar-brand" href="#">Galeria</a>
-              </li>
-              <li class="nav-item">
-                  <a class="navbar-brand" href="#">Sobre</a>
-              </li>
-    </div>
-              <li class="nav-item">
-                  <a class="navbar-brand fas fa-shopping-cart fa-2x fa-fw carrinho"  data-toggle="modal" data-target="#modalCarrinho"></a>
-              </li>
-          </ul>
-            </a>
-   </nav>
-</div>
+    <h3>Informações Pessoais</h3>
+    <label for="Text">Nome <span>*</span></label>
+    <input type="text" class="form-control" name="txtnome" id="txtnome" placeholder="Alfredo">
+
+    <label for="Text">Telefone <span>(Opcional)</span></label>
+    <input type="number" class="form-control" name="txttelefone" id="txttelefone" placeholder="(11)3333-9999">
+
+    <label for="Text">Celular <span>(Opcional)</span></label>
+    <input type="number" class="form-control" name="txtcelular" id="txtcelular" placeholder="(11)98888-9999">
+
+    <label for="inputEmail4">Email <span>*</span></label>
+    <input type="email" class="form-control" name="txtemail" id="txtemail" placeholder="Email" >
+
+    <label for="inputCPF">CPF <span>*</span></label>
+    <input type="text" class="form-control" name="txtcpf" id="txtcpf">
+
+    <button type="button" id="proximo">Proximo</button>
+
+</section>
+
+<section id="montagem" style="display: none">
+
+    <h3>Local da Montagem</h3>
+
+    <label for="Text"> CEP <span>*</span></label>
+    <input type="number" class="form-control" name="txtcep" id="txtcep" placeholder="Informe seu CEP">
+
+    <label for="Text">Endereço <span>*</span></label>
+    <input type="text" class="form-control" name="txtendereco" id="txtendereco" placeholder="Rua da Florinda">
+
+    <label for="inputEmail4">Bairro <span>*</span></label>
+    <input type="text" class="form-control" name="txtbairro" id="txtbairro" placeholder="Vila do chaves">
+
+
+    <label for="inputCPF">Numero</label> <span>*</span></label>
+    <input type="number" class="form-control" name="txtnumero" id="txtnumero" placeholder="725" >
+
+    <label for="inputEmail4">Complemento <span>(Opcional)</span></label>
+    <input type="text" class="form-control" name="txtcomplemento" placeholder="Do lado do barril">
+
     
+    <button type="button" id="anterior">Anterior</button>
+    <button type="button" id="proximo">Proximo</button>
 
+</section>
+
+<section id="pedido" style="display: none">
+
+    <h3>Dados do Pedido</h3>
+
+
+
+    <label for="Text"> Data de uso <span>*</span></label>
+    <input type="date" class="form-control" name="txtdataUso" id="txtdataUso" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2019-11-07" max="2022-12-31" >
+
+
+    <label for="Text">Horas de utilização <span>*</span></label>
+    <input type="number" class="form-control" name="txthorasAlugado" id="txthorasAlugado" maxlength="2" >
+
+    <label for="inputEmail4">Data e Hora de Montagem <span>*</span></label>
+    <input type="datetime-local" class="form-control" name="txthoraMontagem" id="txthoraMontagem" >
+
+    <label for="Text">Forma de pagamento<span>*</span></label>
+    <select class="custom-select" name="txtformaPagamento" id="txtformaPagamento" >
+      <option selected>Escolha...</option>
+      <option value="Dinheiro">Dinheiro</option>
+      <option value="Cartão">Cartão</option>
+    </select>
+
+    <label for="Text">Supervisão<span>*</span></label>
+    
+    <select class="custom-select" name="txtsupervisao" >
+    <option value="0">Sem Supervisão</option>
+      <option value="1">Com Supervisão</option>
+    </select>
+
+    <h4>Brinquedos escolhidos</h4>
+    <input type="checkbox" name="txtpulapula" id="brinquedo">Pula Pula <br>
+    <input type="checkbox" name="txtcastelo" id="brinquedo">Castelo <br>
+
+
+    <button type="button" id="anterior">Anterior</button>
+
+    <button type="submit" class="btn btn-primary">Enviar</button>
+    
+</section>
+
+<br>
+
+    
+</form>
+</div>
+</selection>  
+<!-- 
   <section class="features-icons bg-light text-center" >
 
       <div class="container">
@@ -221,48 +278,10 @@
               </div>
             </div>
           </section>
-  
+   -->
 
 
-  <!-- Footer -->
-  <footer class="footer bg-light">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-6 h-100 text-center text-lg-left my-auto">
-          <ul class="list-inline mb-2">
-            <li class="list-inline-item">
-              <a href="#">Sobre</a>
-            </li>
-            <li class="list-inline-item">&sdot;</li>
-            <li class="list-inline-item">
-              <a href="#">Contatos</a>
-            </li>
-           
-          </ul>
-          <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2019. All Rights Reserved.</p>
-        </div>
-        <div class="col-lg-6 h-100 text-center text-lg-right my-auto">
-          <ul class="list-inline mb-0">
-            <li class="list-inline-item mr-3">
-              <a href="#">
-                <i class="fab fa-facebook fa-2x fa-fw"></i>
-              </a>
-            </li>
-            <li class="list-inline-item mr-3">
-              <a href="#">
-                <i class="fab fa-twitter-square fa-2x fa-fw"></i>
-              </a>
-            </li>
-            <li class="list-inline-item">
-              <a href="#">
-                <i class="fab fa-instagram fa-2x fa-fw"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </footer>
+   <?php include_once("menu/menu-inferior.php"); ?>
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>

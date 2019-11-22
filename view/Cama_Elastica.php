@@ -202,7 +202,7 @@
   <script>
     function calculo(){
       var cep = $("#cep").val();
-      $.post('calcula.php',{cep:cep},function(data){
+      $.post('../calcula.php',{cep:cep},function(data){
         $("#retorno").html(data);
       });
     }
