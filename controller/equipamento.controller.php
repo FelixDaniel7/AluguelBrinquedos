@@ -17,26 +17,39 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
             ?>
             
-            <form action="" method="post" class="form" name="form_cad_equipamento">
-                Nome
-                <input type="text" name="txtnomeEquipamento"><br>
-                Descricao
-                <input type="text" name="txtdescricao"><br>
-                Peso
-                <input type="number" step="0.01" name="txtpeso"><br>
-                Altura
-                <input type="number" name="txtaltura"><br>
-                Comprimento
-                <input type="number" name="txtcomprimento"><br>
-                Largura
-                <input type="number" name="txtlargura"><br>
-                Preço
-                <input type="number" step="0.01" name="txtpreco"><br>
-
-                <button type="submit">
-                    Cadastrar Equipamento
-                </button>
-            </form>
+            <form  action="" method="post" class="form" name="form_cad_equipamento" >
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nome</label>
+                    <input type="text" name="txtnomeEquipamento" class="form-control" aria-describedby="emailHelp" placeholder="Nome Equipamento" required>             
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Descrição</label>
+                    <input type="text" name="txtdescricao" class="form-control" placeholder="Descrição" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Peso(KG)</label>
+                    <input type="number" step="0.01" name="txtpeso" class="form-control" placeholder="Peso" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Altura(CM)</label>
+                    <input type="number" name="txtaltura" class="form-control" placeholder="Altura" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Comprimento(CM)</label>
+                    <input type="number" name="txtcomprimento" class="form-control" placeholder="Comprimento" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Largura(CM)</label>
+                    <input type="number" name="txtlargura" class="form-control" placeholder="Largura" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Preço</label>
+                    <input type="number" step="0.01" name="txtpreco" class="form-control" placeholder="Preço" required>
+                </div>
+                
+                <button type="submit" class="btn btn-dark">Cadastrar Equipamento</button>
+                </form>
+                
             <?php
             break;
         
