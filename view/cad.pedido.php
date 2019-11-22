@@ -35,16 +35,19 @@ include_once('../controller/pedido.controller.php'); ?>
 
     <h3>Informações Pessoais</h3>
     <label for="Text">Nome <span>*</span></label>
-    <input type="text" class="form-control" name="txtnome" placeholder="Alfredo">
+    <input type="text" class="form-control" name="txtnome" id="txtnome" placeholder="Alfredo">
 
-    <label for="Text">Celular <span>*</span></label>
-    <input type="number" class="form-control" name="txtcelular" placeholder="(11)9999-9999">
+    <label for="Text">Telefone <span>(Opcional)</span></label>
+    <input type="number" class="form-control" name="txttelefone" id="txttelefone" placeholder="(11)3333-9999">
+
+    <label for="Text">Celular <span>(Opcional)</span></label>
+    <input type="number" class="form-control" name="txtcelular" id="txtcelular" placeholder="(11)98888-9999">
 
     <label for="inputEmail4">Email <span>*</span></label>
-    <input type="email" class="form-control" name="txtemail" placeholder="Email" >
+    <input type="email" class="form-control" name="txtemail" id="txtemail" placeholder="Email" >
 
     <label for="inputCPF">CPF <span>*</span></label>
-    <input type="text" class="form-control" name="txtcpf">
+    <input type="text" class="form-control" name="txtcpf" id="txtcpf">
 
     <button type="button" id="proximo">Proximo</button>
 
@@ -55,19 +58,19 @@ include_once('../controller/pedido.controller.php'); ?>
     <h3>Local da Montagem</h3>
 
     <label for="Text"> CEP <span>*</span></label>
-    <input type="number" class="form-control" name="txtcep" placeholder="Informe seu CEP">
+    <input type="number" class="form-control" name="txtcep" id="txtcep" placeholder="Informe seu CEP">
 
     <label for="Text">Endereço <span>*</span></label>
-    <input type="text" class="form-control" name="txtendereco" placeholder="Rua da Florinda">
+    <input type="text" class="form-control" name="txtendereco" id="txtendereco" placeholder="Rua da Florinda">
 
     <label for="inputEmail4">Bairro <span>*</span></label>
-    <input type="text" class="form-control" name="txtbairro" placeholder="Vila do chaves">
+    <input type="text" class="form-control" name="txtbairro" id="txtbairro" placeholder="Vila do chaves">
 
 
     <label for="inputCPF">Numero</label> <span>*</span></label>
-    <input type="number" class="form-control" name="txtnumero" placeholder="725" >
+    <input type="number" class="form-control" name="txtnumero" id="txtnumero" placeholder="725" >
 
-    <label for="inputEmail4">Complemento <span>*</span></label>
+    <label for="inputEmail4">Complemento <span>(Opcional)</span></label>
     <input type="text" class="form-control" name="txtcomplemento" placeholder="Do lado do barril">
 
     
@@ -83,20 +86,17 @@ include_once('../controller/pedido.controller.php'); ?>
 
 
     <label for="Text"> Data de uso <span>*</span></label>
-    <input type="date" class="form-control" name="txtdataUso" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2019-11-07" max="2022-12-31" >
+    <input type="date" class="form-control" name="txtdataUso" id="txtdataUso" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2019-11-07" max="2022-12-31" >
 
 
     <label for="Text">Horas de utilização <span>*</span></label>
-    <input type="number" class="form-control" name="txthorasAlugado" maxlength="2" >
+    <input type="number" class="form-control" name="txthorasAlugado" id="txthorasAlugado" maxlength="2" >
 
     <label for="inputEmail4">Data e Hora de Montagem <span>*</span></label>
-    <input type="datetime-local" class="form-control" name="txthoraMontagem" >
-    <input type="datetime-local" name="" id="">
-
-
+    <input type="datetime-local" class="form-control" name="txthoraMontagem" id="txthoraMontagem" >
 
     <label for="Text">Forma de pagamento<span>*</span></label>
-    <select class="custom-select" name="txtformaPagamento" >
+    <select class="custom-select" name="txtformaPagamento" id="txtformaPagamento" >
       <option selected>Escolha...</option>
       <option value="Dinheiro">Dinheiro</option>
       <option value="Cartão">Cartão</option>
@@ -109,8 +109,8 @@ include_once('../controller/pedido.controller.php'); ?>
     </select>
 
     <h4>Brinquedos escolhidos</h4>
-    <input type="checkbox" name="txtpulapula" id="">Pula Pula <br>
-    <input type="checkbox" name="txtcastelo" id="">Castelo <br>
+    <input type="checkbox" name="txtpulapula" id="brinquedo">Pula Pula <br>
+    <input type="checkbox" name="txtcastelo" id="brinquedo">Castelo <br>
 
 
     <button type="button" id="anterior">Anterior</button>

@@ -47,7 +47,8 @@ CREATE TABLE Pedido(
 
     CPF CHAR(11) NOT NULL,/*opcinal para o cliente */
     Nome VARCHAR(50),
-    Celular VARCHAR(11),
+    Telefone CHAR(10),
+    Celular CHAR(11),
     Email VARCHAR(50),
     
     CEP CHAR(8),

@@ -7,6 +7,7 @@ class Pedido
     private $CPF;
     private $Nome;
     private $Email;
+    private $Telefone;
     private $Celular;
     private $CEP;
     private $Endereco;
@@ -60,8 +61,8 @@ class Pedido
     function CadastrarPedido(){
         $comandoSQL = "INSERT INTO Pedido(CPF,Nome,Email,Celular,
         CEP,Endereco,Numero,Bairro,Complemento,DataPedido,Data_de_uso
-        ,HorasAlugado,Data_Hora_Montagem,PrecoFinal,FormaPagamento,Status,Supervisao)
-                            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+        ,HorasAlugado,Data_Hora_Montagem,PrecoFinal,FormaPagamento,Status,Supervisao,Telefone)
+                            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $exec = $this->con->prepare($comandoSQL);
         $exec->bindValue(1,$this->CPF,PDO::PARAM_STR);
@@ -83,6 +84,7 @@ class Pedido
         $exec->bindValue(15,$this->FormaPagamento,PDO::PARAM_STR);
         $exec->bindValue(16,$this->Status,PDO::PARAM_INT);
         $exec->bindValue(17,$this->Supervisao,PDO::PARAM_STR);
+        $exec->bindValue(18,$this->Telefone,PDO::PARAM_STR);
         $exec->execute();
 
         if ($exec->rowCount() > 0) {

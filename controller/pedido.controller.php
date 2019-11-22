@@ -9,6 +9,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
         case 'cadastrar_ped':
 
             $Nome = filter_input(INPUT_POST, 'txtnome', FILTER_SANITIZE_STRING);
+            $Telefone = filter_input(INPUT_POST, 'txttelefone' , FILTER_SANITIZE_STRING);
             $Celular = filter_input(INPUT_POST, 'txtcelular' , FILTER_SANITIZE_STRING);
             $Email = filter_input(INPUT_POST, 'txtemail' , FILTER_SANITIZE_EMAIL);
             $CPF = filter_input(INPUT_POST, 'txtcpf' , FILTER_SANITIZE_STRING);
@@ -31,6 +32,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             
             // atribui valor a variavel privat eda class pedido
             $ped->Nome = $Nome;
+            $ped->Telefone = $Telefone;
             $ped->Celular = $Celular;
             $ped->Email = $Email;
             $ped->CPF = $CPF;
@@ -51,9 +53,9 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->Status = 0;//pedido pendente 
 
        
-            // if (empty($Nome) || empty($Celular) || empty($Email) || empty($CPF)) {
-            //     echo "vazio_form_pessoais";
-            // }
+            if (empty($Nome) || empty($Celular) || empty($Email) || empty($CPF)) {
+                echo "vazio_form_pessoais";
+            }
             
             // if($ped->CadastrarPedido()){
             //     echo true;

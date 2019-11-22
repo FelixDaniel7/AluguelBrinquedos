@@ -7,19 +7,64 @@ $(document).ready(function(){
     var montagem = $('#montagem')
     var pedido = $('#pedido')
 
+    function CampoVazio(campo){
+        if (campo.val() == '') {
+            campo.addClass('border border-danger')
+
+            swal({position: 'top-end',icon: 'info',
+            title: 'Todos os campos devem ser preenchidos !',
+            button: true,timer: 2000})
+
+            return false
+        }
+        else{
+            return true
+        }
+        
+    }
+
     dados_pessoais.find('#proximo').click(function(){
-        montagem.fadeIn('fast')
-        dados_pessoais.fadeOut('fast')
+        var nome = $('#txtnome')
+        //var celular = $('#txtcelular')
+        var email = $('#txtemail')
+        var cpf = $('#txtcpf')
+        //var telefone = $('#txttelefone')
+           
+        CampoVazio(nome)
+        CampoVazio(cpf)
+
+        //campo email
+        var emailFilter=/^.+@.+\..{2,}$/;
+		var illegalChars= /[\(\)\<\>\,\;\:\\\/\"\[\]]/
+        if(!(emailFilter.test(email.val())) || email.val().match(illegalChars)){
+
+            email.addClass('border border-danger')
+                
+                swal({position: 'top-end',icon: 'info',
+                title: 'Por favor, informe um email válido.',
+                button: true,timer: 2000})
+        }
+        else if (nome.val() != '' && cpf.val() != '' && email.val() != '') {
+            montagem.fadeIn('fast')
+            dados_pessoais.fadeOut('fast')
+        }
     })
 
     montagem.find('#anterior').click(function(){
-        montagem.fadeOut('fast')
-        dados_pessoais.fadeIn('fast')
+            montagem.fadeOut('fast')
+            dados_pessoais.fadeIn('fast')          
     })
 
     montagem.find('#proximo').click(function(){
+        var cep = $('#txtcep')
+        var endereco = $('#txtendereco')
+        var numero = $ ('#txtnumero')
+        var bairro = $('#txtbairro') 
+
+        if (cep.val() != '' && endereco.val() != '' && numero.val() != '' && bairro.val() != '') {
         montagem.fadeOut('fast')
         pedido.fadeIn('fast')
+        }
     })
 
     pedido.find('#anterior').click(function(){
@@ -57,14 +102,7 @@ $(document).ready(function(){
                     })
                 }
 
-                // swal({
-                //     position: 'top-end',
-                //     icon: 'success',
-                //     title: 'Pedido enviado !',
-                //     button: true,
-                //     timer: 2000
-                // })
-                
+               
                 
             }
         })
