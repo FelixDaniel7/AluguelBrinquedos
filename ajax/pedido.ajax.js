@@ -12,7 +12,7 @@ $(document).ready(function(){
             campo.addClass('border border-danger')
 
             swal({position: 'top-end',icon: 'info',
-            title: 'Todos os campos devem ser preenchidos !',
+            title: 'Campos em vermelho são obrigatorios !',
             button: true,timer: 2000})
 
             return false
@@ -61,9 +61,14 @@ $(document).ready(function(){
         var numero = $ ('#txtnumero')
         var bairro = $('#txtbairro') 
 
+        CampoVazio(numero)
+        CampoVazio(cep)
+        CampoVazio(bairro)
+        CampoVazio(endereco)
+
         if (cep.val() != '' && endereco.val() != '' && numero.val() != '' && bairro.val() != '') {
-        montagem.fadeOut('fast')
-        pedido.fadeIn('fast')
+            montagem.fadeOut('fast')
+            pedido.fadeIn('fast')
         }
     })
 
@@ -76,61 +81,37 @@ $(document).ready(function(){
 
 
     $('form[name="form_cad_cliente_pedido"]').submit(function(){
-
         var formPed = $(this)
+        var data_de_uso = $('#txtdataUso')
+        var horasAlugado = $('#txthorasAlugado')
+        var data_Hora_Montagem = $('#txthoraMontagem')
+        
+        var brinquedo = $('#brinquedo')
+        var formaPagamento = $('#txtformaPagamento')
+            
+        CampoVazio(data_Hora_Montagem)
+        CampoVazio(data_de_uso)
+        CampoVazio(horasAlugado)
 
-        //var botao = $(this).find(':button')
+        
+        if (data_Hora_Montagem.val() != '' && data_de_uso.val() != '' && horasAlugado.val() != '') {
+            $.ajax({
+                url: "../controller/pedido.controller.php",
+                type: "POST",
+                data: "acao=cadastrar_ped&" + formPed.serialize(),
+                beforeSend: function(){
+                    //botao.attr('disabled', true)
+                },
+                success: function(retorno){
 
-        $.ajax({
-            url: "../controller/pedido.controller.php",
-            type: "POST",
-            data: "acao=cadastrar_ped&" + formPed.serialize(),
-            beforeSend: function(){
-                //botao.attr('disabled', true)
-            },
-            success: function(retorno){
+                    console.log(retorno);
 
-                console.log(retorno);
-
-                if (retorno == 'vazio_form_pessoais') {
-                    swal({
-                        position: 'top-end',
-                        icon: 'info',
-                        title: 'Todos os campos devem ser preenchidos !',
-                        button: true,
-                        timer: 2000
-                    })
                 }
-
-               
-                
-            }
-        })
-
+            })
+        }
         console.log($(this).serialize());
         return false;
     })
-
-    /*function ConsultarPedido(url,acao,atualiza){
-        $.post(
-            url,
-            {acao: acao},
-            function(retorno){
-
-                var tbody = $('#tabela_pedido').find('tbody')
-                var imagem = tbody.find('.load')
-
-                if(atualiza == true){
-                    tbody.html(retorno)
-                }else{
-                    imagem.fadeOut('fast', function(){
-                        tbody.html(retorno)
-                    })
-                }
-            })
-    }
-
-    ConsultarPedido('../controller/pedido.controller.php','contultar_ped')*/
 
     $('#tabela_pedido').on('click', '#btn_editar', function(){
 
@@ -170,7 +151,6 @@ $(document).ready(function(){
 
                 console.log('Atualizou');
 
-                //ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
                 setTimeout(function(){
                     $(location).attr('href','view.pedido.php')
                 }, 1000)

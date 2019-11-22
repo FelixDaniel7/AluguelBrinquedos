@@ -79,7 +79,7 @@ include_once('../controller/pedido.controller.php'); ?>
 
 </section>
 
-<section id="pedido" style="display: none">
+<!-- <section id="pedido" style="display: none"> -->
 
     <h3>Dados do Pedido</h3>
 
@@ -103,6 +103,7 @@ include_once('../controller/pedido.controller.php'); ?>
     </select>
 
     <label for="Text">Supervisão<span>*</span></label>
+    
     <select class="custom-select" name="txtsupervisao" >
     <option value="0">Sem Supervisão</option>
       <option value="1">Com Supervisão</option>

@@ -52,10 +52,6 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
             $ped->Status = 0;//pedido pendente 
 
-       
-            if (empty($Nome) || empty($Celular) || empty($Email) || empty($CPF)) {
-                echo "vazio_form_pessoais";
-            }
             
             // if($ped->CadastrarPedido()){
             //     echo true;
