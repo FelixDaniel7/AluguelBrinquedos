@@ -1,6 +1,24 @@
 USE BrinquedosFesta;
 
 
+insert into Imagens (Imagem,CodEquipamento)
+value ('1.jpg', 12);
+insert into Imagens (Imagem,CodEquipamento)
+value ('2.jpg', 12);
+insert into Imagens (Imagem,CodEquipamento)
+value ('3.jpg', 12);
+
+select * from Imagens where CodEquipamento = 11;
+
+
+
+SELECT * FROM Equipamento WHERE CodEquipamento != 12
+
+
+
+
+
+
 INSERT INTO  Administrador(Nome,Email,Login,Senha,NivelAcesso)
 Values ('blabla', 'daniel@gmail.com','blaba213','123',1);
 

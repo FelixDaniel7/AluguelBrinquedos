@@ -106,8 +106,6 @@ $(document).ready(function(){
                         {acao: 'excluir_equi', 
                         CodEquipamento: CodEquipamento}, 
                         function(retorno){//retorna se deu certo ou nao
-
-                            console.log(retorno);
                             
                             if (retorno == 'deletou') {//se deu certo 
                                 

@@ -29,8 +29,8 @@
     </div>
   </nav>
   
-
-<div class="container" >
+<div class="fundo">
+<div class="container">
   <nav class="navbar navbar-expand-lg navbar-dark">
       <a class="navbar-brand" href="index.php">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
@@ -62,6 +62,7 @@
           </ul>
             </a>
    </nav>
+</div>
 </div>
 
 

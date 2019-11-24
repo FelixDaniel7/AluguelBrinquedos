@@ -21,16 +21,24 @@ CREATE TABLE Usuario(
 /* Criação da tabela EQUIPAMENTO Tudo relacionado com o EQUIPAMENTO */
 CREATE TABLE Equipamento(
 	CodEquipamento SMALLINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    Nome VARCHAR(20),
-    Descricao VARCHAR(100),
+    Nome VARCHAR(100),
+    Descricao VARCHAR(1000),
     Peso DECIMAL(7,2),/*em KG*/
     Altura DECIMAL(7,2),/*em Metros*/
     Comprimento DECIMAL(7,2),/*em Metros*/
     Largura DECIMAL(7,2),/*em Metros*/
     Preco DECIMAL(8,2),
-    Status ENUM('Alugado','Disponivel'),
-    Imagem VARCHAR(100)
+    Status ENUM('Alugado','Disponivel')
+    -- Imagem VARCHAR(100)
 );	
+
+CREATE TABLE Imagens(
+	Imagem VARCHAR(100),
+    CodEquipamento SMALLINT,
+    
+    CONSTRAINT FK_Equipamento_Imagens FOREIGN KEY (CodEquipamento) 
+		REFERENCES Equipamento(CodEquipamento)
+);
     
 -- Normalização, criação da tabela DATAS
 CREATE TABLE DatasDisponivel(

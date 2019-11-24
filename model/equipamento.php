@@ -88,7 +88,7 @@ class Equipamento
         }
     }
 
-    function RetornarDados($CodEquipamento){
+    function RetornarDadosObj($CodEquipamento){
         $comandoSQL = "SELECT * FROM Equipamento WHERE CodEquipamento = ?";
 
         $exec = $this->con->prepare($comandoSQL);
@@ -147,11 +147,11 @@ class Equipamento
 
     /*DELETE*/
 
-    function ExcluirEquipamento(){
+    function ExcluirEquipamento($CodEquipamento){
         $comandoSQL = "DELETE FROM Equipamento WHERE CodEquipamento = ?";
 
         $exec = $this->con->prepare($comandoSQL);
-        $exec->bindValue(1,$this->CodEquipamento,PDO::PARAM_INT);
+        $exec->bindValue(1,$CodEquipamento,PDO::PARAM_INT);
         $exec->execute();
 
         if ($exec->rowCount() > 0) {
@@ -160,6 +160,84 @@ class Equipamento
         else{
             return false;
         }
+    }
+
+    function RetornarDados($CodEquipamento){
+        $comandoSQL = "SELECT * FROM Equipamento WHERE CodEquipamento = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodEquipamento,PDO::PARAM_INT);
+        $exec->execute();
+
+        $dados = array();
+
+        if ($exec->rowCount() > 0) {
+
+            //return $exec->fetchAll(PDO::FETCH_ASSOC);
+
+                //laço de repetição para armazenar dados no vetor
+            foreach ($exec->fetchAll() as $valores) {
+                
+                $equi = new Equipamento();
+
+
+                $equi->CodEquipamento = $valores['CodEquipamento'];
+                $equi->Nome = $valores['Nome'];
+                $equi->Descricao = $valores['Descricao'];
+                $equi->Peso = $valores['Peso'];
+                $equi->Altura = $valores['Altura'];
+                $equi->Comprimento = $valores['Comprimento'];
+                $equi->Largura = $valores['Largura'];
+                $equi->Preco = $valores['Preco'];
+                $equi->Status = $valores['Status'];
+                $equi->Imagem = $valores['Imagem'];
+                
+                $dados[] = $equi;
+            }
+        }
+        else{
+            $dados = false;
+        }
+       return $dados;//retorno da função   
+    }
+
+    function ConsultarDiferente($CodEquipamento){
+        $comandoSQL = "SELECT * FROM Equipamento WHERE CodEquipamento != ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodEquipamento,PDO::PARAM_INT);
+        $exec->execute();
+
+        $dados = array();
+
+        if ($exec->rowCount() > 0) {
+
+            //return $exec->fetchAll(PDO::FETCH_ASSOC);
+
+                //laço de repetição para armazenar dados no vetor
+            foreach ($exec->fetchAll() as $valores) {
+                
+                $equi = new Equipamento();
+
+
+                $equi->CodEquipamento = $valores['CodEquipamento'];
+                $equi->Nome = $valores['Nome'];
+                $equi->Descricao = $valores['Descricao'];
+                $equi->Peso = $valores['Peso'];
+                $equi->Altura = $valores['Altura'];
+                $equi->Comprimento = $valores['Comprimento'];
+                $equi->Largura = $valores['Largura'];
+                $equi->Preco = $valores['Preco'];
+                $equi->Status = $valores['Status'];
+                $equi->Imagem = $valores['Imagem'];
+                
+                $dados[] = $equi;
+            }
+        }
+        else{
+            $dados = false;
+        }
+       return $dados;//retorno da função   
     }
 }
 ?>

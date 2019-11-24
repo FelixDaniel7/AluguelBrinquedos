@@ -16,6 +16,10 @@ if (isset($_REQUEST['acao']))
 
     switch ($_REQUEST['acao']) 
     {
+        case 'value':
+            # code...
+            break;
+
     case 'cadastrar_equi':
         $equi->Nome = filter_input(INPUT_POST, 'txtnomeEquipamento', FILTER_SANITIZE_STRING);
         $equi->Descricao = filter_input(INPUT_POST, 'txtdescricao', FILTER_SANITIZE_STRING); 
@@ -24,6 +28,7 @@ if (isset($_REQUEST['acao']))
         $equi->Altura = filter_input(INPUT_POST, 'txtaltura', FILTER_SANITIZE_STRING);
         $equi->Comprimento = filter_input(INPUT_POST, 'txtcomprimento', FILTER_SANITIZE_STRING);
         $equi->Largura = filter_input(INPUT_POST, 'txtlargura', FILTER_SANITIZE_STRING);
+        $equi->Status = "Disponivel";
 
         $formatosPermitidos = array("png", "jpeg", "jpg");
         $extensao = pathinfo($_FILES['img']['name'], PATHINFO_EXTENSION);
@@ -38,17 +43,18 @@ if (isset($_REQUEST['acao']))
             if (move_uploaded_file($temporario ,$pasta.$novo_nome)) {
                 //deu certo
                 $equi->Imagem = $novo_nome;
+                if($equi->CadastrarEquipamento()){
+                    echo "<body onload='certo()'>";
+                }
+                else{
+                    echo "<body onload='erro()'>";
+                }
                 
             }else {
                 echo "<body onload='erroImagem()'>";
             }   
         }
-        if($equi->CadastrarEquipamento()){
-            echo "<body onload='certo()'>";
-        }
-        else{
-            echo "<body onload='erro()'>";
-        }
+        
         ?>
         <script>
             function certo(){
@@ -106,18 +112,19 @@ if (isset($_REQUEST['acao']))
             if (move_uploaded_file($temporario ,$pasta.$novo_nome)) {
                 //deu certo
                 $equi->Imagem = $novo_nome;
+                if ($equi->AtualizarEquipamento()) {
+                    echo "<body onload='certo()'>";
+                }
+                else{
+                    echo "<body onload='erro()'>";
+                }
             }
             else {
                 echo "<body onload='erroImagem()'>";
             }
         }
         
-        if ($equi->AtualizarEquipamento()) {
-            echo "<body onload='certo()'>";
-        }
-        else{
-            echo "<body onload='erro()'>";
-        }
+        
         
         ?>
         <script>
@@ -197,7 +204,7 @@ switch ($acao) {
 
             $CodEquipamento = filter_input(INPUT_POST, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);
 
-            $dados = $equi->RetornarDados($CodEquipamento);//pegando o retorno do metodo e colocando na variavel $equi
+            $dados = $equi->RetornarDadosObj($CodEquipamento);//pegando o retorno do metodo e colocando na variavel $equi
             
             /*FORM Q VAI DENTRO DA MODAL*/
             ?>
@@ -230,10 +237,9 @@ switch ($acao) {
             break;
 
         case 'excluir_equi':
-            $equi->CodEquipamento = filter_input(INPUT_POST, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);
-            //$equi->CodEquipamento;
+            $CodEquipamento = filter_input(INPUT_POST, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);
             //$dados = $equi->RetornarDados($CodEquipamento);
-            if($equi->ExcluirEquipamento()){
+            if($equi->ExcluirEquipamento($CodEquipamento)){
                 echo 'deletou';
             }
             //unlink("img/Produtos/$dados->Imagem");
