@@ -28,7 +28,8 @@ CREATE TABLE Equipamento(
     Comprimento DECIMAL(7,2),/*em Metros*/
     Largura DECIMAL(7,2),/*em Metros*/
     Preco DECIMAL(8,2),
-    Status ENUM('Alugado','Disponivel')
+    Status ENUM('Alugado','Disponivel'),
+    Imagem VARCHAR(100)
 );	
     
 -- Normalização, criação da tabela DATAS

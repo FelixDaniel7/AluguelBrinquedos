@@ -21,9 +21,7 @@
   </head>
   <body>
 
- 
     <button type="button" id="btn_cadastra">Cadastrar Equipamento</button> 
-
 
     <div class="row">
     <div class="col-lg-9">
@@ -36,7 +34,7 @@
                         <tr>
                             <th>Cod</th>
                             <th>Nome</th>
-                            <th>Descrição</th>
+                            <th>Imagem</th>
                             <th>Preço</th>
                             <th width="200">Ação</th>
                         </tr>
@@ -51,7 +49,7 @@
                         <tr>
                             <td><?php echo $value->CodEquipamento;?></td>
                             <td><?php echo $value->Nome;?></td>
-                            <td><?php echo $value->Descricao;?></td>
+                            <td><?php echo $value->Imagem;?></td>
                             <td><?php echo $value->Preco;?></td>
                             <td>
                                 <button type="button" id="btn_editar" value="<?php echo $value->CodEquipamento; ?>"class="btn btn-outline-primary">
