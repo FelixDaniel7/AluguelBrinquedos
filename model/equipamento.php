@@ -9,6 +9,7 @@ class Equipamento
     private $Comprimento;
     private $Largura;
     private $Preco;
+    private $Status;
 /*
     CodEquipamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(20),
@@ -17,7 +18,8 @@ class Equipamento
     Altura DECIMAL(4,2),
     Comprimento DECIMAL(4,2),
     Largura DECIMAL(4,2),
-    Preco DECIMAL(8,2)
+    Preco DECIMAL(8,2),
+    Status ENUM('Alugado','Disponivel')
 */
     //get e set 
     function __get($atributo)
@@ -45,8 +47,8 @@ class Equipamento
     /*bindValue e PDO::PARAM_ serve para enviar cada tipo de dado de forma correta ao banco.
     Garante q o banco receba o parametro desejado*/
     function CadastrarEquipamento(){
-        $comandoSQL = "INSERT INTO Equipamento(Nome,Descricao,Peso,Altura,Comprimento,Largura,Preco)
-                            VALUES(?,?,?,?,?,?,?)";
+        $comandoSQL = "INSERT INTO Equipamento(Nome,Descricao,Peso,Altura,Comprimento,Largura,Preco,Status)
+                            VALUES(?,?,?,?,?,?,?,?)";
 
         $exec = $this->con->prepare($comandoSQL);
         $exec->bindValue(1,$this->Nome,PDO::PARAM_STR);
@@ -56,6 +58,7 @@ class Equipamento
         $exec->bindValue(5,$this->Comprimento,PDO::PARAM_STR);
         $exec->bindValue(6,$this->Largura,PDO::PARAM_STR);
         $exec->bindValue(7,$this->Preco,PDO::PARAM_STR);
+        $exec->bindValue(8,$this->Status,PDO::PARAM_STR);
         $exec->execute();
 
         if ($exec->rowCount() > 0) {
@@ -66,28 +69,21 @@ class Equipamento
     }
 
     function ConsultarEquipamento(){
-        $comandoSQL = " SELECT * FROM Equipamento";
+        try{
+            $comandoSQL = " SELECT * FROM Equipamento";
 
-        $exec = $this->con->prepare($comandoSQL);
-        $exec->execute();
+            $exec = $this->con->prepare($comandoSQL);
+                $exec->execute();
 
-        $dados = array();
+            if ($exec->rowCount() > 0) {
+                return $exec->fetchAll(PDO::FETCH_OBJ);//retorna todos como objeto
+            } else {
+                return false;
+            }
 
-        foreach ($exec->fetchAll() as $value) {
-            
-            $equi = new Equipamento();
-
-            $equi->CodEquipamento   = $value['CodEquipamento'];
-            $equi->Nome             = $value['Nome'];
-            $equi->Descricao        = $value['Descricao'];
-            $equi->Peso             = $value['Peso'];
-            $equi->Altura           = $value['Altura'];
-            $equi->Comprimento      = $value['Comprimento'];
-            $equi->Preco          = $value['Preco'];
-
-            $dados[] = $equi;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
-        return $dados;
     }
 
     function RetornarDados($CodEquipamento){
@@ -118,7 +114,8 @@ class Equipamento
                             Altura = ?,
                             Comprimento = ?,
                             Largura = ?,
-                            Preco = ?
+                            Preco = ?,
+                            Status = ?
                             WHERE CodEquipamento = ?";
 
             $exec = $this->con->prepare($comandoSQL);
@@ -129,7 +126,8 @@ class Equipamento
             $exec->bindValue(5,$this->Comprimento,PDO::PARAM_STR);
             $exec->bindValue(6,$this->Largura,PDO::PARAM_STR);
             $exec->bindValue(7,$this->Preco,PDO::PARAM_STR);
-            $exec->bindValue(8,$this->CodEquipamento,PDO::PARAM_INT);
+            $exec->bindValue(8,$this->Status,PDO::PARAM_STR);
+            $exec->bindValue(9,$this->CodEquipamento,PDO::PARAM_INT);
             $exec->execute();
 
             if ($exec->rowCount() > 0) {

@@ -1,44 +1,44 @@
 USE BrinquedosFesta;
 
-INSERT INTO Cliente(CPF,Nome,Telefone,Email,Senha,Endereco)
-	VALUES ('12345678912','Rodolfo da Silva Santos','11976753358',
-			'rodolfo.santos@gmail.com','abc1234567','Rua das rosas, 485-Jardim çççãaaáááá´´aããã  ??Nemus');
-INSERT INTO Cliente (CPF,Nome,Telefone,Email,Senha,Endereco)
-	VALUES ('98745621365','Robersval Silveira Pinheiro','11963236521',
-			'robersval1985_silveira@hotmail','jhf1234567','Rua 10, 265-Jd.Represa');
-            
-           INSERT INTO  Administrador(Nome,Email,Login,Senha,NivelAcesso)
-           Values ('blabla', 'daniel@gmail.com','blaba213','123',1);
-           
-           INSERT INTO  Cliente(Celular)
-           Values ('1234567897');
-           
-           select * from cliente;
-           
-           UPDATE Usuario 
-                        SET Senha = '123'
-                         WHERE Email = 'danielfernandesdk27@gmail.com';
-           
-           SELECT * FROM Usuario 
-                    WHERE Login = 'Daniel' AND Senha = 'a3dd91d922fcff42f64ac37e9140b02a00e4ce01' AND Tipo = 'Administrador' 
-           
-insert into usuario (Tipo)
-values ('administradorghff');
-	
+
+INSERT INTO  Administrador(Nome,Email,Login,Senha,NivelAcesso)
+Values ('blabla', 'daniel@gmail.com','blaba213','123',1);
+
+INSERT INTO  Cliente(Celular)
+Values ('1234567897');
+
+select * from cliente;
+
+UPDATE Usuario 
+SET Senha = '123'
+WHERE Email = 'danielfernandesdk27@gmail.com';
+
+SELECT * FROM Usuario 
+WHERE Login = 'Daniel' AND Senha = 'a3dd91d922fcff42f64ac37e9140b02a00e4ce01' AND Tipo = 'Administrador';
+
+
 INSERT INTO Equipamento (Nome,Descricao,Preco) 
-	VALUES ('Piscina de Bolinhas','100m X 200m',80.00);
+VALUES ('Piscina de Bolinhas','100m X 200m',80.00);
 INSERT INTO Equipamento (Nome,Descricao,Preco) 
-	VALUES ('Cama elástica','165m X 298m Material Super Elastico',120.00);
+VALUES ('Cama elástica','165m X 298m Material Super Elastico',120.00);
 INSERT INTO Equipamento (Nome,Descricao,Preco) 
-	VALUES ('Castelo inflável','138m X 120m Anti-furo',150.00);
+VALUES ('Castelo inflável','138m X 120m Anti-furo',150.00);
 INSERT INTO Equipamento (Nome,Descricao,Preco) 
-	VALUES ('Alogão Doce','3 velocidades',100.00);
-    INSERT INTO Equipamento (Nome,Descricao,Preco) 
-	VALUES ('blaaaaáaaãaaaa','3 velocidades',15500.00);
-    
+VALUES ('Alogão Doce','3 velocidades',100.00);
+
+/*
+Nome VARCHAR(20),
+    Descricao VARCHAR(100),
+    Peso DECIMAL(7,2),/*em KG
+    Altura DECIMAL(7,2),/*em Metros
+    Comprimento DECIMAL(7,2),/*em Metros
+    Largura DECIMAL(7,2),/*em Metros
+    Preco DECIMAL(8,2)*/
+
+
 INSERT INTO Datas (DataDisponivel,CodEquipamento)
-	VALUES ('2019-08-06',4);
-    
+VALUES ('2019-08-06',4);
+
 select * from Datas;
 
 Select nome from equipamento where nome LIKE '%cama%';
@@ -52,12 +52,12 @@ INSERT INTO Supervisao(CodSupervisao,TipoSupervisao,ValorSupervisao)
 VALUES(0,0);
 
 select * from Equipamento;
-    
+
 INSERT INTO Aluguel (CodCliente,CodEquipamento,DataAluguel,Data_de_uso,
-					HorasAlugado,DataMontagem,DataDesmontagem,EnderecoMontagem,
-                    Supervisao,PrecoFinal,FormaPagamento) 
-	VALUES (1,4,'2019-07-30 02:30:55','2019-08-05',
-			3.5,'2019-08-05 14:00:00','2019-08-05 17:00:00','Rua das rosas, 485-Jardim Nemus',
-            0,556.47,'Cartão');
+HorasAlugado,DataMontagem,DataDesmontagem,EnderecoMontagem,
+Supervisao,PrecoFinal,FormaPagamento) 
+VALUES (1,4,'2019-07-30 02:30:55','2019-08-05',
+3.5,'2019-08-05 14:00:00','2019-08-05 17:00:00','Rua das rosas, 485-Jardim Nemus',
+0,556.47,'Cartão');
 select * from Aluguel;
-    
+

@@ -130,8 +130,8 @@ include_once('../controller/pedido.controller.php');
     <label for="Text">Horas de utilização <span>*</span></label>
     <input type="number" class="form-control" name="txthorasAlugado" id="txthorasAlugado" maxlength="2" >
 
-    <label for="inputEmail4">Data e Hora de Montagem <span>*</span></label>
-    <input type="datetime-local" class="form-control" name="txthoraMontagem" id="txthoraMontagem" >
+    <label for="inputEmail4">Hora de Montagem <span>*</span></label>
+    <input type="time" class="form-control" name="txthoraMontagem" id="txthoraMontagem" >
 
     <label for="Text">Forma de pagamento<span>*</span></label>
     <select class="custom-select" name="txtformaPagamento" id="txtformaPagamento" >
@@ -201,143 +201,7 @@ include_once('../controller/pedido.controller.php');
 </div>
 </center>
 </div>
-</selection>  
-<!-- 
-  <section class="features-icons bg-light text-center" >
-
-      <div class="container">
-          <h3>Informações Pessoais</h3>
-          <hr>
-          <form>
-
-              <div class="form-row">
-                  <div class="form-group col-md-6">
-                    <label for="Text">Nome <span>*</span></label>
-                    <input type="text" class="form-control" id="Nome" placeholder="Alfredo">
-                  </div>                
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                      <label for="Text">Celular <span>*</span></label>
-                      <input type="number" class="form-control" id="Telefone" placeholder="(11)9999-9999">
-                    </div>                    
-                  </div>
-              <div class="form-row">
-                <div class="form-group col-md-6">
-                  <label for="inputEmail4">Email <span>*</span></label>
-                  <input type="email" class="form-control" id="inputEmail4" placeholder="Email" required>
-                </div>               
-              </div>
-
-              <div class="form-row">
-                  <div class="form-group col-md-6">
-                      <label for="inputCPF">CPF <span>*</span></label>
-                      <input type="text" class="form-control" id="inputCEP">
-                    </div>
-             </div>
-
-<button type="submit" class="btn btn-primary">Entrar</button>
-</form>
-      </div>
-    </div>
-  </section>
- <section class="features-icons bg-light text-center" >
-  <div class="container">
-    <h3>Local da Montagem</h3>
-    <hr>
-    <form>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="Text"> CEP <span>*</span></label>
-              <input type="number" class="form-control" id="Nome" placeholder="Informe seu CEP">
-            </div>                
-          </div>
-          <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="Text">Endereço <span>*</span></label>
-                <input-group-text type="text" class="form-control" id="Endereço" placeholder="Rua da Florinda">
-              </div>                    
-            </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Bairro <span>*</span></label>
-            <input-group-text type="text" class="form-control" id="Bairro" placeholder="Vila do chaves">
-          </div>               
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputCPF">Numero</label> <span>*</span></label>
-                <input type="number" class="form-control" id="Numero" placeholder="7" required>
-              </div>
-       </div>
-       <div class="form-row">
-        <div class="form-group col-md-6">
-          <label for="inputEmail4">Complemento <span>*</span></label>
-          <input type="text" class="form-control" id="Complemento" placeholder="Do lado do barril">
-        </div>               
-      </div>
-      
-
-<button type="submit" class="btn btn-primary">Entrar</button>
-</form>
-</div>
-</div>
-</section>
-<section class="features-icons bg-light text-center" >
-  <div class="container">
-
-      
-    <h3>Dados do Pedido</h3>
-    <hr>
-    <form>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="Text"> Data de uso <span>*</span></label>
-              <input type="date" class="form-control" id="dataUso" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2019-11-07" max="2022-12-31" required>
-            </div>                
-          </div>
-          <div class="form-row">
-              <div class="form-group col-md-6">
-                <label for="Text">Horas de utilização <span>*</span></label>
-                <input type="number" class="form-control" placeholder="Horas" maxlength="2" required>
-              </div>                    
-            </div>
-        <div class="form-row">
-          <div class="form-group col-md-6">
-            <label for="inputEmail4">Horário de Montagem <span>*</span></label>
-            <input type="time" class="form-control" id="hrMontagem" required>
-          </div>               
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-              <label for="Text">Forma de pagamento<span>*</span></label>
-              <select class="custom-select" id="inputGroupSelect01" required>
-                    <option selected>Escolha...</option>
-                    <option value="1">Boleto</option>
-                    <option value="2">Cartão</option>
-                    </select>
-            </div>
-          </div>
-
-      <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" id="gridCheck" required>
-            <label class="form-check-label" for="gridCheck">
-              Concordo com os termos
-            </label>
-          </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Entrar</button>
-      </form>
-              </div>
-            </div>
-          </section>
-   -->
-
+</selection>
 
    <?php include_once("menu/menu-inferior.php"); ?>
 

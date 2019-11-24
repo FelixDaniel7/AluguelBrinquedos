@@ -18,7 +18,7 @@ class Pedido
     private $DataPedido;
     private $Data_de_uso;
     private $HorasAlugado;
-    private $Data_Hora_Montagem;
+    private $Hora_Montagem;
     private $PrecoFinal;
     private $FormaPagamento;
     Private $Status;
@@ -31,7 +31,7 @@ class Pedido
     DataPedido DATETIME, -- hora do envio do pedido 
     Data_de_uso DATE, -- 1970-12-31
     HorasAlugado DOUBLE,  -- Quantidade de horas de aluguel,aluguel cobrado por hora
-    Data_Hora_Montagem DATETIME, -- 1970-01-01 00:00:00
+    Hora_Montagem DATETIME, -- 1970-01-01 00:00:00
     PrecoFinal DECIMAL(8,2),-- preço com o frete
     FormaPagamento VARCHAR(20),
     Status BIT, -- saber se o pedido ja foi realizado 
@@ -61,7 +61,7 @@ class Pedido
     function CadastrarPedido(){
         $comandoSQL = "INSERT INTO Pedido(CPF,Nome,Email,Celular,
         CEP,Endereco,Numero,Bairro,Complemento,DataPedido,Data_de_uso
-        ,HorasAlugado,Data_Hora_Montagem,PrecoFinal,FormaPagamento,Status,Supervisao,Telefone)
+        ,HorasAlugado,Hora_Montagem,PrecoFinal,FormaPagamento,Status,Supervisao,Telefone)
                             VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $exec = $this->con->prepare($comandoSQL);
@@ -79,7 +79,7 @@ class Pedido
         $exec->bindValue(10,$this->DataPedido,PDO::PARAM_STR);
         $exec->bindValue(11,$this->Data_de_uso,PDO::PARAM_STR);
         $exec->bindValue(12,$this->HorasAlugado,PDO::PARAM_STR);
-        $exec->bindValue(13,$this->Data_Hora_Montagem,PDO::PARAM_STR);
+        $exec->bindValue(13,$this->Hora_Montagem,PDO::PARAM_STR);
         $exec->bindValue(14,$this->PrecoFinal,PDO::PARAM_STR);
         $exec->bindValue(15,$this->FormaPagamento,PDO::PARAM_STR);
         $exec->bindValue(16,$this->Status,PDO::PARAM_STR);
@@ -135,7 +135,7 @@ class Pedido
                             DataPedido = ?,
                             Data_de_uso = ?
                             ,HorasAlugado = ?
-                            ,Data_Hora_Montagem = ?
+                            ,Hora_Montagem = ?
                             ,PrecoFinal = ?,
                             FormaPagamento = ?
                             ,Status = ?,
@@ -147,7 +147,7 @@ class Pedido
             $exec->bindValue(2,$this->DataPedido,PDO::PARAM_STR);
             $exec->bindValue(3,$this->Data_de_uso,PDO::PARAM_STR);
             $exec->bindValue(4,$this->HorasAlugado,PDO::PARAM_STR);
-            $exec->bindValue(5,$this->Data_Hora_Montagem,PDO::PARAM_STR);
+            $exec->bindValue(5,$this->Hora_Montagem,PDO::PARAM_STR);
             $exec->bindValue(6,$this->PrecoFinal,PDO::PARAM_STR);
             $exec->bindValue(7,$this->FormaPagamento,PDO::PARAM_STR);
             $exec->bindValue(8,$this->Status,PDO::PARAM_INT);

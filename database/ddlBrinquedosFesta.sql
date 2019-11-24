@@ -27,7 +27,8 @@ CREATE TABLE Equipamento(
     Altura DECIMAL(7,2),/*em Metros*/
     Comprimento DECIMAL(7,2),/*em Metros*/
     Largura DECIMAL(7,2),/*em Metros*/
-    Preco DECIMAL(8,2)
+    Preco DECIMAL(8,2),
+    Status ENUM('Alugado','Disponivel')
 );	
     
 -- Normalização, criação da tabela DATAS
@@ -61,7 +62,7 @@ CREATE TABLE Pedido(
     DataPedido DATETIME, -- hora do envio do pedido 
     Data_de_uso DATE, -- 1970-12-31
     HorasAlugado DOUBLE,  -- Quantidade de horas de aluguel,aluguel cobrado por hora
-    Data_Hora_Montagem DATETIME, -- 1970-01-01 00:00:00
+    Hora_Montagem TIME, -- 1970-01-01 00:00:00
     PrecoFinal DECIMAL(8,2),-- preço com o frete
     FormaPagamento ENUM('Dinheiro','Cartão','Mercado Pago'),
     Status ENUM('Pendente', 'Realizado'),
