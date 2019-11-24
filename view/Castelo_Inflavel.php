@@ -26,7 +26,7 @@
 
   
   <?php
-  include"menu/menu-superior.php";
+  include_once("menu/menu-superior.php");
   ?>
 
   <section class="features-icons bg-light text-center espaco-topo" >
