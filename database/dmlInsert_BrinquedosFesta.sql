@@ -33,7 +33,8 @@ Nome VARCHAR(20),
     Altura DECIMAL(7,2),/*em Metros
     Comprimento DECIMAL(7,2),/*em Metros
     Largura DECIMAL(7,2),/*em Metros
-    Preco DECIMAL(8,2)*/
+    Preco DECIMAL(8,2)
+    Status ENUM('Alugado','Disponivel')*/
 
 
 INSERT INTO Datas (DataDisponivel,CodEquipamento)
