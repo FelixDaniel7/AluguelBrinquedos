@@ -153,19 +153,9 @@
       </div>
     </div>
   </section>
-
-
-
   <?php include_once("menu/menu-inferior.php");?>
-
   <!-- Bootstrap core JavaScript -->
   <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
- 
-
 </body>
-
 </html>
-
-
-

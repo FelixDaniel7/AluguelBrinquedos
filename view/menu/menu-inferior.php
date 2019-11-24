@@ -37,8 +37,6 @@
     </div>
   </footer>
 
-
-
 <!-- Modal carrinho -->
 <div class="modal" id="modalCarrinho" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
 
