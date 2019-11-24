@@ -70,33 +70,6 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             }
             break;
 
-        /*case 'consultar_equi':/*DADOS para preencher a tabela com os equipamentos
-        
-            foreach($equi->ConsultarEquipamento() as $value):
-
-            ?>
-                <tr>
-                    <td><?php echo $value->CodEquipamento;?></td>
-                    <td><?php echo $value->Nome;?></td>
-                    <td><?php echo $value->Descricao;?></td>
-                    <td><?php echo $value->Preco;?></td>
-                    <td>
-                        
-                        <button type="button" id="btn_editar" value="<?php echo $value->CodEquipamento; ?>"class="btn btn-outline-primary">
-                            Editar
-                        </button>
-
-                        <button type="button" id="btn_excluir" value="<?php echo $value->CodEquipamento; ?>" class="btn btn-outline-danger">
-                            Excluir
-                        </button>
-                
-                    </td>
-                </tr>
-            <?php
-            
-            endforeach;
-            break;*/
-
         case 'form_editar_equi':/*Formulario Preenchido com os dados para EDIÇÂO*/
 
             $CodEquipamento = filter_input(INPUT_POST, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);

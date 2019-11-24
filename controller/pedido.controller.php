@@ -24,7 +24,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $DataPedido = date('Y-m-d H:i:s');
             $Data_de_uso = filter_input(INPUT_POST, 'txtdataUso' , FILTER_SANITIZE_STRING);
             $HorasAlugado = filter_input(INPUT_POST, 'txthorasAlugado' , FILTER_SANITIZE_STRING);
-            $Data_Hora_Montagem = filter_input(INPUT_POST, 'txthoraMontagem' , FILTER_SANITIZE_STRING);
+            $Hora_Montagem = filter_input(INPUT_POST, 'txthoraMontagem' , FILTER_SANITIZE_STRING);
             $FormaPagamento = filter_input(INPUT_POST, 'txtformaPagamento' , FILTER_SANITIZE_STRING);
             $Supervisao = filter_input(INPUT_POST, 'txtsupervisao' , FILTER_SANITIZE_NUMBER_INT);
 
@@ -46,7 +46,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->DataPedido = $DataPedido;
             $ped->Data_de_uso = $Data_de_uso;
             $ped->HorasAlugado = $HorasAlugado;            
-            $ped->Data_Hora_Montagem = $Data_Hora_Montagem;
+            $ped->Hora_Montagem = $Hora_Montagem;
             $ped->FormaPagamento = $FormaPagamento;
             $ped->Supervisao = $Supervisao;
 
@@ -78,7 +78,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 Quantidade de horas alugado
                 <input type="number" name="HorasAlugado" value="<?php echo $dados->HorasAlugado; ?>">
                 Data de montagem
-                <input type="date" name="Data_Hora_Montagem" value="<?php echo $dados->Data_Hora_Montagem ?>">
+                <input type="date" name="Hora_Montagem" value="<?php echo $dados->Hora_Montagem ?>">
                 Preço final
                 <input type="number" name="PrecoFinal" value="<?php echo $dados->PrecoFinal; ?>">
                 Forma de pagamento
@@ -98,7 +98,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->DataPedido = filter_input(INPUT_POST, 'DataPedido', FILTER_SANITIZE_STRING);
             $ped->Data_de_uso = filter_input(INPUT_POST, 'Data_de_uso', FILTER_SANITIZE_STRING);
             $ped->HorasAlugado = filter_input(INPUT_POST, 'HorasAlugado', FILTER_SANITIZE_STRING);
-            $ped->Data_Hora_Montagem = filter_input(INPUT_POST, 'Data_Hora_Montagem', FILTER_SANITIZE_STRING);
+            $ped->Hora_Montagem = filter_input(INPUT_POST, 'Hora_Montagem', FILTER_SANITIZE_STRING);
             $ped->PrecoFinal = filter_input(INPUT_POST, 'PrecoFinal', FILTER_SANITIZE_STRING);
             $ped->FormaPagamento = filter_input(INPUT_POST, 'FormaPagamento', FILTER_SANITIZE_STRING);
 
