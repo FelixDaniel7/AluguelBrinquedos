@@ -15,6 +15,10 @@
   <body>
 
     <form action="" method="post" class="form" name="form_cad_pedido">
+        Cliente
+        <input type="number" name="CodCliente"><br>
+        Usuario
+        <input type="number" name="CodUsuario"><br>
         Endereço
         <input type="text" name="EnderecoMontagem"><br>
         Data do pedido
@@ -29,6 +33,8 @@
         <input type="number" name="PrecoFinal"><br>
         Forma de pagamento
         <input type="text" name="FormaPagamento"><br>
+        Supervisao
+        <input type="text" name="Supervisao"><br>
 
         <button type="submit">
             Realizar pedido

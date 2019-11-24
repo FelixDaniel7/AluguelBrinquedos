@@ -1,17 +1,18 @@
 <?php
 
-class Cliente{
+class cliente
+{
+    private $CodCliente;
+    private $CPF;
+    private $Nome;
+    private $Email;
+    private $Celular;
+    private $CEP;
+    private $Endereco;
+    private $Numero;
+    private $Bairro;
+    private $Complemento;
 
-    //atributos da classe
-    private $codcliente;
-    private $cpf;
-    private $nome;
-    private $telefone;
-    private $email;
-    private $senha;
-    private $endereco;
-
-    //get e set 
     function __get($atributo)
     {
         return $this->$atributo;
@@ -21,11 +22,8 @@ class Cliente{
         $this->$atributo = $value;    
     }
 
-    //conectar como BD
     private $con;
-    /**
-     * Class constructor.
-     */
+    
     function __construct()
     {
         include_once("conexao.php");
@@ -33,41 +31,121 @@ class Cliente{
         $this->con = $classe_con->Conectar();
     }
 
-    //metodo cadastrar 
-    function Cadastrar()
-    {
-        $comandoSQL = "INSERT INTO cliente(CodCliente,CPF,Nome,Telefone,Email,Senha,Endereco)
-                            VALUES(?,?,?,?,?,?,?)";
-        $valores = array($this->codcliente,
-                        $this->cpf,
-                        $this->nome,
-                        $this->telefone,
-                        $this->email,
-                        $this->senha,
-                        $this->endereco);
+    function CadastrarCliente(){
+        $comandoSQL = "INSERT INTO cliente(CPF,Nome,Email,Celular,
+        CEP,Endereco,Numero,Bairro,Complemento)
+                        VALUES (?,?,?,?,?,?,?,?,?)";
+
         $exec = $this->con->prepare($comandoSQL);
-        $exec->execute($valores);
+        $exec->bindValue(1,$this->CPF,PDO::PARAM_STR);
+        $exec->bindValue(2,$this->Nome,PDO::PARAM_STR);
+        $exec->bindValue(3,$this->Email,PDO::PARAM_STR);
+        $exec->bindValue(4,$this->Celular,PDO::PARAM_STR);
+        $exec->bindValue(5,$this->CEP,PDO::PARAM_STR);
+        $exec->bindValue(6,$this->Endereco,PDO::PARAM_STR);
+        $exec->bindValue(7,$this->Numero,PDO::PARAM_STR);
+        $exec->bindValue(8,$this->Bairro,PDO::PARAM_STR);
+        $exec->bindValue(9,$this->Complemento,PDO::PARAM_STR);
+
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+            return true;
+        }else{
+        return false;
+        }
     }
 
-    //login
-    function Login($login,$senhalogin,$nome){
-        $comandoSQL = "SELECT * FROM Cliente 
-                        WHERE Nome = '$nome' AND Email = '$login' AND Senha = '$senhalogin'"; 
+    function ConsultarCliente(){
+        $comandoSQL = "SELECT * FROM cliente";
 
         $exec = $this->con->prepare($comandoSQL);
         $exec->execute();
 
-        $linhasafetadas = $exec->rowCount();
-        //echo $linhasafetadas;
+        $dados = array();
 
-        if ($linhasafetadas > 0) {
-            //echo "<script>alert('Funcionaaaaa');</script>";
-            return true; 
+        foreach ($exec->fetchAll() as $value) {
+            
+            $cli = new Cliente();
+
+            $cli->CPF = $value['CPF'];
+            $cli->Nome = $value['Nome'];
+            $cli->Email = $value['Email'];
+            $cli->Celular = $value['Celular'];
+            $cli->CEP = $value['CEP'];
+            $cli->Endereco = $value['Endereco'];
+            $cli->Numero = $value['Numero'];
+            $cli->Bairro = $value['Bairro'];
+            $cli->Complemento = $value['Complemento'];
+
+            $dados[] = $cli;
         }
-        else {
-            //echo "<script>alert('Naaaaaao Funcionaaaaa');</script>";
+        return $dados;
+    }
+
+    function RetornarDados($CodCliente){
+        $comandoSQL = "SELECT * FROM cliente WHERE CodCliente = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodCliente,PDO::PARAM_INT);
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+
+        return $exec->fetch(PDO::FETCH_OBJ);
+        }
+        else{
             return false;
-        }        
+        }
+
+    }
+
+    function AtualizarCliente(){
+        $comandoSQL = "UPDATE cliente
+                        SET CPF = ?,
+                        Nome = ?,
+                        Email = ?,
+                        Celular = ?,
+                        CEP = ?,
+                        Endereco = ?,
+                        Numero = ?,
+                        Bairro = ?,
+                        Complemento = ?
+                        WHERE CodCliente = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$this->CPF,PDO::PARAM_STR);
+        $exec->bindValue(2,$this->Nome,PDO::PARAM_STR);
+        $exec->bindValue(3,$this->Email,PDO::PARAM_STR);
+        $exec->bindValue(4,$this->Celular,PDO::PARAM_STR);
+        $exec->bindValue(5,$this->CEP,PDO::PARAM_STR);
+        $exec->bindValue(6,$this->Endereco,PDO::PARAM_STR);
+        $exec->bindValue(7,$this->Numero,PDO::PARAM_STR);
+        $exec->bindValue(8,$this->Bairro,PDO::PARAM_STR);
+        $exec->bindValue(9,$this->Complemento,PDO::PARAM_STR);
+        $exec->bindValue(10,$this->CodCliente,PDO::PARAM_INT);
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+}
+
+    function ExcluirCliente(){
+        $comandoSQL = "DELETE FROM cliente WHERE CodCliente = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$this->CodCliente,PDO::PARAM_INT);
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+            return true;
+         }
+        else{
+            return false;
+        }
     }
 }
 ?>
