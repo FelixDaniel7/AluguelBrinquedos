@@ -227,7 +227,6 @@
       </div>
     </div>
   </section>
-  <!-- Footer -->
   <?php include_once("view/menu/menu-inferior.php"); ?>
 </body>
 </html>
