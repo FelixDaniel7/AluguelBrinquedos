@@ -94,22 +94,28 @@ include_once("../controller/pedido.controller.php");
   <div class="container-fluid">
     <div class="row"><!--essa-->
       <div class="card-deck">
-        <?php foreach($equi->ConsultarEquipamento() as $value): ?>
-        <div class="col-md-3" id="card-carrinho"><!-- essa -->
-          <div class="card" style="height: 50rem;">
-            <img class="card-img-top" src="img/produtos/<?php echo $value->Imagem;?>" alt="Imagem Equipamento">
-            <div class="card-body">
-              <h5 class="card-title"><?php echo $value->Nome;?></h5>
-              <p class="card-text"><?php echo $value->Descricao;?></p>
-            </div>
-            <div class="card-footer">
-              <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $value->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
-              <br>
-              <button type="button" carrinho="btn_add_carrinho" value="<?php echo $value->CodEquipamento;?>" class="btn btn-success btn-sm">Adicionar ao carrinho</button>
+        <?php 
+        if ($certo = $equi->ConsultarEquipamento()) {
+          foreach($certo as $value){
+          ?>
+          <div class="col-md-3" id="card-carrinho"><!-- essa -->
+            <div class="card" style="height: 50rem;">
+              <img class="card-img-top" src="img/produtos/<?php echo $value->Imagem;?>" alt="Imagem Equipamento">
+              <div class="card-body">
+                <h5 class="card-title"><?php echo $value->Nome;?></h5>
+                <p class="card-text"><?php echo $value->Descricao;?></p>
+              </div>
+              <div class="card-footer">
+                <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $value->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+                <br>
+                <button type="button" carrinho="btn_add_carrinho" value="<?php echo $value->CodEquipamento;?>" class="btn btn-success btn-sm">Adicionar ao carrinho</button>
+              </div>
             </div>
           </div>
-        </div>
-        <?php endforeach; ?>
+          <?php }
+                }else {
+                  echo '<div class="container">Nenhum registro</div>';
+                } ?>
       </div> 
     </div>
   </div>

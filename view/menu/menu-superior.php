@@ -42,12 +42,19 @@
           Brinquedos
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <?php foreach($equi->ConsultarEquipamento() as $value): ?>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item " href="Pag_Equipamento.php?CodEquipamento=<?php echo $value->CodEquipamento;?>">
-                  <?php echo $value->Nome;?>
-              </a>
-            <?php endforeach;?>
+            <?php 
+            if ($certo = $equi->ConsultarEquipamento()) {
+              foreach($certo as $value){
+                ?>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item " href="Pag_Equipamento.php?CodEquipamento=<?php echo $value->CodEquipamento;?>">
+                    <?php echo $value->Nome;?>
+                </a>
+              <?php }
+                }else {
+                  echo "Nenhum registro";
+                } 
+              ?>             
           </div>
           </li>
           <li class="nav-item active">
