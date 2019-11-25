@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 21-Nov-2019 às 22:14
+-- Generation Time: 25-Nov-2019 às 01:08
 -- Versão do servidor: 10.1.40-MariaDB
 -- versão do PHP: 7.3.5
 
@@ -27,32 +27,6 @@ USE `brinquedosfesta`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cliente`
---
-
-CREATE TABLE `cliente` (
-  `CodCliente` smallint(6) NOT NULL,
-  `CPF` char(11) COLLATE utf8_unicode_ci NOT NULL,
-  `Nome` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Celular` varchar(11) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `CEP` char(8) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Endereco` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Numero` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Bairro` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Complemento` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `cliente`
---
-
-INSERT INTO `cliente` (`CodCliente`, `CPF`, `Nome`, `Celular`, `Email`, `CEP`, `Endereco`, `Numero`, `Bairro`, `Complemento`) VALUES
-(1, '12345678978', 'daada', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
 -- Estrutura da tabela `datasdisponivel`
 --
 
@@ -70,14 +44,26 @@ CREATE TABLE `datasdisponivel` (
 
 CREATE TABLE `equipamento` (
   `CodEquipamento` smallint(6) NOT NULL,
-  `Nome` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Descricao` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Nome` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Descricao` varchar(1000) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Peso` decimal(7,2) DEFAULT NULL,
   `Altura` decimal(7,2) DEFAULT NULL,
   `Comprimento` decimal(7,2) DEFAULT NULL,
   `Largura` decimal(7,2) DEFAULT NULL,
-  `Preco` decimal(8,2) DEFAULT NULL
+  `Preco` decimal(8,2) DEFAULT NULL,
+  `Status` enum('Alugado','Disponivel') COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Imagem` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `equipamento`
+--
+
+INSERT INTO `equipamento` (`CodEquipamento`, `Nome`, `Descricao`, `Peso`, `Altura`, `Comprimento`, `Largura`, `Preco`, `Status`, `Imagem`) VALUES
+(1, 'Castelo Infável', 'Brinquedos infláveis fazem a alegria da criançada em qualquer festa infantil, são brinquedos que chamam muito a atenção e proporcionam horas de muita diversão.', '0.00', '0.00', '0.00', '0.00', '544.00', 'Disponivel', '5ddb04bcaaa78.jpg'),
+(2, 'Cama elástica', 'A cama elástica é sempre o brinquedo mais querido e procurado nas festas e não há criança que não goste de passar horas pulando e brincando sem parar, por isso, é um brinquedo ideal para buffets, condomínios, clubes, casas e hotéis.', '0.00', '0.00', '0.00', '0.00', '200.50', 'Disponivel', '5ddb04ea23e38.jpg'),
+(3, 'Piscina de bolinhas', 'Uma festa infantil não é uma festa sem uma piscina de bolinhas, ela é um item indispensável que vai encantar as crianças e deixar a festa muito mais divertida!', '0.00', '0.00', '0.00', '0.00', '120.99', 'Disponivel', '5ddb04af0d2f0.jpg'),
+(4, 'Máquina de Algodão Doce', 'Uma Máquina de Algodão Doce é um acessório indispensável para deixar uma festinha infantil ainda mais divertida para as crianças, até mesmo para os adultos. Aqui na Magia Brinquedos nós temos modelos de alta qualidade, fácil manejo e transporte e com preços incríveis. Confira os nosso produtos!', '0.00', '0.00', '0.00', '0.00', '232.65', 'Disponivel', '5ddb04f7109a0.jpg');
 
 -- --------------------------------------------------------
 
@@ -100,26 +86,25 @@ CREATE TABLE `itens` (
 
 CREATE TABLE `pedido` (
   `CodPedido` int(11) NOT NULL,
-  `CodCliente` smallint(6) NOT NULL,
+  `CPF` char(11) COLLATE utf8_unicode_ci NOT NULL,
+  `Nome` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Telefone` char(10) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Celular` char(11) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Email` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `CEP` char(8) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Endereco` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Numero` varchar(5) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Bairro` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `Complemento` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `DataPedido` datetime DEFAULT NULL,
   `Data_de_uso` date DEFAULT NULL,
   `HorasAlugado` double DEFAULT NULL,
-  `Data_Hora_Montagem` datetime DEFAULT NULL,
+  `Hora_Montagem` time DEFAULT NULL,
   `PrecoFinal` decimal(8,2) DEFAULT NULL,
   `FormaPagamento` enum('Dinheiro','Cartão','Mercado Pago') COLLATE utf8_unicode_ci DEFAULT NULL,
-  `Status` bit(1) DEFAULT NULL,
+  `Status` enum('Pendente','Realizado') COLLATE utf8_unicode_ci DEFAULT NULL,
   `Supervisao` bit(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `pedido`
---
-
-INSERT INTO `pedido` (`CodPedido`, `CodCliente`, `DataPedido`, `Data_de_uso`, `HorasAlugado`, `Data_Hora_Montagem`, `PrecoFinal`, `FormaPagamento`, `Status`, `Supervisao`) VALUES
-(1, 1, '2019-11-07 00:00:00', NULL, NULL, NULL, NULL, 'Dinheiro', NULL, NULL),
-(2, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(3, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(4, 1, '2019-11-21 19:08:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -139,12 +124,6 @@ CREATE TABLE `usuario` (
 --
 -- Indexes for dumped tables
 --
-
---
--- Indexes for table `cliente`
---
-ALTER TABLE `cliente`
-  ADD PRIMARY KEY (`CodCliente`);
 
 --
 -- Indexes for table `datasdisponivel`
@@ -170,8 +149,7 @@ ALTER TABLE `itens`
 -- Indexes for table `pedido`
 --
 ALTER TABLE `pedido`
-  ADD PRIMARY KEY (`CodPedido`),
-  ADD KEY `FK_Cliente_Pedido` (`CodCliente`);
+  ADD PRIMARY KEY (`CodPedido`);
 
 --
 -- Indexes for table `usuario`
@@ -185,16 +163,10 @@ ALTER TABLE `usuario`
 --
 
 --
--- AUTO_INCREMENT for table `cliente`
---
-ALTER TABLE `cliente`
-  MODIFY `CodCliente` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `equipamento`
 --
 ALTER TABLE `equipamento`
-  MODIFY `CodEquipamento` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `CodEquipamento` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `itens`
@@ -206,7 +178,7 @@ ALTER TABLE `itens`
 -- AUTO_INCREMENT for table `pedido`
 --
 ALTER TABLE `pedido`
-  MODIFY `CodPedido` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `CodPedido` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `usuario`
@@ -230,12 +202,6 @@ ALTER TABLE `datasdisponivel`
 ALTER TABLE `itens`
   ADD CONSTRAINT `FK_Equipamento_Itens` FOREIGN KEY (`CodEquipamento`) REFERENCES `equipamento` (`CodEquipamento`),
   ADD CONSTRAINT `FK_Pedido_Itens` FOREIGN KEY (`CodPedido`) REFERENCES `pedido` (`CodPedido`);
-
---
--- Limitadores para a tabela `pedido`
---
-ALTER TABLE `pedido`
-  ADD CONSTRAINT `FK_Cliente_Pedido` FOREIGN KEY (`CodCliente`) REFERENCES `cliente` (`CodCliente`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
