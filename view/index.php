@@ -1,5 +1,6 @@
 <?php 
 include_once("../controller/equipamento.controller.php");
+include_once("../controller/pedido.controller.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,13 +25,19 @@ include_once("../controller/equipamento.controller.php");
   <link href="css/landing-page.min.css" rel="stylesheet">
   <link href="css/css.css" rel="stylesheet">
 
+  <!-- Jquery -->
+  <script src="../js/jquery-3.4.1.min.js"></script>
+    <!-- Ajax -->
+    <script src="../ajax/pedido.ajax.js"></script>
+    <!-- Alertas Bonitinhos -->
+    <script src="../js/sweetalert.js"></script>
+
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
-
   <?php include_once("menu/menu-superior.php");?>
 
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
@@ -80,6 +87,7 @@ include_once("../controller/equipamento.controller.php");
   </div>
 
 
+ 
 <section class="features-icons bg-light text-center" >
   <h2>Brinquedos</h2>
   <hr>
@@ -87,7 +95,7 @@ include_once("../controller/equipamento.controller.php");
     <div class="row"><!--essa-->
       <div class="card-deck">
         <?php foreach($equi->ConsultarEquipamento() as $value): ?>
-        <div class="col-md-3"><!-- essa -->
+        <div class="col-md-3" id="card-carrinho"><!-- essa -->
           <div class="card" style="height: 50rem;">
             <img class="card-img-top" src="img/produtos/<?php echo $value->Imagem;?>" alt="Imagem Equipamento">
             <div class="card-body">
@@ -96,6 +104,8 @@ include_once("../controller/equipamento.controller.php");
             </div>
             <div class="card-footer">
               <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $value->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+              <br>
+              <button type="button" carrinho="btn_add_carrinho" value="<?php echo $value->CodEquipamento;?>" class="btn btn-success btn-sm">Adicionar ao carrinho</button>
             </div>
           </div>
         </div>
@@ -104,61 +114,6 @@ include_once("../controller/equipamento.controller.php");
     </div>
   </div>
 </section>
-
-<!-- 
-    <section class="features-icons bg-light text-center" >
-        <h5>Brinquedos</h5>
-        <hr>
-      <div class="container">
-        <div class="row">
-            <div class="card-deck">
-            <div class="card">
-                <img class="card-img-top" src="img/produtos/CamaElastica/1.jpg" alt="Imagem de capa do card">
-                <div class="card-body">
-                  <h5 class="card-title">Cama elástica</h5>
-                  <p class="card-text">A cama elástica é sempre o brinquedo mais querido e procurado nas festas e não há criança que não goste de passar horas pulando e brincando sem parar, por isso, é um brinquedo ideal para buffets, condomínios, clubes, casas e hotéis. </p>
-                </div>
-                <div class="card-footer">
-                <a href="Cama_Elastica.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
-                </div>
-              </div>
-
-
-              <div class="card">
-                <img class="card-img-top" src="img/produtos/PiscinaBolinhas/1.jpg" alt="Imagem de capa do card">
-                <div class="card-body">
-                  <h5 class="card-title">Piscina de bolinhas</h5>
-                  <p class="card-text">Uma festa infantil não é uma festa sem uma piscina de bolinhas, ela é um item indispensável que vai encantar as crianças e deixar a festa muito mais divertida!</p>
-                </div>
-                <div class="card-footer">
-                <a href="Piscina_Bolinhas.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
-                </div>
-              </div>
-              <div class="card">
-                <img class="card-img-top" src="img/produtos/MaquinaAlgodão/1.jpg" alt="Imagem de capa do card">
-                <div class="card-body">
-                  <h5 class="card-title">Máquina de Algodão Doce</h5>
-                  <p class="card-text">Uma Máquina de Algodão Doce é um acessório indispensável para deixar uma festinha infantil ainda mais divertida para as crianças, até mesmo para os adultos. Aqui na Magia Brinquedos nós temos modelos de alta qualidade, fácil manejo e transporte e com preços incríveis. Confira os nosso produtos!</p>
-                </div>
-                <div class="card-footer">
-                <a href="Castelo_Inflavel.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
-                </div>
-              </div>
-              <div class="card">
-                <img class="card-img-top" src="img/produtos/CasteloInflavel/1.jpg" alt="Imagem de capa do card">
-                <div class="card-body">
-                  <h5 class="card-title">Castelo Infável</h5>
-                  <p class="card-text">Brinquedos infláveis fazem a alegria da criançada em qualquer festa infantil, são brinquedos que chamam muito a atenção e proporcionam horas de muita diversão.</p>
-                </div>
-                <div class="card-footer">
-                <a href="Castelo_Inflavel.php" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
-                </div>
-              </div>
-              </div>
-        </div>
-      </div>
-    </section> -->
-
 
   <!-- Icons Grid -->
   <section class="features-icons bg-light text-center" style="background:url('img/Menu/bolinha.jpg')"">
