@@ -2,12 +2,13 @@
 
 $CodEquipamento = filter_input(INPUT_GET, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);
 
-//if(isset($_REQUEST['CodEquipamento']))
-if (!$certo = $equi->RetornarDados($CodEquipamento)):
+if(isset($_REQUEST['CodEquipamento'])):
+if (!$value = $equi->RetornarDados($CodEquipamento)):
     echo "<h1>Página não encontrada</h1>";
     include_once("erro.php");
 else:
-    foreach ($equi->RetornarDados($CodEquipamento) as $value):
+    //foreach ($equi->RetornarDados($CodEquipamento) as $value):
+      $value = $equi->RetornarDadosObj($CodEquipamento);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -56,18 +57,46 @@ else:
                     <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
                     <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
                   </ol>
-                    <!-- <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img class="d-block w-100" src="img/produtos/CasteloInflavel/1.jpg" alt="Primeiro Slide">
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="img/produtos/CasteloInflavel/2.jpg" alt="Segundo Slide">
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" src="img/produtos/CasteloInflavel/3.jpg" alt="Terceiro Slide">
-                      </div>
-                    </div> -->
-                    <img class="" src="img/produtos/<?php echo $value->Imagem;?>" width="555" height="400" alt="Imagem Equipamento">
+                  <?php 
+                    $CodEquipamento = $value->CodEquipamento; 
+                    if ($CodEquipamento == 1){
+                      $img1 = "<img class='d-block w-100' src='img/produtos/CasteloInflavel/1.jpg' alt='Primeiro Slide'>";
+                      $img2 = "<img class='d-block w-100' src='img/produtos/CasteloInflavel/2.jpg' alt='Segundo Slide'>";
+                      $img3 = "<img class='d-block w-100' src='img/produtos/CasteloInflavel/3.jpg' alt='Terceiro Slide'>";
+                    }
+                    else if ($CodEquipamento == 2){
+                        $img1 = '<img class="d-block w-100" src="img/produtos/CamaElastica/1.jpg" alt="Primeiro Slide">';
+                        $img2 = '<img class="d-block w-100" src="img/produtos/CamaElastica/2.jpg" alt="Segundo Slide">';
+                        $img3 = '<img class="d-block w-100" src="img/produtos/CamaElastica/3.jpg" alt="Terceiro Slide">';
+                    }
+                    else if ($CodEquipamento == 3){
+                      $img1 = '<img class="d-block w-100" src="img/produtos/PiscinaBolinhas/1.jpg" alt="Primeiro Slide">';
+                      $img2 = '<img class="d-block w-100" src="img/produtos/PiscinaBolinhas/2.jpg" alt="Segundo Slide">';
+                      $img3 = '<img class="d-block w-100" src="img/produtos/PiscinaBolinhas/3.jpg" alt="Terceiro Slide">';
+                     }
+                     else if($CodEquipamento == 4){
+                      $img1 = '<img class="d-block w-100" src="img/produtos/MaquinaAlgodão/1.jpg" alt="Primeiro Slide">';
+                      $img2 = '<img class="d-block w-100" src="img/produtos/MaquinaAlgodão/2.jpg" alt="Segundo Slide">';
+                      $img3 = '<img class="d-block w-100" src="img/produtos/MaquinaAlgodão/3.jpg" alt="Terceiro Slide">';
+
+                     }                   
+                     if ($CodEquipamento <= 4) {
+                      echo "<div class='carousel-item active'>
+                              $img1
+                            </div>
+                            <div class='carousel-item'>
+                              $img2
+                            </div>
+                            <div class='carousel-item'>
+                              $img3
+                            </div>";
+
+                     }
+                     else{
+                      echo "<img class='d-block w-100' src='img/produtos/$value->Imagem' width='555' height='400' alt='Imagem Equipamento'>";
+                      }
+                    ?>
+                    <!-- <img class="d-block w-100" src="img/produtos/<?php echo $value->Imagem;?>" width="555" height="400" alt="Imagem Equipamento"> -->
                     <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                       <span class="sr-only">Anterior</span>
@@ -95,7 +124,14 @@ else:
                     <p class="card-text">
                     <?php echo $value->Descricao;?>
                     </p>
-                    <a href="#" class="btn btn-primary">Alugar</a>
+                    <?php if ($value->Status != "Disponivel") {
+                      echo "<a href='#' class='btn btn-danger'>Indisponivel</a>";
+                    }
+                    else{
+                      echo "<a href='' class='btn btn-primary'>Alugar</a>";
+                    }
+                    ?>
+                    
                     <div>
                       <br>
                     </div>
@@ -124,17 +160,43 @@ else:
 
   </section>
 
-
-  <?php endforeach; ?>
+  
 <center>
+<section class="features-icons bg-light text-center espaco" >
+<h3>Recomendados</h3>
+  <hr>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="card-deck">
+          <?php foreach($equi->ConsultarDiferente($value->CodEquipamento) as $valor): ?>
+            <div class="col-3 col-sm">
+              <div class="card" style="height: 40rem;">
+                <img class="card-img-top" src="img/produtos/<?php echo $valor->Imagem;?>"alt="Imagem de capa do card">
+                <div class="card-body">
+                  <h5 class="card-title"><?php echo $valor->Nome;?></h5>
+                  <p class="card-text"><?php echo $valor->Descricao;?></p>
+                </div>
+                <div class="card-footer">
+                <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $valor->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+                </div>
+              </div>
+              </div>
+              <?php endforeach; ?>
+        </div>
+      </div>
+    </div>
+  </section>
+</center>
+
+<!-- <center>
 <section class="features-icons bg-light text-center" >
 <h3>Recomendados</h3>
   <hr>
   <div class="container-fluid">
-    <div class="row"><!--essa-->
+    <div class="row">
       <div class="card-deck">
         <?php foreach($equi->ConsultarDiferente($value->CodEquipamento) as $valor): ?>
-        <div class="col-3"><!-- essa -->
+        <div class="col-3">
           <div class="card" style="height: 40rem;">
             <img class="card-img-top" src="img/produtos/<?php echo $valor->Imagem;?>" width="30" height="180" alt="Imagem Equipamento">
             <div class="card-body">
@@ -151,8 +213,8 @@ else:
     </div>
   </div>
 </section>
+</center> -->
 
-</center>
 
 
   <!-- <section class="features-icons bg-light text-center espaco " >
@@ -197,11 +259,19 @@ else:
   </section> -->
 
 
-  <?php endif;?>
-
-  <?php include_once("menu/menu-inferior.php");?>
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+  <?php 
+    include_once("menu/menu-inferior.php");?>
+ <!-- Bootstrap core JavaScript -->
+ <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+  <?php endif; ?>
+    
+  <?php else:
+      echo "<h1>Página não encontrada</h1>";
+      include_once("erro.php");
+  endif;?>
+
+
+ 

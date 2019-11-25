@@ -173,7 +173,7 @@ class Equipamento
 
         if ($exec->rowCount() > 0) {
 
-            //return $exec->fetchAll(PDO::FETCH_ASSOC);
+            //return $exec->fetchAll(PDO::FETCH_OBJ);
 
                 //laço de repetição para armazenar dados no vetor
             foreach ($exec->fetchAll() as $valores) {
