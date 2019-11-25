@@ -87,9 +87,9 @@ include_once("../controller/equipamento.controller.php");
     <div class="row"><!--essa-->
       <div class="card-deck">
         <?php foreach($equi->ConsultarEquipamento() as $value): ?>
-        <div class="col-3"><!-- essa -->
-          <div class="card" style="width: 18rem; height: 40rem;">
-            <img class="card-img-top" src="img/produtos/<?php echo $value->Imagem;?>" width="30" height="180" alt="Imagem Equipamento">
+        <div class="col-md-3"><!-- essa -->
+          <div class="card" style="height: 40rem;">
+            <img class="card-img-top" src="img/produtos/<?php echo $value->Imagem;?>" alt="Imagem Equipamento">
             <div class="card-body">
               <h5 class="card-title"><?php echo $value->Nome;?></h5>
               <p class="card-text"><?php echo $value->Descricao;?></p>

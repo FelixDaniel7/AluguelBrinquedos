@@ -17,7 +17,7 @@
     <script src="../js/sweetalert.js"></script>
     <!-- datatable -->
     <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> -->
-    <script src="css/jquery.dataTables.min.css"></script>
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet">
   </head>
   <body>
 

@@ -169,7 +169,7 @@ else:
     <div class="row">
       <div class="card-deck">
           <?php foreach($equi->ConsultarDiferente($value->CodEquipamento) as $valor): ?>
-            <div class="col-3 col-sm">
+            <div class="col-md-3">
               <div class="card" style="height: 40rem;">
                 <img class="card-img-top" src="img/produtos/<?php echo $valor->Imagem;?>"alt="Imagem de capa do card">
                 <div class="card-body">
@@ -187,35 +187,6 @@ else:
     </div>
   </section>
 </center>
-
-<!-- <center>
-<section class="features-icons bg-light text-center" >
-<h3>Recomendados</h3>
-  <hr>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="card-deck">
-        <?php foreach($equi->ConsultarDiferente($value->CodEquipamento) as $valor): ?>
-        <div class="col-3">
-          <div class="card" style="height: 40rem;">
-            <img class="card-img-top" src="img/produtos/<?php echo $valor->Imagem;?>" width="30" height="180" alt="Imagem Equipamento">
-            <div class="card-body">
-              <h5 class="card-title"><?php echo $valor->Nome;?></h5>
-              <p class="card-text"><?php echo $valor->Descricao;?></p>
-            </div>
-            <div class="card-footer">
-              <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $valor->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
-            </div>
-          </div>
-        </div>
-        <?php endforeach; ?>
-      </div>
-    </div>
-  </div>
-</section>
-</center> -->
-
-
 
   <!-- <section class="features-icons bg-light text-center espaco " >
       <h3>Recomendados</h3>
