@@ -39,7 +39,7 @@
                             <th>Nome</th>
                             <th>Imagem</th>
                             <th>Preço</th>
-                            <th width="200">Ação</th>
+                            <th>Editar/Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
