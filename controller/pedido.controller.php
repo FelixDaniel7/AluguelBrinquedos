@@ -57,7 +57,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 <table id="tabela_carrinho" class="table table-sm">
                 <thead class="fundo text-white">
                 <th>Produto</th>
-                <th>Quantidade</th>
+                <!-- <th>Quantidade</th> -->
                 <th>Preço</th>
                 <th>Subtotal</th>
                 <th>Excluir</th>
@@ -74,7 +74,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
                 <tr>
                 <td><?php echo $produtos[$valor]["nomeproduto"];?></td>
-                <td><?php echo $_SESSION["quantidade"][$indice];?></td>
+                <!-- <td><?php //echo $_SESSION["quantidade"][$indice];?></td> -->
                 <td><?php echo number_format($produtos[$valor]["preco"],2,',','.');?></td>
                 <td><?php echo number_format($subtotal,2,',','.');?></td>
                 <td>
