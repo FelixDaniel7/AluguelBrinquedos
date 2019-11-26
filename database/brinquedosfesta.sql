@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Nov-2019 às 01:08
+-- Generation Time: 26-Nov-2019 às 22:32
 -- Versão do servidor: 10.1.40-MariaDB
 -- versão do PHP: 7.3.5
 
@@ -122,6 +122,14 @@ CREATE TABLE `usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`CodUsuario`, `Nome`, `Email`, `Login`, `Senha`, `Tipo`) VALUES
+(1, 'grfgfdgfd', 'rodolfinho@gmail.com', '', '67a74306b06d0c01624fe0d0249a570f4d093747', 'Administrador'),
+(2, 'grfgfdgfd', '', '', '67a74306b06d0c01624fe0d0249a570f4d093747', 'Moderador');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -166,7 +174,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `equipamento`
 --
 ALTER TABLE `equipamento`
-  MODIFY `CodEquipamento` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `CodEquipamento` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `itens`
@@ -184,7 +192,7 @@ ALTER TABLE `pedido`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `CodUsuario` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `CodUsuario` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
