@@ -58,11 +58,20 @@ include_once('../controller/pedido.controller.php'); ?>
         <td><?php echo $value->DataPedido;?></td>
         <td><?php echo $value->Data_de_uso;?></td>
         <td><?php echo $value->HorasAlugado;?></td>
-        <td><?php echo $value->Data_Hora_Montagem;?></td>
+        <td><?php echo $value->Hora_Montagem;?></td>
         <td><?php echo $value->PrecoFinal;?></td>
         <td><?php echo $value->FormaPagamento;?></td>
         <td><?php echo $value->Status;?></td>
-        <td><?php echo $value->Supervisao;?></td>
+        <td>
+        <?php 
+        if($value->Supervisao == 1){
+          echo 'Sem revisão';
+        }
+        else{
+          echo 'Com Sepervisao';
+        }
+        ?>
+        </td>
         
         <td>   
         <button type="button" id="btn_editar" value="<?php echo $value->CodPedido; ?>"class="btn btn-outline-success">

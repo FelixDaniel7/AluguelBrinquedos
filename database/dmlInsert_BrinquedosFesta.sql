@@ -12,10 +12,16 @@ select * from Imagens where CodEquipamento = 11;
 
 
 
-SELECT * FROM Equipamento WHERE CodEquipamento != 12
+SELECT * FROM Equipamento WHERE CodEquipamento != 12;
+
+select * from pedido;
+INSERT INTO Itens(CodPedido,CodEquipamento,Preco)
+VALUES(1,1,'1000');
 
 
+select * from itens
 
+select 
 
 
 
