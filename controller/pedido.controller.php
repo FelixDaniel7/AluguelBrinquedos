@@ -53,17 +53,17 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
             case 'consultar_carrinho':
                 ?>
-                <table id="tabela_carrinho" class="table table-bordered">
-                <thead>
+                <div class="table-responsive-sm">
+                <table id="tabela_carrinho" class="table table-sm">
+                <thead class="fundo text-white">
                 <th>Produto</th>
                 <th>Quantidade</th>
                 <th>Preço</th>
                 <th>Subtotal</th>
-                <th></th>
+                <th>Excluir</th>
                 </thead>
                 <tbody>
                 <?php
-                ///var_dump($_SESSION);
                 $total = 0;
                 foreach ($_SESSION["CodEquipamento"] as $indice => $valor):
 
@@ -77,13 +77,18 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 <td><?php echo $_SESSION["quantidade"][$indice];?></td>
                 <td><?php echo number_format($produtos[$valor]["preco"],2,',','.');?></td>
                 <td><?php echo number_format($subtotal,2,',','.');?></td>
-                <td><button type="button" id="btn_excluir_carrinho" value="<?php echo $indice;?>" class="btn btn-danger btn-sm">Excluir</button></td>
+                <td>
+                    <button type="button" id="btn_excluir_carrinho" value="<?php echo $indice;?>" class="btn btn-sm btn-outline-danger">
+                        <i class="em em-x"></i>
+                    </button>
+                </td>
                 </tr>
 
                 <?php endforeach; ?>
                 </tbody>
                 </table>
-                <?php echo "<h2>TOTAL: R$ ".number_format($total,2,",",".")."</h2>"; ?>
+                <?php echo "<h4>Total: R$ ".number_format($total,2,",",".")."</h4>"; ?>
+                </div>
             
             <?php 
                 break;

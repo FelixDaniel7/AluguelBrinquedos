@@ -89,10 +89,23 @@ $(document).ready(function(){
             CodEquipamento: CodEquipamento},
             function(retorno){
                 console.log(retorno);
-
+                if (retorno == 'repetido') {
+                    swal({
+                        title: 'Este produto já foi adicionado !',
+                        icon: 'info'
+                    })
+                }else if(retorno == 'adicionou'){
+                    $('#modalCarrinho').modal({backdrop: true})
+                    ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho')
+                }
+                else{
+                    swal({
+                        title: 'Erro ao adicionar produto !',
+                        icon: 'error'
+                    })
+                }
                 
-                $('#modalCarrinho').modal({backdrop: true})
-                ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho')
+                
 
                 
             })

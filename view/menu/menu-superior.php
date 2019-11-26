@@ -1,3 +1,5 @@
+<!-- emojis -->
+<link href="css/emoji-css.css" rel="stylesheet">
 <nav class="nav justify-content-center bg-light">
   <ul class="nav justify-content-center">
       <li class="nav-item">
@@ -44,13 +46,14 @@
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <?php 
             if ($certo = $equi->ConsultarEquipamento()) {
-              foreach($certo as $value){
+              foreach($certo as $Numero):
                 ?>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item " href="Pag_Equipamento.php?CodEquipamento=<?php echo $value->CodEquipamento;?>">
-                    <?php echo $value->Nome;?>
+                <a class="dropdown-item " href="Pag_Equipamento.php?CodEquipamento=<?php echo $Numero->CodEquipamento;?>">
+                    <?php echo $Numero->Nome;?>
                 </a>
-              <?php }
+                
+              <?php endforeach;
                 }else {
                   echo "Nenhum registro";
                 } 
@@ -75,14 +78,13 @@
     function calculo(){
       var cep = $("#cep").val();
       $.post('../calcula.php',{cep:cep},function(data){
-        $("#retorno").html(data);
+        $("#retornoFrete").html(data);
       });
     }
 </script>
 
 <!-- Modal carrinho -->
 <div class="modal" id="modalCarrinho" tabindex="-1" role="dialog"aria-labelledby="exampleModalLabel" aria-hidden="true">
-
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">

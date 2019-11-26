@@ -22,15 +22,17 @@ include_once("../controller/pedido.controller.php");
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
-  <link href="css/landing-page.min.css" rel="stylesheet">
   <link href="css/css.css" rel="stylesheet">
 
-  <!-- Jquery -->
-  <script src="../js/jquery-3.4.1.min.js"></script>
+  
+
+    <!-- Jquery -->
+    <script src="../js/jquery-3.4.1.min.js"></script>
     <!-- Ajax -->
     <script src="../ajax/pedido.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
+    
 
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
@@ -103,12 +105,24 @@ include_once("../controller/pedido.controller.php");
               <img class="card-img-top" src="img/produtos/<?php echo $value->Imagem;?>" alt="Imagem Equipamento">
               <div class="card-body">
                 <h5 class="card-title"><?php echo $value->Nome;?></h5>
+                <?php if ($value->Status != "Disponivel") {
+                  echo "<span class='badge badge-pill badge-danger'>Indisponivel</span>";
+                } else{
+                  echo "<span class='badge badge-pill badge-success'>Disponivel</span>";
+                }?>
                 <p class="card-text"><?php echo $value->Descricao;?></p>
+                
               </div>
+              
               <div class="card-footer">
-                <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $value->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
-                <br>
-                <button type="button" carrinho="btn_add_carrinho" value="<?php echo $value->CodEquipamento;?>" class="btn btn-success btn-sm">Adicionar ao carrinho</button>
+                <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $value->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Ver Mais</a>
+                
+                <?php if ($value->Status == 'Disponivel') {?>
+                  <hr>
+                  <button type='button' carrinho='btn_add_carrinho' value='<?php echo $value->CodEquipamento;?>' class='btn btn-warning btn-sm'>
+                  Adicionar ao carrinho
+                    </button>
+                <?php }?>
               </div>
             </div>
           </div>
