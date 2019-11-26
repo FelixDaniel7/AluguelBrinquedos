@@ -16,6 +16,8 @@ include_once('../controller/pedido.controller.php'); ?>
     <script src="../ajax/pedido.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
+    <!-- emojis -->
+    <link href="css/emoji-css.css" rel="stylesheet">
     <!-- datatable -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   </head>
@@ -64,11 +66,11 @@ include_once('../controller/pedido.controller.php'); ?>
         
         <td>   
         <button type="button" id="btn_editar" value="<?php echo $value->CodPedido; ?>"class="btn btn-outline-success">
-        Editar
+        <i class="em em-pencil"></i>
         </button>
 
         <button type="button" id="btn_excluir" value="<?php echo $value->CodPedido; ?>" class="btn btn-outline-danger">
-        Excluir
+          <i class="em em-x"></i>
         </button>
         </td>
         <?php

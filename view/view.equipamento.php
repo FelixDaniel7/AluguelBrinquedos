@@ -56,10 +56,10 @@
                             <td><?php echo $value->Preco;?></td>
                             <td>
                                 <button type="button" id="btn_editar" value="<?php echo $value->CodEquipamento; ?>"class="btn btn-outline-warning">
-                                <i class="em em-pencil"></i>
+                                    <i class="em em-pencil"></i>
                                 </button>
                                 <button type="button" id="btn_excluir" value="<?php echo $value->CodEquipamento; ?>" class="btn btn-outline-danger">
-                                <i class="em em-x"></i>
+                                    <i class="em em-x"></i>
                                 </button>
                             </td>
                             <?php
