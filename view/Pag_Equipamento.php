@@ -61,24 +61,24 @@ else:
                 <?php 
                   $CodEquipamento = $value->CodEquipamento; 
                   if ($CodEquipamento == 1){
-                    $img1 = "<img class='d-block w-100' src='img/produtos/CasteloInflavel/1.jpg' alt='Primeiro Slide'>";
-                    $img2 = "<img class='d-block w-100' src='img/produtos/CasteloInflavel/2.jpg' alt='Segundo Slide'>";
-                    $img3 = "<img class='d-block w-100' src='img/produtos/CasteloInflavel/3.jpg' alt='Terceiro Slide'>";
+                    $img1 = "<img class='d-block w-100' src='img/Produtos/CasteloInflavel/1.jpg' alt='Primeiro Slide'>";
+                    $img2 = "<img class='d-block w-100' src='img/Produtos/CasteloInflavel/2.jpg' alt='Segundo Slide'>";
+                    $img3 = "<img class='d-block w-100' src='img/Produtos/CasteloInflavel/3.jpg' alt='Terceiro Slide'>";
                   }
                   else if ($CodEquipamento == 2){
-                      $img1 = '<img class="d-block w-100" src="img/produtos/CamaElastica/1.jpg" alt="Primeiro Slide">';
-                      $img2 = '<img class="d-block w-100" src="img/produtos/CamaElastica/2.jpg" alt="Segundo Slide">';
-                      $img3 = '<img class="d-block w-100" src="img/produtos/CamaElastica/3.jpg" alt="Terceiro Slide">';
+                      $img1 = '<img class="d-block w-100" src="img/Produtos/CamaElastica/1.jpg" alt="Primeiro Slide">';
+                      $img2 = '<img class="d-block w-100" src="img/Produtos/CamaElastica/2.jpg" alt="Segundo Slide">';
+                      $img3 = '<img class="d-block w-100" src="img/Produtos/CamaElastica/3.jpg" alt="Terceiro Slide">';
                   }
                   else if ($CodEquipamento == 3){
-                    $img1 = '<img class="d-block w-100" src="img/produtos/PiscinaBolinhas/1.jpg" alt="Primeiro Slide">';
-                    $img2 = '<img class="d-block w-100" src="img/produtos/PiscinaBolinhas/2.jpg" alt="Segundo Slide">';
-                    $img3 = '<img class="d-block w-100" src="img/produtos/PiscinaBolinhas/3.jpg" alt="Terceiro Slide">';
+                    $img1 = '<img class="d-block w-100" src="img/Produtos/PiscinaBolinhas/1.jpg" alt="Primeiro Slide">';
+                    $img2 = '<img class="d-block w-100" src="img/Produtos/PiscinaBolinhas/2.jpg" alt="Segundo Slide">';
+                    $img3 = '<img class="d-block w-100" src="img/Produtos/PiscinaBolinhas/3.jpg" alt="Terceiro Slide">';
                     }
                     else if($CodEquipamento == 4){
-                    $img1 = '<img class="d-block w-100" src="img/produtos/MaquinaAlgodão/1.jpg" alt="Primeiro Slide">';
-                    $img2 = '<img class="d-block w-100" src="img/produtos/MaquinaAlgodão/2.jpg" alt="Segundo Slide">';
-                    $img3 = '<img class="d-block w-100" src="img/produtos/MaquinaAlgodão/3.jpg" alt="Terceiro Slide">';
+                    $img1 = '<img class="d-block w-100" src="img/Produtos/MaquinaAlgodão/1.jpg" alt="Primeiro Slide">';
+                    $img2 = '<img class="d-block w-100" src="img/Produtos/MaquinaAlgodão/2.jpg" alt="Segundo Slide">';
+                    $img3 = '<img class="d-block w-100" src="img/Produtos/MaquinaAlgodão/3.jpg" alt="Terceiro Slide">';
 
                     }                   
                     if ($CodEquipamento <= 4) {
@@ -93,7 +93,7 @@ else:
                           </div>";
                     }
                     else{
-                    echo "<img class='d-block w-100' src='img/produtos/$value->Imagem' width='555' height='400' alt='Imagem Equipamento'>";
+                    echo "<img class='d-block w-100' src='img/Produtos/$value->Imagem' width='555' height='400' alt='Imagem Equipamento'>";
                     }
                   ?>
                   <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -164,7 +164,7 @@ else:
         <?php foreach($equi->ConsultarDiferente($value->CodEquipamento) as $valor): ?>
           <div class="col-md-4">
             <div class="card" style="height: 40rem;">
-              <img class="card-img-top" src="img/produtos/<?php echo $valor->Imagem;?>"alt="Imagem de capa do card">
+              <img class="card-img-top" src="img/Produtos/<?php echo $valor->Imagem;?>"alt="Imagem de capa do card">
               <div class="card-body">
                 <h5 class="card-title"><?php echo $valor->Nome;?></h5>
                 <p class="card-text"><?php echo $valor->Descricao;?></p>
