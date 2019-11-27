@@ -32,6 +32,8 @@ include_once('../controller/equipamento.controller.php');
     <script src="../ajax/pedido.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
+    <!-- Mascaras -->
+    <script src="../js/validador.js"></script>
 </head>
 <body class="bg-light">
     
@@ -47,93 +49,93 @@ include_once('../controller/equipamento.controller.php');
 <div class="container">
   <form name="form_cad_cliente_pedido" method="POST">    
     
-    <section id="pessoais" class="col-md-6 col-sm-6">
+  <section id="pessoais" class="col-md-6 col-sm-6">
 
-        <h3>Informações Pessoais</h3>
-      
-        <div>&nbsp;</div>
-        <label for="Text" class="text-rigth">Nome <span>*</span></label>
-        <input type="text" class="form-control" name="txtnome" id="txtnome" placeholder="Alfredo">
-        
-        <div>&nbsp;</div>
-        <label for="Text">Telefone <span>(Opcional)</span></label>
-        <input type="number" class="form-control" name="txttelefone" id="txttelefone" placeholder="(11)3333-9999">
-        
-        <div>&nbsp;</div>
-        <label for="Text">Celular <span>(Opcional)</span></label>
-        <input type="number" class="form-control" name="txtcelular" id="txtcelular" placeholder="(11)98888-9999">
-        
-        <div>&nbsp;</div>
-        <label for="inputEmail4">Email <span>*</span></label>
-        <input type="email" class="form-control" name="txtemail" id="txtemail" placeholder="Email" >
-        
-        <div>&nbsp;</div>
-        <label for="inputCPF">CPF <span>*</span></label>
-        <input type="text" class="form-control" name="txtcpf" id="txtcpf">
+<h3>Informações Pessoais</h3>
 
-        <div>&nbsp;</div>
-        <button type="button" id="proximo" class="btn btn-primary">Proximo</button>
-    
-    </section>
+<div>&nbsp;</div>
+<label for="Text" class="text-rigth">Nome <span>*</span></label>
+<input type="text" class="form-control" name="txtnome" id="txtnome" placeholder="Digite seu Nome" maxlength="50">
 
-    
+<div>&nbsp;</div>
+<label for="Text">Telefone <span>(Opcional)</span></label>
+<input type="tell" class="form-control" name="txttelefone" id="txttelefone" maxlength="13" onkeydown="javascript: fMasc( this, mTel );" placeholder="(11)3333-9999">
 
-    <section id="montagem" style="display: none" class="col-md-6 col-sm-6">
+<div>&nbsp;</div>
+<label for="Text">Celular <span>(Opcional)</span></label>
+<input type="tell" class="form-control" name="txtcelular" id="txtcelular" maxlength="14" onkeydown="javascript: fMasc( this, mTel );" placeholder="(11)98888-9999">
 
-      <h3>Local da Montagem</h3>
+<div>&nbsp;</div>
+<label for="inputEmail4">Email <span>*</span></label>
+<input type="email" class="form-control" name="txtemail" id="txtemail" placeholder="Digite seu Email" >
 
-      <label for="Text"> CEP <span>*</span></label>
-      <input type="number" class="form-control" name="txtcep" id="txtcep" placeholder="Informe seu CEP">
+<div>&nbsp;</div>
+<label for="inputCPF">CPF <span>*</span></label>
+<input type="text" class="form-control" name="txtcpf" id="txtcpf"maxlength="14" placeholder="Digite seu CPF" onkeydown="javascript: fMasc( this, mCPF );">
 
-      <label for="Text">Endereço <span>*</span></label>
-      <input type="text" class="form-control" name="txtendereco" id="txtendereco" placeholder="Rua da Florinda">
+<div>&nbsp;</div>
+<button type="button" id="proximo" class="btn btn-primary">Proximo</button>
 
-      <label for="inputEmail4">Bairro <span>*</span></label>
-      <input type="text" class="form-control" name="txtbairro" id="txtbairro" placeholder="Vila do chaves">
+</section>
 
 
-      <label for="inputCPF">Numero</label> <span>*</span></label>
-      <input type="number" class="form-control" name="txtnumero" id="txtnumero" placeholder="725" >
 
-      <label for="inputEmail4">Complemento <span>(Opcional)</span></label>
-      <input type="text" class="form-control" name="txtcomplemento" placeholder="Do lado do barril">
+<section id="montagem" style="display: none" class="col-md-6 col-sm-6">
 
-      <div>
-      &nbsp;
-      </div>
+<h3>Local da Montagem</h3>
+
+<label for="Text"> CEP <span>*</span></label>
+<input type="text" class="form-control" name="txtcep" id="txtcep" placeholder="Informe seu CEP" maxlength="10" onkeydown="javascript: fMasc( this, mCEP );">
+
+<label for="Text">Endereço <span>*</span></label>
+<input type="text" class="form-control" name="txtendereco" id="txtendereco" placeholder="Rua da Florinda" maxlength="75">
+
+<label for="inputEmail4">Bairro <span>*</span></label>
+<input type="text" class="form-control" name="txtbairro" id="txtbairro" placeholder="Vila do chaves" maxlength="30">
 
 
-      <button type="button" class="btn btn-primary" id="anterior">Anterior</button>
-      <button type="button"  class="btn btn-primary" id="proximo">Proximo</button>
+<label for="inputCPF">Numero</label> <span>*</span></label>
+<input type="number" class="form-control" name="txtnumero" id="txtnumero" placeholder="725" max="10000" min="1" >
 
-  </section>
+<label for="inputEmail4">Complemento <span>(Opcional)</span></label>
+<input type="text" class="form-control" name="txtcomplemento" placeholder="Do lado do barril" maxlength="100" >
 
-  <section id="pedido" style="display: none">
+<div>
+&nbsp;
+</div>
 
-  <div class="col-md-6 col-sm-6">
-    <h3>Dados do Pedido</h3>
 
-    <label for="Text"> Data de uso <span>*</span></label>
-    <input type="date" class="form-control" name="txtdataUso" id="txtdataUso" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2019-11-07" max="2022-12-31" >
+<button type="button" class="btn btn-primary" id="anterior">Anterior</button>
+<button type="button"  class="btn btn-primary" id="proximo">Proximo</button>
 
-    <label for="Text">Horas de utilização <span>*</span></label>
-    <input type="number" class="form-control" name="txthorasAlugado" id="txthorasAlugado" maxlength="2" >
+</section>
 
-    <label for="inputEmail4">Hora de Montagem <span>*</span></label>
-    <input type="time" class="form-control" name="txthoraMontagem" id="txthoraMontagem" >
+<section id="pedido" style="display: none"> 
 
-    <label for="Text">Forma de pagamento<span>*</span></label>
-    <select class="custom-select" name="txtformaPagamento" id="txtformaPagamento" >
-      <option value="Dinheiro">Dinheiro</option>
-      <option value="Cartão">Cartão</option>
-    </select>
+<div class="col-md-6 col-sm-6">
+<h3>Dados do Pedido</h3>
 
-    <label for="Text">Supervisão<span>*</span></label>
-    <select class="custom-select" name="txtsupervisao" >
-      <option value="0">Sem Supervisão</option>
-      <option value="1">Com Supervisão</option>
-    </select>
-    </div>
+<label for="Text"> Data de uso <span>*</span></label>
+<input type="date" class="form-control" name="txtdataUso" id="txtdataUso" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2019-11-07" max="2022-12-31" >
+
+<label for="Text">Horas de utilização <span>*</span></label>
+<input type="number" class="form-control" name="txthorasAlugado" id="txthorasAlugado" max="600" min="1" >
+
+<label for="inputEmail4">Hora de Montagem <span>*</span></label>
+<input type="time" class="form-control" name="txthoraMontagem" id="txthoraMontagem" >
+
+<label for="Text">Forma de pagamento<span>*</span></label>
+<select class="custom-select" name="txtformaPagamento" id="txtformaPagamento" >
+<option value="Dinheiro">Dinheiro</option>
+<option value="Cartão">Cartão</option>
+</select>
+
+<label for="Text">Supervisão<span>*</span></label>
+<select class="custom-select" name="txtsupervisao" >
+<option value="0">Sem Supervisão</option>
+<option value="1">Com Supervisão</option>
+</select>
+</div>
 
     
     <h4>Escolha um Brinquedos</h4>

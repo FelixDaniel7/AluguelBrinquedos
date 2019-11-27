@@ -108,7 +108,6 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $Celular = filter_input(INPUT_POST, 'txtcelular' , FILTER_SANITIZE_STRING);
             $Email = filter_input(INPUT_POST, 'txtemail' , FILTER_SANITIZE_EMAIL);
             $CPF = filter_input(INPUT_POST, 'txtcpf' , FILTER_SANITIZE_STRING);
-
             $CEP = filter_input(INPUT_POST, 'txtcep' , FILTER_SANITIZE_STRING);
             $Endereco = filter_input(INPUT_POST, 'txtendereco' , FILTER_SANITIZE_STRING);
             $Numero = filter_input(INPUT_POST, 'txtnumero' , FILTER_SANITIZE_STRING);
@@ -123,16 +122,25 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $FormaPagamento = filter_input(INPUT_POST, 'txtformaPagamento' , FILTER_SANITIZE_STRING);
             $Supervisao = filter_input(INPUT_POST, 'txtsupervisao' , FILTER_SANITIZE_NUMBER_INT);
 
-
+            function limpaCPF_CEP_TEL($valor){
+                $valor = trim($valor);
+                $valor = str_replace(".", "", $valor);
+                $valor = str_replace(",", "", $valor);
+                $valor = str_replace("-", "", $valor);
+                $valor = str_replace("/", "", $valor);
+                $valor = str_replace("(", "", $valor);
+                $valor = str_replace(")", "", $valor);
+                return $valor;
+            }
             
             // atribui valor a variavel privat eda class pedido
             $ped->Nome = $Nome;
-            $ped->Telefone = $Telefone;
-            $ped->Celular = $Celular;
+            $ped->Telefone = limpaCPF_CEP_TEL($Telefone);
+            $ped->Celular = limpaCPF_CEP_TEL($Celular);
             $ped->Email = $Email;
-            $ped->CPF = $CPF;
+            $ped->CPF = limpaCPF_CEP_TEL($CPF);
 
-            $ped->CEP = $CEP;
+            $ped->CEP = limpaCPF_CEP_TEL($CEP);
             $ped->Endereco = $Endereco;
             $ped->Numero = $Numero;
             $ped->Bairro = $Bairro;
@@ -145,7 +153,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->FormaPagamento = $FormaPagamento;
             $ped->Supervisao = $Supervisao;
 
-            $ped->Status = 'Pendente'; 
+            $ped->Status = 'Pendente';
 
 
             //cadastrar os brinquedos tambem
