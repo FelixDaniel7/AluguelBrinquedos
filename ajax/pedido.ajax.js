@@ -1,6 +1,7 @@
 $(document).ready(function(){
 
     var conteudo_modal = $('#modal_pedido').find('.modal-body')
+    var conteudo_modal_carrinho = $('#modalCarrinho').find('.modal-body')
 
 
     var dados_pessoais = $('#pessoais')
@@ -77,8 +78,91 @@ $(document).ready(function(){
         montagem.fadeIn('fast')
     })
 
-    
 
+    $("button[carrinho='btn_add_carrinho']").click(function(){
+        var CodEquipamento = $(this).attr('value')
+
+        console.log('Cod enviado ' + CodEquipamento);
+        $.post(
+            '../controller/pedido.controller.php',
+            {acao: 'add_carrinho',
+            CodEquipamento: CodEquipamento},
+            function(retorno){
+                console.log(retorno);
+                if (retorno == 'repetido') {
+                    swal({
+                        title: 'Este produto já foi adicionado !',
+                        icon: 'info'
+                    })
+                }else if(retorno == 'adicionou'){
+                    $('#modalCarrinho').modal({backdrop: true})
+                    ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho')
+                }
+                else{
+                    swal({
+                        title: 'Erro ao adicionar produto !',
+                        icon: 'error'
+                    })
+                }
+                
+                
+
+                
+            })
+    })
+    $('#modalCarrinho').on('click', '#btn_excluir_carrinho', function(){
+        var CodEquipamento = $(this).attr('value')
+
+        console.log(CodEquipamento);
+        
+
+        
+        $.post(
+            '../controller/pedido.controller.php',
+            {acao: 'del_carrinho', CodEquipamento: CodEquipamento},
+            function(retorno){
+
+                console.log(retorno);
+                
+                
+                ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho')
+            })
+
+            // $.ajax({
+            //     url: "../controller/pedido.controller.php",
+            //     type: "POST",
+            //     data: "acao=del_carrinho&CodEquipamento="+CodEquipamento,
+            //     beforeSend: function(){
+            //         //botao.attr('disabled', true)
+            //     },
+            //     success: function(retorno){
+
+            //         console.log(retorno)
+
+            //         $('#modalCarrinho').modal({backdrop: true})
+            //         ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho',true)
+
+            //         // if (retorno == 'cadastrou_pedido') {
+            //         //     swal({
+            //         //         title:"Pedido enviado !",
+            //         //         icon:"success",
+            //         //         timer: 600
+            //         //     })
+            //         // }
+                    
+
+            //     }
+            // })
+    })
+
+    function ConsultarCarrinho(url, acao, atualiza){
+        $.post(url, {acao: acao}, function(retorno){
+            
+            console.log('Consultar Carrinho modal');
+                conteudo_modal_carrinho.html(retorno)
+        })
+    }
+    ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho',true)
 
     $('form[name="form_cad_cliente_pedido"]').submit(function(){
         var formPed = $(this)

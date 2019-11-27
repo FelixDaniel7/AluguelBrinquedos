@@ -10,6 +10,7 @@ class Equipamento
     private $Largura;
     private $Preco;
     private $Status;
+    private $Imagem;
 /*
     CodEquipamento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
     Nome VARCHAR(20),
@@ -47,8 +48,8 @@ class Equipamento
     /*bindValue e PDO::PARAM_ serve para enviar cada tipo de dado de forma correta ao banco.
     Garante q o banco receba o parametro desejado*/
     function CadastrarEquipamento(){
-        $comandoSQL = "INSERT INTO Equipamento(Nome,Descricao,Peso,Altura,Comprimento,Largura,Preco,Status)
-                            VALUES(?,?,?,?,?,?,?,?)";
+        $comandoSQL = "INSERT INTO Equipamento(Nome,Descricao,Peso,Altura,Comprimento,Largura,Preco,Status,Imagem)
+                            VALUES(?,?,?,?,?,?,?,?,?)";
 
         $exec = $this->con->prepare($comandoSQL);
         $exec->bindValue(1,$this->Nome,PDO::PARAM_STR);
@@ -59,6 +60,7 @@ class Equipamento
         $exec->bindValue(6,$this->Largura,PDO::PARAM_STR);
         $exec->bindValue(7,$this->Preco,PDO::PARAM_STR);
         $exec->bindValue(8,$this->Status,PDO::PARAM_STR);
+        $exec->bindValue(9,$this->Imagem,PDO::PARAM_STR);
         $exec->execute();
 
         if ($exec->rowCount() > 0) {
@@ -86,7 +88,7 @@ class Equipamento
         }
     }
 
-    function RetornarDados($CodEquipamento){
+    function RetornarDadosObj($CodEquipamento){
         $comandoSQL = "SELECT * FROM Equipamento WHERE CodEquipamento = ?";
 
         $exec = $this->con->prepare($comandoSQL);
@@ -115,7 +117,8 @@ class Equipamento
                             Comprimento = ?,
                             Largura = ?,
                             Preco = ?,
-                            Status = ?
+                            Status = ?,
+                            Imagem = ?
                             WHERE CodEquipamento = ?";
 
             $exec = $this->con->prepare($comandoSQL);
@@ -127,7 +130,8 @@ class Equipamento
             $exec->bindValue(6,$this->Largura,PDO::PARAM_STR);
             $exec->bindValue(7,$this->Preco,PDO::PARAM_STR);
             $exec->bindValue(8,$this->Status,PDO::PARAM_STR);
-            $exec->bindValue(9,$this->CodEquipamento,PDO::PARAM_INT);
+            $exec->bindValue(9,$this->Imagem,PDO::PARAM_STR);
+            $exec->bindValue(10,$this->CodEquipamento,PDO::PARAM_INT);
             $exec->execute();
 
             if ($exec->rowCount() > 0) {
@@ -143,11 +147,11 @@ class Equipamento
 
     /*DELETE*/
 
-    function ExcluirEquipamento(){
+    function ExcluirEquipamento($CodEquipamento){
         $comandoSQL = "DELETE FROM Equipamento WHERE CodEquipamento = ?";
 
         $exec = $this->con->prepare($comandoSQL);
-        $exec->bindValue(1,$this->CodEquipamento,PDO::PARAM_INT);
+        $exec->bindValue(1,$CodEquipamento,PDO::PARAM_INT);
         $exec->execute();
 
         if ($exec->rowCount() > 0) {
@@ -156,6 +160,84 @@ class Equipamento
         else{
             return false;
         }
+    }
+
+    function RetornarDados($CodEquipamento){
+        $comandoSQL = "SELECT * FROM Equipamento WHERE CodEquipamento = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodEquipamento,PDO::PARAM_INT);
+        $exec->execute();
+
+        $dados = array();
+
+        if ($exec->rowCount() > 0) {
+
+            //return $exec->fetchAll(PDO::FETCH_OBJ);
+
+                //laço de repetição para armazenar dados no vetor
+            foreach ($exec->fetchAll() as $valores) {
+                
+                $equi = new Equipamento();
+
+
+                $equi->CodEquipamento = $valores['CodEquipamento'];
+                $equi->Nome = $valores['Nome'];
+                $equi->Descricao = $valores['Descricao'];
+                $equi->Peso = $valores['Peso'];
+                $equi->Altura = $valores['Altura'];
+                $equi->Comprimento = $valores['Comprimento'];
+                $equi->Largura = $valores['Largura'];
+                $equi->Preco = $valores['Preco'];
+                $equi->Status = $valores['Status'];
+                $equi->Imagem = $valores['Imagem'];
+                
+                $dados[] = $equi;
+            }
+        }
+        else{
+            $dados = false;
+        }
+       return $dados;//retorno da função   
+    }
+
+    function ConsultarDiferente($CodEquipamento){
+        $comandoSQL = "SELECT * FROM Equipamento WHERE CodEquipamento != ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodEquipamento,PDO::PARAM_INT);
+        $exec->execute();
+
+        $dados = array();
+
+        if ($exec->rowCount() > 0) {
+
+            //return $exec->fetchAll(PDO::FETCH_ASSOC);
+
+                //laço de repetição para armazenar dados no vetor
+            foreach ($exec->fetchAll() as $valores) {
+                
+                $equi = new Equipamento();
+
+
+                $equi->CodEquipamento = $valores['CodEquipamento'];
+                $equi->Nome = $valores['Nome'];
+                $equi->Descricao = $valores['Descricao'];
+                $equi->Peso = $valores['Peso'];
+                $equi->Altura = $valores['Altura'];
+                $equi->Comprimento = $valores['Comprimento'];
+                $equi->Largura = $valores['Largura'];
+                $equi->Preco = $valores['Preco'];
+                $equi->Status = $valores['Status'];
+                $equi->Imagem = $valores['Imagem'];
+                
+                $dados[] = $equi;
+            }
+        }
+        else{
+            $dados = false;
+        }
+       return $dados;//retorno da função   
     }
 }
 ?>

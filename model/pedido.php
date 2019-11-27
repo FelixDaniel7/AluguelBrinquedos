@@ -24,6 +24,19 @@ class Pedido
     Private $Status;
     private $Supervisao;
 
+
+
+    private $CodEquipamento;
+    private $NomeEqui;
+    private $Descricao;
+    private $Peso;
+    private $Altura;
+    private $Comprimento;
+    private $Largura;
+    private $Preco;
+    private $StatusEqui;
+    private $Imagem;
+
 /*
 
 	CodPedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -56,8 +69,9 @@ class Pedido
         include_once("conexao.php");
         $classe_con = new Conexao();
         $this->con = $classe_con->Conectar();
-    }
+    } 
 
+    
     function CadastrarPedido(){
         $comandoSQL = "INSERT INTO Pedido(CPF,Nome,Email,Celular,
         CEP,Endereco,Numero,Bairro,Complemento,DataPedido,Data_de_uso

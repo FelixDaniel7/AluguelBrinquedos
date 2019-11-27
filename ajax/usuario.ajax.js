@@ -57,7 +57,8 @@ $(document).ready(function(){
                 }
                 else{
                     swal({
-                        title: "Erro ao cadastrar usuário !", 
+                        title: "Erro ao cadastrar usuário !",
+                        text: "Email", 
                         icon: "error",
                     })
                     botao.attr('disabled', false)

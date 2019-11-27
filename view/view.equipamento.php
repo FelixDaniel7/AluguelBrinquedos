@@ -15,15 +15,16 @@
     <script src="../ajax/equipamento.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
+    <!-- emojis -->
+    <link href="css/emoji-css.css" rel="stylesheet">
 
     <!-- datatable -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   </head>
   <body>
 
- 
-    <button type="button" id="btn_cadastra">Cadastrar Equipamento</button> 
-
+  <br>
+    <button type="button" id="btn_cadastra" class="btn btn-dark">Cadastrar Equipamento</button> 
 
     <div class="row">
     <div class="col-lg-9">
@@ -36,9 +37,9 @@
                         <tr>
                             <th>Cod</th>
                             <th>Nome</th>
-                            <th>Descrição</th>
+                            <th>Imagem</th>
                             <th>Preço</th>
-                            <th width="200">Ação</th>
+                            <th>Editar/Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -51,14 +52,14 @@
                         <tr>
                             <td><?php echo $value->CodEquipamento;?></td>
                             <td><?php echo $value->Nome;?></td>
-                            <td><?php echo $value->Descricao;?></td>
+                            <td><?php echo $value->Imagem;?></td>
                             <td><?php echo $value->Preco;?></td>
                             <td>
-                                <button type="button" id="btn_editar" value="<?php echo $value->CodEquipamento; ?>"class="btn btn-outline-primary">
-                                Editar
+                                <button type="button" id="btn_editar" value="<?php echo $value->CodEquipamento; ?>"class="btn btn-outline-warning">
+                                <i class="em em-pencil"></i>
                                 </button>
                                 <button type="button" id="btn_excluir" value="<?php echo $value->CodEquipamento; ?>" class="btn btn-outline-danger">
-                                Excluir
+                                <i class="em em-x"></i>
                                 </button>
                             </td>
                             <?php
