@@ -80,7 +80,7 @@ include_once('../controller/equipamento.controller.php');
 
 
 
-<section id="montagem" style="display: none" class="col-md-6 col-sm-6">
+<!-- <section id="montagem" style="display: none" class="col-md-6 col-sm-6"> -->
 
 <h3>Local da Montagem</h3>
 
@@ -110,7 +110,7 @@ include_once('../controller/equipamento.controller.php');
 
 </section>
 
-<section id="pedido" style="display: none"> 
+<!-- <section id="pedido" style="display: none">  -->
 
 <div class="col-md-6 col-sm-6">
 <h3>Dados do Pedido</h3>
@@ -184,7 +184,7 @@ include_once('../controller/equipamento.controller.php');
     &nbsp;
     </div>
     <button type="button" class="btn btn-primary"  id="anterior">Anterior</button>
-    <button type="submit" class="btn btn-danger">Finalizar Pedido</button>
+    <button type="submit" class="btn btn-danger" id="btn_finalizar">Finalizar Pedido</button>
     </section>
     
   </form>

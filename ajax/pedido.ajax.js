@@ -127,32 +127,6 @@ $(document).ready(function(){
                 
                 ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho')
             })
-
-            // $.ajax({
-            //     url: "../controller/pedido.controller.php",
-            //     type: "POST",
-            //     data: "acao=del_carrinho&CodEquipamento="+CodEquipamento,
-            //     beforeSend: function(){
-            //         //botao.attr('disabled', true)
-            //     },
-            //     success: function(retorno){
-
-            //         console.log(retorno)
-
-            //         $('#modalCarrinho').modal({backdrop: true})
-            //         ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho',true)
-
-            //         // if (retorno == 'cadastrou_pedido') {
-            //         //     swal({
-            //         //         title:"Pedido enviado !",
-            //         //         icon:"success",
-            //         //         timer: 600
-            //         //     })
-            //         // }
-                    
-
-            //     }
-            // })
     })
 
     function ConsultarCarrinho(url, acao, atualiza){
@@ -172,6 +146,8 @@ $(document).ready(function(){
         
         var brinquedo = $('#brinquedo')
         var formaPagamento = $('#txtformaPagamento')
+
+        var botao = $('#btn_finalizar')
             
         CampoVazio(data_Hora_Montagem)
         CampoVazio(data_de_uso)
@@ -184,16 +160,24 @@ $(document).ready(function(){
                 type: "POST",
                 data: "acao=cadastrar_ped&" + formPed.serialize(),
                 beforeSend: function(){
-                    //botao.attr('disabled', true)
+                    botao.attr('disabled', true)
                 },
                 success: function(retorno){
 
                     console.log(retorno)
 
                     if (retorno == 'cadastrou_pedido') {
+                        
                         swal({
                             title:"Pedido enviado !",
                             icon:"success",
+                            timer: 600
+                        })
+                    }
+                    else{
+                        swal({
+                            title:"Erro ao enviar pedido !",
+                            icon:"error",
                             timer: 600
                         })
                     }
