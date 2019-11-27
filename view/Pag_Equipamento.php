@@ -1,4 +1,5 @@
 <?php include_once("../controller/equipamento.controller.php");
+include_once("../controller/pedido.controller.php");
 
 $CodEquipamento = filter_input(INPUT_GET, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);
 
@@ -29,6 +30,16 @@ else:
   <!-- Custom styles for this template -->
   <link href="css/landing-page.min.css" rel="stylesheet">
   <link href="css/css.css" rel="stylesheet">
+
+  <!-- Jquery -->
+  <script src="../js/jquery-3.4.1.min.js"></script>
+  <!-- Ajax -->
+  <script src="../ajax/pedido.ajax.js"></script>
+  <!-- Alertas Bonitinhos -->
+  <script src="../js/sweetalert.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  
 </head>
 
 <body>
@@ -119,7 +130,7 @@ else:
                 }?>
                 <br>
                 <br>
-                <button type="button" carrinho="btn_add_carrinho" value="<?php echo $value->CodEquipamento;?>" class="btn btn-success btn-sm">
+                <button type='button' carrinho='btn_add_carrinho' value='<?php echo $value->CodEquipamento;?>' class='btn btn-warning btn-sm'>
                   Adicionar ao carrinho
                 </button>
               </div>
@@ -169,15 +180,6 @@ else:
   </div>
 </section>
   <?php include_once("menu/menu-inferior.php");?>
-  <!-- Bootstrap core JavaScript -->
-  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Jquery -->
-  <script src="../js/jquery-3.4.1.min.js"></script>
-  <!-- Ajax -->
-  <script src="../ajax/pedido.ajax.js"></script>
-  <!-- Alertas Bonitinhos -->
-  <script src="../js/sweetalert.js"></script>
 </body>
 </html>
 <?php 

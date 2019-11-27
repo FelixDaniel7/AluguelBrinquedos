@@ -98,7 +98,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-        <button type="button" class="btn btn-primary">Finalizar pedido</button>
+        <a href="Cad_Pedido.php" class="btn btn-primary">Finalizar pedido</a>
       </div>
     </div>
   </div>

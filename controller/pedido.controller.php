@@ -4,7 +4,7 @@ $ped = new Pedido();
 
 //carrinho - se a sessao não exixtir eu crio ela
 session_start();
-//session_destroy();
+// session_destroy();
 if(!isset($_SESSION["CodEquipamento"]))
 {
     $_SESSION["CodEquipamento"] = array();
