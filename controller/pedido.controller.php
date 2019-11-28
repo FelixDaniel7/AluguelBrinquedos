@@ -92,13 +92,14 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             <?php 
                 break;
     
-            case 'finalizar_compra':
-                //cadastrar compra retornando o código da compra gerado
-                foreach ($_SESSION["codproduto"] as $indice => $valor):
-                    //código para enviar itens 
-                    echo "gravou o produto de código $valor com a quantidade ".$_SESSION["quantidade"][$indice];
-                endforeach;
-            break;
+        case 'verificar_carrinho':
+            if (empty($_SESSION['CodEquipamento'])) {
+                echo 'carrinho_vazio';
+            }
+            else{
+                echo 'carrinho_cheio';
+            }
+        break;
 
         case 'cadastrar_ped':
 
@@ -156,7 +157,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
 
             //cadastrar os brinquedos tambem
-
+            //cadastrar compra retornando o código da compra gerado
             
             if($ped->CadastrarPedido()){
                 echo 'cadastrou_pedido';
