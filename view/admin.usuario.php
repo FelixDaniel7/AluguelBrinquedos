@@ -44,38 +44,22 @@
                         </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    if($certo = $usu->ConsultarUsuario()){
-                        foreach($certo as $value):
-
-                    ?>
+                 
+                    
                         <tr>
-                            <td><?php echo $value->CodUsuario;?></td>
-                            <td><?php echo $value->Nome;?></td>
-                            <td><?php echo $value->Login;?></td>
-                            <td><?php echo $value->Email;?></td>
-                            <td><?php echo $value->Tipo;?></td>
+                            <td></td>
+                            <td>></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             
                             <td>
-                            <button type="button" id="btn_editar" value="<?php echo $value->CodUsuario; ?>"class="btn btn-outline-primary">
-                            Editar
-                            </button>
-                            <button type="button" id="btn_excluir" value="<?php echo $value->CodUsuario; ?>" class="btn btn-outline-danger">
-                            Excluir
-                            </button>
+                            
+                            
                             </td>
 
-                        
-                    <?php
-
-                        endforeach;
-                    }
-                    else{
-                    ?>
-                       <td colspan="6" align="center"><?php echo "Nenhum registro"; ?></td>
-                    <?php
-                    }
-                    ?>
+                 
+                      
                         </tr>
                     </tbody>
                 </table>
@@ -107,9 +91,9 @@
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
     <!-- datatable -->
-    <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.min.js"></script>
+    <!-- <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.min.js"></script>
     <script>
     $('#tabela_usuario').DataTable()
-    </script>
+    </script> -->
   </body>
 </html>

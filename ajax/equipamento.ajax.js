@@ -48,44 +48,44 @@ $(document).ready(function(){
 
     /*BOTAO ATUALIZAR
     PEGAR OS DADOS DO FORM NA MODAL E MANDAR PARA O METODO COM O UPDATE*/
-    // $('#modal_equipamento').on('submit', 'form[name="form_editar_equipamento"]', function(){
-    //     var form_dados = $(this)//formulario
-    //     var btn_atualiza = form_dados.find('#btn_atualiza')
+    $('#modal_equipamento').on('submit', 'form[name="form_editar_equipamento"]', function(){
+        var form_dados = $(this)//formulario
+        var btn_atualiza = form_dados.find('#btn_atualiza')
 
-    //     $.ajax({
-    //         url: '../controller/equipamento.controller.php',
-    //         type: 'POST',
-    //         data: 'acao=editar_equi&' + form_dados.serialize(),
-    //         beforeSend: function(){
-    //             btn_atualiza.attr('disabled',true)
-    //         },
-    //         success: function(retorno){
+        $.ajax({
+            url: '../controller/equipamento.controller.php',
+            type: 'POST',
+            data: 'acao=editar_equi&' + form_dados.serialize(),
+            beforeSend: function(){
+                btn_atualiza.attr('disabled',true)
+            },
+            success: function(retorno){
                 
-    //             if (retorno == 'atualizou') {
-    //                 form_dados.fadeOut('fast')
+                if (retorno == 'atualizou') {
+                    form_dados.fadeOut('fast')
 
-    //                 $('#modal_equipamento').modal('hide')
+                    $('#modal_equipamento').modal('hide')
                             
-    //                 swal({
-    //                     title: 'Atualizado com sucesso !',
-    //                     icon: 'success'
-    //                 })
-    //                 //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)                    
-    //                 setTimeout(function(){
-    //                     $(location).attr('href','view.equipamento.php')
-    //                 }, 1000)
-    //             }
-    //             else{
-    //                 swal({
-    //                     title: 'Você não alterou nenhum dado !',
-    //                     icon: 'info'
-    //                 })
-    //                 btn_atualiza.attr('disabled',false)
-    //             }
-    //         }
-    //     })
-    //     return false //para nao atualizar a pagina
-    // })
+                    swal({
+                        title: 'Atualizado com sucesso !',
+                        icon: 'success'
+                    })
+                    //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)                    
+                    setTimeout(function(){
+                        $(location).attr('href','view.equipamento.php')
+                    }, 1000)
+                }
+                else{
+                    swal({
+                        title: 'Você não alterou nenhum dado !',
+                        icon: 'info'
+                    })
+                    btn_atualiza.attr('disabled',false)
+                }
+            }
+        })
+        return false //para nao atualizar a pagina
+    })
     
     /*BOTAO EXCLUIR*/
     $('#tabela_equipamento').on('click', '#btn_excluir', function(){
@@ -117,7 +117,7 @@ $(document).ready(function(){
                                 //atualiza a tabela
                                 //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)
                                 setTimeout(function(){
-                                    $(location).attr('href','view.equipamento.php')
+                                    $(location).attr('href','admin.equipamento.php')
                                 }, 1000)
 
                             } else {
