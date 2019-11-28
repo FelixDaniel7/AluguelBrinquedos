@@ -110,7 +110,7 @@ include_once('../controller/equipamento.controller.php');
 
 </section>
 
-<!-- <section id="pedido" style="display: none">  -->
+<section id="pedido" style="display: none"> 
 
 <div class="col-md-6 col-sm-6">
 <h3>Dados do Pedido</h3>
