@@ -73,32 +73,52 @@ class Pedido
 
     
     function CadastrarPedido(){
-        $comandoSQL = "INSERT INTO Pedido(CPF,Nome,Email,Celular,
+        $comandoSQL = "INSERT INTO Pedido(CodPedido,CPF,Nome,Email,Celular,
         CEP,Endereco,Numero,Bairro,Complemento,DataPedido,Data_de_uso
         ,HorasAlugado,Hora_Montagem,PrecoFinal,FormaPagamento,Status,Supervisao,Telefone)
-                            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+                            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $exec = $this->con->prepare($comandoSQL);
-        $exec->bindValue(1,$this->CPF,PDO::PARAM_STR);
-        $exec->bindValue(2,$this->Nome,PDO::PARAM_STR);
-        $exec->bindValue(3,$this->Email,PDO::PARAM_STR);
-        $exec->bindValue(4,$this->Celular,PDO::PARAM_STR);
-        $exec->bindValue(5,$this->CEP,PDO::PARAM_STR);
-        $exec->bindValue(6,$this->Endereco,PDO::PARAM_STR);
-        $exec->bindValue(7,$this->Numero,PDO::PARAM_STR);
-        $exec->bindValue(8,$this->Bairro,PDO::PARAM_STR);
-        $exec->bindValue(9,$this->Complemento,PDO::PARAM_STR);
+        $exec->bindValue(1,$this->CodPedido,PDO::PARAM_INT);
+        $exec->bindValue(2,$this->CPF,PDO::PARAM_STR);
+        $exec->bindValue(3,$this->Nome,PDO::PARAM_STR);
+        $exec->bindValue(4,$this->Email,PDO::PARAM_STR);
+        $exec->bindValue(5,$this->Celular,PDO::PARAM_STR);
+        $exec->bindValue(6,$this->CEP,PDO::PARAM_STR);
+        $exec->bindValue(7,$this->Endereco,PDO::PARAM_STR);
+        $exec->bindValue(8,$this->Numero,PDO::PARAM_STR);
+        $exec->bindValue(9,$this->Bairro,PDO::PARAM_STR);
+        $exec->bindValue(10,$this->Complemento,PDO::PARAM_STR);
 
         
-        $exec->bindValue(10,$this->DataPedido,PDO::PARAM_STR);
-        $exec->bindValue(11,$this->Data_de_uso,PDO::PARAM_STR);
-        $exec->bindValue(12,$this->HorasAlugado,PDO::PARAM_STR);
-        $exec->bindValue(13,$this->Hora_Montagem,PDO::PARAM_STR);
-        $exec->bindValue(14,$this->PrecoFinal,PDO::PARAM_STR);
-        $exec->bindValue(15,$this->FormaPagamento,PDO::PARAM_STR);
-        $exec->bindValue(16,$this->Status,PDO::PARAM_STR);
-        $exec->bindValue(17,$this->Supervisao,PDO::PARAM_STR);
-        $exec->bindValue(18,$this->Telefone,PDO::PARAM_STR);
+        $exec->bindValue(11,$this->DataPedido,PDO::PARAM_STR);
+        $exec->bindValue(12,$this->Data_de_uso,PDO::PARAM_STR);
+        $exec->bindValue(13,$this->HorasAlugado,PDO::PARAM_STR);
+        $exec->bindValue(14,$this->Hora_Montagem,PDO::PARAM_STR);
+        $exec->bindValue(15,$this->PrecoFinal,PDO::PARAM_STR);
+        $exec->bindValue(16,$this->FormaPagamento,PDO::PARAM_STR);
+        $exec->bindValue(17,$this->Status,PDO::PARAM_STR);
+        $exec->bindValue(18,$this->Supervisao,PDO::PARAM_STR);
+        $exec->bindValue(19,$this->Telefone,PDO::PARAM_STR);
+        //$this->con->lastInsertId(); pode rerornar um id errado se utilizado por varios usuarios
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function CadastrarItens($CodPedido,$CodEquipamento,$Preco){
+
+        $comandoSQL = "INSERT INTO Itens(CodPedido,CodEquipamento,Preco)VALUES(?,?,?)";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodPedido,PDO::PARAM_INT);
+        $exec->bindValue(2,$CodEquipamento,PDO::PARAM_INT);
+        $exec->bindValue(3,$Preco,PDO::PARAM_STR);
+        
         $exec->execute();
 
         if ($exec->rowCount() > 0) {

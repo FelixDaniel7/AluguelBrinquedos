@@ -122,19 +122,19 @@ $(document).ready(function(){
             
                                 console.log(retorno)
             
-                                if (retorno == 'cadastrou_pedido') {
+                                if (retorno != '') {
                                     
                                     swal({
                                         title:"Pedido enviado !",
-                                        icon:"success",
-                                        timer: 600
+                                        icon:"success"
+                                        
                                     })
                                 }
                                 else{
                                     swal({
                                         title:"Erro ao enviar pedido !",
-                                        icon:"error",
-                                        timer: 600
+                                        icon:"error"
+                                        
                                     })
                                 }
                             }

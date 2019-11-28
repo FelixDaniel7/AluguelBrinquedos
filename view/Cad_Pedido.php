@@ -1,7 +1,7 @@
 <?php 
 //formulario de cadastro de pedido e dados do cliente 
 include_once('../controller/pedido.controller.php'); 
-include_once('../controller/equipamento.controller.php'); 
+include_once('../controller/equipamento.controller.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
