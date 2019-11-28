@@ -80,7 +80,7 @@ include_once('../controller/equipamento.controller.php');
 
 
 
-<!-- <section id="montagem" style="display: none" class="col-md-6 col-sm-6"> -->
+<section id="montagem" style="display: none" class="col-md-6 col-sm-6">
 
 <h3>Local da Montagem</h3>
 
@@ -147,8 +147,8 @@ include_once('../controller/equipamento.controller.php');
         if ($certo = $equi->ConsultarEquipamento()) {
           foreach($certo as $value){
         ?>
-        <div class="col-md-3" id="card-carrinho"><!-- essa -->
-        <div class="card" style="height: 25rem;">
+        <div class="col-md-3" id="card-carrinho">
+        <div class="card" style="height: 30rem;">
           <img class="card-img-top" src="img/Produtos/<?php echo $value->Imagem;?>" alt="Imagem Equipamento">
           <div class="card-body">
             <p class="card-title"><?php echo $value->Nome;?></p>
@@ -157,16 +157,24 @@ include_once('../controller/equipamento.controller.php');
             } else{
               echo "<span class='badge badge-pill badge-success'>Disponivel</span>";
             }?>
+            <p>R$ <?php echo $value->Preco?></p>
           </div>
           <div class="card-footer">
             <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $value->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Ver Mais</a>
             
             <?php if ($value->Status == 'Disponivel') {?>
               <hr>
-              <button type='button' carrinho='btn_add_carrinho' value='<?php echo $value->CodEquipamento;?>' class='btn btn-warning btn-sm'>
-              Adicionar ao carrinho
-                </button>
-            <?php }?>
+
+              <?php if(in_array($value->CodEquipamento, $_SESSION["CodEquipamento"])){?>
+                        <button type='button' carrinho='btn_add_carrinho' value='<?php echo $value->CodEquipamento;?>' class='btn btn-success btn-sm'>
+                            No carrinho
+                        </button>     
+              <?php }else{?>
+                <button type='button' carrinho='btn_add_carrinho' value='<?php echo $value->CodEquipamento;?>' class='btn btn-warning btn-sm'>
+                Adicionar ao carrinho
+                  </button>
+            <?php }
+                }?>
           
             
             </div>

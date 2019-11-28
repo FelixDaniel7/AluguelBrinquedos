@@ -67,8 +67,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 $total = 0;
                 foreach ($_SESSION["CodEquipamento"] as $indice => $valor):
 
-                $total += $_SESSION["quantidade"][$indice] * 
-                $produtos[$valor]["preco"];
+                $total += $_SESSION["quantidade"][$indice] * $produtos[$valor]["preco"];
                 $subtotal = $produtos[$valor]["preco"] * $_SESSION["quantidade"][$indice];
                 ?>
 
