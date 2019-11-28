@@ -18,7 +18,6 @@ include_once('../controller/pedido.controller.php'); ?>
     <script src="../js/sweetalert.js"></script>
     <!-- emojis -->
     <link href="css/emoji-css.css" rel="stylesheet">
-
     <!-- datatable -->
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   </head>
