@@ -19,7 +19,7 @@
     <link href="css/emoji-css.css" rel="stylesheet">
 
     <!-- datatable -->
-    <link href="css/jquery.dataTables.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   </head>
   <body>
 
@@ -102,11 +102,8 @@
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
-
     <!-- datatable -->
     <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.min.js"></script>
-
-    
     <script>
     $('#tabela_equipamento').DataTable()
     </script>
