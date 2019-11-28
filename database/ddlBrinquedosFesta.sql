@@ -61,7 +61,7 @@ CREATE TABLE DatasDisponivel(
 
 /* Visivel para o CLIENTE e para o ADMINISTRADOR */
 CREATE TABLE Pedido(
-	CodPedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	CodPedido INT(5) NOT NULL PRIMARY KEY,
 
     CPF CHAR(11) NOT NULL,/*opcinal para o cliente */
     Nome VARCHAR(50),
@@ -88,7 +88,7 @@ CREATE TABLE Pedido(
 
 CREATE TABLE Itens(
 	CodItem SMALLINT NOT NULL PRIMARY KEY auto_increment,
-    CodPedido INT NOT NULL,
+    CodPedido INT(5) NOT NULL,
     CodEquipamento SMALLINT NOT NULL,
     Preco DECIMAL(8,2), -- preço do equipamento novamente, campo a ser preenchido depois / não vai pegar esse preço do banco de dados
     
