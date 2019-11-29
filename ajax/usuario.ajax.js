@@ -186,7 +186,7 @@ $(document).ready(function(){
                                 //atualiza a tabela
                                 //ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)
                                 setTimeout(function(){
-                                    $(location).attr('href','view.usuario.php')
+                                    $(location).attr('href','admin.usuario.php')
                                 }, 1000)
 
                             } else {

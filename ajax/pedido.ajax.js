@@ -247,7 +247,7 @@ $(document).ready(function(){
                 console.log('Atualizou');
 
                 setTimeout(function(){
-                    $(location).attr('href','view.pedido.php')
+                    $(location).attr('href','admin.pedido.php')
                 }, 1000)
 
                 }
@@ -291,7 +291,7 @@ $(document).ready(function(){
 
                             //ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
                             setTimeout(function(){
-                                $(location).attr('href','view.pedido.php')
+                                $(location).attr('href','admin.pedido.php')
                             }, 1000)
 
                         }else{

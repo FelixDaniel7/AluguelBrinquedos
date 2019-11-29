@@ -74,7 +74,7 @@ $(document).ready(function(){
     //                 })
     //                 //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)                    
     //                 setTimeout(function(){
-    //                     $(location).attr('href','view.equipamento.php')
+    //                     $(location).attr('href','admin.equipamento.php')
     //                 }, 1000)
     //             }
     //             else{
