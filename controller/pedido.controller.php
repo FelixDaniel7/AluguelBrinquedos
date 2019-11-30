@@ -67,6 +67,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 foreach ($_SESSION["CodEquipamento"] as $indice => $valor):
 
                 $total += $_SESSION["quantidade"][$indice] * $produtos[$valor]["preco"];
+                $_SESSION["total"] = $total;
                 $subtotal = $produtos[$valor]["preco"] * $_SESSION["quantidade"][$indice];
                 ?>
 
@@ -166,6 +167,8 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 $value = str_replace(")", "", $value);
                 return $value;
             }
+
+            $PrecoFinal = $_SESSION["total"] + $valor;
             
             // atribui valor a variavel privat eda class pedido
             $ped->CodPedido = $CodPedido;
@@ -185,6 +188,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->Data_de_uso = $Data_de_uso;
             $ped->HorasAlugado = $HorasAlugado;            
             $ped->Hora_Montagem = $Hora_Montagem;
+            $ped->PrecoFinal = $PrecoFinal;
             $ped->FormaPagamento = $FormaPagamento;
             $ped->Supervisao = $Supervisao;
 
@@ -196,7 +200,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 //pega os itens do carrinho e cadastra no bd
                 foreach ($_SESSION["CodEquipamento"] as $indice => $value){
                     $CodEquipamento = $value;
-                    $PrecoEqui = $produtos[$value]["preco"] + $valor;
+                    $PrecoEqui = $produtos[$value]["preco"];
 
                     if($ped->CadastrarItens($CodPedido,$CodEquipamento,$PrecoEqui)){
                         echo "bla";
