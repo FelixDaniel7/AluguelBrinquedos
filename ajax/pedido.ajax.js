@@ -186,14 +186,14 @@ $(document).ready(function(){
 
         
         $.post(
-            '../controller/pedido.controller.php',
+            'controller/pedido.controller.php',
             {acao: 'del_carrinho', CodEquipamento: CodEquipamento},
             function(retorno){
 
                 console.log(retorno);
                 
                 
-                ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho')
+                ConsultarCarrinho('controller/pedido.controller.php','consultar_carrinho')
             })
     })
 
@@ -204,7 +204,7 @@ $(document).ready(function(){
                 conteudo_modal_carrinho.html(retorno)
         })
     }
-    ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho',true)
+    ConsultarCarrinho('controller/pedido.controller.php','consultar_carrinho',true)
 
     
 

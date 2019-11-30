@@ -27,11 +27,11 @@ include_once('../controller/equipamento.controller.php');
   <link href="css/css.css" rel="stylesheet">
 
     <!-- Jquery -->
-    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
     <!-- Ajax -->
-    <script src="../ajax/pedido.ajax.js"></script>
+    <script src="ajax/pedido.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
-    <script src="../js/sweetalert.js"></script>
+    <script src="js/sweetalert.js"></script>
 </head>
 <body class="bg-light">
     
@@ -52,7 +52,7 @@ include_once('../controller/equipamento.controller.php');
 </center>  
   <?php include_once("menu/menu-inferior.php"); ?>
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="view/vendor/jquery/jquery.min.js"></script>
+  <script src="view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

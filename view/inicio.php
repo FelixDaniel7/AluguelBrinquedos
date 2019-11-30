@@ -1,6 +1,11 @@
 <?php 
-include_once("../controller/equipamento.controller.php");
-include_once("../controller/pedido.controller.php");
+//echo $path = dirname('c:/xampp/htdocs/AluguelBrinquedos/controller/equipamento.controller.php//');
+
+
+$pathFileEquipamento = realpath('controller'. DIRECTORY_SEPARATOR . 'equipamento.controller.php') ;
+include_once($pathFileEquipamento);
+$pathFilePedido = realpath('controller'. DIRECTORY_SEPARATOR . 'pedido.controller.php') ;
+include_once($pathFilePedido);
 
 $Aleatorio = rand(1,4);
 ?>
@@ -16,25 +21,25 @@ $Aleatorio = rand(1,4);
   <title>Home - Aluguel Briquedos</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="view/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="view/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template -->
-  <link href="css/landing-page.min.css" rel="stylesheet">
-  <link href="css/css.css" rel="stylesheet">
+  <link href="view/css/landing-page.min.css" rel="stylesheet">
+  <link href="view/css/css.css" rel="stylesheet">
     <!-- Jquery -->
-    <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="js/jquery-3.4.1.min.js"></script>
     <!-- Ajax -->
-    <script src="../ajax/pedido.ajax.js"></script>
+    <script src="ajax/pedido.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
-    <script src="../js/sweetalert.js"></script>
+    <script src="js/sweetalert.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="view/vendor/jquery/jquery.min.js"></script>
+  <script src="view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -48,17 +53,17 @@ $Aleatorio = rand(1,4);
     </ol>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img class="d-block w-100" src="img/Menu/castelo.jpg" alt="Primeiro Slide">
+      <img class="d-block w-100" src="view/img/Menu/castelo.jpg" alt="Primeiro Slide">
         <div class="carousel-caption d-none d-md-block">
           <h5>Praticidade</h5>
             <h6><p>Alugue seu brinquedo em apenas alguns cliques!</p></h6>
-            <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $Aleatorio;?>" class="btn btn-primary btn-lg" tabindex="-1" role="button">
+            <a href="Pag_Equipamento?CodEquipamento=<?php echo $Aleatorio;?>" class="btn btn-primary btn-lg" tabindex="-1" role="button">
               Ver Mais
             </a>
         </div>
     </div>
   <div class="carousel-item">
-    <img class="d-block w-100" src="img/Menu/caminha.jpg" alt="Segundo Slide">
+    <img class="d-block w-100" src="view/img/Menu/caminha.jpg" alt="Segundo Slide">
       <div class="carousel-caption d-none d-md-block">
         <h5>Entrega rapida</h5>
         <h6><p>Entrega rápida e no dia agendado!</p></h6>
@@ -68,7 +73,7 @@ $Aleatorio = rand(1,4);
       </div>
       </div>
       <div class="carousel-item">
-        <img class="d-block w-100" src="img/Menu/bolinha.jpg" alt="Terceiro Slide">
+        <img class="d-block w-100" src="view/img/Menu/bolinha.jpg" alt="Terceiro Slide">
         <div class="carousel-caption d-none d-md-block">
           <h5>Brinquedos Seguros</h5>
           <h6><p>Brinquedos revisados frequentemente para uma maior segurança!</p></h6>

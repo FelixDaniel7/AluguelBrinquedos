@@ -17,7 +17,7 @@
 <!-- logo -->
 <nav class="navbar navbar-light bg-light static-top"> &nbsp;
   <p>&nbsp;
-  <a href="index.php">
+  <a href="home.php">
     <img src="img/Logo/logo1.png" alt="logo img"  width="300" height="51">
   </p>
   <div class="col-lg-6 h-100 text-center text-lg-right my-auto"> 
@@ -33,7 +33,7 @@
 <div class="fundo">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="index.php">Home</a>
+      <a class="navbar-brand" href="index">Home</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -49,7 +49,7 @@
               foreach($certo as $Numero):
                 ?>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item " href="Pag_Equipamento.php?CodEquipamento=<?php echo $Numero->CodEquipamento;?>">
+                <a class="dropdown-item " href="Pag_Equipamento?CodEquipamento=<?php echo $Numero->CodEquipamento;?>">
                     <?php echo $Numero->Nome;?>
                 </a>
                 
@@ -61,10 +61,10 @@
           </div>
           </li>
           <li class="nav-item active">
-            <a class="navbar-brand" href="galeria.php">Galeria</a>
+            <a class="navbar-brand" href="galeria">Galeria</a>
           </li>
           <li class="nav-item">
-            <a class="navbar-brand" href="sobre.php">Sobre</a>
+            <a class="navbar-brand" href="sobre">Sobre</a>
           </li>
         </div>
         </ul>

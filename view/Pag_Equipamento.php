@@ -1,5 +1,6 @@
-<?php include_once("../controller/equipamento.controller.php");
-include_once("../controller/pedido.controller.php");
+<?php 
+include_once("controller/equipamento.controller.php");
+include_once("controller/pedido.controller.php");
 
 $CodEquipamento = filter_input(INPUT_GET, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);
 
@@ -22,25 +23,25 @@ else:
   <title><?php echo $value->Nome;?> - Aluguel Briquedos</title>
 
   <!-- Bootstrap core CSS -->
-  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="view/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom fonts for this template -->
-  <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
-  <link href="vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="view/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="view/vendor/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
   <!-- Custom styles for this template -->
-  <link href="css/landing-page.min.css" rel="stylesheet">
-  <link href="css/css.css" rel="stylesheet">
+  <link href="view/css/landing-page.min.css" rel="stylesheet">
+  <link href="view/css/css.css" rel="stylesheet">
 
   <!-- Jquery -->
-  <script src="../js/jquery-3.4.1.min.js"></script>
+  <script src="js/jquery-3.4.1.min.js"></script>
   <!-- Ajax -->
-  <script src="../ajax/pedido.ajax.js"></script>
+  <script src="ajax/pedido.ajax.js"></script>
   <!-- Alertas Bonitinhos -->
-  <script src="../js/sweetalert.js"></script>
+  <script src="js/sweetalert.js"></script>
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="view/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- Mascaras -->
-  <script src="../js/validador.js"></script>
+  <script src="js/validador.js"></script>
   
 </head>
 
@@ -63,17 +64,17 @@ else:
                 <?php 
                   $CodEquipamento = $value->CodEquipamento; 
                   if ($CodEquipamento == 1){
-                    $img1 = "<img class='d-block w-100' src='img/Produtos/CasteloInflavel/1.jpg' alt='Primeiro Slide'>";
-                    $img2 = "<img class='d-block w-100' src='img/Produtos/CasteloInflavel/2.jpg' alt='Segundo Slide'>";
-                    $img3 = "<img class='d-block w-100' src='img/Produtos/CasteloInflavel/3.jpg' alt='Terceiro Slide'>";
+                    $img1 = "<img class='d-block w-100' src='view/img/Produtos/CasteloInflavel/1.jpg' alt='Primeiro Slide'>";
+                    $img2 = "<img class='d-block w-100' src='view/img/Produtos/CasteloInflavel/2.jpg' alt='Segundo Slide'>";
+                    $img3 = "<img class='d-block w-100' src='view/img/Produtos/CasteloInflavel/3.jpg' alt='Terceiro Slide'>";
                   }
                   else if ($CodEquipamento == 2){
-                      $img1 = '<img class="d-block w-100" src="img/Produtos/CamaElastica/1.jpg" alt="Primeiro Slide">';
-                      $img2 = '<img class="d-block w-100" src="img/Produtos/CamaElastica/2.jpg" alt="Segundo Slide">';
-                      $img3 = '<img class="d-block w-100" src="img/Produtos/CamaElastica/3.jpg" alt="Terceiro Slide">';
+                      $img1 = '<img class="d-block w-100" src="view/img/Produtos/CamaElastica/1.jpg" alt="Primeiro Slide">';
+                      $img2 = '<img class="d-block w-100" src="view/img/Produtos/CamaElastica/2.jpg" alt="Segundo Slide">';
+                      $img3 = '<img class="d-block w-100" src="view/img/Produtos/CamaElastica/3.jpg" alt="Terceiro Slide">';
                   }
                   else if ($CodEquipamento == 3){
-                    $img1 = '<img class="d-block w-100" src="img/Produtos/PiscinaBolinhas/1.jpg" alt="Primeiro Slide">';
+                    $img1 = '<img class="d-block w-100" src="view/img/Produtos/PiscinaBolinhas/1.jpg" alt="Primeiro Slide">';
                     $img2 = '<img class="d-block w-100" src="img/Produtos/PiscinaBolinhas/2.jpg" alt="Segundo Slide">';
                     $img3 = '<img class="d-block w-100" src="img/Produtos/PiscinaBolinhas/3.jpg" alt="Terceiro Slide">';
                     }
@@ -172,7 +173,7 @@ else:
                 <p class="card-text"><?php echo $valor->Descricao;?></p>
               </div>
               <div class="card-footer">
-                <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $valor->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
+                <a href="Pag_Equipamento?CodEquipamento=<?php echo $valor->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Conferir</a>
               </div>
             </div>
           </div>

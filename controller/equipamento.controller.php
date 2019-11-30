@@ -4,7 +4,11 @@ cadastro
 update
 delete
 */
-include_once('../model/equipamento.php');
+
+$pathFile = realpath('model'. DIRECTORY_SEPARATOR . 'equipamento.php') ;
+
+include_once($pathFile);
+//require ('../model/equipamento.php');
 
 $equi = new Equipamento();/*Instancia do objeto da classe para poder usar as funçoes da classe*/
 
