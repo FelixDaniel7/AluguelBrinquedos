@@ -300,6 +300,8 @@ switch ($acao) {
                 }*/
         break;
 
+
+
         case 'confrimar_cod':
 
             $codigo = $_POST['txtcod'];
@@ -317,6 +319,50 @@ switch ($acao) {
         case 'alterar_senha':
             
             break;
+
+            case 'contato':
+
+                
+                
+                    
+                try {
+                    //Server settings
+                    $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
+                    $mail->isSMTP();                                            // Send using SMTP
+                    $mail->Host       = 'SMTP.office365.com';                    // Set the SMTP server to send through
+                    $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
+                    $mail->Username   = 'pedrotcc0308@outlook.com';                     // SMTP username
+                    $mail->Password   = '0308pedrotcc';                               // SMTP password
+                    $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;         // Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` also accepted
+                    $mail->Port       = 587;                                    // TCP port to connect to
+
+                    //Recipients
+                    $mail->setFrom('pedrotcc0308@outlook.com', 'TCC');
+                    $mail->addAddress($email, 'Senhor Usuario');     // Add a recipient
+                    //$mail->addAddress('ellen@example.com');               // Name is optional
+                    //$mail->addReplyTo('info@example.com', 'Information');
+                    //$mail->addCC('cc@example.com');
+                    //$mail->addBCC('bcc@example.com');
+
+                    // Attachments
+                    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
+                    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
+
+                    // Content
+                    $mail->isHTML(true);                                  // Set email format to HTML
+                    $mail->Subject = "Contato tcc";
+                    $mail->Body    = "Teste";
+                    $mail->AltBody = 'Texto alternativo';
+
+                    $mail->send();
+                } catch (Exception $e) {
+                    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+                    echo "<script>
+                    alert('Deu Ruim');
+                    window.location='senha.php';        
+                    </script>";
+                }
+        break;
 }
 
 

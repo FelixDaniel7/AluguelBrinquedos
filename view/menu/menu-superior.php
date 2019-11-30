@@ -3,10 +3,13 @@
 <nav class="nav justify-content-center bg-light">
   <ul class="nav justify-content-center">
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contatos: (11)95555-5555</a>
+        <a class="nav-link disabled" href="#" >Contatos: (11) 99026-1709 <i class="fa fa-whatsapp" style="font-size:24px"></i></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contatos: (11)4444-4444</a>
+        <a class="nav-link disabled" href="#">(11) 99202-1098</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">(11) 4488-7230</a>
       </li>
       <li class="nav-item">
         <a class="nav-link disabled" href="#">E-mail: nome@gmail.com</a>
