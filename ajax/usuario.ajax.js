@@ -50,13 +50,15 @@ $(document).ready(function(){
                       }) 
                       botao.attr('disabled', false)
 
-                     ConsultarUsuario("../controller/usuario.controller.php", "consultar_usu", true);
-                    
+                      //ConsultarUsuario("../controller/usuario.controller.php", "consultar_usu", true);
+                      setTimeout(function(){
+                        $(location).attr('href','view.usuario.php')
+                    }, 1000)
                 }
                 else{
                     swal({
                         title: "Erro ao cadastrar usuário !",
-                        text: "já existe um usuario com esse email", 
+                        text: "Email", 
                         icon: "error",
                     })
                     botao.attr('disabled', false)
@@ -66,14 +68,20 @@ $(document).ready(function(){
         return false
     })
 
-    function ConsultarUsuario(url,acao,atualiza){        
+    /*function ConsultarUsuario(url,acao,atualiza){
+            // $('#tabela_usuario').DataTable({
+            // "ajax": {
+            // "url": "../view/testtable.php",
+            // "type": "POST"}
+            // })
+        
         $.post(
             url,
             {acao: acao},
             function(retorno){
 
                 var tbody = $('#tabela_usuario').find('tbody')
-                //var imagem = tbody.find('.load')
+                var imagem = tbody.find('.load')
 
                 if (retorno == false) {
                     tbody.html('Nenhum registro');
@@ -82,15 +90,15 @@ $(document).ready(function(){
                     tbody.html(retorno);
                 }
                 else if(retorno != ''){
-                    //imagem.fadeOut('fast', function(){
+                    imagem.fadeOut('fast', function(){
                         tbody.html(retorno)
-                    //});
+                    });
                 }                
             }
 
         )    
     }
-    ConsultarUsuario("../controller/usuario.controller.php", "consultar_usu");
+    ConsultarUsuario("../controller/usuario.controller.php", "consultar_usu");*/
 
     /**BOTAO EDITAR */
     $('#tabela_usuario').on('click', '#btn_editar', function(){
@@ -138,8 +146,10 @@ $(document).ready(function(){
                         icon: 'success',
                         timer: 600
                     })
-                    ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)
-                                       
+                    //ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)
+                    setTimeout(function(){
+                        $(location).attr('href','view.usuario.php')
+                    }, 1000)                    
                 }
                 else{
                     swal({
@@ -186,7 +196,7 @@ $(document).ready(function(){
                                 //atualiza a tabela
                                 //ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)
                                 setTimeout(function(){
-                                    $(location).attr('href','admin.usuario.php')
+                                    $(location).attr('href','view.usuario.php')
                                 }, 1000)
 
                             } else {

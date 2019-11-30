@@ -1,7 +1,7 @@
 <?php 
 //formulario de cadastro de pedido e dados do cliente 
 include_once('../controller/pedido.controller.php'); 
-include_once('../controller/equipamento.controller.php');
+include_once('../controller/equipamento.controller.php'); 
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +80,7 @@ include_once('../controller/equipamento.controller.php');
 
 
 
-<section id="montagem" style="display: none" class="col-md-6 col-sm-6">
+<!-- <section id="montagem" style="display: none" class="col-md-6 col-sm-6"> -->
 
 <h3>Local da Montagem</h3>
 
@@ -110,7 +110,7 @@ include_once('../controller/equipamento.controller.php');
 
 </section>
 
-<section id="pedido" style="display: none"> 
+<!-- <section id="pedido" style="display: none">  -->
 
 <div class="col-md-6 col-sm-6">
 <h3>Dados do Pedido</h3>
@@ -130,7 +130,7 @@ include_once('../controller/equipamento.controller.php');
 <option value="Cartão">Cartão</option>
 </select>
 
-<label for="Text">Supervisão<span>*</span><br>Acréscimo de R$ 50,00 no pedido</label>
+<label for="Text">Supervisão<span>*</span></label>
 <select class="custom-select" name="txtsupervisao" >
 <option value="0">Sem Supervisão</option>
 <option value="1">Com Supervisão</option>
@@ -147,8 +147,8 @@ include_once('../controller/equipamento.controller.php');
         if ($certo = $equi->ConsultarEquipamento()) {
           foreach($certo as $value){
         ?>
-        <div class="col-md-3" id="card-carrinho">
-        <div class="card" style="height: 30rem;">
+        <div class="col-md-3" id="card-carrinho"><!-- essa -->
+        <div class="card" style="height: 25rem;">
           <img class="card-img-top" src="img/Produtos/<?php echo $value->Imagem;?>" alt="Imagem Equipamento">
           <div class="card-body">
             <p class="card-title"><?php echo $value->Nome;?></p>
@@ -157,24 +157,16 @@ include_once('../controller/equipamento.controller.php');
             } else{
               echo "<span class='badge badge-pill badge-success'>Disponivel</span>";
             }?>
-            <p>R$ <?php echo $value->Preco?></p>
           </div>
           <div class="card-footer">
             <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $value->CodEquipamento;?>" class="btn btn-primary btn-sm" tabindex="-1" role="button">Ver Mais</a>
             
             <?php if ($value->Status == 'Disponivel') {?>
               <hr>
-
-              <?php if(in_array($value->CodEquipamento, $_SESSION["CodEquipamento"])){?>
-                        <button type='button' carrinho='btn_add_carrinho' value='<?php echo $value->CodEquipamento;?>' class='btn btn-success btn-sm'>
-                            No carrinho
-                        </button>     
-              <?php }else{?>
-                <button type='button' carrinho='btn_add_carrinho' value='<?php echo $value->CodEquipamento;?>' class='btn btn-warning btn-sm'>
-                Adicionar ao carrinho
-                  </button>
-            <?php }
-                }?>
+              <button type='button' carrinho='btn_add_carrinho' value='<?php echo $value->CodEquipamento;?>' class='btn btn-warning btn-sm'>
+              Adicionar ao carrinho
+                </button>
+            <?php }?>
           
             
             </div>

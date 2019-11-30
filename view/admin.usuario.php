@@ -8,17 +8,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- Jquery -->
     <script src="../js/jquery-3.4.1.min.js"></script>
     <!-- Ajax -->
     <script src="../ajax/usuario.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
-    <!-- emojis -->
-    <link href="css/emoji-css.css" rel="stylesheet">
     <!-- datatable -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"> -->
+    <link href="css/jquery.dataTables.min.css" rel="stylesheet">
   </head>
   <body>
 
@@ -44,22 +43,38 @@
                         </tr>
                     </thead>
                     <tbody>
-                 
-                    
+                    <?php
+                    if($certo = $usu->ConsultarUsuario()){
+                        foreach($certo as $value):
+
+                    ?>
                         <tr>
-                            <td></td>
-                            <td>></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td><?php echo $value->CodUsuario;?></td>
+                            <td><?php echo $value->Nome;?></td>
+                            <td><?php echo $value->Login;?></td>
+                            <td><?php echo $value->Email;?></td>
+                            <td><?php echo $value->Tipo;?></td>
                             
                             <td>
-                            
-                            
+                            <button type="button" id="btn_editar" value="<?php echo $value->CodUsuario; ?>"class="btn btn-outline-primary">
+                            Editar
+                            </button>
+                            <button type="button" id="btn_excluir" value="<?php echo $value->CodUsuario; ?>" class="btn btn-outline-danger">
+                            Excluir
+                            </button>
                             </td>
 
-                 
-                      
+                        
+                    <?php
+
+                        endforeach;
+                    }
+                    else{
+                    ?>
+                       <td colspan="6" align="center"><?php echo "Nenhum registro"; ?></td>
+                    <?php
+                    }
+                    ?>
                         </tr>
                     </tbody>
                 </table>
@@ -88,12 +103,20 @@
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script> -->
     <script src="../js/popper.min.js"></script>
     <script src="../js/bootstrap.min.js"></script>
+    <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script> -->
+
     <!-- datatable -->
-    <!-- <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
+    <!-- <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script> -->
+    <script src="../js/jquery.dataTables.min.js"></script>
+    
+
+    
     <script>
     $('#tabela_usuario').DataTable()
-    </script> -->
+    </script>
   </body>
 </html>

@@ -39,8 +39,6 @@ else:
   <script src="../js/sweetalert.js"></script>
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- Mascaras -->
-  <script src="../js/validador.js"></script>
   
 </head>
 
@@ -142,7 +140,7 @@ else:
                 <div class="col-md-8 col-sm-8 ">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Calcular Frete</label>
-                    <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP" maxlength="10" onkeydown="javascript: fMasc(this, mCEP)">
+                    <input type="text" class="form-control" id="cep" placeholder="Digite seu CEP">
                     <small class="form-text text-muted">
                       <a href="http://www.consultaenderecos.com.br/busca-endereco" target="_blank">Não sei meu CEP</a>
                     </small>
