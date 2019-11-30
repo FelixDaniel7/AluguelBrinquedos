@@ -60,6 +60,8 @@ $(document).ready(function(){
     //             btn_atualiza.attr('disabled',true)
     //         },
     //         success: function(retorno){
+
+    //             console.log(retorno)
                 
     //             if (retorno == 'atualizou') {
     //                 form_dados.fadeOut('fast')
@@ -72,7 +74,7 @@ $(document).ready(function(){
     //                 })
     //                 //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)                    
     //                 setTimeout(function(){
-    //                     $(location).attr('href','view.equipamento.php')
+    //                     $(location).attr('href','admin.equipamento.php')
     //                 }, 1000)
     //             }
     //             else{
@@ -117,7 +119,7 @@ $(document).ready(function(){
                                 //atualiza a tabela
                                 //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)
                                 setTimeout(function(){
-                                    $(location).attr('href','view.equipamento.php')
+                                    $(location).attr('href','admin.equipamento.php')
                                 }, 1000)
 
                             } else {

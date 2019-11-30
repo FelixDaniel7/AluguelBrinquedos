@@ -48,6 +48,9 @@ $(document).ready(function(){
         else if (nome.val() != '' && cpf.val() != '' && email.val() != '') {
             montagem.fadeIn('fast')
             dados_pessoais.fadeOut('fast')
+            email.addClass('border border-success')
+            cpf.addClass('border border-success')
+            nome.addClass('border border-success')
         }
     })
 
@@ -66,16 +69,81 @@ $(document).ready(function(){
         CampoVazio(cep)
         CampoVazio(bairro)
         CampoVazio(endereco)
+        
 
         if (cep.val() != '' && endereco.val() != '' && numero.val() != '' && bairro.val() != '') {
             montagem.fadeOut('fast')
             pedido.fadeIn('fast')
+            cep.addClass('border border-success')
+            endereco.addClass('border border-success')
+            numero.addClass('border border-success')
+            bairro.addClass('border border-success')
         }
     })
 
     pedido.find('#anterior').click(function(){
         pedido.fadeOut('fast')
         montagem.fadeIn('fast')
+    })
+
+    $('form[name="form_cad_cliente_pedido"]').submit(function(){
+        var formPed = $(this)
+        var data_de_uso = $('#txtdataUso')
+        var horasAlugado = $('#txthorasAlugado')
+        var data_Hora_Montagem = $('#txthoraMontagem')
+
+        var botao = $('#btn_finalizar')
+            
+        CampoVazio(data_Hora_Montagem)
+        CampoVazio(data_de_uso)
+        CampoVazio(horasAlugado)
+
+        
+        if (data_Hora_Montagem.val() != '' && data_de_uso.val() != '' && horasAlugado.val() != '') {
+            $.post(
+                '../controller/pedido.controller.php',
+                {acao: 'verificar_carrinho'},
+                function(retorno){
+                    console.log(retorno);
+                    if (retorno == 'carrinho_vazio') {
+                        swal({
+                            title: 'Selecione um Equipamento!',
+                            icon: 'info'
+                        })
+                    }else if(retorno == 'carrinho_cheio'){
+                        $.ajax({
+                            url: "../controller/pedido.controller.php",
+                            type: "POST",
+                            data: "acao=cadastrar_ped&" + formPed.serialize(),
+                            beforeSend: function(){
+                                botao.attr('disabled', true)
+                            },
+                            success: function(retorno){
+            
+                                console.log(retorno)
+            
+                                if (retorno != '') {
+                                    
+                                    swal({
+                                        title:"Pedido enviado !",
+                                        icon:"success"
+                                        
+                                    })
+                                }
+                                else{
+                                    swal({
+                                        title:"Erro ao enviar pedido !",
+                                        icon:"error"
+                                        
+                                    })
+                                }
+                            }
+                        })  
+                    }
+                })
+        }
+        console.log($(this).serialize());
+        return false;
     })
 
 
@@ -138,57 +206,7 @@ $(document).ready(function(){
     }
     ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho',true)
 
-    $('form[name="form_cad_cliente_pedido"]').submit(function(){
-        var formPed = $(this)
-        var data_de_uso = $('#txtdataUso')
-        var horasAlugado = $('#txthorasAlugado')
-        var data_Hora_Montagem = $('#txthoraMontagem')
-        
-        var brinquedo = $('#brinquedo')
-        var formaPagamento = $('#txtformaPagamento')
-
-        var botao = $('#btn_finalizar')
-            
-        CampoVazio(data_Hora_Montagem)
-        CampoVazio(data_de_uso)
-        CampoVazio(horasAlugado)
-
-        
-        if (data_Hora_Montagem.val() != '' && data_de_uso.val() != '' && horasAlugado.val() != '') {
-            $.ajax({
-                url: "../controller/pedido.controller.php",
-                type: "POST",
-                data: "acao=cadastrar_ped&" + formPed.serialize(),
-                beforeSend: function(){
-                    botao.attr('disabled', true)
-                },
-                success: function(retorno){
-
-                    console.log(retorno)
-
-                    if (retorno == 'cadastrou_pedido') {
-                        
-                        swal({
-                            title:"Pedido enviado !",
-                            icon:"success",
-                            timer: 600
-                        })
-                    }
-                    else{
-                        swal({
-                            title:"Erro ao enviar pedido !",
-                            icon:"error",
-                            timer: 600
-                        })
-                    }
-                    
-
-                }
-            })
-        }
-        console.log($(this).serialize());
-        return false;
-    })
+    
 
     $('#tabela_pedido').on('click', '#btn_editar', function(){
 
@@ -229,7 +247,7 @@ $(document).ready(function(){
                 console.log('Atualizou');
 
                 setTimeout(function(){
-                    $(location).attr('href','view.pedido.php')
+                    $(location).attr('href','admin.pedido.php')
                 }, 1000)
 
                 }
@@ -273,7 +291,7 @@ $(document).ready(function(){
 
                             //ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
                             setTimeout(function(){
-                                $(location).attr('href','view.pedido.php')
+                                $(location).attr('href','admin.pedido.php')
                             }, 1000)
 
                         }else{

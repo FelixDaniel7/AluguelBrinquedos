@@ -67,8 +67,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 $total = 0;
                 foreach ($_SESSION["CodEquipamento"] as $indice => $valor):
 
-                $total += $_SESSION["quantidade"][$indice] * 
-                $produtos[$valor]["preco"];
+                $total += $_SESSION["quantidade"][$indice] * $produtos[$valor]["preco"];
                 $subtotal = $produtos[$valor]["preco"] * $_SESSION["quantidade"][$indice];
                 ?>
 
@@ -93,15 +92,18 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             <?php 
                 break;
     
-            case 'finalizar_compra':
-                //cadastrar compra retornando o código da compra gerado
-                foreach ($_SESSION["codproduto"] as $indice => $valor):
-                    //código para enviar itens 
-                    echo "gravou o produto de código $valor com a quantidade ".$_SESSION["quantidade"][$indice];
-                endforeach;
-            break;
+        case 'verificar_carrinho':
+            if (empty($_SESSION['CodEquipamento'])) {
+                echo 'carrinho_vazio';
+            }
+            else{
+                echo 'carrinho_cheio';
+            }
+        break;
 
         case 'cadastrar_ped':
+
+            $CodPedido = rand(11111,99999);
 
             $Nome = filter_input(INPUT_POST, 'txtnome', FILTER_SANITIZE_STRING);
             $Telefone = filter_input(INPUT_POST, 'txttelefone' , FILTER_SANITIZE_STRING);
@@ -134,6 +136,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             }
             
             // atribui valor a variavel privat eda class pedido
+            $ped->CodPedido = $CodPedido;
             $ped->Nome = $Nome;
             $ped->Telefone = limpaCPF_CEP_TEL($Telefone);
             $ped->Celular = limpaCPF_CEP_TEL($Celular);
@@ -157,11 +160,21 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
 
             //cadastrar os brinquedos tambem
-
+            //cadastrar compra retornando o código da compra gerado
             
             if($ped->CadastrarPedido()){
-                echo 'cadastrou_pedido';
+                //pega os itens do carrinho e cadastra no bd tabela itens
+                foreach ($_SESSION["CodEquipamento"] as $indice => $valor){
+                    $CodEquipamento = $valor;
+                    $PrecoEqui = $produtos[$valor]["preco"];
+
+                    if($ped->CadastrarItens($CodPedido,$CodEquipamento,$PrecoEqui)){
+                        echo "bla";
+                    }
+                } 
             }
+            
+            
         break;
 
         case 'form_editar_ped':

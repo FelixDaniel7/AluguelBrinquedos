@@ -1,15 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.5
--- https://www.phpmyadmin.net/
+-- version 4.5.1
+-- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 26-Nov-2019 às 22:32
--- Versão do servidor: 10.1.40-MariaDB
--- versão do PHP: 7.3.5
+-- Generation Time: 29-Nov-2019 às 01:36
+-- Versão do servidor: 10.1.19-MariaDB
+-- PHP Version: 7.0.13
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -73,7 +71,7 @@ INSERT INTO `equipamento` (`CodEquipamento`, `Nome`, `Descricao`, `Peso`, `Altur
 
 CREATE TABLE `itens` (
   `CodItem` smallint(6) NOT NULL,
-  `CodPedido` int(11) NOT NULL,
+  `CodPedido` int(5) NOT NULL,
   `CodEquipamento` smallint(6) NOT NULL,
   `Preco` decimal(8,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -85,7 +83,7 @@ CREATE TABLE `itens` (
 --
 
 CREATE TABLE `pedido` (
-  `CodPedido` int(11) NOT NULL,
+  `CodPedido` int(5) NOT NULL,
   `CPF` char(11) COLLATE utf8_unicode_ci NOT NULL,
   `Nome` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Telefone` char(10) COLLATE utf8_unicode_ci DEFAULT NULL,
@@ -120,14 +118,6 @@ CREATE TABLE `usuario` (
   `Senha` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Tipo` enum('super','Administrador','Moderador') COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
---
--- Extraindo dados da tabela `usuario`
---
-
-INSERT INTO `usuario` (`CodUsuario`, `Nome`, `Email`, `Login`, `Senha`, `Tipo`) VALUES
-(1, 'grfgfdgfd', 'rodolfinho@gmail.com', '', '67a74306b06d0c01624fe0d0249a570f4d093747', 'Administrador'),
-(2, 'grfgfdgfd', '', '', '67a74306b06d0c01624fe0d0249a570f4d093747', 'Moderador');
 
 --
 -- Indexes for dumped tables
@@ -174,26 +164,17 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `equipamento`
 --
 ALTER TABLE `equipamento`
-  MODIFY `CodEquipamento` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
+  MODIFY `CodEquipamento` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `itens`
 --
 ALTER TABLE `itens`
   MODIFY `CodItem` smallint(6) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `pedido`
---
-ALTER TABLE `pedido`
-  MODIFY `CodPedido` int(11) NOT NULL AUTO_INCREMENT;
-
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `CodUsuario` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
+  MODIFY `CodUsuario` smallint(6) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
@@ -210,7 +191,6 @@ ALTER TABLE `datasdisponivel`
 ALTER TABLE `itens`
   ADD CONSTRAINT `FK_Equipamento_Itens` FOREIGN KEY (`CodEquipamento`) REFERENCES `equipamento` (`CodEquipamento`),
   ADD CONSTRAINT `FK_Pedido_Itens` FOREIGN KEY (`CodPedido`) REFERENCES `pedido` (`CodPedido`);
-COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

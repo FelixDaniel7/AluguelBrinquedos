@@ -80,7 +80,7 @@
 <script>
     function calculo(){
       var cep = $("#cep").val();
-      $.post('../calcula.php',{cep:cep},function(data){
+      $.post('frete.php',{cep:cep},function(data){
         $("#retornoFrete").html(data);
       });
     }

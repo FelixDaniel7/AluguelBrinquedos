@@ -66,7 +66,7 @@ if (isset($_REQUEST['acao']))
                 timer: 900
                 })
                 setTimeout(function(){
-                        $(location).attr('href','view.equipamento.php')
+                        $(location).attr('href','admin.equipamento.php')
                     }, 1000)
             }
             function erro(){
@@ -134,7 +134,7 @@ if (isset($_REQUEST['acao']))
                         icon: 'success'
                     })
                 setTimeout(function(){
-                        $(location).attr('href','view.equipamento.php')
+                        $(location).attr('href','admin.equipamento.php')
                     }, 1000)
             }
             function erro(){
