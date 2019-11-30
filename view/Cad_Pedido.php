@@ -130,7 +130,7 @@ include_once('../controller/equipamento.controller.php');
 <option value="Cartão">Cartão</option>
 </select>
 
-<label for="Text">Supervisão<span>*</span></label>
+<label for="Text">Supervisão<span>*</span><br>Acréscimo de R$ 50,00 no pedido</label>
 <select class="custom-select" name="txtsupervisao" >
 <option value="0">Sem Supervisão</option>
 <option value="1">Com Supervisão</option>

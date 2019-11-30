@@ -163,7 +163,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             //cadastrar compra retornando o código da compra gerado
             
             if($ped->CadastrarPedido()){
-                //pega os itens do carrinho e cadastra no bd
+                //pega os itens do carrinho e cadastra no bd tabela itens
                 foreach ($_SESSION["CodEquipamento"] as $indice => $valor){
                     $CodEquipamento = $valor;
                     $PrecoEqui = $produtos[$valor]["preco"];
