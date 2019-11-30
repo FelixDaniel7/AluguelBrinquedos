@@ -162,7 +162,19 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
             
             if($ped->CadastrarPedido()){
+<<<<<<< HEAD
                 echo 'cadastrou_pedido';
+=======
+                //pega os itens do carrinho e cadastra no bd
+                foreach ($_SESSION["CodEquipamento"] as $indice => $valor){
+                    $CodEquipamento = $valor;
+                    $PrecoEqui = $produtos[$valor]["preco"];
+
+                    if($ped->CadastrarItens($CodPedido,$CodEquipamento,$PrecoEqui)){
+                        echo "bla";
+                    }
+                } 
+>>>>>>> parent of 7a7fabe... a
             }
         break;
 
