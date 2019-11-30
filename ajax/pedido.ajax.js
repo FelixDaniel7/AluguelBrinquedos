@@ -1,60 +1,194 @@
 $(document).ready(function(){
 
-    var conteudo_modal = $('.modal-body')
+    var conteudo_modal = $('#modal_pedido').find('.modal-body')
+    var conteudo_modal_carrinho = $('#modalCarrinho').find('.modal-body')
 
-    $('form[name="form_cad_pedido"]').submit(function(){
 
-        var formPed = $(this)
+    var dados_pessoais = $('#pessoais')
+    var montagem = $('#montagem')
+    var pedido = $('#pedido')
 
-        var botao = $(this).find(':button')
+    function CampoVazio(campo){
+        if (campo.val() == '') {
+            campo.addClass('border border-danger')
 
-        $.ajax({
-            url: "../controller/pedido.controller.php",
-            type: "POST",
-            data: "acao=cadastrar_ped&" + formPed.serialize(),
-            beforeSend: function(){
-                botao.attr('disabled', true)
-            },
-            success: function(retorno){
+            swal({position: 'top-end',icon: 'info',
+            title: 'Campos em vermelho são obrigatorios !',
+            button: true,timer: 2000})
+
+            return false
+        }
+        else{
+            return true
+        }
+        
+    }
+
+    dados_pessoais.find('#proximo').click(function(){
+        var nome = $('#txtnome')
+        //var celular = $('#txtcelular')
+        var email = $('#txtemail')
+        var cpf = $('#txtcpf')
+        //var telefone = $('#txttelefone')
+           
+        CampoVazio(nome)
+        CampoVazio(cpf)
+
+        //campo email
+        var emailFilter=/^.+@.+\..{2,}$/;
+		var illegalChars= /[\(\)\<\>\,\;\:\\\/\"\[\]]/
+        if(!(emailFilter.test(email.val())) || email.val().match(illegalChars)){
+
+            email.addClass('border border-danger')
+                
+                swal({position: 'top-end',icon: 'info',
+                title: 'Por favor, informe um email válido.',
+                button: true,timer: 2000})
+        }
+        else if (nome.val() != '' && cpf.val() != '' && email.val() != '') {
+            montagem.fadeIn('fast')
+            dados_pessoais.fadeOut('fast')
+        }
+    })
+
+    montagem.find('#anterior').click(function(){
+            montagem.fadeOut('fast')
+            dados_pessoais.fadeIn('fast')          
+    })
+
+    montagem.find('#proximo').click(function(){
+        var cep = $('#txtcep')
+        var endereco = $('#txtendereco')
+        var numero = $ ('#txtnumero')
+        var bairro = $('#txtbairro') 
+
+        CampoVazio(numero)
+        CampoVazio(cep)
+        CampoVazio(bairro)
+        CampoVazio(endereco)
+
+        if (cep.val() != '' && endereco.val() != '' && numero.val() != '' && bairro.val() != '') {
+            montagem.fadeOut('fast')
+            pedido.fadeIn('fast')
+        }
+    })
+
+    pedido.find('#anterior').click(function(){
+        pedido.fadeOut('fast')
+        montagem.fadeIn('fast')
+    })
+
+
+    $("button[carrinho='btn_add_carrinho']").click(function(){
+        var CodEquipamento = $(this).attr('value')
+
+        console.log('Cod enviado ' + CodEquipamento);
+        $.post(
+            '../controller/pedido.controller.php',
+            {acao: 'add_carrinho',
+            CodEquipamento: CodEquipamento},
+            function(retorno){
+                console.log(retorno);
+                if (retorno == 'repetido') {
+                    swal({
+                        title: 'Este produto já foi adicionado !',
+                        icon: 'info'
+                    })
+                }else if(retorno == 'adicionou'){
+                    $('#modalCarrinho').modal({backdrop: true})
+                    ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho')
+                }
+                else{
+                    swal({
+                        title: 'Erro ao adicionar produto !',
+                        icon: 'error'
+                    })
+                }
+                
+                
+
+                
+            })
+    })
+    $('#modalCarrinho').on('click', '#btn_excluir_carrinho', function(){
+        var CodEquipamento = $(this).attr('value')
+
+        console.log(CodEquipamento);
+        
+
+        
+        $.post(
+            '../controller/pedido.controller.php',
+            {acao: 'del_carrinho', CodEquipamento: CodEquipamento},
+            function(retorno){
 
                 console.log(retorno);
+                
+                
+                ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho')
+            })
+    })
 
-                swal({
-                    position: 'top-end',
-                    icon: 'success',
-                    title: 'Pedido cadastrado',
-                    button: true,
-                    timer: 2000
-                })
-                botao.attr('disabled', false)
-                ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
-            }
+    function ConsultarCarrinho(url, acao, atualiza){
+        $.post(url, {acao: acao}, function(retorno){
+            
+            console.log('Consultar Carrinho modal');
+                conteudo_modal_carrinho.html(retorno)
         })
+    }
+    ConsultarCarrinho('../controller/pedido.controller.php','consultar_carrinho',true)
 
+    $('form[name="form_cad_cliente_pedido"]').submit(function(){
+        var formPed = $(this)
+        var data_de_uso = $('#txtdataUso')
+        var horasAlugado = $('#txthorasAlugado')
+        var data_Hora_Montagem = $('#txthoraMontagem')
+        
+        var brinquedo = $('#brinquedo')
+        var formaPagamento = $('#txtformaPagamento')
+
+        var botao = $('#btn_finalizar')
+            
+        CampoVazio(data_Hora_Montagem)
+        CampoVazio(data_de_uso)
+        CampoVazio(horasAlugado)
+
+        
+        if (data_Hora_Montagem.val() != '' && data_de_uso.val() != '' && horasAlugado.val() != '') {
+            $.ajax({
+                url: "../controller/pedido.controller.php",
+                type: "POST",
+                data: "acao=cadastrar_ped&" + formPed.serialize(),
+                beforeSend: function(){
+                    botao.attr('disabled', true)
+                },
+                success: function(retorno){
+
+                    console.log(retorno)
+
+                    if (retorno == 'cadastrou_pedido') {
+                        
+                        swal({
+                            title:"Pedido enviado !",
+                            icon:"success",
+                            timer: 600
+                        })
+                    }
+                    else{
+                        swal({
+                            title:"Erro ao enviar pedido !",
+                            icon:"error",
+                            timer: 600
+                        })
+                    }
+                    
+
+                }
+            })
+        }
         console.log($(this).serialize());
         return false;
     })
-
-    function ConsultarPedido(url,acao,atualiza){
-        $.post(
-            url,
-            {acao: acao},
-            function(retorno){
-
-                var tbody = $('#tabela_pedido').find('tbody')
-                var imagem = tbody.find('.load')
-
-                if(atualiza == true){
-                    tbody.html(retorno)
-                }else{
-                    imagem.fadeOut('fast', function(){
-                        tbody.html(retorno)
-                    })
-                }
-            })
-    }
-
-    ConsultarPedido('../controller/pedido.controller.php','contultar_ped')
 
     $('#tabela_pedido').on('click', '#btn_editar', function(){
 
@@ -65,16 +199,16 @@ $(document).ready(function(){
             {acao: 'form_editar_ped',
             CodPedido: CodPedido},
             function(retornarform){
-                $('#myModal').modal({backdrop: 'static'})
+                $('#modal_pedido').modal({backdrop: true})
 
                 conteudo_modal.html(retornarform)
-                var myModal = $('#myModal')
+                var myModal = $('#modal_pedido')
                 myModal.find('.modal-title').text('Editar Pedido')
             })
         console.log(CodPedido);
     })
 
-    $('#myModal').on('submit', 'form[name="form_editar_pedido"]', function(){
+    $('#modal_pedido').on('submit', 'form[name="form_editar_pedido"]', function(){
         var form_dados = $(this)
         var btn_atualiza = form_dados.find('#btn_atualiza')
 
@@ -94,7 +228,9 @@ $(document).ready(function(){
 
                 console.log('Atualizou');
 
-                ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
+                setTimeout(function(){
+                    $(location).attr('href','view.pedido.php')
+                }, 1000)
 
                 }
                 else{
@@ -135,7 +271,10 @@ $(document).ready(function(){
                                 icon:"success",
                             })
 
-                            ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
+                            //ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
+                            setTimeout(function(){
+                                $(location).attr('href','view.pedido.php')
+                            }, 1000)
 
                         }else{
 

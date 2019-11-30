@@ -4,7 +4,7 @@ class Conexao{
      private $host = 'localhost';
      private $usuario = 'root';
      private $senha = '';
-     private $bd = 'brinquedosfesta';
+     private $bd = 'BrinquedosFesta';
 
     function Conectar(){
         try {

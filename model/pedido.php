@@ -3,16 +3,55 @@
 class Pedido
 {
     private $CodPedido;
-    private $CodCliente;
-    private $CodUsuario;
-    private $EnderecoMontagem;
+
+    private $CPF;
+    private $Nome;
+    private $Email;
+    private $Telefone;
+    private $Celular;
+    private $CEP;
+    private $Endereco;
+    private $Numero;
+    private $Bairro;
+    private $Complemento;
+
     private $DataPedido;
     private $Data_de_uso;
     private $HorasAlugado;
-    private $Data_Hora_Montagem;
+    private $Hora_Montagem;
     private $PrecoFinal;
     private $FormaPagamento;
+    Private $Status;
     private $Supervisao;
+
+
+
+    private $CodEquipamento;
+    private $NomeEqui;
+    private $Descricao;
+    private $Peso;
+    private $Altura;
+    private $Comprimento;
+    private $Largura;
+    private $Preco;
+    private $StatusEqui;
+    private $Imagem;
+
+/*
+
+	CodPedido INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    CodCliente SMALLINT NOT NULL,
+    DataPedido DATETIME, -- hora do envio do pedido 
+    Data_de_uso DATE, -- 1970-12-31
+    HorasAlugado DOUBLE,  -- Quantidade de horas de aluguel,aluguel cobrado por hora
+    Hora_Montagem DATETIME, -- 1970-01-01 00:00:00
+    PrecoFinal DECIMAL(8,2),-- preço com o frete
+    FormaPagamento VARCHAR(20),
+    Status BIT, -- saber se o pedido ja foi realizado 
+    Supervisao BIT,-- se tem supervisor adiciona tanto no preço
+    
+    CONSTRAINT FK_Cliente_Pedido FOREIGN KEY (CodCliente)
+		REFERENCES Cliente(CodCliente)*/
 
     function __get($atributo)
     {
@@ -30,25 +69,36 @@ class Pedido
         include_once("conexao.php");
         $classe_con = new Conexao();
         $this->con = $classe_con->Conectar();
-    }
+    } 
 
+    
     function CadastrarPedido(){
-        $comandoSQL = "INSERT INTO pedido(CodCliente,CodUsuario,
-        EnderecoMontagem,DataPedido,Data_de_uso,
-        HorasAlugado,Data_Hora_Montagem,PrecoFinal,FormaPagamento, Supervisao)
-                            VALUES(?,?,?,?,?,?,?,?,?,?)";
+        $comandoSQL = "INSERT INTO Pedido(CPF,Nome,Email,Celular,
+        CEP,Endereco,Numero,Bairro,Complemento,DataPedido,Data_de_uso
+        ,HorasAlugado,Hora_Montagem,PrecoFinal,FormaPagamento,Status,Supervisao,Telefone)
+                            VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $exec = $this->con->prepare($comandoSQL);
-        $exec->bindValue(1,$this->CodCliente,PDO::PARAM_STR);
-        $exec->bindValue(2,$this->CodUsuario,PDO::PARAM_STR);
-        $exec->bindValue(3,$this->EnderecoMontagem,PDO::PARAM_STR);
-        $exec->bindValue(4,$this->DataPedido,PDO::PARAM_STR);
-        $exec->bindValue(5,$this->Data_de_uso,PDO::PARAM_STR);
-        $exec->bindValue(6,$this->HorasAlugado,PDO::PARAM_STR);
-        $exec->bindValue(7,$this->Data_Hora_Montagem,PDO::PARAM_STR);
-        $exec->bindValue(8,$this->PrecoFinal,PDO::PARAM_STR);
-        $exec->bindValue(9,$this->FormaPagamento,PDO::PARAM_STR);
-        $exec->bindValue(10,$this->Supervisao,PDO::PARAM_STR);
+        $exec->bindValue(1,$this->CPF,PDO::PARAM_STR);
+        $exec->bindValue(2,$this->Nome,PDO::PARAM_STR);
+        $exec->bindValue(3,$this->Email,PDO::PARAM_STR);
+        $exec->bindValue(4,$this->Celular,PDO::PARAM_STR);
+        $exec->bindValue(5,$this->CEP,PDO::PARAM_STR);
+        $exec->bindValue(6,$this->Endereco,PDO::PARAM_STR);
+        $exec->bindValue(7,$this->Numero,PDO::PARAM_STR);
+        $exec->bindValue(8,$this->Bairro,PDO::PARAM_STR);
+        $exec->bindValue(9,$this->Complemento,PDO::PARAM_STR);
+
+        
+        $exec->bindValue(10,$this->DataPedido,PDO::PARAM_STR);
+        $exec->bindValue(11,$this->Data_de_uso,PDO::PARAM_STR);
+        $exec->bindValue(12,$this->HorasAlugado,PDO::PARAM_STR);
+        $exec->bindValue(13,$this->Hora_Montagem,PDO::PARAM_STR);
+        $exec->bindValue(14,$this->PrecoFinal,PDO::PARAM_STR);
+        $exec->bindValue(15,$this->FormaPagamento,PDO::PARAM_STR);
+        $exec->bindValue(16,$this->Status,PDO::PARAM_STR);
+        $exec->bindValue(17,$this->Supervisao,PDO::PARAM_STR);
+        $exec->bindValue(18,$this->Telefone,PDO::PARAM_STR);
         $exec->execute();
 
         if ($exec->rowCount() > 0) {
@@ -59,36 +109,25 @@ class Pedido
     }
 
     function ConsultarPedido(){
-        $comandoSQL = " SELECT * FROM pedido";
+        try{
+            $comandoSQL = " SELECT * FROM Pedido";
 
-        $exec = $this->con->prepare($comandoSQL);
-        $exec->execute();
+            $exec = $this->con->prepare($comandoSQL);
+                $exec->execute();
 
-        $dados = array();
+            if ($exec->rowCount() > 0) {
+                return $exec->fetchAll(PDO::FETCH_OBJ);//retorna todos como objeto
+            } else {
+                return false;
+            }
 
-        foreach ($exec->fetchAll() as $value) {
-            
-            $ped = new Pedido();
-
-            $ped->CodPedido = $value['CodPedido'];
-            $ped->CodCliente = $value['CodCliente'];
-            $ped->CodUsuario = $value['CodUsuario'];
-            $ped->EnderecoMontagem = $value['EnderecoMontagem'];
-            $ped->DataPedido = $value['DataPedido'];
-            $ped->Data_de_uso = $value['Data_de_uso'];
-            $ped->HorasAlugado = $value['HorasAlugado'];
-            $ped->Data_Hora_Montagem = $value['Data_Hora_Montagem'];
-            $ped->PrecoFinal = $value['PrecoFinal'];
-            $ped->FormaPagamento = $value['FormaPagamento'];
-            $ped->Supervisao = $value['Supervisao'];
-
-            $dados[] = $ped;
+        } catch (PDOException $e) {
+            echo $e->getMessage();
         }
-        return $dados;
     }
 
     function RetornarDados($CodPedido){
-        $comandoSQL = "SELECT * FROM pedido WHERE CodPedido = ?";
+        $comandoSQL = "SELECT * FROM Pedido WHERE CodPedido = ?";
 
         $exec = $this->con->prepare($comandoSQL);
         $exec->bindValue(1,$CodPedido,PDO::PARAM_INT);
@@ -105,31 +144,29 @@ class Pedido
     }
 
     function AtualizarPedido(){
-            $comandoSQL = "UPDATE pedido
-                            SET CodCliente =?,
-                            CodUsuario =?,
-                            EnderecoMontagem =?, 
-                            DataPedido = ?, 
-                            Data_de_uso = ?, 
-                            HorasAlugado = ?,
-                            Data_Hora_Montagem = ?,
-                            PrecoFinal = ?,
-                            FormaPagamento = ?,
+            $comandoSQL = "UPDATE Pedido
+                            SET CodCliente = ?,
+                            DataPedido = ?,
+                            Data_de_uso = ?
+                            ,HorasAlugado = ?
+                            ,Hora_Montagem = ?
+                            ,PrecoFinal = ?,
+                            FormaPagamento = ?
+                            ,Status = ?,
                             Supervisao = ?
                             WHERE CodPedido = ?";
 
             $exec = $this->con->prepare($comandoSQL);
-            $exec->bindValue(1,$this->CodCliente,PDO::PARAM_STR);
-            $exec->bindValue(2,$this->CodUsuario,PDO::PARAM_STR);
-            $exec->bindValue(3,$this->EnderecoMontagem,PDO::PARAM_STR);
-            $exec->bindValue(4,$this->DataPedido,PDO::PARAM_STR);
-            $exec->bindValue(5,$this->Data_de_uso,PDO::PARAM_STR);
-            $exec->bindValue(6,$this->HorasAlugado,PDO::PARAM_STR);
-            $exec->bindValue(7,$this->Data_Hora_Montagem,PDO::PARAM_STR);
-            $exec->bindValue(8,$this->PrecoFinal,PDO::PARAM_STR);
-            $exec->bindValue(9,$this->FormaPagamento,PDO::PARAM_STR);
-            $exec->bindValue(10,$this->Supervisao,PDO::PARAM_STR);
-            $exec->bindValue(11,$this->CodPedido,PDO::PARAM_INT);
+            $exec->bindValue(1,$this->CodCliente,PDO::PARAM_INT);
+            $exec->bindValue(2,$this->DataPedido,PDO::PARAM_STR);
+            $exec->bindValue(3,$this->Data_de_uso,PDO::PARAM_STR);
+            $exec->bindValue(4,$this->HorasAlugado,PDO::PARAM_STR);
+            $exec->bindValue(5,$this->Hora_Montagem,PDO::PARAM_STR);
+            $exec->bindValue(6,$this->PrecoFinal,PDO::PARAM_STR);
+            $exec->bindValue(7,$this->FormaPagamento,PDO::PARAM_STR);
+            $exec->bindValue(8,$this->Status,PDO::PARAM_INT);
+            $exec->bindValue(9,$this->Supervisao,PDO::PARAM_STR);
+            $exec->bindValue(10,$this->CodPedido,PDO::PARAM_INT);
             $exec->execute();
 
             if ($exec->rowCount() > 0) {
@@ -140,7 +177,7 @@ class Pedido
     }
 
     function ExcluirPedido(){
-        $comandoSQL = "DELETE FROM pedido WHERE CodPedido = ?";
+        $comandoSQL = "DELETE FROM Pedido WHERE CodPedido = ?";
 
         $exec = $this->con->prepare($comandoSQL);
         $exec->bindValue(1,$this->CodPedido,PDO::PARAM_INT);
