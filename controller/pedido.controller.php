@@ -1,7 +1,7 @@
 <?php
 $pathFilePedido = realpath('model'. DIRECTORY_SEPARATOR . 'pedido.php') ;
-include_once($pathFilePedido);
-//include_once("../model/pedido.php");
+//include_once($pathFilePedido);
+include_once("model/pedido.php");
 $ped = new Pedido();
 
 //carrinho - se a sessao não exixtir eu crio ela

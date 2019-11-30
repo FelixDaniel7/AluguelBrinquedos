@@ -1,6 +1,6 @@
 <?php 
-include_once("controller/equipamento.controller.php");
-include_once("controller/pedido.controller.php");
+include_once("../controller/equipamento.controller.php");
+include_once("../controller/pedido.controller.php");
 
 $CodEquipamento = filter_input(INPUT_GET, 'CodEquipamento', FILTER_SANITIZE_NUMBER_INT);
 
