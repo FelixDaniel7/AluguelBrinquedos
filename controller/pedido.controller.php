@@ -2,15 +2,14 @@
 include_once("../model/pedido.php");
 $ped = new Pedido();
 
-//carrinho - se a sessao não exixtir eu crio ela
 session_start();
-// session_destroy();
+//carrinho - se a sessao não exixtir eu crio ela
+//session_destroy();
 if(!isset($_SESSION["CodEquipamento"]))
 {
     $_SESSION["CodEquipamento"] = array();
     $_SESSION["quantidade"] = array();
 }
-
 
 $consulta = $ped->con->prepare("SELECT * FROM Equipamento");
 $consulta->execute();
@@ -67,8 +66,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 $total = 0;
                 foreach ($_SESSION["CodEquipamento"] as $indice => $valor):
 
-                $total += $_SESSION["quantidade"][$indice] * 
-                $produtos[$valor]["preco"];
+                $total += $_SESSION["quantidade"][$indice] * $produtos[$valor]["preco"];
                 $subtotal = $produtos[$valor]["preco"] * $_SESSION["quantidade"][$indice];
                 ?>
 
@@ -93,15 +91,18 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             <?php 
                 break;
     
-            case 'finalizar_compra':
-                //cadastrar compra retornando o código da compra gerado
-                foreach ($_SESSION["codproduto"] as $indice => $valor):
-                    //código para enviar itens 
-                    echo "gravou o produto de código $valor com a quantidade ".$_SESSION["quantidade"][$indice];
-                endforeach;
-            break;
+        case 'verificar_carrinho':
+            if (empty($_SESSION['CodEquipamento'])) {
+                echo 'carrinho_vazio';
+            }
+            else{
+                echo 'carrinho_cheio';
+            }
+        break;
 
         case 'cadastrar_ped':
+
+            $CodPedido = rand(11111,99999);
 
             $Nome = filter_input(INPUT_POST, 'txtnome', FILTER_SANITIZE_STRING);
             $Telefone = filter_input(INPUT_POST, 'txttelefone' , FILTER_SANITIZE_STRING);
@@ -122,18 +123,52 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $FormaPagamento = filter_input(INPUT_POST, 'txtformaPagamento' , FILTER_SANITIZE_STRING);
             $Supervisao = filter_input(INPUT_POST, 'txtsupervisao' , FILTER_SANITIZE_NUMBER_INT);
 
-            function limpaCPF_CEP_TEL($valor){
-                $valor = trim($valor);
-                $valor = str_replace(".", "", $valor);
-                $valor = str_replace(",", "", $valor);
-                $valor = str_replace("-", "", $valor);
-                $valor = str_replace("/", "", $valor);
-                $valor = str_replace("(", "", $valor);
-                $valor = str_replace(")", "", $valor);
-                return $valor;
+            $cep_origem = "85930000";  
+            $cep_destino = $CEP;
+
+            $peso          = 2;
+            $valor         = 100;
+            $tipo_do_frete = '41106';
+            $altura        = 6;
+            $largura       = 20;
+            $comprimento   = 20;
+
+            $url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?";
+            $url .= "nCdEmpresa=";
+            $url .= "&sDsSenha=";
+            $url .= "&sCepOrigem=" . $cep_origem;
+            $url .= "&sCepDestino=" . $cep_destino;
+            $url .= "&nVlPeso=" . $peso;
+            $url .= "&nVlLargura=" . $largura;
+            $url .= "&nVlAltura=" . $altura;
+            $url .= "&nCdFormato=1";
+            $url .= "&nVlComprimento=" . $comprimento;
+            $url .= "&sCdMaoProria=n";
+            $url .= "&nVlValorDeclarado=" . $valor;
+            $url .= "&sCdAvisoRecebimento=n";
+            $url .= "&nCdServico=" . $tipo_do_frete;
+            $url .= "&nVlDiametro=0";
+            $url .= "&StrRetorno=xml";
+
+            $xml = simplexml_load_file($url);
+
+            $frete = $xml->cServico;
+
+            $valor = $frete->Valor;
+
+            function limpaCPF_CEP_TEL($value){
+                $value = trim($value);
+                $value = str_replace(".", "", $value);
+                $value = str_replace(",", "", $value);
+                $value = str_replace("-", "", $value);
+                $value = str_replace("/", "", $value);
+                $value = str_replace("(", "", $value);
+                $value = str_replace(")", "", $value);
+                return $value;
             }
             
             // atribui valor a variavel privat eda class pedido
+            $ped->CodPedido = $CodPedido;
             $ped->Nome = $Nome;
             $ped->Telefone = limpaCPF_CEP_TEL($Telefone);
             $ped->Celular = limpaCPF_CEP_TEL($Celular);
@@ -155,13 +190,21 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
             $ped->Status = 'Pendente';
 
-
             //cadastrar os brinquedos tambem
-
-            
+            //cadastrar compra retornando o código da compra gerado
             if($ped->CadastrarPedido()){
-                echo 'cadastrou_pedido';
+                //pega os itens do carrinho e cadastra no bd
+                foreach ($_SESSION["CodEquipamento"] as $indice => $value){
+                    $CodEquipamento = $value;
+                    $PrecoEqui = $produtos[$value]["preco"] + $valor;
+
+                    if($ped->CadastrarItens($CodPedido,$CodEquipamento,$PrecoEqui)){
+                        echo "bla";
+                    }
+            
+                } 
             }
+            
         break;
 
         case 'form_editar_ped':
