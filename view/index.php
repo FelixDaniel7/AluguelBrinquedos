@@ -52,19 +52,19 @@ $Aleatorio = rand(1,4);
         <div class="carousel-caption d-none d-md-block">
           <h5>Praticidade</h5>
             <h6><p>Alugue seu brinquedo em apenas alguns cliques!</p></h6>
-            <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $Aleatorio;?>" class="btn btn-primary btn-lg" tabindex="-1" role="button">
-              Ver Mais
-            </a>
+            <a href="Cad_Pedido.php" class="btn btn-primary btn-lg" tabindex="-1" role="button">
+              Alugar
+          </a>
         </div>
     </div>
   <div class="carousel-item">
     <img class="d-block w-100" src="img/Menu/caminha.jpg" alt="Segundo Slide">
       <div class="carousel-caption d-none d-md-block">
-        <h5>Entrega rapida</h5>
-        <h6><p>Entrega rápida e no dia agendado!</p></h6>
-          <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $Aleatorio;?>" class="btn btn-primary btn-lg" tabindex="-1" role="button">
-              Ver Mais
-            </a>
+        <h5>Alugue já</h5>
+        <h6><p>Garanta a diversão das crianças</p></h6>
+          <a href="Cad_Pedido.php" class="btn btn-primary btn-lg" tabindex="-1" role="button">
+              Alugar
+          </a>
       </div>
       </div>
       <div class="carousel-item">
@@ -72,9 +72,9 @@ $Aleatorio = rand(1,4);
         <div class="carousel-caption d-none d-md-block">
           <h5>Brinquedos Seguros</h5>
           <h6><p>Brinquedos revisados frequentemente para uma maior segurança!</p></h6>
-          <a href="Pag_Equipamento.php?CodEquipamento=<?php echo $Aleatorio;?>" class="btn btn-primary btn-lg" tabindex="-1" role="button">
-              Ver Mais
-            </a>
+          <a href="Cad_Pedido.php" class="btn btn-primary btn-lg" tabindex="-1" role="button">
+              Alugar
+          </a>
         </div>
       </div>
     </div>
