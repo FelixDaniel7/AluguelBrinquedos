@@ -3,6 +3,8 @@
 include_once('../controller/pedido.controller.php'); 
 include_once('../controller/equipamento.controller.php'); 
 include_once('../controller/usuario.controller.php'); 
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -33,6 +35,8 @@ include_once('../controller/usuario.controller.php');
     <script src="../ajax/pedido.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
+
+    <script src="../js/validador.js"></script>
 </head>
 <body class="bg-light">
     
@@ -41,28 +45,30 @@ include_once('../controller/usuario.controller.php');
 
 <center>
   <br>
-<hr>
-<div class="container">
-<h2>Contato</h2>
-<hr>
-<form id="contato" method="post">
-	<label for="Nome">Nome:</label>
-	<input type="text" class="form-control" name="nome"/>
+  <hr>
+    <div class="container">
+    <h2>Contato</h2>
+    <hr>
+      <form action="email.php" method="post">
+        
+        <label for="Nome">Nome:</label>
+            <input type="text" class="form-control" name="Nome" id="txtnome" placeholder="Digite seu Nome" maxlength="50"/>
 
-	<label for="Email">E-mail:</label>
-	<input type="text" class="form-control" name="email"/>
+        <label for="Email">E-mail:</label>
+              <input type="text" class="form-control" name="Email" id="txtemail" placeholder="Digite seu Email"/>
 
-	<label for="Fone">Assunto</label>
-	<input type="text" class="form-control" name="assunto"/>
+        <label for="Fone">Telefone:</label>
+              <input type="text" class="form-control" name="Fone"  id="txttelefone" maxlength="13" onkeydown="javascript: fMasc( this, mTel );" placeholder="(11)3333-9999" />
 
-	<label for="Mensagem">Mensagem:</label>
-	<textarea name="mensagem" class="form-control" rows="8" cols="40"></textarea>
-<br>
-	<input type="submit" class="btn btn-primary" name="enviar" value="Enviar" />
-</form>
-
-
-</div>
+        <label for="Fone">Assunto:</label>
+              <input type="text" class="form-control" name="Assunto" maxlength="20" placeholder="Digite o assunto da mensagem" />
+            
+        <label for="Mensagem">Mensagem:</label>
+          <textarea  class="form-control"  name="Mensagem" rows="8" cols="40" placeholder="Digite a mensagem"></textarea>
+      <br>
+        <input type="submit" class="btn btn-primary" name="enviar" value="Enviar" />
+      </form>
+    </div>
 </center>  
   <?php include_once("menu/menu-inferior.php"); ?>
   <!-- Bootstrap core JavaScript -->
