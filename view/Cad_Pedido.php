@@ -111,7 +111,7 @@ include_once('../controller/equipamento.controller.php');
 
 </section>
 
-<section id="pedido" style="display: none"> 
+<!-- <section id="pedido" style="display: none">  -->
 
 <div class="col-md-6 col-sm-6">
 <h3>Dados do Pedido</h3>
@@ -119,10 +119,10 @@ include_once('../controller/equipamento.controller.php');
 <label for="Text"> Data de uso <span>*</span></label>
 <input type="date" class="form-control" name="txtdataUso" id="txtdataUso" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2019-11-07" max="2022-12-31" >
 
-<label for="Text">Horas de utilização <span>*</span></label>
+<label for="Text">Número de horas utilizadas<span>*</span></label>
 <input type="number" class="form-control" name="txthorasAlugado" id="txthorasAlugado" max="600" min="1" >
 
-<label for="inputEmail4">Hora de Montagem <span>*</span></label>
+<label for="inputEmail4">Horário de Montagem <span>*</span></label>
 <input type="time" class="form-control" name="txthoraMontagem" id="txthoraMontagem" >
 
 <label for="Text">Forma de pagamento<span>*</span></label>
@@ -134,7 +134,7 @@ include_once('../controller/equipamento.controller.php');
 <label for="Text">Supervisão<span>*</span></label>
 <select class="custom-select" name="txtsupervisao" >
 <option value="0">Sem Supervisão</option>
-<option value="1">Com Supervisão</option>
+<option value="1">Com Supervisão Acressimo de R$ 50,00</option>
 </select>
 </div>
 
