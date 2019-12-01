@@ -1,7 +1,7 @@
 <?php 
 //pagina do admin colsultar editar e atualizar os pedidos 
 include_once('../controller/pedido.controller.php'); ?>
-<!doctype html>
+
 <html lang="en">
   <head>
     <title>Pedido e dados do cliente</title>
@@ -9,9 +9,7 @@ include_once('../controller/pedido.controller.php'); ?>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Jquery -->
-    <script src="../js/jquery-3.4.1.min.js"></script>
     <!-- Ajax -->
     <script src="../ajax/pedido.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
@@ -27,13 +25,13 @@ include_once('../controller/pedido.controller.php'); ?>
 
 <div class="row">
   <div class="col-lg-9">
-    <br>
-    <div class="box-title">Pedidos</div>
-    <div class="box-content nopadding">
-      <table id="tabela_pedido" class="table table-striped">
+  <h2 class="linha">Pedidos</h2>
+        <div class="box">
+            <div class="box-content nopadding">
+                <table id="tabela_pedido" class="table display text-center">
         <thead>
           <tr>
-            <th>Cod.Pedido</th>
+            <th></th>
             <th>Nome Cliente</th>
             <th>Data do Pedido</th>
             <th>Data de Utilização</th>
@@ -96,6 +94,7 @@ include_once('../controller/pedido.controller.php'); ?>
         </tbody>
       </table>
     </div>
+    </div>
   </div>
 </div>
 
@@ -117,7 +116,6 @@ include_once('../controller/pedido.controller.php'); ?>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
     <!-- datatable -->
     <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.min.js"></script>
     <script>
