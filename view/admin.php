@@ -45,12 +45,12 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand h1 mb-0" href="#">Admin</a>
+    <a class="navbar-brand h1 my-auto ml-4" href="#"><h3>Admin</h3></a>
       <ul class="navbar-nav ml-auto">          
         <div class="ml-auto">  
-          <li class="nav-item dropdown " style="width: 150px;">
-            <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <img src="img/admin/usuario.png" style="width:50px; height:50px;" >
+          <li class="nav-item dropdown mr-sm-5" >
+            <a class="nav-link mr-5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="img/admin/usuario.png" style="width:50px; height:50px;">
             </a>
             <div class="dropdown-menu bg-danger" aria-labelledby="navbarDropdown">
               <a class="dropdown-item bg-danger" href="?logout=true">Sair</a>
