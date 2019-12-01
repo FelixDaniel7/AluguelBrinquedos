@@ -88,7 +88,10 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
             <?php include_once("admin.pedido.php"); ?>
           </div>
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <center>
             <?php include_once("admin.usuario.php"); ?>
+            </center>
+            
           </div>
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
             <?php include_once("admin.equipamento.php"); ?>

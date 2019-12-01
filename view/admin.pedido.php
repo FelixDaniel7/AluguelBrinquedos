@@ -24,14 +24,14 @@ include_once('../controller/pedido.controller.php'); ?>
     
 
 <div class="row">
-  <div class="col-lg-9">
+  <div class="col-lg-12 ml-auto">
   <h2 class="linha">Pedidos</h2>
         <div class="box">
             <div class="box-content nopadding">
                 <table id="tabela_pedido" class="table display text-center">
         <thead>
           <tr>
-            <th></th>
+            <th>cod</th>
             <th>Nome Cliente</th>
             <th>Data do Pedido</th>
             <th>Data de Utilização</th>

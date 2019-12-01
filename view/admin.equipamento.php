@@ -23,16 +23,21 @@
   </head>
   <body>
 
-  <br>
-    <button type="button" id="btn_cadastra" class="btn btn-dark">Cadastrar Equipamento</button> 
 
-    <div class="row">
-    <div class="col-lg-9">
-        <h2 class="linha">HOME</h2>
+    
+
+<div class="row">
+    <div class="col-lg-10 ml-auto mt-4">
+        <div class="row">
+            <h2 class="linha">Equipamentos</h2>
+            <div class="ml-auto">
+                <button type="button" id="btn_cadastra" class="btn btn-primary">Cadastrar Equipamento</button> 
+            </div>
+        </div>
+    
         <div class="box">
-            <div class="box-title">Equipamentos</div>
             <div class="box-content nopadding">
-                <table id="tabela_equipamento" class="table table-striped">
+                <table id="tabela_equipamento" class="table display text-center">
                     <thead>
                         <tr>
                             <th>Cod</th>

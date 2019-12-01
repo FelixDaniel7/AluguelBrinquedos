@@ -23,10 +23,10 @@
   <body>
 
 <div class="row">
-    <div class="col-lg-10">
+    <div class="col-lg-10 ml-auto mt-4">
         <div class="row">   
             <h2 class="linha">Usuários</h2>
-            <div class="ml-auto">
+            <div class="ml-auto ">
                 <button class="btn btn-primary" type="button" id="btn_cadastra_usu">Cadastrar Usuario</button>
             </div>   
         </div>
