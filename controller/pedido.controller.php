@@ -56,7 +56,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 <div class="table-responsive-sm">
                 <table id="tabela_carrinho" class="table table-sm">
                 <thead class="fundo text-white">
-                <th>Produto</th>
+                <th>Nome</th>
                 <!-- <th>Quantidade</th> -->
                 <th>Preço</th>
                 <th>Subtotal</th>
