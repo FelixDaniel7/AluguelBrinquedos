@@ -35,27 +35,23 @@ $usu->Logou('administrador');//se ja esta logado
  
   </head>
   <body>
-
+<center>
   <div class="container">
   <?php if(@$_SESSION['tentativas'] < 3){ ?>    
-  <div>
-          <h2>Area Restrita</h2>
-         
-
-
-          
-
+  <div class="col-md-6 col-sm-6">
+          <h2>Área Restrita</h2>
+        
           <form action="" name="form_login" class="form" method="post">
             <div class="form-group">
-                <label for="login">Login</label>
-                <input type="text" name="txtlogin" class="form-control input-lg" placeholder="Login">   
+                
+                <input type="text" name="txtlogin" class="form-control col-6  input-lg" placeholder="Login">   
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Senha</label>
-                <input type="password" name="txtsenha" class="form-control" placeholder="Senha">
+                
+                <input type="password" name="txtsenha" class="form-control col-6" placeholder="Senha">
             </div>
 
-            <div class="form-group col-md-6">
+            <div class="form-group">
                 <a href="recuperar_senha.php">Esqueceu sua senha ?</a>
               </div>
 
@@ -64,12 +60,8 @@ $usu->Logou('administrador');//se ja esta logado
             </button>
             <img src="../img/load.gif" class="load" alt="Carregando..." style="display: none" />
           </form>
-          
           <br>
-
           <img src="../img/load-login.gif" id="load" style="display: none" />
-
-
           <?php
                }
                else {
@@ -78,26 +70,19 @@ $usu->Logou('administrador');//se ja esta logado
 
               $total = $n1 + $n2;
             ?>
-          <!-- <div id="form_verificar" style="display: none"> -->
-            
-          
             <h5 class="card-title text-center">Verificação</h5>
             <form name="form_verificar" method="POST" class="form-signin">
               <div class="form-label-group">
-              <label for="inputEmail"><?php echo "Responda Qunato é $n1 + $n2 ? "; ?></label>
-                <input type="number" name="txtresposta" class="form-control" required autofocus>
+              <label for="inputEmail"><?php echo "Responda Quanto é $n1 + $n2 ? "; ?></label>
+                <input type="number" name="txtresposta" class="form-control col-2" required autofocus>
               </div>
                 <input type="hidden"  name="txtcerta" value="<?php echo $total;?>" class="form-control">
               <div class="custom-control custom-checkbox mb-3"></div>
-              <input type="submit" value="Verificar" class="btn btn-lg btn-primary btn-block text-uppercase">
+              <input type="submit" value="Verificar" class="btn btn-lg btn-primary col-2">
             </form>
-
-
-            <!-- </div> -->
               <?php } ?>
-
-
       </div>
   </div>
+  </center>
   </body>
 </html>
