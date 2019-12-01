@@ -12,7 +12,8 @@ include_once('../controller/equipamento.controller.php');
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Pedido - Aluguel Briquedos</title>
+  <title>Pedido - Aluguel de Briquedos</title>
+  <link rel="shortcut icon" href="img/Logo/logo.png" type="image/*" />
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

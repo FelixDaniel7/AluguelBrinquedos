@@ -19,7 +19,9 @@ else:
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title><?php echo $value->Nome;?> - Aluguel Briquedos</title>
+  <title><?php echo $value->Nome;?> - Aluguel de Briquedos</title>
+
+  <link rel="shortcut icon" href="img/Logo/logo.png" type="image/*" />
 
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -128,7 +130,7 @@ else:
                 <?php if ($value->Status != "Disponivel") {
                   echo "<a href='#' class='btn btn-danger'>Indisponivel</a>";
                 }else{
-                  echo "<a href='' class='btn btn-primary'>Alugar</a>";
+                  echo "<a href='Cad_Pedido.php' class='btn btn-danger'>Alugue já !</a>";
                 }?>
                 <br>
                 <br>

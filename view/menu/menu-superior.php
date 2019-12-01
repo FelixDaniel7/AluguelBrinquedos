@@ -3,37 +3,45 @@
 <nav class="nav justify-content-center bg-light">
   <ul class="nav justify-content-center">
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contatos: (11)95555-5555</a>
+        <a class="nav-link disabled" href="#">Contato: (11)95555-5555</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">Contatos: (11)4444-4444</a>
+        <a class="nav-link disabled" href="#">Contato: (11)4444-4444</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link disabled" href="#">E-mail: nome@gmail.com</a>
+        <a class="nav-link disabled" href="#">E-mail: contato.brinquedofesta@gmail.com</a>
       </li>
   </ul>
 </nav>
   
 <!-- logo -->
-<nav class="navbar navbar-light bg-light static-top"> &nbsp;
-  <p>&nbsp;
+<div class="bg-light">
+<nav class="container navbar navbar-light static-top">
   <a href="index.php">
-    <img src="img/Logo/logo1.png" alt="logo img"  width="300" height="51">
-  </p>
+      <img src="img/Logo/logo.png" width="70" height="70" alt="">
+    <!-- <img src="img/Logo/logo1.png" alt="logo img"  width="300" height="51"> -->
+ 
+        <a class="navbar-brand"><h2></h2></a>
+        
+  </a>
   <div class="col-lg-6 h-100 text-center text-lg-right my-auto"> 
     <ul class="list-inline mb-0">
       <li class="nav-item">
+      
         <a class="navbar-brand fas fa-shopping-cart fa-2x fa-fw perfil"  data-toggle="modal" data-target="#modalCarrinho"></a>
+        
       </li>
     </ul>
   </div>
 </nav>
-  
+</div>  
 <!-- navbar -->
 <div class="fundo">
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-dark">
-      <a class="navbar-brand" href="index.php">Home</a>
+      <a class="navbar-brand" href="index.php">
+        Inicio
+      </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#conteudoNavbarSuportado" aria-controls="conteudoNavbarSuportado" aria-expanded="false" aria-label="Alterna navegação">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -41,7 +49,7 @@
         <ul class="navbar-nav mr-auto">
           <li class="nav-item dropdown">
           <a class="navbar-brand  dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Brinquedos
+          Brinquedos <span class="text-light badge badge-warning"><?php echo count($equi->ConsultarEquipamento()); ?></span>
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <?php 
@@ -61,10 +69,7 @@
           </div>
           </li>
           <li class="nav-item active">
-            <a class="navbar-brand" href="galeria.php">Galeria</a>
-          </li>
-          <li class="nav-item">
-            <a class="navbar-brand" href="sobre.php">Sobre</a>
+            <a class="navbar-brand" href="Cad_Pedido.php">Alugue já !</a>
           </li>
         </div>
         </ul>
@@ -77,7 +82,7 @@
 <script>
     function calculo(){
       var cep = $("#cep").val();
-      $.post('../calcula.php',{cep:cep},function(data){
+      $.post('../model/frete.php',{cep:cep},function(data){
         $("#retornoFrete").html(data);
       });
     }

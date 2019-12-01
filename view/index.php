@@ -13,8 +13,8 @@ $Aleatorio = rand(1,4);
   <meta name="author" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Home - Aluguel Briquedos</title>
-
+  <title>Home - Aluguel de Briquedos</title>
+  <link rel="shortcut icon" href="img/Logo/logo.png" type="image/*" />
   <!-- Bootstrap core CSS -->
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
@@ -52,8 +52,8 @@ $Aleatorio = rand(1,4);
         <div class="carousel-caption d-none d-md-block">
           <h5>Praticidade</h5>
             <h6><p>Alugue seu brinquedo em apenas alguns cliques!</p></h6>
-            <a href="Cad_Pedido.php" class="btn btn-primary btn-lg" tabindex="-1" role="button">
-              Alugar
+            <a href="Cad_Pedido.php" class="btn btn-danger text-light btn-lg" tabindex="-1" role="button">
+            Alugue já !
           </a>
         </div>
     </div>
@@ -62,8 +62,8 @@ $Aleatorio = rand(1,4);
       <div class="carousel-caption d-none d-md-block">
         <h5>Alugue já</h5>
         <h6><p>Garanta a diversão das crianças</p></h6>
-          <a href="Cad_Pedido.php" class="btn btn-primary btn-lg" tabindex="-1" role="button">
-              Alugar
+          <a href="Cad_Pedido.php" class="btn btn-danger text-light btn-lg" tabindex="-1" role="button">
+          Alugue já !
           </a>
       </div>
       </div>
@@ -72,8 +72,8 @@ $Aleatorio = rand(1,4);
         <div class="carousel-caption d-none d-md-block">
           <h5>Brinquedos Seguros</h5>
           <h6><p>Brinquedos revisados frequentemente para uma maior segurança!</p></h6>
-          <a href="Cad_Pedido.php" class="btn btn-primary btn-lg" tabindex="-1" role="button">
-              Alugar
+          <a href="Cad_Pedido.php" class="btn btn-danger text-light btn-lg" tabindex="-1" role="button">
+          Alugue já !
           </a>
         </div>
       </div>
