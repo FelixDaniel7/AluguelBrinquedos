@@ -124,7 +124,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $FormaPagamento = filter_input(INPUT_POST, 'txtformaPagamento' , FILTER_SANITIZE_STRING);
             $Supervisao = filter_input(INPUT_POST, 'txtsupervisao' , FILTER_SANITIZE_NUMBER_INT);
 
-            $cep_origem = "85930000";  
+            $cep_origem = "07909065";  
             $cep_destino = $CEP;
 
             $peso          = 2;
