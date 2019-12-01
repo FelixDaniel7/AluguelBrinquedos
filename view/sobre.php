@@ -34,7 +34,7 @@ include_once('../controller/equipamento.controller.php');
     <script src="../js/sweetalert.js"></script>
 </head>
 <body class="bg-light">
-    
+ 
 
   <?php include_once("menu/menu-superior.php"); ?>
 
