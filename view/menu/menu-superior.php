@@ -71,6 +71,12 @@
           <li class="nav-item active">
             <a class="navbar-brand" href="Cad_Pedido.php">Alugue já !</a>
           </li>
+          <li class="nav-item">
+            <a class="navbar-brand" href="contato.php">Contato</a>
+          </li>
+          <li class="nav-item">
+            <a class="navbar-brand" href="sobre.php">Sobre</a>
+          </li>
         </div>
         </ul>
       </a>
