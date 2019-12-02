@@ -31,15 +31,17 @@ include_once('../controller/pedido.controller.php'); ?>
                 <table id="tabela_pedido" class="table display text-center">
         <thead>
           <tr>
-            <th>Retorno</th>
-            <th>Nome Cliente</th>
+            <th>Status</th>
+            <th>Nome do Cliente</th>
+            <th>CPF Do Cliente</th>
+            
             <th>Data do Pedido</th>
             <th>Data de Utilização</th>
-            <th>Horas Alugadas</th>
+            <th>Horas de Utilização</th>
             <th>Horario da Montagem</th>
-            <th>Frete</th>
+            
             <th>Forma de Pagamento</th>
-            <th>Status</th>
+            
             <th>Supervisao</th>
             <th>Preco total</th>
             <th width="200">Ação</th>
@@ -53,29 +55,94 @@ include_once('../controller/pedido.controller.php'); ?>
         ?>
         <tr>
         <td>
-        <?php 
-        $CodPedido = $value->CodPedido;
+          <?php 
+          $status = $value->Status;
+          if ($status == 'Pendente') {?>
+          <button type="button" id="btn_status" value="<?php echo $value->CodPedido; ?>" class="btn btn-success">
+            <?php echo $status;?>
+          </button>
+     <?php
+          }
+          else{?>
+
+<button type="button" id="btn_status" value="<?php echo $value->CodPedido; ?>" class="btn btn-danger">
+            <?php echo $status;?>
+          </button>
+
+<?php
+            
+          }
+          ?>
           
-        $bla = $ped->RetornarPrecoItem($CodPedido);
-        echo "<br>Preco dos itens : ".$bla[0]->Preco."<br>";
-        ?></td>
+        
+      
+      
+      </td>
         <td><?php echo $value->Nome;?></td>
-        <td><?php echo $value->DataPedido;?></td>
-        <td><?php echo $value->Data_de_uso;?></td>
+        <td><?php 
+        
+        
+        
+      
+        
+        $nbr_cpf = $value->CPF;
+
+$parte_um     = substr($nbr_cpf, 0, 3);
+$parte_dois   = substr($nbr_cpf, 3, 3);
+$parte_tres   = substr($nbr_cpf, 6, 3);
+$parte_quatro = substr($nbr_cpf, 9, 2);
+
+$monta_cpf = "$parte_um.$parte_dois.$parte_tres-$parte_quatro";
+
+echo $monta_cpf;
+        
+        
+        
+        ?></td>
+        
+        <td><?php 
+        $data = $value->DataPedido;
+        $date = new DateTime($data);
+        echo $date->format('d/m/Y H:i');
+        
+         
+    
+        
+        
+        
+        
+        ?></td>
+        <td>
+          
+          
+        <?php 
+        $data = $value->Data_de_uso;
+        $date = new DateTime($data);
+        echo $date->format('d/m/Y');
+        
+        
+        
+        
+        ?></td>
         <td><?php echo $value->HorasAlugado;?></td>
         <td><?php echo $value->Hora_Montagem;?></td>
-        <td><?php echo $value->Frete;?></td>
         <td><?php echo $value->FormaPagamento;?></td>
-        <td><?php echo $value->Status;?></td>
+       
         <td>
         <?php 
+
+$CodPedido = $value->CodPedido;
+          
+$bla = $ped->RetornarPrecoItem($CodPedido);
+
+
         if($value->Supervisao == 1){
           echo 'Sem supervisão';
-          $PrecoTotal = $value->Frete;
+          $PrecoTotal = $value->Frete + $bla[0]->Preco;
         }
         else{
           echo 'Com Sepervisao';
-          $PrecoTotal = $value->Frete + 50.00;
+          $PrecoTotal = $value->Frete + 50.00 + $bla[0]->Preco;
         }
         ?>
         </td>

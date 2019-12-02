@@ -265,5 +265,22 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 echo 'deletou';
             }
         break;
+
+        case 'status_ped':
+            $ped->CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_NUMBER_INT);
+            $Status = filter_input(INPUT_POST, 'Status', FILTER_SANITIZE_STRING);
+
+            
+            if ($Status == 'Pendente') {
+                //echo "Atualiza para Realizado";
+                if ($ped->UpdateStatusPedidoRealizado()){
+                    echo 'Atualizou';
+                }
+            }else{
+                if ($ped->UpdateStatusPedidoPendente()){
+                    echo 'Atualizou';
+                }
+            }
+        break;
     }
 ?>

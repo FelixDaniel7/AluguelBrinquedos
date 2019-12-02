@@ -8,6 +8,10 @@ $(document).ready(function(){
     var montagem = $('#montagem')
     var pedido = $('#pedido')
 
+
+
+
+
     function CampoVazio(campo){
         if (campo.val() == '') {
             campo.addClass('border border-danger')
@@ -309,6 +313,60 @@ $(document).ready(function(){
                         title: "Essa ação foi cancelada !",
                         icon: "Info"
                     })
+                }
+            })
+            ){
+
+        }else{
+            return false;
+            console.log('Deu Muito ruim ao deletar');
+        }
+    })
+
+    $('#tabela_pedido').on('click', '#btn_status', function(){
+        var CodPedido = $(this).attr('value')
+        
+
+        if(
+            swal({
+              title: "Alterar status ?",
+              text: "",
+              icon: "warning",
+              buttons: ['Pedido não realizado','Atualizar para realizado'],
+              dangerMode: false,  
+            })
+            .then((willDelete) => {// Atualizar para realizado
+                if(willDelete){
+                    $.post("../controller/pedido.controller.php",
+                    {acao: 'status_ped',
+                    CodPedido: CodPedido, Status: 'Pendente'},
+                    function(retorno){
+
+                        console.log(retorno);
+                        setTimeout(function(){
+                            $(location).attr('href','admin.php')
+                        }, 1000)
+
+                        
+                    })
+                }
+                else{//Pedido nao realizado
+
+                    $.post("../controller/pedido.controller.php",
+                    {acao: 'status_ped',
+                    CodPedido: CodPedido, Status: 'Realizado'},
+                    function(retorno){
+
+                        console.log(retorno);
+                        setTimeout(function(){
+                            $(location).attr('href','admin.php')
+                        }, 1000)
+                        
+
+                       
+                    })
+
+                    
                 }
             })
             ){
