@@ -14,7 +14,7 @@ on p.CodPedido = i.CodPedido
 
 
 -- retorna o preco dos equipamento de um pedido
-select SUM(Preco) from Itens where CodPedido = "36301"
+select SUM(Preco) from Itens where CodPedido = "97611"
 
 
 
