@@ -1,6 +1,23 @@
 USE BrinquedosFesta;
 
 
+select * from pedido;
+
+select * from itens Where CodPedido = "56001";
+
+select * FROM Pedido Where Status != "Realizado";
+
+select i.Preco 
+from Itens AS i INNER JOIN  Pedido AS p
+Where p.CodPedido = "56001";
+
+
+SELECT E.Nome , E.Preco , D.DataDisponivel 
+FROM Equipamento AS E INNER JOIN Datas AS D 
+ON E.CodEquipamento = D.CodEquipamento; 
+SELECT * FROM Cliente WHERE Nome LIKE 'Rodolfo%';
+
+
 insert into Imagens (Imagem,CodEquipamento)
 value ('1.jpg', 12);
 insert into Imagens (Imagem,CodEquipamento)
@@ -14,14 +31,12 @@ select * from Imagens where CodEquipamento = 11;
 
 SELECT * FROM Equipamento WHERE CodEquipamento != 12;
 
-select * from pedido;
 INSERT INTO Itens(CodPedido,CodEquipamento,Preco)
 VALUES(1,1,'1000');
 
 
-select * from itens
 
-select 
+
 
 
 
@@ -40,7 +55,6 @@ WHERE Email = 'danielfernandesdk27@gmail.com';
 SELECT * FROM Usuario 
 WHERE Login = 'Daniel' AND Senha = 'a3dd91d922fcff42f64ac37e9140b02a00e4ce01' AND Tipo = 'Administrador';
 
-
 INSERT INTO Equipamento (Nome,Descricao,Preco) 
 VALUES ('Piscina de Bolinhas','100m X 200m',80.00);
 INSERT INTO Equipamento (Nome,Descricao,Preco) 
@@ -50,21 +64,6 @@ VALUES ('Castelo inflável','138m X 120m Anti-furo',150.00);
 INSERT INTO Equipamento (Nome,Descricao,Preco) 
 VALUES ('Alogão Doce','3 velocidades',100.00);
 
-/*
-Nome VARCHAR(20),
-    Descricao VARCHAR(100),
-    Peso DECIMAL(7,2),/*em KG
-    Altura DECIMAL(7,2),/*em Metros
-    Comprimento DECIMAL(7,2),/*em Metros
-    Largura DECIMAL(7,2),/*em Metros
-    Preco DECIMAL(8,2)
-    Status ENUM('Alugado','Disponivel')*/
-
-
-INSERT INTO Datas (DataDisponivel,CodEquipamento)
-VALUES ('2019-08-06',4);
-
-select * from Datas;
 
 Select nome from equipamento where nome LIKE '%cama%';
 

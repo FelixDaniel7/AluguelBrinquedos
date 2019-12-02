@@ -34,7 +34,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand h1 my-auto ml-4" href="#"><h3>Bem Vindo: <?php echo $_SESSION['administrador'][0]->Nome;?></h3></a>
+    <a class="navbar-brand h1 my-auto ml-4" href="#"><h3>Admin: <?php echo $_SESSION['administrador'][0]->Nome;?></h3></a>
       <ul class="navbar-nav ml-auto">          
         <div class="ml-auto">  
           <li class="nav-item dropdown mr-sm-5" >
@@ -51,7 +51,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   <div class="container ml-0 mt-4">
     <div class="row">
 
-      <div class="navbar-sidebar col-3 mr-0">
+      <div class="navbar-sidebar col-2 mr-0">
         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">       
           <a class="nav-link badge-light active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
             Pedidos
