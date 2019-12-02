@@ -210,25 +210,55 @@ switch ($acao) {
             ?>
 
                 <form action="?acao=editar_equi" enctype="multipart/form-data" method="post" class="form" name="form_editar_equipamento">
+                <div class="form-group">
+                
                     <input type="hidden" name="CodEquipamento" value="<?php echo $dados->CodEquipamento; ?>">
-                    Nome
-                    <input type="text" name="txtnomeEquipamento" value="<?php echo $dados->Nome;?>"><br>
-                    Descricao
-                    <input type="text" name="txtdescricao" value="<?php echo $dados->Descricao;?>"><br>
-                    Peso
-                    <input type="number" step="0.01" name="txtpeso" value="<?php echo $dados->Peso;?>"><br>
-                    Altura
-                    <input type="number" name="txtaltura" value="<?php echo $dados->Altura;?>"><br>
-                    Comprimento
-                    <input type="number" name="txtcomprimento" value="<?php echo $dados->Comprimento;?>"><br>
-                    Largura
-                    <input type="number" name="txtlargura" value="<?php echo $dados->Largura;?>"><br>
-                    Preço
-                    <input type="number" step="0.01" name="txtpreco" value="<?php echo $dados->Preco;?>"><br>
-
+                
+                </div> 
+                <div class="form-group">
+                  
+                <label for="exampleInputEmail1">Nome</label> 
+                    <input type="text" name="txtnomeEquipamento"  class="form-control" value="<?php echo $dados->Nome;?>">
+                    
+                </div>
+                <div class="form-group">
+                <label for="exampleInputPassword1">Descrição</label>
+                
+                    <input type="text" name="txtdescricao"  class="form-control" value="<?php echo $dados->Descricao;?>">
+                    
+                </div>
+                <div class="form-group">
+                <label for="exampleInputPassword1">Peso(KG)</label>
+                
+                    <input type="number" step="0.01"  class="form-control" name="txtpeso" value="<?php echo $dados->Peso;?>">
+                    
+                </div>
+                <div class="form-group">
+                <label for="exampleInputPassword1">Altura(CM)</label>
+                
+                    <input type="number" name="txtaltura"  class="form-control" value="<?php echo $dados->Altura;?>">
+                    
+                </div>
+                <div class="form-group">
+                <label for="exampleInputPassword1">Comprimento(CM)</label>
+                
+                    <input type="number" name="txtcomprimento"  class="form-control" value="<?php echo $dados->Comprimento;?>">
+                    
+                </div>
+                <div class="form-group">
+                <label for="exampleInputPassword1">Largura(CM)</label>
+                    <input type="number" name="txtlargura"  class="form-control" value="<?php echo $dados->Largura;?>">
+                    
+                </div>
+                <div class="form-group">
+                <label for="exampleInputPassword1">Preço</label>
+                    <input type="number" step="0.01" name="txtpreco"  class="form-control" value="<?php echo $dados->Preco;?>">
+                </div>
+                <div class="form-group">
                     <input type="file" name="img" id="imagem">
+                </div>
 
-                    <button type="submit" id="btn_atualiza" >
+                    <button type="submit" id="btn_atualiza " class="btn btn-dark" >
                         Atualizar Equipamento 
                     </button>
                 </form>

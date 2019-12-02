@@ -24,15 +24,15 @@
 
 
   
-    <button type="button" id="btn_cadastra_usu">Cadastrar Usuario</button> 
+    <button type="button" id="btn_cadastra_usu" class="btn btn-dark">Cadastrar Usuario</button> 
 
     <div class="row">
     <div class="col-lg-9">
-        <h2 class="linha">Usuários</h2>
+        <h2 class="linha">USUÁRIOS</h2>
         <div class="box">
             <div class="box-title">Usuarios</div>
             <div class="box-content nopadding">
-                <table id="tabela_usuario" class="table display text-center">
+                <table id="tabela_usuario" class="table table-striped">
                     <thead>
                         <tr>
                             <th>Cod</th>

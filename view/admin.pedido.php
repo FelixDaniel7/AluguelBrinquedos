@@ -22,12 +22,13 @@ include_once('../controller/pedido.controller.php'); ?>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css">
   </head>
   <body>
-
+  
     
 
 <div class="row">
   <div class="col-lg-9">
-    <br>
+    
+    <h2 class="linha">PEDIDOS</h2>
     <div class="box-title">Pedidos</div>
     <div class="box-content nopadding">
       <table id="tabela_pedido" class="table table-striped">
@@ -74,7 +75,7 @@ include_once('../controller/pedido.controller.php'); ?>
         </td>
         
         <td>   
-        <button type="button" id="btn_editar" value="<?php echo $value->CodPedido; ?>"class="btn btn-outline-success">
+        <button type="button" id="btn_editar" value="<?php echo $value->CodPedido; ?>"class="btn btn-outline-warning">
         <i class="em em-pencil"></i>
         </button>
 

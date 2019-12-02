@@ -184,23 +184,45 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
         ?>
 
             <form method="post" class="form" name="form_editar_pedido">
+            <div class="form-group">
                 <input type="hidden" name="CodPedido" value="<?php echo $dados->CodPedido; ?>">
-                Endereço
-                <input type="text" name="EnderecoMontagem" value="<?php echo $dados->EnderecoMontagem; ?>">
-                Data do Pedido
-                <input type="date" name="DataPedido" value="<?php echo $dados->DataPedido; ?>">
-                Data de uso
-                <input type="date" name="Data_de_uso" value="<?php echo $dados->Data_de_uso ?>">
-                Quantidade de horas alugado
-                <input type="number" name="HorasAlugado" value="<?php echo $dados->HorasAlugado; ?>">
-                Data de montagem
-                <input type="date" name="Hora_Montagem" value="<?php echo $dados->Hora_Montagem ?>">
-                Preço final
-                <input type="number" name="PrecoFinal" value="<?php echo $dados->PrecoFinal; ?>">
-                Forma de pagamento
-                <input type="text" name="FormaPagamento" value="<?php echo $dados->FormaPagamento ?>">
-
-                <button type="submit" id="btn_atualiza">
+                
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">Endereço</label>
+                <input type="text" name="EnderecoMontagem" class="form-control" value="<?php echo $dados->EnderecoMontagem; ?>">
+                
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">Data do Pedido</label>
+                <input type="date" name="DataPedido" class="form-control" value="<?php echo $dados->DataPedido; ?>">
+                
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">Data de Uso</label>
+                <input type="date" name="Data_de_uso" class="form-control" value="<?php echo $dados->Data_de_uso ?>">
+                
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">Quantidade de horas alugado</label>
+                <input type="number" name="HorasAlugado" class="form-control" value="<?php echo $dados->HorasAlugado; ?>">
+                
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">Data de Montagem</label>
+                <input type="date" name="Hora_Montagem" class="form-control" value="<?php echo $dados->Hora_Montagem ?>">
+                
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">Preço final</label>
+                <input type="number" name="PrecoFinal" class="form-control" value="<?php echo $dados->PrecoFinal; ?>">
+                
+            </div>
+            <div class="form-group">
+            <label for="exampleInputEmail1">Forma de Pagamento</label>
+                <input type="text" name="FormaPagamento" class="form-control" value="<?php echo $dados->FormaPagamento ?>">
+            </div>
+                <button type="submit" id="btn_atualiza" class="btn btn-dark">
                     Atualizar pedido
                 </button>
             </form>

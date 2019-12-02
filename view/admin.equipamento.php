@@ -23,7 +23,7 @@
   </head>
   <body>
 
-  <br>
+
     <button type="button" id="btn_cadastra" class="btn btn-dark">Cadastrar Equipamento</button> 
 
     <div class="row">
