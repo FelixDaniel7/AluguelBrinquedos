@@ -1,5 +1,5 @@
 ﻿<?php
-    $cep_origem = "85930000";     // Seu CEP , ou CEP da Loja
+    $cep_origem = "07909065";     // Seu CEP , ou CEP da Loja
     $cep_destino = $_POST['cep']; // CEP do cliente, que irá vim via POST
 
     /* DADOS DO PRODUTO A SER ENVIADO */
@@ -32,5 +32,5 @@
 
     $frete =  $xml->cServico;
 
-    echo "</br><h4>Valor PAC: R$ ".$frete->Valor."<br />Prazo: ".$frete->PrazoEntrega." dias</h4>";
+    echo "</br><h4>Valor PAC: R$ ".$frete->Valor. "</h4>";
  ?>
