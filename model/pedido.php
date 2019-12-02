@@ -155,7 +155,7 @@ class Pedido
             $exec->execute();
 
             if ($exec->rowCount() > 0) {
-                return $exec->fetchAll();//retorna todos como objeto
+                return $exec->fetchAll(PDO::FETCH_OBJ);//retorna todos como objeto
             } else {
                 return false;
             }

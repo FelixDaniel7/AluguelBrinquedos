@@ -56,11 +56,8 @@ include_once('../controller/pedido.controller.php'); ?>
         <?php 
         $CodPedido = $value->CodPedido;
           
-          $bla[] = $ped->RetornarPrecoItem($CodPedido);
-          //print_r($bla);
-
-          echo $bla[0][0]['Preco'];
-        
+        $bla = $ped->RetornarPrecoItem($CodPedido);
+        echo "<br>Preco dos itens : ".$bla[0]->Preco."<br>";
         ?></td>
         <td><?php echo $value->Nome;?></td>
         <td><?php echo $value->DataPedido;?></td>
