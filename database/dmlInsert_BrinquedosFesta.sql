@@ -8,13 +8,13 @@ select * from itens where CodPedido = "36301";
 select * FROM Pedido Where Status != "Realizado";
 
 
-select p.CodPedido,i.Preco,p.Frete
+select p.CodPedido,p.Nome,p.Frete
 from Pedido AS p inner JOIN Itens AS i
-on p.CodPedido = i.CodPedido
+on p.CodPedido = i.CodPedido;
 
 
 -- retorna o preco dos equipamento de um pedido
-select SUM(Preco) from Itens where CodPedido = "97611"
+select SUM(Preco) from Itens where CodPedido = "97611";
 
 
 
