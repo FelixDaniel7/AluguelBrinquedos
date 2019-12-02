@@ -248,7 +248,6 @@ switch ($acao) {
             session_destroy();
             unset($_SESSION['administrador']);
             echo "logoff";
-            //header("location: login.php");
             break;
 
         case 'verificar':

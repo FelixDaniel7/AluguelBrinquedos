@@ -2,6 +2,12 @@
 include_once('../controller/usuario.controller.php');
 session_start();
 $usu->Logado('administrador');
+
+ var_dump($_SESSION['administrador']);
+
+//print_r($_SESSION['administrador']['Nome']);
+
+
 //botao sair
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     session_start();
@@ -33,7 +39,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand h1 my-auto ml-4" href="#"><h3>Admin</h3></a>
+    <a class="navbar-brand h1 my-auto ml-4" href="#"><h3>Bem Vindo: <?php echo $_SESSION['administrador'][0]->Nome;?></h3></a>
       <ul class="navbar-nav ml-auto">          
         <div class="ml-auto">  
           <li class="nav-item dropdown mr-sm-5" >
