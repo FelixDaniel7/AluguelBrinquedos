@@ -31,11 +31,11 @@ include_once('../controller/pedido.controller.php'); ?>
                 <table id="tabela_pedido" class="table display text-center">
         <thead>
           <tr>
-            <th>Status</th>
+            <th>Status/Data de envio</th>
             <th>Nome do Cliente</th>
             <th>CPF Do Cliente</th>
             
-            <th>Data do Pedido</th>
+            
             <th>Data de Utilização</th>
             <th>Horas de Utilização</th>
             <th>Horario da Montagem</th>
@@ -44,7 +44,8 @@ include_once('../controller/pedido.controller.php'); ?>
             
             <th>Supervisao</th>
             <th>Preco total</th>
-            <th width="200">Ação</th>
+            <th>Ação</th>
+            <th>Ver mais</th>
           </tr>
         </thead>
         <tbody>
@@ -61,9 +62,18 @@ include_once('../controller/pedido.controller.php'); ?>
           <button type="button" id="btn_status" value="<?php echo $value->CodPedido; ?>" class="btn btn-success">
             <?php echo $status;?>
           </button>
+
      <?php
+     $data = $value->DataPedido;
+     $date = new DateTime($data);
+     echo $date->format('d/m/Y H:i');
           }
-          else{?>
+          else{
+            $data = $value->DataPedido;
+        $date = new DateTime($data);
+        echo $date->format('d/m/Y H:i');
+            
+            ?>
 
 <button type="button" id="btn_status" value="<?php echo $value->CodPedido; ?>" class="btn btn-danger">
             <?php echo $status;?>
@@ -100,18 +110,7 @@ echo $monta_cpf;
         
         ?></td>
         
-        <td><?php 
-        $data = $value->DataPedido;
-        $date = new DateTime($data);
-        echo $date->format('d/m/Y H:i');
-        
-         
-    
-        
-        
-        
-        
-        ?></td>
+       
         <td>
           
           
@@ -137,11 +136,11 @@ $bla = $ped->RetornarPrecoItem($CodPedido);
 
 
         if($value->Supervisao == 1){
-          echo 'Sem supervisão';
+          echo '<i class="em em-heavy_multiplication_x" aria-role="presentation" aria-label="HEAVY MULTIPLICATION X"></i>';
           $PrecoTotal = $value->Frete + $bla[0]->Preco;
         }
         else{
-          echo 'Com Sepervisao';
+          echo '<i class="em em-heavy_check_mark" aria-role="presentation" aria-label="HEAVY CHECK MARK"></i>';
           $PrecoTotal = $value->Frete + 50.00 + $bla[0]->Preco;
         }
         ?>
@@ -156,6 +155,12 @@ $bla = $ped->RetornarPrecoItem($CodPedido);
           <i class="em em-x"></i>
         </button>
         </td>
+        <td>
+        <button type="button" id="btn_ver_mais" value="<?php echo $value->CodPedido; ?>" class="btn btn-outline-info">
+          Ver mais
+        </button></td>
+
+
         <?php
 
         endforeach;
