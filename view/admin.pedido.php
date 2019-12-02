@@ -146,7 +146,7 @@ $bla = $ped->RetornarPrecoItem($CodPedido);
         }
         ?>
         </td>
-        <td><?php echo $PrecoTotal;?></td>
+        <td><?php echo "R$: ".$PrecoTotal;?></td>
         <td>   
         <button type="button" id="btn_editar" value="<?php echo $value->CodPedido; ?>"class="btn btn-outline-success">
         <i class="em em-pencil"></i>
