@@ -1,6 +1,6 @@
 <!-- vai estar na pagina de admin -->
 <?php include_once('../controller/usuario.controller.php'); ?>
-<!doctype html>
+
 <html lang="en">
   <head>
     <title>Cadastrar Usuario</title>
@@ -22,15 +22,15 @@
   </head>
   <body>
 
-
-  
-    <button type="button" id="btn_cadastra_usu">Cadastrar Usuario</button> 
-
-    <div class="row">
-    <div class="col-lg-9">
-        <h2 class="linha">Usuários</h2>
+<div class="row">
+    <div class="col-lg-10 ml-auto mt-4">
+        <div class="row">   
+            <h2 class="linha">Usuários</h2>
+            <div class="ml-auto ">
+                <button class="btn btn-primary" type="button" id="btn_cadastra_usu">Cadastrar Usuario</button>
+            </div>   
+        </div>
         <div class="box">
-            <div class="box-title">Usuarios</div>
             <div class="box-content nopadding">
                 <table id="tabela_usuario" class="table display text-center">
                     <thead>
@@ -44,22 +44,13 @@
                         </tr>
                     </thead>
                     <tbody>
-                 
-                    
                         <tr>
                             <td></td>
-                            <td>></td>
                             <td></td>
                             <td></td>
                             <td></td>
-                            
-                            <td>
-                            
-                            
-                            </td>
-
-                 
-                      
+                            <td></td>                            
+                            <td></td>
                         </tr>
                     </tbody>
                 </table>
@@ -67,7 +58,6 @@
         </div>
     </div>
 </div>
-
 
     <!-- Modal -->
 <div class="modal fade" id="modal_usuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

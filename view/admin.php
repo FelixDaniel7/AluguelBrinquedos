@@ -29,6 +29,8 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
 
     <!-- Jquery -->
     <script src="../js/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+
     <!-- Ajax -->
     <script src="../ajax/usuario.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
@@ -42,38 +44,66 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
   </head>
   <body>
 
-  <nav class="navbar navbar-light bg-light">
-    <div class="container-fluid">
-      <div class="navbar-header">
-        <a class="navbar-brand" href="index.php"><span></span>Admin</a>
-      </div>
-    </div><!-- /.container-fluid -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand h1 my-auto ml-4" href="#"><h3>Admin</h3></a>
+      <ul class="navbar-nav ml-auto">          
+        <div class="ml-auto">  
+          <li class="nav-item dropdown mr-sm-5" >
+            <a class="nav-link mr-5" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="img/admin/usuario.png" style="width:50px; height:50px;">
+            </a>
+            <div class="dropdown-menu bg-danger" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item bg-danger" href="?logout=true">Sair</a>
+            </div>
+          </li>         
+        </div>
+      </ul>
   </nav>
-  <div class="row">
-    <div class="col-3">
-      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Home</a>
-      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Perfil</a>
-      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Mensagens</a>
-      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Configurações</a>
+  <div class="container ml-0 mt-4">
+    <div class="row">
+
+      <div class="navbar-sidebar col-3 mr-0">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">       
+          <a class="nav-link badge-light active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">
+            Pedidos
+          </a>
+      
+          <a class="nav-link badge-light" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">
+            Usuarios
+          </a>
+      
+          <a class="nav-link badge-light" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
+            Equipamentos
+          </a>
+      
+          <a class="nav-link badge-light" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
+            Mensagens
+          </a>           
+        </div>
       </div>
+
+      <div class="col-9">
+        <div class="tab-content" id="v-pills-tabContent">
+          <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+            <?php include_once("admin.pedido.php"); ?>
+          </div>
+          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+            <center>
+            <?php include_once("admin.usuario.php"); ?>
+            </center>
+            
+          </div>
+          <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
+            <?php include_once("admin.equipamento.php"); ?>
+          </div>
+          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
+            <?php include_once("admin.pedido.php"); ?>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div class="col-9">
-      <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">1</div>
-      <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">2</div>
-      <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">3</div>
-      <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">4</div>
-      </div>
-  </div>
-  <div class="container">
-      <div>
-          <h2>Pagina admin</h2>
-          <a href="?logout=true" class="btn btn-danger">Sair</a>        
-      </div>
+
   </div>
   </body>
 </html>
-
-
-     
