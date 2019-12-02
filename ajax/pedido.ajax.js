@@ -343,11 +343,28 @@ $(document).ready(function(){
                     function(retorno){
 
                         console.log(retorno);
-                        setTimeout(function(){
-                            $(location).attr('href','admin.php')
-                        }, 1000)
 
-                        
+
+                        if(retorno == 'Atualizou'){
+
+                            swal({
+                                title:"Atualizado com sucesso!",
+                                icon:"success",
+                            })
+                            setTimeout(function(){
+                                $(location).attr('href','admin.php')
+                            }, 1000)
+
+                        }else{
+
+                            swal({
+                                title: "Erro ao atualizar status!",
+                                icon: "error",
+                            })
+                            setTimeout(function(){
+                                $(location).attr('href','admin.php')
+                            }, 1000)
+                        }
                     })
                 }
                 else{//Pedido nao realizado
