@@ -2,6 +2,9 @@
 include_once('../controller/usuario.controller.php');
 session_start();
 $usu->Logado('administrador');
+
+var_dump($_SESSION['administrador']);
+
 //botao sair
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     session_start();

@@ -169,7 +169,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 return $value;
             }
 
-            $PrecoFinal = $_SESSION["total"] + $valor;
+            $Frete = $valor;
             
             // atribui valor a variavel privat eda class pedido
             $ped->CodPedido = $CodPedido;
@@ -189,7 +189,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->Data_de_uso = $Data_de_uso;
             $ped->HorasAlugado = $HorasAlugado;            
             $ped->Hora_Montagem = $Hora_Montagem;
-            $ped->PrecoFinal = $PrecoFinal;
+            $ped->Frete = $Frete;
             $ped->FormaPagamento = $FormaPagamento;
             $ped->Supervisao = $Supervisao;
 
@@ -231,7 +231,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 Data de montagem
                 <input type="date" name="Hora_Montagem" value="<?php echo $dados->Hora_Montagem ?>">
                 Preço final
-                <input type="number" name="PrecoFinal" value="<?php echo $dados->PrecoFinal; ?>">
+                <input type="number" name="PrecoFinal" value="<?php echo $dados->Frete; ?>">
                 Forma de pagamento
                 <input type="text" name="FormaPagamento" value="<?php echo $dados->FormaPagamento ?>">
 
@@ -250,7 +250,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->Data_de_uso = filter_input(INPUT_POST, 'Data_de_uso', FILTER_SANITIZE_STRING);
             $ped->HorasAlugado = filter_input(INPUT_POST, 'HorasAlugado', FILTER_SANITIZE_STRING);
             $ped->Hora_Montagem = filter_input(INPUT_POST, 'Hora_Montagem', FILTER_SANITIZE_STRING);
-            $ped->PrecoFinal = filter_input(INPUT_POST, 'PrecoFinal', FILTER_SANITIZE_STRING);
+            $ped->Frete = filter_input(INPUT_POST, 'PrecoFinal', FILTER_SANITIZE_STRING);
             $ped->FormaPagamento = filter_input(INPUT_POST, 'FormaPagamento', FILTER_SANITIZE_STRING);
 
             if($ped->AtualizarPedido()){

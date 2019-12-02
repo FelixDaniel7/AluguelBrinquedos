@@ -31,16 +31,17 @@ include_once('../controller/pedido.controller.php'); ?>
                 <table id="tabela_pedido" class="table display text-center">
         <thead>
           <tr>
-            
+            <th>Retorno</th>
             <th>Nome Cliente</th>
             <th>Data do Pedido</th>
             <th>Data de Utilização</th>
             <th>Horas Alugadas</th>
             <th>Horario da Montagem</th>
-            <th>Preço final</th>
+            <th>Frete</th>
             <th>Forma de Pagamento</th>
             <th>Status</th>
             <th>Supervisao</th>
+            <th>Preco total</th>
             <th width="200">Ação</th>
           </tr>
         </thead>
@@ -51,26 +52,37 @@ include_once('../controller/pedido.controller.php'); ?>
 
         ?>
         <tr>
+        <td>
+        <?php 
+        $CodPedido = $value->CodPedido;
+          
+          $bla[] = $ped->RetornarPrecoItem($CodPedido);
+          //print_r($bla);
+
+          echo $bla[0][0]['Preco'];
         
+        ?></td>
         <td><?php echo $value->Nome;?></td>
         <td><?php echo $value->DataPedido;?></td>
         <td><?php echo $value->Data_de_uso;?></td>
         <td><?php echo $value->HorasAlugado;?></td>
         <td><?php echo $value->Hora_Montagem;?></td>
-        <td><?php echo $value->PrecoFinal;?></td>
+        <td><?php echo $value->Frete;?></td>
         <td><?php echo $value->FormaPagamento;?></td>
         <td><?php echo $value->Status;?></td>
         <td>
         <?php 
         if($value->Supervisao == 1){
-          echo 'Sem revisão';
+          echo 'Sem supervisão';
+          $PrecoTotal = $value->Frete;
         }
         else{
           echo 'Com Sepervisao';
+          $PrecoTotal = $value->Frete + 50.00;
         }
         ?>
         </td>
-        
+        <td><?php echo $PrecoTotal;?></td>
         <td>   
         <button type="button" id="btn_editar" value="<?php echo $value->CodPedido; ?>"class="btn btn-outline-success">
         <i class="em em-pencil"></i>

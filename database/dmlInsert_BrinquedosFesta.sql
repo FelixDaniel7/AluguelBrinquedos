@@ -3,13 +3,20 @@ USE BrinquedosFesta;
 
 select * from pedido;
 
-select * from itens Where CodPedido = "56001";
+select * from itens where CodPedido = "36301";
 
 select * FROM Pedido Where Status != "Realizado";
 
-select i.Preco 
-from Itens AS i INNER JOIN  Pedido AS p
-Where p.CodPedido = "56001";
+
+select p.CodPedido,i.Preco,p.Frete
+from Pedido AS p inner JOIN Itens AS i
+on p.CodPedido = i.CodPedido
+
+
+-- retorna o preco dos equipamento de um pedido
+select SUM(Preco) from Itens where CodPedido = "36301"
+
+
 
 
 SELECT E.Nome , E.Preco , D.DataDisponivel 
