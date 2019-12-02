@@ -56,7 +56,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 <div class="table-responsive-sm">
                 <table id="tabela_carrinho" class="table table-sm">
                 <thead class="fundo text-white">
-                <th>Nome</th>
+                <th>Produto</th>
                 <!-- <th>Quantidade</th> -->
                 <th>Preço</th>
                 <th>Subtotal</th>
@@ -68,6 +68,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 foreach ($_SESSION["CodEquipamento"] as $indice => $valor):
 
                 $total += $_SESSION["quantidade"][$indice] * $produtos[$valor]["preco"];
+                $_SESSION["total"] = $total;
                 $subtotal = $produtos[$valor]["preco"] * $_SESSION["quantidade"][$indice];
                 ?>
 
@@ -124,16 +125,51 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $FormaPagamento = filter_input(INPUT_POST, 'txtformaPagamento' , FILTER_SANITIZE_STRING);
             $Supervisao = filter_input(INPUT_POST, 'txtsupervisao' , FILTER_SANITIZE_NUMBER_INT);
 
-            function limpaCPF_CEP_TEL($valor){
-                $valor = trim($valor);
-                $valor = str_replace(".", "", $valor);
-                $valor = str_replace(",", "", $valor);
-                $valor = str_replace("-", "", $valor);
-                $valor = str_replace("/", "", $valor);
-                $valor = str_replace("(", "", $valor);
-                $valor = str_replace(")", "", $valor);
-                return $valor;
+            $cep_origem = "07909065";  
+            $cep_destino = $CEP;
+
+            $peso          = 2;
+            $valor         = 100;
+            $tipo_do_frete = '41106';
+            $altura        = 6;
+            $largura       = 20;
+            $comprimento   = 20;
+
+            $url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?";
+            $url .= "nCdEmpresa=";
+            $url .= "&sDsSenha=";
+            $url .= "&sCepOrigem=" . $cep_origem;
+            $url .= "&sCepDestino=" . $cep_destino;
+            $url .= "&nVlPeso=" . $peso;
+            $url .= "&nVlLargura=" . $largura;
+            $url .= "&nVlAltura=" . $altura;
+            $url .= "&nCdFormato=1";
+            $url .= "&nVlComprimento=" . $comprimento;
+            $url .= "&sCdMaoProria=n";
+            $url .= "&nVlValorDeclarado=" . $valor;
+            $url .= "&sCdAvisoRecebimento=n";
+            $url .= "&nCdServico=" . $tipo_do_frete;
+            $url .= "&nVlDiametro=0";
+            $url .= "&StrRetorno=xml";
+
+            $xml = simplexml_load_file($url);
+
+            $frete = $xml->cServico;
+
+            $valor = $frete->Valor;
+
+            function limpaCPF_CEP_TEL($value){
+                $value = trim($value);
+                $value = str_replace(".", "", $value);
+                $value = str_replace(",", "", $value);
+                $value = str_replace("-", "", $value);
+                $value = str_replace("/", "", $value);
+                $value = str_replace("(", "", $value);
+                $value = str_replace(")", "", $value);
+                return $value;
             }
+
+            $PrecoFinal = $_SESSION["total"] + $valor;
             
             // atribui valor a variavel privat eda class pedido
             $ped->CodPedido = $CodPedido;
@@ -153,27 +189,26 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->Data_de_uso = $Data_de_uso;
             $ped->HorasAlugado = $HorasAlugado;            
             $ped->Hora_Montagem = $Hora_Montagem;
+            $ped->PrecoFinal = $PrecoFinal;
             $ped->FormaPagamento = $FormaPagamento;
             $ped->Supervisao = $Supervisao;
 
             $ped->Status = 'Pendente';
 
-
             //cadastrar os brinquedos tambem
             //cadastrar compra retornando o código da compra gerado
-            
             if($ped->CadastrarPedido()){
                 //pega os itens do carrinho e cadastra no bd
-                foreach ($_SESSION["CodEquipamento"] as $indice => $valor){
-                    $CodEquipamento = $valor;
-                    $PrecoEqui = $produtos[$valor]["preco"];
+                foreach ($_SESSION["CodEquipamento"] as $indice => $value){
+                    $CodEquipamento = $value;
+                    $PrecoEqui = $produtos[$value]["preco"];
 
                     if($ped->CadastrarItens($CodPedido,$CodEquipamento,$PrecoEqui)){
                         echo "bla";
                     }
+            
                 } 
             }
-            
             
         break;
 
