@@ -2,12 +2,6 @@
 include_once('../controller/usuario.controller.php');
 session_start();
 $usu->Logado('administrador');
-
- var_dump($_SESSION['administrador']);
-
-//print_r($_SESSION['administrador']['Nome']);
-
-
 //botao sair
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     session_start();
@@ -22,6 +16,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" href="img/Logo/logo.png" type="image/*" />
     <!-- Bootstrap CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Jquery -->
