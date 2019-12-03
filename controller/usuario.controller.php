@@ -35,12 +35,12 @@ switch ($acao) {
                             <td><?php echo $value->Tipo;?></td>
                             
                             <td>
-                            <button type="button" id="btn_editar" value="<?php echo $value->CodUsuario; ?>"class="btn btn-outline-primary">
-                            Editar
-                            </button>
-                            <button type="button" id="btn_excluir" value="<?php echo $value->CodUsuario; ?>" class="btn btn-outline-danger">
-                            Excluir
-                            </button>
+                            <button type="button" id="btn_editar" value="<?php echo $value->CodUsuario; ?>"class="btn btn-outline-warning">
+                                    <i class="em em-pencil"></i>
+                                </button>
+                                <button type="button" id="btn_excluir" value="<?php echo $value->CodUsuario; ?>" class="btn btn-outline-danger">
+                                    <i class="em em-x"></i>
+                                </button>
                             </td>
 
                         
