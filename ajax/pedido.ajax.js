@@ -410,4 +410,28 @@ $(document).ready(function(){
         }
     })
 
+    var conteudo_modal_itens = $('#modal_itens').find('.modal-body')
+
+    $('#tabela_pedido').on('click', '#btn_ver_mais', function(){
+        
+
+        var CodPedido = $(this).attr('value')
+        console.log(CodPedido);
+        $.post(
+            '../controller/pedido.controller.php',
+            {acao: 'dados_pedido',
+            CodPedido: CodPedido},
+            function(retorno){
+
+                console.log(retorno);
+                
+
+                $('#modal_itens').modal({backdrop: true})
+
+                conteudo_modal_itens.html(retorno)
+                // var myModal = $('#modal_itens')
+            })
+        
+    })
+
 })

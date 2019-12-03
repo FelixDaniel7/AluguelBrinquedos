@@ -264,5 +264,28 @@ class Pedido
             return false;
         }
     }
+
+    function ConsultarPedidoEquipamento($CodPedido){
+        $comandoSQL = "SELECT p.*, e.Nome 'Equipamento', i.Preco
+                        from Pedido AS p inner JOIN Itens AS i inner join Equipamento AS e
+                        on p.CodPedido = ? AND i.CodPedido = ?
+                        Where e.CodEquipamento = i.CodEquipamento;";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodPedido,PDO::PARAM_INT);
+        $exec->bindValue(2,$CodPedido,PDO::PARAM_INT);
+        $exec->execute();
+
+        
+        if ($exec->rowCount() > 0) {
+
+        return $exec->fetchAll(PDO::FETCH_ASSOC);
+
+            
+        }
+        else{
+            return false;
+        }
+    }
 }
 ?>

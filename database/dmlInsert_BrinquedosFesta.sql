@@ -7,10 +7,17 @@ select * from itens where CodPedido = "36301";
 
 select * FROM Pedido Where Status != "Realizado";
 
+-- contatos do cliente
+-- endereço completo 
+-- itens do pedido
+-- preco de tudo 
 
-select p.CodPedido,p.Nome,p.Frete
-from Pedido AS p inner JOIN Itens AS i
-on p.CodPedido = i.CodPedido;
+
+select p.CodPedido,p.Telefone,p.Celular,p.Email,p.Endereco,p.Bairro,p.Numero,p.Complemento,p.CEP,e.Nome,   p.Frete, i.Preco
+from Pedido AS p inner JOIN Itens AS i inner join Equipamento AS e
+on p.CodPedido = "36301" AND i.CodPedido = "36301"
+Where e.CodEquipamento = i.CodEquipamento;
+
 
 
 -- retorna o preco dos equipamento de um pedido

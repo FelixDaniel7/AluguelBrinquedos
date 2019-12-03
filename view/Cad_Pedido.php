@@ -120,7 +120,7 @@ include_once('../controller/equipamento.controller.php');
 <input type="date" class="form-control" name="txtdataUso" id="txtdataUso" pattern="[0-9]{2}\/[0-9]{2}\/[0-9]{4}$" min="2019-11-07" max="2022-12-31" >
 
 <label for="Text">Número de horas utilizadas<span>*</span></label>
-<input type="number" class="form-control" name="txthorasAlugado" id="txthorasAlugado" max="600" min="1" >
+<input type="number" class="form-control" name="txthorasAlugado" id="txthorasAlugado" max="600" min="1">
 
 <label for="inputEmail4">Horário de Montagem <span>*</span></label>
 <input type="time" class="form-control" name="txthoraMontagem" id="txthoraMontagem" >
