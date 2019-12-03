@@ -11,7 +11,7 @@ if(!isset($_SESSION["CodEquipamento"]))
     $_SESSION["quantidade"] = array();
 }
 
-
+//carrinho
 $consulta = $ped->con->prepare("SELECT * FROM Equipamento");
 $consulta->execute();
 
@@ -24,7 +24,7 @@ $produtos;
 $produtos[$mostra["CodEquipamento"]]["nomeproduto"] = $mostra["Nome"];
 $produtos[$mostra["CodEquipamento"]]["preco"] = $mostra["Preco"];
 
-endforeach;
+endforeach;//ainda é o carrinho
 
 $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
