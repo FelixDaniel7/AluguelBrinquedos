@@ -1,17 +1,11 @@
-<?php
+﻿<?php
+    $cep_origem = "07909065";     // Seu CEP , ou CEP da Loja
+    $cep_destino = $_POST['cep']; // CEP do cliente, que irá vim via POST
 
-function CalcularFrete($cep){
-
-    $exec = $this->con->prepare("SELECT * FROM PEDIDO WHERE CEP = ?");
-    bindValue(1,$cep,PDO::PARAM_INT);
-    $exec->execute();
-
-    $cep_origem = "85930000";  
-    $cep_destino = $cep;
-
+    /* DADOS DO PRODUTO A SER ENVIADO */
     $peso          = 2;
     $valor         = 100;
-    $tipo_do_frete = '41106';
+    $tipo_do_frete = '41106'; //Sedex: 40010   |  Pac: 41106
     $altura        = 6;
     $largura       = 20;
     $comprimento   = 20;
@@ -33,10 +27,10 @@ function CalcularFrete($cep){
     $url .= "&nVlDiametro=0";
     $url .= "&StrRetorno=xml";
 
+
     $xml = simplexml_load_file($url);
 
-    $frete = $xml->cServico;
+    $frete =  $xml->cServico;
 
-    $frete->Valor. $frete->PrazoEntrega;
-}
-?>
+    echo "</br><h4>Valor PAC: R$ ".$frete->Valor. "</h4>";
+ ?>

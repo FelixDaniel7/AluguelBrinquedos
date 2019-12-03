@@ -8,7 +8,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
     <!-- Jquery -->
     <script src="../js/jquery-3.4.1.min.js"></script>
     <!-- Ajax -->
@@ -106,11 +105,16 @@
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="../js/popper.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
     <!-- datatable -->
-    <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.min.js"></script>
-    <script>
-    $('#tabela_equipamento').DataTable()
-    </script>
+    <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.min.js"></script>    
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#tabela_equipamento').dataTable( {
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+            }
+        } );
+    } );
+  </script>
   </body>
 </html>

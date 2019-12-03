@@ -1,21 +1,14 @@
-<!-- vai estar na pagina de admin -->
 <?php 
 include_once('../controller/usuario.controller.php');
-
 session_start();
-
 $usu->Logado('administrador');
-
 //botao sair
 if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     session_start();
-    //session_destroy();
     unset($_SESSION['administrador']);
     header("location: login.php");
 }
-
 ?>
-
 <!doctype html>
 <html lang="en">
   <head>
@@ -23,29 +16,25 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
+    <link rel="shortcut icon" href="img/Logo/logo.png" type="image/*" />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <!-- Jquery -->
     <script src="../js/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-
+    <script src="../js/popper.min.js"></script>
     <!-- Ajax -->
     <script src="../ajax/usuario.ajax.js"></script>
     <!-- Alertas Bonitinhos -->
     <script src="../js/sweetalert.js"></script>
-
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
- 
+    <script src="../js/icone.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
   </head>
   <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand h1 my-auto ml-4" href="#"><h3>Admin</h3></a>
+    <a class="navbar-brand h1 my-auto ml-4" href="#"><h3>Admin: <?php echo $_SESSION['administrador'][0]->Nome;?></h3></a>
       <ul class="navbar-nav ml-auto">          
         <div class="ml-auto">  
           <li class="nav-item dropdown mr-sm-5" >
@@ -59,6 +48,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
         </div>
       </ul>
   </nav>
+
   <div class="container ml-0 mt-4">
     <div class="row">
 
@@ -75,10 +65,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
           <a class="nav-link badge-light" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
             Equipamentos
           </a>
-      
-          <a class="nav-link badge-light" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-            Mensagens
-          </a>           
+          
         </div>
       </div>
 
@@ -87,18 +74,13 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
           <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
             <?php include_once("admin.pedido.php"); ?>
           </div>
-          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-            <center>
+          <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">     
             <?php include_once("admin.usuario.php"); ?>
-            </center>
-            
           </div>
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
             <?php include_once("admin.equipamento.php"); ?>
           </div>
-          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-            <?php include_once("admin.pedido.php"); ?>
-          </div>
+          
         </div>
       </div>
 

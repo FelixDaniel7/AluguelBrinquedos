@@ -35,12 +35,12 @@ switch ($acao) {
                             <td><?php echo $value->Tipo;?></td>
                             
                             <td>
-                            <button type="button" id="btn_editar" value="<?php echo $value->CodUsuario; ?>"class="btn btn-outline-primary">
-                            Editar
-                            </button>
-                            <button type="button" id="btn_excluir" value="<?php echo $value->CodUsuario; ?>" class="btn btn-outline-danger">
-                            Excluir
-                            </button>
+                            <button type="button" id="btn_editar" value="<?php echo $value->CodUsuario; ?>"class="btn btn-outline-warning">
+                                    <i class="em em-pencil"></i>
+                                </button>
+                                <button type="button" id="btn_excluir" value="<?php echo $value->CodUsuario; ?>" class="btn btn-outline-danger">
+                                    <i class="em em-x"></i>
+                                </button>
                             </td>
 
                         
@@ -64,45 +64,37 @@ switch ($acao) {
         <!-- se for usar alguma mascara tem q abrir o script e colar o codigo aq-->
 
         <form name="form_cad_usuario" method="POST">
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
-            <div class="col-sm-10">
+        <div class="form-group">
+            <label for="inputEmail3">Nome</label>
             <input type="text" name="txtnome" class="form-control" placeholder="Nome">
-            </div>
+            
         </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Nome de Login</label>
-            <div class="col-sm-10">
+        <div class="form-group">
+            <label for="inputEmail3">Nome de Login</label>
             <input type="text" name="txtlogin" class="form-control" placeholder="Login">
-            </div>
+            
         </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
+        <div class="form-group">
+            <label for="inputEmail3">Email</label>
             <input type="email" name="txtemail" class="form-control" placeholder="Email">
-            </div>
         </div>
-        <div class="form-group row">
-            <label for="inputPassword3" class="col-sm-2 col-form-label">Senha</label>
-            <div class="col-sm-10">
+        <div class="form-group">
+            <label for="inputPassword3">Senha</label>
             <input type="password" name="txtsenha" class="form-control" placeholder="Senha">
-            </div>
         </div>
-        <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Nivel de acesso</label>
-            <div class="col-sm-10">
+        <div class="form-group">
+            <label for="inputPassword3">Nivel de acesso</label>
             <select class="form-control" name="tipo">
                 <option value="">Escolha uma opção</option>
                 <option value="Administrador">Administrador</option>
                 <option value="Moderador">Moderador</option>
             </select>
-            </div>
         </div>
-        <div class="form-group row">
-            <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Cadastrar Usuário</button>
+        <div class="form-group">
+            
+            <button type="submit" class="btn btn-dark">Cadastrar Usuário</button>
             <img src="../img/load.gif" class="load" alt="Carregando..." style="display: none" />
-            </div>
+            
             
         </div>
         </form>
@@ -134,37 +126,37 @@ switch ($acao) {
             
 
             <form action="" name="form_editar_usuario" method="POST">
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Nome</label>
-            <div class="col-sm-10">
+        <div class="form-group">
+            <label for="inputEmail3">Nome</label>
+            
             <input type="text" name="txtnome" value="<?php echo $dados->Nome; ?>" class="form-control" placeholder="Nome">
-            </div>
+            
         </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Login</label>
-            <div class="col-sm-10">
+        <div class="form-group">
+            <label for="inputEmail3">Login</label>
+            
             <input type="text" name="txtlogin" value="<?php echo $dados->Login; ?>"  class="form-control" placeholder="Login">
-            </div>
+            
         </div>
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
-            <div class="col-sm-10">
+        <div class="form-group">
+            <label for="inputEmail3">Email</label>
+           
             <input type="email" name="txtemail" value="<?php echo $dados->Email; ?>"  class="form-control" placeholder="Email">
-            </div>
+            
         </div>
 
-        <div class="form-group row">
-            <label for="inputEmail3" class="col-sm-2 col-form-label">Senha</label>
-            <div class="col-sm-10">
+        <div class="form-group">
+            <label for="inputEmail3">Senha</label>
+           
             <input type="password" name="txtsenha" value="AluguelBrinquedos"  class="form-control" placeholder="Email">
-            </div>
+            
         </div>
 
         <input type="hidden" name="CodUsuario" value="<?php echo $dados->CodUsuario; ?>"/>
         
         <div class="form-group row">
             <div class="col-sm-10">
-            <button id="btn_atualiza" class="btn btn-primary">
+            <button id="btn_atualiza" class="btn btn-dark">
             Atualizar
         </button>
             <img src="../img/load.gif" class="load" alt="Carregando..." style="display: none" />
@@ -248,7 +240,6 @@ switch ($acao) {
             session_destroy();
             unset($_SESSION['administrador']);
             echo "logoff";
-            //header("location: login.php");
             break;
 
         case 'verificar':
@@ -355,11 +346,59 @@ switch ($acao) {
         case 'alterar_senha':
             
             break;
+
+        case 'contato':
+
+            $Nome		= $_POST["Nome"];	// Pega o valor do campo Nome
+            $Fone		= $_POST["Fone"];	// Pega o valor do campo Telefone
+            $Email		= $_POST["Email"];	// Pega o valor do campo Email
+            $Mensagem	= $_POST["Mensagem"];	// Pega os valores do campo Mensagem
+            $Assunto	= $_POST["Assunto"];	// Pega os valores do campo Mensagem
+            // Variável que junta os valores acima e monta o corpo do email
+            
+            $Vai = "Nome: $Nome\n\nE-mail: $Email\n\nTelefone: $Fone\n\nMensagem: $Mensagem\n";
+            
+            require_once("phpmailer/class.phpmailer.php");
+            
+            define('GUSER', 'viniciusr0308@gmail.com');	// <-- Insira aqui o seu GMail
+            define('GPWD', 'vini@321');		// <-- Insira aqui a senha do seu GMail
+            
+            
+            function smtpmailer($para, $de, $de_nome, $assunto, $corpo) { 
+                global $error;
+                $mail = new PHPMailer();
+                $mail->IsSMTP();		// Ativar SMTP
+                $mail->SMTPDebug = 0;		// Debugar: 1 = erros e mensagens, 2 = mensagens apenas
+                $mail->SMTPAuth = true;		// Autenticação ativada
+                $mail->SMTPSecure = 'ssl';	// SSL REQUERIDO pelo GMail
+                $mail->Host = 'smtp.gmail.com';	// SMTP utilizado
+                $mail->Port = 465;  		// A porta 587 deverá estar aberta em seu servidor
+                $mail->Username = GUSER;
+                $mail->Password = GPWD;
+                $mail->From = $de;
+                $mail->FromName = $de_nome;
+                $mail->Subject = $assunto;
+                $mail->Body = $corpo;
+                $mail->AddAddress($para);
+                if(!$mail->Send()) {
+                    $error = 'Mail error: '.$mail->ErrorInfo; 
+                    return false;
+                } else {
+                    $error = 'Mensagem enviada!';
+                    return true;
+                }
+            }
+            
+            // Insira abaixo o email que irá receber a mensagem, o email que irá enviar (o mesmo da variável GUSER), 
+            //o nome do email que envia a mensagem, o Assunto da mensagem e por último a variável com o corpo do email.
+            
+                if (smtpmailer('filipesantossoares2607@gmail.com', 'Pedro', 'Site Aluguel Brinquedos - '.$Assunto, 'assunto', $Vai)) {
+            
+                Header("location:contato.php"); // Redireciona para uma página de obrigado.
+            
+            }
+            if (!empty($error)) echo $error;
+
+        break;
 }
-
-
-
-
-
-//}
 ?>

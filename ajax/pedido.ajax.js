@@ -8,6 +8,10 @@ $(document).ready(function(){
     var montagem = $('#montagem')
     var pedido = $('#pedido')
 
+
+
+
+
     function CampoVazio(campo){
         if (campo.val() == '') {
             campo.addClass('border border-danger')
@@ -247,7 +251,7 @@ $(document).ready(function(){
                 console.log('Atualizou');
 
                 setTimeout(function(){
-                    $(location).attr('href','admin.pedido.php')
+                    $(location).attr('href','admin.php')
                 }, 1000)
 
                 }
@@ -267,6 +271,9 @@ $(document).ready(function(){
     $('#tabela_pedido').on('click', '#btn_excluir', function(){
         var CodPedido = $(this).attr('value')
 
+        console.log(CodPedido);
+        
+
         if(
             swal({
               title: "Você tem certeza ?",
@@ -282,6 +289,9 @@ $(document).ready(function(){
                     CodPedido: CodPedido},
                     function(retorno){
 
+                        console.log(retorno);
+                        
+
                         if(retorno == 'deletou'){
 
                             swal({
@@ -291,7 +301,7 @@ $(document).ready(function(){
 
                             //ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
                             setTimeout(function(){
-                                $(location).attr('href','admin.pedido.php')
+                                $(location).attr('href','admin.php')
                             }, 1000)
 
                         }else{
@@ -317,6 +327,117 @@ $(document).ready(function(){
             return false;
             console.log('Deu Muito ruim ao deletar');
         }
+    })
+
+    $('#tabela_pedido').on('click', '#btn_status', function(){
+        var CodPedido = $(this).attr('value')
+        
+
+        if(
+            swal({
+              title: "Alterar status ?",
+              text: "",
+              icon: "warning",
+              buttons: ['Pedido não realizado','Atualizar para realizado'],
+              dangerMode: false,  
+            })
+            .then((willDelete) => {// Atualizar para realizado
+                if(willDelete){
+                    $.post("../controller/pedido.controller.php",
+                    {acao: 'status_ped',
+                    CodPedido: CodPedido, Status: 'Pendente'},
+                    function(retorno){
+
+                        console.log(retorno);
+
+
+                        if(retorno == 'Atualizou'){
+
+                            swal({
+                                title:"Atualizado com sucesso!",
+                                icon:"success",
+                            })
+                            setTimeout(function(){
+                                $(location).attr('href','admin.php')
+                            }, 1000)
+
+                        }else{
+
+                            swal({
+                                title: "Erro ao atualizar status!",
+                                icon: "error",
+                            })
+                            setTimeout(function(){
+                                $(location).attr('href','admin.php')
+                            }, 1000)
+                        }
+                    })
+                }
+                else{//Pedido nao realizado
+
+                    $.post("../controller/pedido.controller.php",
+                    {acao: 'status_ped',
+                    CodPedido: CodPedido, Status: 'Realizado'},
+                    function(retorno){
+
+                        console.log(retorno);
+                        if(retorno == 'Atualizou'){
+
+                            swal({
+                                title:"Atualizado com sucesso!",
+                                icon:"success",
+                            })
+                            setTimeout(function(){
+                                $(location).attr('href','admin.php')
+                            }, 1000)
+
+                        }else{
+
+                            swal({
+                                title: "Erro ao atualizar status!",
+                                icon: "error",
+                            })
+                            setTimeout(function(){
+                                $(location).attr('href','admin.php')
+                            }, 1000)
+                        }
+
+                       
+                    })
+
+                    
+                }
+            })
+            ){
+
+        }else{
+            return false;
+            console.log('Deu Muito ruim ao deletar');
+        }
+    })
+
+    var conteudo_modal_itens = $('#modal_itens').find('.modal-body')
+
+    $('#tabela_pedido').on('click', '#btn_ver_mais', function(){
+        
+
+        var CodPedido = $(this).attr('value')
+        console.log(CodPedido);
+        $.post(
+            '../controller/pedido.controller.php',
+            {acao: 'dados_pedido',
+            CodPedido: CodPedido},
+            function(retorno){
+
+                console.log(retorno);
+                
+
+                $('#modal_itens').modal({backdrop: true})
+
+                conteudo_modal_itens.html(retorno)
+                // var myModal = $('#modal_itens')
+            })
+        
     })
 
 })

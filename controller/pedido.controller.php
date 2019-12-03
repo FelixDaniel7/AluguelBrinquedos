@@ -1,7 +1,6 @@
 <?php
 include_once("../model/pedido.php");
 $ped = new Pedido();
-
 //carrinho - se a sessao não exixtir eu crio ela
 @session_start();
 // session_destroy();
@@ -11,7 +10,7 @@ if(!isset($_SESSION["CodEquipamento"]))
     $_SESSION["quantidade"] = array();
 }
 
-
+//carrinho
 $consulta = $ped->con->prepare("SELECT * FROM Equipamento");
 $consulta->execute();
 
@@ -24,7 +23,7 @@ $produtos;
 $produtos[$mostra["CodEquipamento"]]["nomeproduto"] = $mostra["Nome"];
 $produtos[$mostra["CodEquipamento"]]["preco"] = $mostra["Preco"];
 
-endforeach;
+endforeach;//ainda é o carrinho
 
 $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
@@ -68,6 +67,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 foreach ($_SESSION["CodEquipamento"] as $indice => $valor):
 
                 $total += $_SESSION["quantidade"][$indice] * $produtos[$valor]["preco"];
+                $_SESSION["total"] = $total;
                 $subtotal = $produtos[$valor]["preco"] * $_SESSION["quantidade"][$indice];
                 ?>
 
@@ -124,16 +124,51 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $FormaPagamento = filter_input(INPUT_POST, 'txtformaPagamento' , FILTER_SANITIZE_STRING);
             $Supervisao = filter_input(INPUT_POST, 'txtsupervisao' , FILTER_SANITIZE_NUMBER_INT);
 
-            function limpaCPF_CEP_TEL($valor){
-                $valor = trim($valor);
-                $valor = str_replace(".", "", $valor);
-                $valor = str_replace(",", "", $valor);
-                $valor = str_replace("-", "", $valor);
-                $valor = str_replace("/", "", $valor);
-                $valor = str_replace("(", "", $valor);
-                $valor = str_replace(")", "", $valor);
-                return $valor;
+            $cep_origem = "07909065";  
+            $cep_destino = $CEP;
+
+            $peso          = 2;
+            $valor         = 100;
+            $tipo_do_frete = '41106';
+            $altura        = 6;
+            $largura       = 20;
+            $comprimento   = 20;
+
+            $url = "http://ws.correios.com.br/calculador/CalcPrecoPrazo.aspx?";
+            $url .= "nCdEmpresa=";
+            $url .= "&sDsSenha=";
+            $url .= "&sCepOrigem=" . $cep_origem;
+            $url .= "&sCepDestino=" . $cep_destino;
+            $url .= "&nVlPeso=" . $peso;
+            $url .= "&nVlLargura=" . $largura;
+            $url .= "&nVlAltura=" . $altura;
+            $url .= "&nCdFormato=1";
+            $url .= "&nVlComprimento=" . $comprimento;
+            $url .= "&sCdMaoProria=n";
+            $url .= "&nVlValorDeclarado=" . $valor;
+            $url .= "&sCdAvisoRecebimento=n";
+            $url .= "&nCdServico=" . $tipo_do_frete;
+            $url .= "&nVlDiametro=0";
+            $url .= "&StrRetorno=xml";
+
+            $xml = simplexml_load_file($url);
+
+            $frete = $xml->cServico;
+
+            $valor = $frete->Valor;
+
+            function limpaCPF_CEP_TEL($value){
+                $value = trim($value);
+                $value = str_replace(".", "", $value);
+                $value = str_replace(",", "", $value);
+                $value = str_replace("-", "", $value);
+                $value = str_replace("/", "", $value);
+                $value = str_replace("(", "", $value);
+                $value = str_replace(")", "", $value);
+                return $value;
             }
+
+            $Frete = $valor;
             
             // atribui valor a variavel privat eda class pedido
             $ped->CodPedido = $CodPedido;
@@ -153,27 +188,27 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->Data_de_uso = $Data_de_uso;
             $ped->HorasAlugado = $HorasAlugado;            
             $ped->Hora_Montagem = $Hora_Montagem;
+            $ped->Frete = $Frete;
             $ped->FormaPagamento = $FormaPagamento;
             $ped->Supervisao = $Supervisao;
 
             $ped->Status = 'Pendente';
 
-
             //cadastrar os brinquedos tambem
             //cadastrar compra retornando o código da compra gerado
-            
             if($ped->CadastrarPedido()){
                 //pega os itens do carrinho e cadastra no bd
-                foreach ($_SESSION["CodEquipamento"] as $indice => $valor){
-                    $CodEquipamento = $valor;
-                    $PrecoEqui = $produtos[$valor]["preco"];
+                foreach ($_SESSION["CodEquipamento"] as $indice => $value){
+                    $CodEquipamento = $value;
+                    $PrecoEqui = $produtos[$value]["preco"];
 
                     if($ped->CadastrarItens($CodPedido,$CodEquipamento,$PrecoEqui)){
+                        unset($_SESSION["CodEquipamento"]);
                         echo "bla";
                     }
+            
                 } 
             }
-            
             
         break;
 
@@ -196,7 +231,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
                 Data de montagem
                 <input type="date" name="Hora_Montagem" value="<?php echo $dados->Hora_Montagem ?>">
                 Preço final
-                <input type="number" name="PrecoFinal" value="<?php echo $dados->PrecoFinal; ?>">
+                <input type="number" name="PrecoFinal" value="<?php echo $dados->Frete; ?>">
                 Forma de pagamento
                 <input type="text" name="FormaPagamento" value="<?php echo $dados->FormaPagamento ?>">
 
@@ -215,7 +250,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
             $ped->Data_de_uso = filter_input(INPUT_POST, 'Data_de_uso', FILTER_SANITIZE_STRING);
             $ped->HorasAlugado = filter_input(INPUT_POST, 'HorasAlugado', FILTER_SANITIZE_STRING);
             $ped->Hora_Montagem = filter_input(INPUT_POST, 'Hora_Montagem', FILTER_SANITIZE_STRING);
-            $ped->PrecoFinal = filter_input(INPUT_POST, 'PrecoFinal', FILTER_SANITIZE_STRING);
+            $ped->Frete = filter_input(INPUT_POST, 'PrecoFinal', FILTER_SANITIZE_STRING);
             $ped->FormaPagamento = filter_input(INPUT_POST, 'FormaPagamento', FILTER_SANITIZE_STRING);
 
             if($ped->AtualizarPedido()){
@@ -224,11 +259,163 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
         break;
 
         case 'excluir_ped':
-            $ped->CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_NUMBER_INT);
+            $CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_STRING);
 
-            if($ped->ExcluirPedido()){
+            if($ped->ExcluirPedido($CodPedido)){
                 echo 'deletou';
             }
+        break;
+
+        case 'status_ped':
+            $ped->CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_NUMBER_INT);
+            $Status = filter_input(INPUT_POST, 'Status', FILTER_SANITIZE_STRING);
+
+            
+            if ($Status == 'Pendente') {
+                //echo "Atualiza para Realizado";
+                if ($ped->UpdateStatusPedidoRealizado()){
+                    echo 'Atualizou';
+                }
+            }else{
+                if ($ped->UpdateStatusPedidoPendente()){
+                    echo 'Atualizou';
+                }
+            }
+        break;
+
+        case 'dados_pedido':
+            $CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_NUMBER_INT);
+            $dados = $ped->ConsultarPedidoEquipamento($CodPedido);?>
+            <div class="list-group">
+                <div class="list-group-item">
+                    <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">Dados do cliente:</h5>
+                    <small>
+                        <?php
+                            $data = $dados[0]['DataPedido'];
+                            $date = new DateTime($data);
+                            echo $date->format('d/m/Y H:i');
+                        ?>
+                    </small>
+                    </div>
+                    <p class="mb-1">
+                        <p><?php echo $dados[0]['Nome']; ?></p> 
+
+                        <p>
+                            <?php 
+                                $nbr_cpf = $dados[0]['CPF'];
+
+                                $parte_um     = substr($nbr_cpf, 0, 3);
+                                $parte_dois   = substr($nbr_cpf, 3, 3);
+                                $parte_tres   = substr($nbr_cpf, 6, 3);
+                                $parte_quatro = substr($nbr_cpf, 9, 2);
+                                $monta_cpf = "$parte_um.$parte_dois.$parte_tres-$parte_quatro";
+                                echo "CPF: ".$monta_cpf; 
+                            ?>
+                        </p> 
+            <hr>
+                        <p><h6>Contato:</h6></p>
+
+                        <p><?php echo "Email: ".$dados[0]['Email']; ?></p> 
+
+                        <p>Telefone:
+                            <?php 
+                                if ($dados[0]['Telefone'] != '') {
+                                    $nbr_tel = $dados[0]['Telefone'];
+                                    $um     = substr($nbr_tel, 0, 2);
+                                    $dois   = substr($nbr_tel, 2, 4);
+                                    $tres   = substr($nbr_tel, 6);
+                                    echo $monta_tel = "($um)$dois-$tres";
+                                } else {
+                                    echo "Sem telefone cadastrado";
+                                }
+                            ?>
+                        </p>
+                        <p>Celular: 
+                            <?php 
+                            if ($dados[0]['Celular'] != '') {
+                                $nbr_cel = $dados[0]['Celular'];
+                                $celum     = substr($nbr_cel, 0, 2);
+                                $celdois   = substr($nbr_cel, 2, 5);
+                                $celtres   = substr($nbr_cel, 6);
+                                echo $monta_tel = "($celum)$celdois-$celtres";
+                            }else{
+                                echo "Sem celular cadastrado";
+                            }
+                            ?>
+                        </p>
+                    </p>
+                </div>
+                <div class="list-group-item flex-column">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Endereço</h5>
+                    </div>
+                    <?php 
+                        if ($dados[0]['Complemento'] == ''){
+                            $complemento = '';
+                        }
+                        else{
+                            $complemento = "<br> Complemento: ".$dados[0]['Complemento'];
+                        }  
+                        echo $dados[0]['Endereco']." - ".$dados[0]['Numero'].", ". $dados[0]['Bairro']  . $complemento; ?>
+                </div>
+                <div class="list-group-item flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h5 class="mb-1">Dados do Pedido</h5>
+                    </div>
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Produto</th>
+                                <th>Preço</th>
+                                <th>Frete</th>
+                                <th>Supervisao</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <?php //apenas para os dados dos equipamentos
+                                $total = 0;
+                                foreach($dados AS $valor){
+                                $total += $valor["Preco"];
+                                ?>
+                                <td><?php echo "$valor[Equipamento]";?></td>
+                                <td><?php echo "R$ ".$valor['Preco'];?></td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <?php }?>
+                            <tr>
+                                <td></td>
+
+                                <td><?php echo "<h6>R$ ".number_format($total,2,",",".")."</h6>"; ?></td>
+
+                                <td><?php echo "R$ ".$dados[0]["Frete"];?></td>
+
+                                <td>
+                                    <?php 
+                                        if($dados[0]["Supervisao"] == 0){
+                                            echo "R$ 0,00";
+                                        }
+                                        else{
+                                            $total += 50.00;
+                                            echo "R$ 50,00";
+                                        }
+                                    ?>
+                                </td>
+                                <td>
+                                    <?php
+                                        $TOTAL = $total + $dados[0]["Frete"];
+                                        echo "<h4>Total R$".  number_format($TOTAL,2,",",".")."</h4>";
+                                    ?>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <?php
         break;
     }
 ?>

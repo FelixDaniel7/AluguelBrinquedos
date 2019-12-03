@@ -116,10 +116,8 @@ $(document).ready(function(){
                                     icon: "success",
                                     timer: 700
                                 })
-                                //atualiza a tabela
-                                //ConsultarEquipamento('../controller/equipamento.controller.php','consultar_equi',true)
                                 setTimeout(function(){
-                                    $(location).attr('href','admin.equipamento.php')
+                                    $(location).attr('href','admin.php')
                                 }, 1000)
 
                             } else {

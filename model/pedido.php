@@ -19,7 +19,7 @@ class Pedido
     private $Data_de_uso;
     private $HorasAlugado;
     private $Hora_Montagem;
-    private $PrecoFinal;
+    private $Frete;
     private $FormaPagamento;
     Private $Status;
     private $Supervisao;
@@ -75,7 +75,7 @@ class Pedido
     function CadastrarPedido(){
         $comandoSQL = "INSERT INTO Pedido(CodPedido,CPF,Nome,Email,Celular,
         CEP,Endereco,Numero,Bairro,Complemento,DataPedido,Data_de_uso
-        ,HorasAlugado,Hora_Montagem,PrecoFinal,FormaPagamento,Status,Supervisao,Telefone)
+        ,HorasAlugado,Hora_Montagem,Frete,FormaPagamento,Status,Supervisao,Telefone)
                             VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
         $exec = $this->con->prepare($comandoSQL);
@@ -95,7 +95,7 @@ class Pedido
         $exec->bindValue(12,$this->Data_de_uso,PDO::PARAM_STR);
         $exec->bindValue(13,$this->HorasAlugado,PDO::PARAM_STR);
         $exec->bindValue(14,$this->Hora_Montagem,PDO::PARAM_STR);
-        $exec->bindValue(15,$this->PrecoFinal,PDO::PARAM_STR);
+        $exec->bindValue(15,$this->Frete,PDO::PARAM_STR);
         $exec->bindValue(16,$this->FormaPagamento,PDO::PARAM_STR);
         $exec->bindValue(17,$this->Status,PDO::PARAM_STR);
         $exec->bindValue(18,$this->Supervisao,PDO::PARAM_STR);
@@ -146,6 +146,28 @@ class Pedido
         }
     }
 
+    function RetornarPrecoItem($CodPedido){
+        try{
+            $comandoSQL = "SELECT SUM(Preco) 'Preco' from Itens where CodPedido = ?";
+
+            $exec = $this->con->prepare($comandoSQL);
+            $exec->bindValue(1,$CodPedido,PDO::PARAM_INT);
+            $exec->execute();
+
+            if ($exec->rowCount() > 0) {
+                return $exec->fetchAll(PDO::FETCH_OBJ);//retorna todos como objeto
+            } else {
+                return false;
+            }
+
+        } catch (PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+
+
+
     function RetornarDados($CodPedido){
         $comandoSQL = "SELECT * FROM Pedido WHERE CodPedido = ?";
 
@@ -170,7 +192,7 @@ class Pedido
                             Data_de_uso = ?
                             ,HorasAlugado = ?
                             ,Hora_Montagem = ?
-                            ,PrecoFinal = ?,
+                            ,Frete = ?,
                             FormaPagamento = ?
                             ,Status = ?,
                             Supervisao = ?
@@ -182,7 +204,7 @@ class Pedido
             $exec->bindValue(3,$this->Data_de_uso,PDO::PARAM_STR);
             $exec->bindValue(4,$this->HorasAlugado,PDO::PARAM_STR);
             $exec->bindValue(5,$this->Hora_Montagem,PDO::PARAM_STR);
-            $exec->bindValue(6,$this->PrecoFinal,PDO::PARAM_STR);
+            $exec->bindValue(6,$this->Frete,PDO::PARAM_STR);
             $exec->bindValue(7,$this->FormaPagamento,PDO::PARAM_STR);
             $exec->bindValue(8,$this->Status,PDO::PARAM_INT);
             $exec->bindValue(9,$this->Supervisao,PDO::PARAM_STR);
@@ -196,8 +218,28 @@ class Pedido
             }
     }
 
-    function ExcluirPedido(){
-        $comandoSQL = "DELETE FROM Pedido WHERE CodPedido = ?";
+    function ExcluirPedido($CodPedido){
+        $comandoSQL = "DELETE FROM Itens WHERE CodPedido = ?;
+                        DELETE FROM Pedido WHERE CodPedido = ?;
+                        ";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodPedido,PDO::PARAM_INT);
+        $exec->bindValue(2,$CodPedido,PDO::PARAM_INT);
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    function UpdateStatusPedidoRealizado(){
+        $comandoSQL = "UPDATE Pedido
+                        SET Status = 'Realizado'
+                        WHERE CodPedido = ?";
 
         $exec = $this->con->prepare($comandoSQL);
         $exec->bindValue(1,$this->CodPedido,PDO::PARAM_INT);
@@ -205,6 +247,44 @@ class Pedido
 
         if ($exec->rowCount() > 0) {
             return true;
+        }else{
+            return false;
+        }
+    }
+
+    function UpdateStatusPedidoPendente(){
+        $comandoSQL = "UPDATE Pedido
+                        SET Status = 'Pendente'
+                        WHERE CodPedido = ?";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$this->CodPedido,PDO::PARAM_INT);
+        $exec->execute();
+
+        if ($exec->rowCount() > 0) {
+            return true;
+        }else{
+            return false;
+        }
+    }
+
+    function ConsultarPedidoEquipamento($CodPedido){
+        $comandoSQL = "SELECT p.*, e.Nome 'Equipamento', i.Preco
+                        from Pedido AS p inner JOIN Itens AS i inner join Equipamento AS e
+                        on p.CodPedido = ? AND i.CodPedido = ?
+                        Where e.CodEquipamento = i.CodEquipamento;";
+
+        $exec = $this->con->prepare($comandoSQL);
+        $exec->bindValue(1,$CodPedido,PDO::PARAM_INT);
+        $exec->bindValue(2,$CodPedido,PDO::PARAM_INT);
+        $exec->execute();
+
+        
+        if ($exec->rowCount() > 0) {
+
+        return $exec->fetchAll(PDO::FETCH_ASSOC);
+
+            
         }
         else{
             return false;
