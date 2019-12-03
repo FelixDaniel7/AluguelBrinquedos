@@ -1,7 +1,6 @@
 <?php
 include_once("../model/pedido.php");
 $ped = new Pedido();
-
 //carrinho - se a sessao não exixtir eu crio ela
 @session_start();
 // session_destroy();
