@@ -13,7 +13,7 @@ select * FROM Pedido Where Status != "Realizado";
 -- preco de tudo 
 
 
-select p.CodPedido,p.Telefone,p.Celular,p.Email,p.Endereco,p.Bairro,p.Numero,p.Complemento,p.CEP,e.Nome,   p.Frete, i.Preco
+select p.*, e.Nome, i.Preco
 from Pedido AS p inner JOIN Itens AS i inner join Equipamento AS e
 on p.CodPedido = "36301" AND i.CodPedido = "36301"
 Where e.CodEquipamento = i.CodEquipamento;
