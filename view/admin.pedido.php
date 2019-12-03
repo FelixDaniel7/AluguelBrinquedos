@@ -64,15 +64,14 @@ include_once('../controller/pedido.controller.php');
                       echo $date->format('d/m/Y H:i');
                     }
                     else{
+                      echo "<button type='button' id='btn_status' value='$value->CodPedido' class='btn btn-danger'>
+                              $status
+                            </button>";
                       $data = $value->DataPedido;
                       $date = new DateTime($data);
                       echo $date->format('d/m/Y H:i');
+                    }
                     ?>
-
-                    <button type="button" id="btn_status" value="<?php echo $value->CodPedido; ?>" class="btn btn-danger">
-                      <?php echo $status;?>
-                    </button>
-                    <?php }?>
                   </td>
 
                   <td><?php echo $value->Nome;?></td>

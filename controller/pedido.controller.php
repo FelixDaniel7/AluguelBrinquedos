@@ -284,188 +284,159 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
         break;
 
         case 'dados_pedido':
-            $CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_NUMBER_INT);
+$CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_NUMBER_INT);
 
-            $dados = $ped->ConsultarPedidoEquipamento($CodPedido);?>
+$dados = $ped->ConsultarPedidoEquipamento($CodPedido);?>
 
 <h4>
-                
+
 
 
 </h4>
 
 <div class="list-group">
-  <div class="list-group-item">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Dados do cliente:</h5>
-      <small><?php 
-      
-      
-      
-      $data = $dados[0]['DataPedido'];
-     $date = new DateTime($data);
-     echo $date->format('d/m/Y H:i');
-     
-     ?></small>
-    </div>
-    <p class="mb-1">
-        <p><?php echo $dados[0]['Nome']; ?></p> 
-        <p><?php 
-        $nbr_cpf = $dados[0]['CPF'];
+    <div class="list-group-item">
+        <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1">Dados do cliente:</h5>
+        <small><?php 
 
-        $parte_um     = substr($nbr_cpf, 0, 3);
-        $parte_dois   = substr($nbr_cpf, 3, 3);
-        $parte_tres   = substr($nbr_cpf, 6, 3);
-        $parte_quatro = substr($nbr_cpf, 9, 2);
-        
-        $monta_cpf = "$parte_um.$parte_dois.$parte_tres-$parte_quatro";
-        
-         
-        
-        
-        echo "CPF: ".$monta_cpf; ?></p> 
-        <hr>
-        <p><h6>Contato:</h6></p>
-        <p><?php echo "Email: ".$dados[0]['Email']; ?></p> 
-        <p>
-            
-        
-        Telefone: <?php 
 
-        if ($dados[0]['Telefone'] != '') {
+
+        $data = $dados[0]['DataPedido'];
+        $date = new DateTime($data);
+        echo $date->format('d/m/Y H:i');
+
+        ?></small>
+        </div>
+        <p class="mb-1">
+            <p><?php echo $dados[0]['Nome']; ?></p> 
+            <p><?php 
+            $nbr_cpf = $dados[0]['CPF'];
+
+            $parte_um     = substr($nbr_cpf, 0, 3);
+            $parte_dois   = substr($nbr_cpf, 3, 3);
+            $parte_tres   = substr($nbr_cpf, 6, 3);
+            $parte_quatro = substr($nbr_cpf, 9, 2);
+
+            $monta_cpf = "$parte_um.$parte_dois.$parte_tres-$parte_quatro";
+
+
+
+
+            echo "CPF: ".$monta_cpf; ?></p> 
+            <hr>
+            <p><h6>Contato:</h6></p>
+            <p><?php echo "Email: ".$dados[0]['Email']; ?></p> 
+            <p>
+
+
+            Telefone: <?php 
+
+            if ($dados[0]['Telefone'] != '') {
             $nbr_tel = $dados[0]['Telefone'];
 
             $um     = substr($nbr_tel, 0, 2);
             $dois   = substr($nbr_tel, 2, 4);
             $tres   = substr($nbr_tel, 6);
             echo $monta_tel = "($um)$dois-$tres";
-        } else {
+            } else {
             echo "Sem telefone cadastrado";
-        }
-        
-        
-        
-          ?></p>
+            }
 
 
-        <p>Celular: <?php 
 
-        if ($dados[0]['Celular'] != '') {
-            $nbr_cel = $dados[0]['Celular'];
-
-            $celum     = substr($nbr_cel, 0, 2);
-            $celdois   = substr($nbr_cel, 2, 5);
-            $celtres   = substr($nbr_cel, 6);
-            echo $monta_tel = "($celum)$celdois-$celtres";
-            
-        }else{
-            echo "Sem celular cadastrado";
-        }
-        
-        
-        ?></p>
-    
-    </p>
+            ?></p>
+            <p>Celular: 
+                <?php 
+                if ($dados[0]['Celular'] != '') {
+                    $nbr_cel = $dados[0]['Celular'];
+                    $celum     = substr($nbr_cel, 0, 2);
+                    $celdois   = substr($nbr_cel, 2, 5);
+                    $celtres   = substr($nbr_cel, 6);
+                    echo $monta_tel = "($celum)$celdois-$celtres";
+                }else{
+                    echo "Sem celular cadastrado";
+                }
+                ?>
+            </p>
+        </p>
+    </div>
+    <div class="list-group-item flex-column">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Endereço</h5>
         </div>
-<div class="list-group-item flex-column">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Endereço</h5>
+        <?php 
+            if ($dados[0]['Complemento'] == ''){
+                $complemento = '';
+            }
+            else{
+                $complemento = "<br> Complemento: ".$dados[0]['Complemento'];
+            }  
+            echo $dados[0]['Endereco']." - ".$dados[0]['Numero'].", ". $dados[0]['Bairro']  . $complemento; ?>
     </div>
-    <p><?php 
-    if ($dados[0]['Complemento'] == ''){
-       $complemento = '';
-    }
-    else{
-       $complemento = "<br> Complemento: ".$dados[0]['Complemento'];
-    }  
-    
-    echo $dados[0]['Endereco']." - ".$dados[0]['Numero'].", ". $dados[0]['Bairro']  . $complemento; ?></p>
-</div>
-  <div class="list-group-item flex-column align-items-start">
-    <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1">Dados do Pedido</h5>
+    <div class="list-group-item flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Dados do Pedido</h5>
+        </div>
+        <table class="table table-sm">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th>Frete</th>
+                    <th>Supervisao</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <?php //apenas para os dados dos equipamentos
+                    $total = 0;
+                    foreach($dados AS $valor){
+                    $total += $valor["Preco"];
+                    ?>
+                    <td><?php echo "$valor[Equipamento]";?></td>
+                    <td><?php echo "R$ ".$valor['Preco'];?></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <?php }?>
+                <tr>
+                    <td></td>
+
+                    <td><?php echo "<h6>R$ ".number_format($total,2,",",".")."</h6>"; ?></td>
+
+                    <td><?php echo "R$ ".$dados[0]["Frete"];?></td>
+
+                    <td>
+                        <?php 
+                            if($dados[0]["Supervisao"] == 0){
+                                echo "R$ 0,00";
+                            }
+                            else{
+                                $total += 50.00;
+                                echo "R$ 50,00";
+                            }
+                        ?>
+                    </td>
+                    <td>
+                        <?php
+                            $TOTAL = $total + $dados[0]["Frete"];
+                            echo "<h4>Total R$".  number_format($TOTAL,2,",",".")."</h4>";
+                        ?>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-    <p class="mb-1">
-
-    <table class="table table-sm">
-  <thead>
-    <tr>
-      <th>Produto</th>
-      <th>Preço</th>
-      <th>Frete</th>
-      <th>Supervisao</th>
-      <th>Total</th>
-    </tr>
-  </thead>
-  
-  <tbody>
-    <tr>
-        
-        <?php //apenas para os dados dos equipamentos
-        $total = 0;
-            foreach($dados AS $valor){
-
-                $total += $valor["Preco"];
-?>
-               <td><?php echo "$valor[Equipamento]";?></td>
-                <td><?php echo "R$ ".$valor['Preco']; 
-                                        ?></td>
-            
-        
-
-      <td></td>
-      <td></td>
-    </tr>
-    <?php }?>
-    <tr>
-        <td></td>
-        <td><?php echo "<h6>R$ ".number_format($total,2,",",".")."</h6>"; ?></td>
-        <td><?php echo "R$ ".$dados[0]["Frete"];?></td>
-        <td><?php if($dados[0]["Supervisao"] == 0){
-                        echo "R$ 0,00";
-                    }
-                    else{
-                        $total += 50.00;
-                        echo "R$ 50,00";
-                    }
-        ?></td>
-        <td><?php
-$TOTAL = $total + $dados[0]["Frete"];
-
-
-echo "<h4>Total R$".  number_format($TOTAL,2,",",".")."</h4>";
-
-
-?></td>
-    </tr>
-  </tbody>
-</table>
-
-
-
-
-                <!-- foreach ($_SESSION["CodEquipamento"] as $indice => $valor):
-
-                $total += $_SESSION["quantidade"][$indice] * $produtos[$valor]["preco"];
-                $_SESSION["total"] = $total;
-                $subtotal = $produtos[$valor]["preco"] * $_SESSION["quantidade"][$indice]; -->
-
-    
-                <td><?php //echo number_format($produtos[$valor]["preco"],2,',','.');?></td>
-                <td><?php //echo number_format($subtotal,2,',','.');?></td>
-               
-                <?php //echo "<h4>Total: R$ ".number_format($total,2,",",".")."</h4>"; ?>
-             
-    </p>
-</div>
 </div>
 
-            
-
-                  
 
 
-            <?php
+
+
+
+<?php
             break;
     }
 ?>
