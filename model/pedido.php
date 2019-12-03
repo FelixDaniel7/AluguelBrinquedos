@@ -218,11 +218,14 @@ class Pedido
             }
     }
 
-    function ExcluirPedido(){
-        $comandoSQL = "DELETE FROM Pedido WHERE CodPedido = ?";
+    function ExcluirPedido($CodPedido){
+        $comandoSQL = "DELETE FROM Itens WHERE CodPedido = ?;
+                        DELETE FROM Pedido WHERE CodPedido = ?;
+                        ";
 
         $exec = $this->con->prepare($comandoSQL);
-        $exec->bindValue(1,$this->CodPedido,PDO::PARAM_INT);
+        $exec->bindValue(1,$CodPedido,PDO::PARAM_INT);
+        $exec->bindValue(2,$CodPedido,PDO::PARAM_INT);
         $exec->execute();
 
         if ($exec->rowCount() > 0) {

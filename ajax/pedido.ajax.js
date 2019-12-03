@@ -251,7 +251,7 @@ $(document).ready(function(){
                 console.log('Atualizou');
 
                 setTimeout(function(){
-                    $(location).attr('href','admin.pedido.php')
+                    $(location).attr('href','admin.php')
                 }, 1000)
 
                 }
@@ -271,6 +271,9 @@ $(document).ready(function(){
     $('#tabela_pedido').on('click', '#btn_excluir', function(){
         var CodPedido = $(this).attr('value')
 
+        console.log(CodPedido);
+        
+
         if(
             swal({
               title: "Você tem certeza ?",
@@ -286,6 +289,9 @@ $(document).ready(function(){
                     CodPedido: CodPedido},
                     function(retorno){
 
+                        console.log(retorno);
+                        
+
                         if(retorno == 'deletou'){
 
                             swal({
@@ -295,7 +301,7 @@ $(document).ready(function(){
 
                             //ConsultarPedido('../controller/pedido.controller.php','consultar_ped',true)
                             setTimeout(function(){
-                                $(location).attr('href','admin.pedido.php')
+                                $(location).attr('href','admin.php')
                             }, 1000)
 
                         }else{

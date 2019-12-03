@@ -259,9 +259,9 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
         break;
 
         case 'excluir_ped':
-            $ped->CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_NUMBER_INT);
+            $CodPedido = filter_input(INPUT_POST, 'CodPedido', FILTER_SANITIZE_STRING);
 
-            if($ped->ExcluirPedido()){
+            if($ped->ExcluirPedido($CodPedido)){
                 echo 'deletou';
             }
         break;
