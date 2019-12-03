@@ -64,10 +64,7 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
           <a class="nav-link badge-light" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">
             Equipamentos
           </a>
-      
-          <a class="nav-link badge-light" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">
-            Mensagens
-          </a>           
+                
         </div>
       </div>
 
@@ -79,15 +76,12 @@ if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
           <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
       
             <?php include_once("admin.usuario.php"); ?>
-  
             
           </div>
           <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
             <?php include_once("admin.equipamento.php"); ?>
           </div>
-          <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
-            <?php //include_once("admin.pedido.php"); ?>
-          </div>
+
         </div>
       </div>
 

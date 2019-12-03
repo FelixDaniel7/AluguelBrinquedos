@@ -197,8 +197,14 @@ include_once('../controller/pedido.controller.php');
     <script src="../js/popper.min.js"></script>
     <!-- datatable -->
     <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.min.js"></script>
-    <script>
-    $('#tabela_pedido').DataTable()
-    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#tabela_pedido').dataTable( {
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+            }
+        } );
+    } );
+  </script>
   </body>
 </html>

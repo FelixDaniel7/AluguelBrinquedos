@@ -109,8 +109,14 @@
     <script src="../js/bootstrap.min.js"></script>
     <!-- datatable -->
     <script type="text/javascript" charset="utf8" src="../js/jquery.dataTables.min.js"></script>
-    <script>
-    $('#tabela_equipamento').DataTable()
-    </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $('#tabela_equipamento').dataTable( {
+            "language": {
+                "url": "//cdn.datatables.net/plug-ins/1.10.20/i18n/Portuguese-Brasil.json"
+            }
+        } );
+    } );
+  </script>
   </body>
 </html>
