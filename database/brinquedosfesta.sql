@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 29-Nov-2019 às 01:36
--- Versão do servidor: 10.1.19-MariaDB
--- PHP Version: 7.0.13
+-- Generation Time: 03-Dez-2019 às 08:45
+-- Versão do servidor: 10.1.40-MariaDB
+-- versão do PHP: 7.3.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -76,6 +78,25 @@ CREATE TABLE `itens` (
   `Preco` decimal(8,2) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Extraindo dados da tabela `itens`
+--
+
+INSERT INTO `itens` (`CodItem`, `CodPedido`, `CodEquipamento`, `Preco`) VALUES
+(1, 36301, 4, '232.65'),
+(2, 36301, 2, '200.50'),
+(3, 97611, 2, '200.50'),
+(4, 97611, 1, '544.00'),
+(5, 87394, 2, '200.50'),
+(6, 87394, 1, '544.00'),
+(7, 22004, 1, '544.00'),
+(8, 22004, 3, '120.99'),
+(9, 22004, 4, '232.65'),
+(10, 44833, 2, '200.50'),
+(11, 44833, 1, '544.00'),
+(12, 44833, 3, '120.99'),
+(13, 44833, 4, '232.65');
+
 -- --------------------------------------------------------
 
 --
@@ -98,11 +119,22 @@ CREATE TABLE `pedido` (
   `Data_de_uso` date DEFAULT NULL,
   `HorasAlugado` double DEFAULT NULL,
   `Hora_Montagem` time DEFAULT NULL,
-  `PrecoFinal` decimal(8,2) DEFAULT NULL,
+  `Frete` decimal(8,2) DEFAULT NULL,
   `FormaPagamento` enum('Dinheiro','Cartão','Mercado Pago') COLLATE utf8_unicode_ci DEFAULT NULL,
   `Status` enum('Pendente','Realizado') COLLATE utf8_unicode_ci DEFAULT NULL,
   `Supervisao` bit(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `pedido`
+--
+
+INSERT INTO `pedido` (`CodPedido`, `CPF`, `Nome`, `Telefone`, `Celular`, `Email`, `CEP`, `Endereco`, `Numero`, `Bairro`, `Complemento`, `DataPedido`, `Data_de_uso`, `HorasAlugado`, `Hora_Montagem`, `Frete`, `FormaPagamento`, `Status`, `Supervisao`) VALUES
+(22004, '11111111111', 'aa', '', '', 'a@11111a.com', '66666666', '6', '6', '6', '6', '2019-12-03 04:39:01', '2019-12-03', 8, '06:59:00', '35.00', 'Cartão', 'Pendente', b'1'),
+(36301, '22222222222', 'Rodolfo', '', '', 'a@a.com', '22222222', '2', '2', '2', '', '2019-12-02 18:20:21', '2019-12-02', 2, '22:02:00', '29.00', 'Dinheiro', 'Pendente', b'1'),
+(44833, '77777777777', 'Daniel2', '', '', 'a222@a.com', '77777777', 'reerrereer', '34', 'reerrere', '', '2019-12-03 05:08:20', '2019-12-03', 45, '05:04:00', '65.00', 'Dinheiro', 'Pendente', b'1'),
+(87394, '42321478139', 'Daniel Felix Fernandes', '1199820957', '1139098852', 'Daniel@gmail.com', '07914060', 'Rua Olavo Bilac ', '425', 'Jardim Magalhães', 'Perto a Igreja Jesus', '2019-12-03 03:38:18', '2019-12-05', 5, '15:50:00', '25.00', 'Cartão', 'Pendente', b'1'),
+(97611, '33333333333', 'Rodolfo', '', '', '3a@a.com', '33333333', '33', '33', '33', '', '2019-12-02 18:52:30', '2019-12-02', 33, '03:33:00', '29.00', 'Cartão', 'Realizado', b'1');
 
 -- --------------------------------------------------------
 
@@ -118,6 +150,19 @@ CREATE TABLE `usuario` (
   `Senha` varchar(40) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Tipo` enum('super','Administrador','Moderador') COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `usuario`
+--
+
+INSERT INTO `usuario` (`CodUsuario`, `Nome`, `Email`, `Login`, `Senha`, `Tipo`) VALUES
+(1, 'Daniel', 'daniel@gmail.com', 'Daniel', 'd0ae5744f1ba8b6cf2db51985d2047332fdc00cb', 'Administrador'),
+(2, 'Pedro', 'pedro@gmail.com', 'pedro', 'a3dd91d922fcff42f64ac37e9140b02a00e4ce01', 'Administrador'),
+(4, 'Luiz', 'luiz@gmail.com', 'luiz', 'a3dd91d922fcff42f64ac37e9140b02a00e4ce01', 'Administrador'),
+(6, 'Fabricio', 'fabricio@gmail.com', 'fabricio', 'a3dd91d922fcff42f64ac37e9140b02a00e4ce01', 'Administrador'),
+(8, 'Guilherme', 'guilherme@gmail.com', 'guilherme', 'a3dd91d922fcff42f64ac37e9140b02a00e4ce01', 'Administrador'),
+(9, 'teste', 'daniel2@gmail.com', 'teste', 'a3dd91d922fcff42f64ac37e9140b02a00e4ce01', 'Administrador'),
+(10, 'teste', 'daniel2@gmail.com', 'teste', 'a3dd91d922fcff42f64ac37e9140b02a00e4ce01', 'Administrador');
 
 --
 -- Indexes for dumped tables
@@ -153,8 +198,7 @@ ALTER TABLE `pedido`
 -- Indexes for table `usuario`
 --
 ALTER TABLE `usuario`
-  ADD PRIMARY KEY (`CodUsuario`),
-  ADD UNIQUE KEY `Email` (`Email`);
+  ADD PRIMARY KEY (`CodUsuario`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -165,16 +209,19 @@ ALTER TABLE `usuario`
 --
 ALTER TABLE `equipamento`
   MODIFY `CodEquipamento` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `itens`
 --
 ALTER TABLE `itens`
-  MODIFY `CodItem` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `CodItem` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `CodUsuario` smallint(6) NOT NULL AUTO_INCREMENT;
+  MODIFY `CodUsuario` smallint(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
 --
 -- Constraints for dumped tables
 --
@@ -191,6 +238,7 @@ ALTER TABLE `datasdisponivel`
 ALTER TABLE `itens`
   ADD CONSTRAINT `FK_Equipamento_Itens` FOREIGN KEY (`CodEquipamento`) REFERENCES `equipamento` (`CodEquipamento`),
   ADD CONSTRAINT `FK_Pedido_Itens` FOREIGN KEY (`CodPedido`) REFERENCES `pedido` (`CodPedido`);
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
