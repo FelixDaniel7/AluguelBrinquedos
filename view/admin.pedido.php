@@ -129,9 +129,9 @@ include_once('../controller/pedido.controller.php');
                   <button type="button" id="btn_ver_mais" value="<?php echo $value->CodPedido; ?>" class="btn btn-outline-info">
                   Mais
                   </button> 
-                  <button type="button" id="btn_editar" value="<?php echo $value->CodPedido; ?>"class="btn btn-outline-success">
+                  <!-- <button type="button" id="btn_editar" value="<?php echo $value->CodPedido; ?>"class="btn btn-outline-success">
                   <i class="em em-pencil"></i>
-                  </button>
+                  </button> polpar trabalho -->
 
                   <button type="button" id="btn_excluir" value="<?php echo $value->CodPedido; ?>" class="btn btn-outline-danger">
                   <i class="em em-x"></i>
@@ -169,7 +169,7 @@ include_once('../controller/pedido.controller.php');
           ?>
         </h5>
         <button type="button" class="close" data-dimiss="modal" aria-label="Fechar">
-        <span aria-hidden="true">&times;</span>
+          <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body"></div>
@@ -178,7 +178,7 @@ include_once('../controller/pedido.controller.php');
 </div>
 
 <!-- modal editar pedido -->
-<div class="modal fade" id="modal_pedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="modal_pedido" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
   <div class="modal-content">
     <div class="modal-header">
@@ -190,7 +190,7 @@ include_once('../controller/pedido.controller.php');
     <div class="modal-body"></div>
   </div>
   </div>
-</div> 
+</div>  -->
   
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
