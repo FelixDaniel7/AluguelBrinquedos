@@ -184,10 +184,7 @@ $(document).ready(function(){
                                     timer: 600
                                 })
                                 //atualiza a tabela
-                                //ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)
-                                setTimeout(function(){
-                                    $(location).attr('href','admin.usuario.php')
-                                }, 1000)
+                                ConsultarUsuario('../controller/usuario.controller.php','consultar_usu',true)
 
                             } else {
                                 //se deu algo errado ao deletar
